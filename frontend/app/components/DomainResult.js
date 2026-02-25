@@ -149,8 +149,10 @@ export function DomainResult({ result, onCopy, copied, intel }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: '8px',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
           <span style={{
             width: '8px', height: '8px', borderRadius: '50%',
             background: available ? 'var(--green)' : 'var(--red)',
@@ -160,12 +162,15 @@ export function DomainResult({ result, onCopy, copied, intel }) {
             fontSize: '0.95rem',
             fontWeight: available ? 600 : 400,
             color: available ? 'var(--text)' : 'var(--text-muted)',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
           }}>
             {full_domain}
           </span>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
           {/* Copy button */}
           <button
             onClick={(e) => { e.stopPropagation(); onCopy?.(); }}

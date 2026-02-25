@@ -22,7 +22,7 @@ export default function Home() {
         <span style={{ fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
           🌐 DomyDomains
         </span>
-        <div style={{ display: 'flex', gap: '24px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+        <div style={{ display: 'flex', gap: '16px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
           <a href="#features" style={{ transition: 'color 0.2s' }}>Features</a>
           <a href="/blog" style={{ transition: 'color 0.2s' }}>Blog</a>
           <a href="#faq" style={{ transition: 'color 0.2s' }}>FAQ</a>

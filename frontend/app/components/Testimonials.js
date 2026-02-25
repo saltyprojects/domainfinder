@@ -13,7 +13,7 @@ export function Testimonials() {
       <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginBottom: '48px', fontSize: '0.95rem' }}>
         See what people are saying about DomyDomains.
       </p>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))', gap: '16px' }}>
         {testimonials.map((t) => (
           <div key={t.name} style={{
             padding: '24px',

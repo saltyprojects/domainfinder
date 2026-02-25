@@ -258,7 +258,9 @@ export function SearchDomains() {
         {loading && (
           <div className="pulse" style={{
             position: 'absolute', right: '18px', top: '50%', transform: 'translateY(-50%)',
-            fontSize: '0.85rem', color: 'var(--text-muted)',
+            fontSize: '0.75rem', color: 'var(--text-muted)',
+            whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+            maxWidth: '40%',
           }}>
             {loadingMsg}
           </div>
