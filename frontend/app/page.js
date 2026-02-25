@@ -5,26 +5,29 @@ export default function Home() {
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      minHeight: '100vh',
+      height: '100vh',
+      overflow: 'hidden',
     }}>
       {/* Nav */}
       <nav style={{
         display: 'flex',
         justifyContent: 'center',
         padding: '16px',
+        flexShrink: 0,
       }}>
         <span style={{ fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
           🌐 DomyDomains
         </span>
       </nav>
 
+      {/* Main — takes remaining height */}
       <div style={{
         flex: 1,
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        width: '100%',
-        boxSizing: 'border-box',
+        overflow: 'hidden',
       }}>
         <SearchDomains />
       </div>

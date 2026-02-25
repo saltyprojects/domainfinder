@@ -50,9 +50,10 @@ export function SearchDomains() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [active, setActive] = useState(false); // search bar focused/active
+  const [active, setActive] = useState(false);
   const [progress, setProgress] = useState({ done: 0, total: 0 });
   const inputRef = useRef(null);
+  const bottomInputRef = useRef(null);
   const eventSourceRef = useRef(null);
 
   const doSearch = (q) => {
@@ -110,8 +111,12 @@ export function SearchDomains() {
     debounceRef.current = setTimeout(() => doSearch(val), 300);
   };
 
-  const handleFocus = () => {
-    setActive(true);
+  const activateSearch = () => {
+    if (!active) {
+      setActive(true);
+      // Focus the bottom input after state update
+      setTimeout(() => bottomInputRef.current?.focus(), 50);
+    }
   };
 
   const clear = () => {
@@ -132,28 +137,24 @@ export function SearchDomains() {
   const primary = sorted.find(r => r.tld === 'com') || sorted[0];
   const rest = sorted.filter(r => r !== primary);
 
-  return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-      maxWidth: '600px',
-      height: active ? 'calc(100vh - 60px)' : 'auto',
-      transition: 'height 0.3s ease',
-      boxSizing: 'border-box',
-    }}>
-      {/* Hero text — visible when inactive, fades out when active */}
+  // ===== INACTIVE STATE: Hero + centered search =====
+  if (!active) {
+    return (
       <div style={{
-        textAlign: 'center',
-        padding: active ? '0 16px' : '0 16px 32px',
-        maxHeight: active ? '0px' : '200px',
-        opacity: active ? 0 : 1,
-        overflow: 'hidden',
-        transition: 'all 0.35s ease',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        width: '100%',
+        maxWidth: '600px',
+        padding: '0 16px',
+        boxSizing: 'border-box',
       }}>
         <h1 style={{
           fontSize: 'clamp(1.8rem, 5vw, 3rem)',
           fontWeight: 800,
+          textAlign: 'center',
           lineHeight: 1.1,
           letterSpacing: '-0.03em',
           marginBottom: '12px',
@@ -162,20 +163,49 @@ export function SearchDomains() {
           <span style={{ color: 'var(--green)' }}>domain name</span>
         </h1>
         <p style={{
-          fontSize: '0.95rem',
-          color: 'var(--text-muted)',
-          lineHeight: 1.5,
+          fontSize: '0.95rem', color: 'var(--text-muted)',
+          textAlign: 'center', marginBottom: '32px',
         }}>
           Instant availability across 20+ TLDs
         </p>
+        <div style={{ position: 'relative', width: '100%' }}>
+          <input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onFocus={activateSearch}
+            onChange={handleChange}
+            placeholder="Search domains..."
+            autoFocus
+            style={{
+              width: '100%', padding: '16px 18px', fontSize: '1.05rem',
+              background: 'var(--surface)', border: '1px solid var(--border)',
+              borderRadius: 'var(--radius)', color: 'var(--text)', outline: 'none',
+              boxSizing: 'border-box',
+            }}
+          />
+        </div>
       </div>
+    );
+  }
 
-      {/* Results area — grows when active */}
+  // ===== ACTIVE STATE: Results + bottom search =====
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+      maxWidth: '600px',
+      height: '100%',
+      boxSizing: 'border-box',
+      position: 'absolute',
+      top: 0, left: 0, right: 0, bottom: 0,
+    }}>
+      {/* Scrollable results area */}
       <div style={{
-        flex: active ? 1 : 0,
-        overflowY: active ? 'auto' : 'hidden',
-        padding: '0 16px',
-        transition: 'flex 0.3s ease',
+        flex: 1,
+        overflowY: 'auto',
+        padding: '16px 16px 0',
       }}>
         {/* Primary result */}
         {primary && (
@@ -231,17 +261,23 @@ export function SearchDomains() {
             ))}
           </div>
         )}
+
+        {/* Empty active state */}
+        {!loading && results.length === 0 && (
+          <div style={{ textAlign: 'center', color: 'var(--text-dim)', marginTop: '40px', fontSize: '0.9rem' }}>
+            Type a domain name to search
+          </div>
+        )}
       </div>
 
-      {/* Search bar — slides to bottom when active */}
+      {/* Bottom search bar */}
       <div style={{
         padding: '10px 16px',
-        paddingBottom: 'max(10px, env(safe-area-inset-bottom))',
-        borderTop: active ? '1px solid var(--border)' : 'none',
+        paddingBottom: 'max(12px, env(safe-area-inset-bottom))',
+        borderTop: '1px solid var(--border)',
         background: 'var(--bg)',
-        transition: 'border-color 0.3s ease',
+        flexShrink: 0,
       }}>
-        {/* Progress */}
         {loading && progress.total > 0 && (
           <div style={{ marginBottom: '6px' }}>
             <div style={{ height: '2px', background: 'var(--border)', borderRadius: '1px', overflow: 'hidden' }}>
@@ -254,11 +290,11 @@ export function SearchDomains() {
         )}
         <div style={{ position: 'relative' }}>
           <input
-            ref={inputRef} type="text" value={query}
+            ref={bottomInputRef}
+            type="text"
+            value={query}
             onChange={handleChange}
-            onFocus={handleFocus}
             placeholder="Search domains..."
-            autoFocus
             style={{
               width: '100%', padding: '14px 40px 14px 16px', fontSize: '1rem',
               background: 'var(--surface)', border: '1px solid var(--border)',
@@ -267,15 +303,13 @@ export function SearchDomains() {
             }}
             onKeyDown={(e) => { if (e.key === 'Escape') clear(); }}
           />
-          {active && (
-            <button onClick={clear} style={{
-              position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)',
-              background: 'var(--surface-hover)', border: 'none', color: 'var(--text-muted)',
-              width: '24px', height: '24px', borderRadius: '50%', cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '0.8rem', lineHeight: 1,
-            }}>✕</button>
-          )}
+          <button onClick={clear} style={{
+            position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)',
+            background: 'var(--surface-hover)', border: 'none', color: 'var(--text-muted)',
+            width: '24px', height: '24px', borderRadius: '50%', cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: '0.8rem', lineHeight: 1, minHeight: 'auto', minWidth: 'auto',
+          }}>✕</button>
         </div>
       </div>
     </div>
