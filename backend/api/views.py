@@ -113,7 +113,7 @@ def linkedin_callback(request):
     token_resp = http_requests.post('https://www.linkedin.com/oauth/v2/accessToken', data={
         'grant_type': 'authorization_code',
         'code': code,
-        'redirect_uri': 'https://api.domydomains.com/api/linkedin/callback/',
+        'redirect_uri': 'https://api.domydomains.com/api/linkedin/callback',
         'client_id': os.environ.get('DOMY_LINKED_IN_CLIENT_ID', ''),
         'client_secret': os.environ.get('DOMY_LINKED_IN_CLIENT_SECRET', ''),
     }, headers={'Content-Type': 'application/x-www-form-urlencoded'}, timeout=15)
