@@ -128,16 +128,15 @@ class TrademarkViewSet(viewsets.ViewSet):
         })
 
 
-@api_view(['GET'])
 def search_stream(request):
     """SSE endpoint: stream domain availability results as they arrive."""
-    q = request.query_params.get('q', '').lower().strip().split('.')[0]
+    q = request.GET.get('q', '').lower().strip().split('.')[0]
 
     if not q or len(q) < 2:
-        return Response({'error': 'Query too short'}, status=status.HTTP_400_BAD_REQUEST)
+        return HttpResponse(json.dumps({'error': 'Query too short'}), content_type='application/json', status=400)
 
     if not re.match(r'^[a-z0-9]([a-z0-9-]*[a-z0-9])?$', q):
-        return Response({'error': 'Invalid domain name'}, status=status.HTTP_400_BAD_REQUEST)
+        return HttpResponse(json.dumps({'error': 'Invalid domain name'}), content_type='application/json', status=400)
 
     def event_stream():
         tlds = settings.DOMAIN_TLDS
@@ -154,18 +153,17 @@ def search_stream(request):
     return response
 
 
-@api_view(['GET'])
 def social_whois_stream(request):
     """SSE endpoint: stream social + WHOIS data for domains."""
     import concurrent.futures
     from .social_services import check_all_handles
     from .whois_services import lookup_domain_rdap
     
-    domains = request.query_params.get('domains', '').split(',')
+    domains = request.GET.get('domains', '').split(',')
     domains = [d.strip() for d in domains if d.strip()]
     
     if not domains:
-        return Response({'error': 'No domains provided'}, status=status.HTTP_400_BAD_REQUEST)
+        return HttpResponse(json.dumps({'error': 'No domains provided'}), content_type='application/json', status=400)
 
     def get_domain_intel(domain_name):
         """Get social + WHOIS data for a single domain name."""
