@@ -57,6 +57,18 @@ def check_domain_godaddy(name: str, tld: str) -> dict:
     return result
 
 
+def check_domain_availability_cached(name: str, tld: str) -> dict:
+    """Check with longer cache for suggestions (30 min)."""
+    full_domain = f"{name}.{tld}"
+    cache_key = f"domain:{full_domain}"
+    cached = cache.get(cache_key)
+    if cached is not None:
+        return cached
+    result = check_domain_availability(name, tld)
+    cache.set(cache_key, result, timeout=1800)  # 30 min for suggestions
+    return result
+
+
 def check_domain_dns(name: str, tld: str) -> dict:
     """Fallback: Check domain availability via DNS lookup."""
     full_domain = f"{name}.{tld}"

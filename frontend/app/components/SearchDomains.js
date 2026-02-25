@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { DomainResult } from './DomainResult';
 import { Suggestions } from './Suggestions';
+import { Typeahead } from './Typeahead';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
@@ -284,6 +285,9 @@ export function SearchDomains() {
           </div>
         )}
       </div>
+
+      {/* Typeahead suggestions */}
+      {!searched && <Typeahead query={query} onSelect={(name) => setQuery(name)} />}
 
       {/* Skeleton loading state */}
       {loading && results.length === 0 && query.trim().length >= 2 && (
