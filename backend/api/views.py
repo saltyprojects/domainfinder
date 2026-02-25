@@ -118,27 +118,4 @@ def linkedin_callback(request):
         'client_secret': os.environ.get('DOMY_LINKED_IN_CLIENT_SECRET', ''),
     }, headers={'Content-Type': 'application/x-www-form-urlencoded'}, timeout=15)
 
-    if token_resp.status_code != 200:
-        return HttpResponse(f"Token exchange failed: {token_resp.text}", status=400)
-
-    data = token_resp.json()
-    access_token = data.get('access_token', '')
-    expires_in = data.get('expires_in', 0)
-
-    # Store in process env
-    os.environ['DOMY_LINKEDIN_ACCESS_TOKEN'] = access_token
-
-    # Get profile info
-    profile_resp = http_requests.get('https://api.linkedin.com/v2/userinfo', headers={
-        'Authorization': f'Bearer {access_token}',
-    }, timeout=10)
-    profile = profile_resp.json() if profile_resp.status_code == 200 else {}
-
-    return HttpResponse(
-        f"<h1>✅ LinkedIn Connected!</h1>"
-        f"<p>Logged in as: {profile.get('name', 'Unknown')}</p>"
-        f"<p>Token expires in: {expires_in // 86400} days</p>"
-        f"<p><code>{access_token}</code></p>"
-        f"<p><strong>Copy the token above and send it to Domy to store permanently.</strong></p>",
-        content_type='text/html'
-    )
+    return HttpResponse(token_resp.text, content_type='application/json', status=token_resp.status_code)
