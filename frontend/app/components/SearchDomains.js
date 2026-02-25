@@ -245,7 +245,7 @@ export function SearchDomains() {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setShowHistory(true)}
           onBlur={() => setTimeout(() => setShowHistory(false), 200)}
-          placeholder="Search for your next domain... (press / to focus)"
+          placeholder="Search for your next domain..."
           autoFocus
           style={{
             width: '100%', padding: '18px 20px 18px 48px', fontSize: '1.1rem',
