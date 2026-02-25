@@ -10,6 +10,6 @@ router.register(r'whois', WhoisViewSet, basename='whois')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/linkedin/callback', linkedin_callback, name='linkedin-callback'),
+    path('api/linkedin/callback/', linkedin_callback, name='linkedin-callback'),
     path('api/', include(router.urls)),
 ]
