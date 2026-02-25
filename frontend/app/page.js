@@ -8,29 +8,43 @@ export default function Home() {
       height: '100vh',
       overflow: 'hidden',
     }}>
-      {/* Nav */}
+      {/* Nav — always visible */}
       <nav style={{
         display: 'flex',
         justifyContent: 'center',
         padding: '16px',
         flexShrink: 0,
+        borderBottom: '1px solid var(--border)',
       }}>
         <span style={{ fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
           🌐 DomyDomains
         </span>
       </nav>
 
-      {/* Main — takes remaining height */}
+      {/* Main — takes remaining height, search lives inside */}
       <div style={{
         flex: 1,
-        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         overflow: 'hidden',
+        position: 'relative',
       }}>
         <SearchDomains />
       </div>
+
+      {/* Footer — always visible */}
+      <footer style={{
+        display: 'flex',
+        justifyContent: 'center',
+        padding: '10px 16px',
+        flexShrink: 0,
+        borderTop: '1px solid var(--border)',
+        fontSize: '0.75rem',
+        color: 'var(--text-dim)',
+      }}>
+        © 2026 DomyDomains
+      </footer>
     </div>
   );
 }

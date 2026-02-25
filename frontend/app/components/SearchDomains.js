@@ -195,16 +195,15 @@ export function SearchDomains() {
       flexDirection: 'column',
       width: '100%',
       maxWidth: '600px',
-      height: '100%',
+      flex: 1,
+      minHeight: 0,
       boxSizing: 'border-box',
-      position: 'absolute',
-      top: 0, left: 0, right: 0, bottom: 0,
     }}>
       {/* Scrollable results area */}
       <div style={{
         flex: 1,
         overflowY: 'auto',
-        padding: '16px 16px 80px',
+        padding: '16px 16px 16px',
       }}>
         {/* Primary result */}
         {primary && (
