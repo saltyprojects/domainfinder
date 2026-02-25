@@ -1,7 +1,9 @@
+import json
 import os
 import re
 import requests as http_requests
-from django.http import HttpResponse
+from django.conf import settings
+from django.http import HttpResponse, StreamingHttpResponse
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -9,7 +11,7 @@ from .serializers import (
     DomainResultSerializer, DomainSearchSerializer,
     SuggestionSerializer, WhoisQuerySerializer, WhoisResultSerializer,
 )
-from .services import search_domains, check_domain_availability
+from .services import search_domains, check_domain_availability, stream_domain_checks
 from .generators import generate_suggestions
 from .whois_services import lookup_domain_rdap
 
@@ -95,6 +97,32 @@ class WhoisViewSet(viewsets.ViewSet):
         output = WhoisResultSerializer(result)
 
         return Response(output.data)
+
+
+@api_view(['GET'])
+def search_stream(request):
+    """SSE endpoint: stream domain availability results as they arrive."""
+    q = request.query_params.get('q', '').lower().strip().split('.')[0]
+
+    if not q or len(q) < 2:
+        return Response({'error': 'Query too short'}, status=status.HTTP_400_BAD_REQUEST)
+
+    if not re.match(r'^[a-z0-9]([a-z0-9-]*[a-z0-9])?$', q):
+        return Response({'error': 'Invalid domain name'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def event_stream():
+        tlds = settings.DOMAIN_TLDS
+        yield f"data: {json.dumps({'type': 'start', 'query': q, 'total': len(tlds)})}\n\n"
+
+        for result in stream_domain_checks(q, tlds):
+            yield f"data: {json.dumps({'type': 'result', **result})}\n\n"
+
+        yield f"data: {json.dumps({'type': 'done'})}\n\n"
+
+    response = StreamingHttpResponse(event_stream(), content_type='text/event-stream')
+    response['Cache-Control'] = 'no-cache'
+    response['X-Accel-Buffering'] = 'no'
+    return response
 
 
 @api_view(['GET'])

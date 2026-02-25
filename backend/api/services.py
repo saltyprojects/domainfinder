@@ -116,3 +116,14 @@ def search_domains(name: str) -> list[dict]:
 
     results.sort(key=sort_key)
     return results
+
+
+def stream_domain_checks(name: str, tlds: list[str]):
+    """Yield domain check results as they complete (for SSE streaming)."""
+    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+        futures = {
+            executor.submit(check_domain_availability, name, tld): tld
+            for tld in tlds
+        }
+        for future in concurrent.futures.as_completed(futures):
+            yield future.result()
