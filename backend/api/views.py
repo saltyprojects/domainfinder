@@ -15,6 +15,7 @@ from .serializers import (
 from .services import search_domains, check_domain_availability, stream_domain_checks
 from .generators import generate_suggestions
 from .whois_services import lookup_domain_rdap
+from .trademark_services import search_uspto_trademarks, get_risk_assessment
 
 
 class DomainSearchViewSet(viewsets.ViewSet):
@@ -98,6 +99,33 @@ class WhoisViewSet(viewsets.ViewSet):
         output = WhoisResultSerializer(result)
 
         return Response(output.data)
+
+
+class TrademarkViewSet(viewsets.ViewSet):
+    """
+    USPTO trademark conflict checker.
+
+    list: Check for trademark conflicts.
+        Query params: ?q=<domain_name>
+    """
+
+    def list(self, request):
+        serializer = DomainSearchSerializer(data=request.query_params)
+        serializer.is_valid(raise_exception=True)
+
+        query = serializer.validated_data['q'].lower().strip()
+        
+        # Get full trademark search results
+        trademark_results = search_uspto_trademarks(query)
+        
+        # Get simplified risk assessment
+        risk_assessment = get_risk_assessment(query)
+        
+        return Response({
+            'query': query,
+            'risk_assessment': risk_assessment,
+            'details': trademark_results,
+        })
 
 
 @api_view(['GET'])

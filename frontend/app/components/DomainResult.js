@@ -1,5 +1,7 @@
 'use client';
 
+import { TrademarkChecker } from './TrademarkChecker';
+
 const REGISTRAR_URL = 'https://www.namecheap.com/domains/registration/results/?domain=';
 
 function IntelChips({ intel, available }) {
@@ -81,11 +83,11 @@ function IntelChips({ intel, available }) {
     }
   }
 
-  return chips.length > 0 ? (
+  return (
     <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
       {chips}
     </div>
-  ) : null;
+  );
 }
 
 export function DomainResult({ result, onCopy, copied, intel }) {
@@ -163,7 +165,10 @@ export function DomainResult({ result, onCopy, copied, intel }) {
         </div>
       </div>
       
-      <IntelChips intel={intel} available={available} />
+      <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', alignItems: 'center' }}>
+        <IntelChips intel={intel} available={available} />
+        <TrademarkChecker domainName={domainName} inline />
+      </div>
     </div>
   );
 }
