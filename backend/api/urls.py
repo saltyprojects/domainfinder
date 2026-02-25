@@ -1,6 +1,1 @@
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('health/', views.health),
-]
+# URLs handled by router in config/urls.py
