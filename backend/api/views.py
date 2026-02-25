@@ -16,6 +16,7 @@ from .services import search_domains, check_domain_availability, stream_domain_c
 from .generators import generate_suggestions
 from .whois_services import lookup_domain_rdap
 from .trademark_services import search_uspto_trademarks, get_risk_assessment
+from .content_services import create_and_post_content, get_posting_stats, get_random_content
 
 
 class DomainSearchViewSet(viewsets.ViewSet):
@@ -126,6 +127,67 @@ class TrademarkViewSet(viewsets.ViewSet):
             'risk_assessment': risk_assessment,
             'details': trademark_results,
         })
+
+
+class SocialContentViewSet(viewsets.ViewSet):
+    """
+    Social media content generation and posting system.
+    
+    list: Get posting statistics and recent content
+    create: Generate and post new content to social platforms
+    """
+    
+    def list(self, request):
+        """Get posting statistics and analytics."""
+        stats = get_posting_stats()
+        return Response(stats)
+    
+    def create(self, request):
+        """Generate and post new content to social platforms."""
+        # Get platforms from request, default to both
+        platforms = request.data.get('platforms', ['twitter', 'instagram'])
+        
+        # Validate platforms
+        valid_platforms = ['twitter', 'instagram']
+        platforms = [p for p in platforms if p in valid_platforms]
+        
+        if not platforms:
+            return Response(
+                {'error': 'Invalid platforms. Choose from: twitter, instagram'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Create and post content
+        result = create_and_post_content(platforms)
+        
+        if result['success']:
+            return Response({
+                'success': True,
+                'message': f"Content posted successfully to {len([p for p in result['platforms'] if result['platforms'][p]['success']])} platform(s)",
+                'content': result['content'],
+                'platforms': result['platforms']
+            })
+        else:
+            return Response({
+                'success': False,
+                'message': 'Failed to post content',
+                'error': result.get('error', 'Unknown error'),
+                'platforms': result['platforms']
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['GET'])
+def preview_content(request):
+    """Preview random content without posting."""
+    content = get_random_content()
+    return Response({
+        'content': content,
+        'formatted_post': {
+            'text': content['text'],
+            'hashtags': content['hashtags'],
+            'full_text': f"{content['text']}\n\n{' '.join(content['hashtags'])}"
+        }
+    })
 
 
 def search_stream(request):

@@ -137,12 +137,6 @@ def check_domain_dns(name: str, tld: str) -> dict:
         # Unknown error — default to available (better than false negatives)
         available = True
 
-    # If DNS says available, verify with RDAP (catches parked/held domains)
-    if available:
-        rdap_result = check_rdap_registration(full_domain, tld)
-        if rdap_result is True:
-            available = False  # RDAP says it's registered
-
     result = {
         'domain': name,
         'tld': tld,
@@ -153,6 +147,17 @@ def check_domain_dns(name: str, tld: str) -> dict:
     }
 
     cache.set(cache_key, result, timeout=300)
+    return result
+
+
+def check_domain_dns_verified(name: str, tld: str) -> dict:
+    """DNS check + RDAP verification for accuracy. Slower but accurate."""
+    result = check_domain_dns(name, tld)
+    if result['available']:
+        rdap_result = check_rdap_registration(result['full_domain'], tld)
+        if rdap_result is True:
+            result['available'] = False
+            cache.set(f"domain:{result['full_domain']}", result, timeout=300)
     return result
 
 
@@ -188,11 +193,37 @@ def search_domains(name: str) -> list[dict]:
 
 
 def stream_domain_checks(name: str, tlds: list[str]):
-    """Yield domain check results as they complete (for SSE streaming)."""
+    """Yield domain check results as they complete (for SSE streaming).
+    
+    Phase 1: Fast DNS checks — stream results immediately.
+    Phase 2: RDAP verification for domains that DNS says are available.
+    Yields corrections if RDAP disagrees.
+    """
+    # Phase 1: Fast DNS/GoDaddy checks
+    dns_results = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         futures = {
             executor.submit(check_domain_availability, name, tld): tld
             for tld in tlds
         }
         for future in concurrent.futures.as_completed(futures):
-            yield future.result()
+            result = future.result()
+            dns_results.append(result)
+            yield result
+
+    # Phase 2: RDAP verification for "available" domains (in background)
+    available_results = [r for r in dns_results if r['available']]
+    if available_results:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            futures = {
+                executor.submit(check_rdap_registration, r['full_domain'], r['tld']): r
+                for r in available_results
+            }
+            for future in concurrent.futures.as_completed(futures):
+                original = futures[future]
+                rdap_result = future.result()
+                if rdap_result is True:
+                    # RDAP says it's registered — send correction
+                    corrected = {**original, 'available': False}
+                    cache.set(f"domain:{original['full_domain']}", corrected, timeout=300)
+                    yield {'_correction': True, **corrected}
