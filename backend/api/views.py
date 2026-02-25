@@ -1,9 +1,13 @@
 import re
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from .serializers import DomainResultSerializer, DomainSearchSerializer, SocialHandleResultSerializer
+from .serializers import (
+    DomainResultSerializer, DomainSearchSerializer, SocialHandleResultSerializer,
+    WhoisQuerySerializer, WhoisResultSerializer,
+)
 from .services import search_domains
 from .social_services import check_all_handles
+from .whois_services import lookup_domain_rdap
 
 
 class DomainSearchViewSet(viewsets.ViewSet):
@@ -42,3 +46,22 @@ class DomainSearchViewSet(viewsets.ViewSet):
             'results': output.data,
             'social': social_output.data,
         })
+
+
+class WhoisViewSet(viewsets.ViewSet):
+    """
+    WHOIS/RDAP domain intelligence lookup.
+
+    list: Look up WHOIS data for a domain.
+        Query params: ?domain=<full_domain>
+    """
+
+    def list(self, request):
+        serializer = WhoisQuerySerializer(data=request.query_params)
+        serializer.is_valid(raise_exception=True)
+
+        domain = serializer.validated_data['domain'].lower().strip()
+        result = lookup_domain_rdap(domain)
+        output = WhoisResultSerializer(result)
+
+        return Response(output.data)
