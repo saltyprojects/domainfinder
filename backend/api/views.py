@@ -128,41 +128,17 @@ def linkedin_callback(request):
     # Store in process env
     os.environ['DOMY_LINKEDIN_ACCESS_TOKEN'] = access_token
 
-    # Persist to Railway env vars
-    railway_token = os.environ.get('RAILWAY_TOKEN', '')
-    persisted = False
-    if railway_token:
-        try:
-            proj = "65625fd9-20b5-4e7c-b40f-050172660c78"
-            env_id = "f54ef90f-d8e3-4dd9-ac3e-d663cab1789a"
-            svc = "81a04d68-82cb-427a-89a3-143c75a3e4f6"
-            import json as _json
-            payload = _json.dumps({
-                "query": "mutation($input: VariableUpsertInput!) { variableUpsert(input: $input) }",
-                "variables": {"input": {"projectId": proj, "environmentId": env_id, "serviceId": svc,
-                    "name": "DOMY_LINKEDIN_ACCESS_TOKEN", "value": access_token}}
-            }).encode()
-            import urllib.request
-            req = urllib.request.Request("https://backboard.railway.app/graphql/v2", data=payload, headers={
-                "Authorization": f"Bearer {railway_token}", "Content-Type": "application/json", "User-Agent": "Mozilla/5.0"})
-            urllib.request.urlopen(req, timeout=10)
-            persisted = True
-        except Exception:
-            pass
-
-    # Get profile info to confirm it worked
+    # Get profile info
     profile_resp = http_requests.get('https://api.linkedin.com/v2/userinfo', headers={
         'Authorization': f'Bearer {access_token}',
     }, timeout=10)
     profile = profile_resp.json() if profile_resp.status_code == 200 else {}
 
-    persist_msg = "✅ Token persisted to Railway!" if persisted else "⚠️ Token in memory only — copy it below to persist manually."
-
     return HttpResponse(
         f"<h1>✅ LinkedIn Connected!</h1>"
         f"<p>Logged in as: {profile.get('name', 'Unknown')}</p>"
         f"<p>Token expires in: {expires_in // 86400} days</p>"
-        f"<p>Access token (first 20 chars): {access_token[:20]}...</p>"
-        f"<p><strong>{persist_msg}</strong></p>",
+        f"<p><code>{access_token}</code></p>"
+        f"<p><strong>Copy the token above and send it to Domy to store permanently.</strong></p>",
         content_type='text/html'
     )
