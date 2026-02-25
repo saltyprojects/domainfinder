@@ -20,6 +20,10 @@ print('DB reset.')
 }
 echo "Migrations complete."
 
+echo "Seeding data..."
+python manage.py seed || true
+echo "Seed complete."
+
 echo "PORT=${PORT:-not set}"
 echo "Starting gunicorn..."
 exec gunicorn config.wsgi:application \
