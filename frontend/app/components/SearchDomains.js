@@ -201,10 +201,12 @@ export function SearchDomains({ onActiveChange }) {
       boxSizing: 'border-box',
     }}>
       {/* Scrollable results area */}
-      <div style={{
+      <div data-scrollable style={{
         flex: 1,
         overflowY: 'auto',
         padding: '16px 16px 16px',
+        WebkitOverflowScrolling: 'touch',
+        touchAction: 'pan-y',
       }}>
         {/* Primary result */}
         {primary && (
