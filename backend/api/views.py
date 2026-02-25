@@ -24,6 +24,7 @@ from .whois_services import lookup_domain_rdap
 from .trademark_services import search_uspto_trademarks, get_risk_assessment
 from .content_services import create_and_post_content, get_posting_stats, get_random_content
 from .expiry_services import find_expiring_domains, get_domain_expiry_info, get_expiring_domains_by_urgency
+from .seo_services import get_comprehensive_seo_analysis, get_seo_recommendations
 from .models import User, DomainList, SavedDomain, DomainWatchlist, DomainAlert, ListShare
 
 
@@ -394,6 +395,97 @@ def domain_expiry_info(request):
     
     result = get_domain_expiry_info(domain)
     return Response(result)
+
+
+# SEO Analytics Views
+
+@api_view(['GET'])
+def domain_seo_analysis(request):
+    """Get comprehensive SEO analysis for a domain."""
+    domain = request.query_params.get('domain')
+    keyword = request.query_params.get('keyword')
+    
+    if not domain:
+        return Response(
+            {'error': 'domain parameter is required'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    # Clean and validate domain name
+    domain = domain.lower().strip()
+    if not domain or len(domain) < 3:
+        return Response(
+            {'error': 'Invalid domain name'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    # Optional: Check if user is authenticated for Pro features
+    # For now, we'll allow all users to see basic SEO data
+    
+    try:
+        seo_analysis = get_comprehensive_seo_analysis(domain, keyword)
+        recommendations = get_seo_recommendations(domain, seo_analysis)
+        
+        return Response({
+            'analysis': seo_analysis,
+            'recommendations': recommendations,
+            'is_premium_feature': True,
+            'note': 'This is a premium feature. Upgrade to Pro for real-time SEO data from leading providers.'
+        })
+        
+    except Exception as e:
+        logger.error(f"SEO analysis failed for {domain}: {e}")
+        return Response(
+            {'error': 'Failed to analyze SEO data', 'detail': str(e)},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+
+@api_view(['GET'])
+def domain_seo_summary(request):
+    """Get quick SEO summary for multiple domains (for search results)."""
+    domains = request.query_params.get('domains', '').split(',')
+    domains = [d.strip().lower() for d in domains if d.strip()]
+    
+    if not domains or len(domains) > 10:
+        return Response(
+            {'error': 'Provide 1-10 domains separated by commas'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    summaries = []
+    
+    for domain in domains:
+        try:
+            seo_data = get_comprehensive_seo_analysis(domain)
+            
+            # Return only key metrics for performance
+            summary = {
+                'domain': domain,
+                'seo_score': seo_data.get('seo_score', 0),
+                'domain_authority': seo_data.get('domain_authority', 0),
+                'monthly_visitors': seo_data.get('traffic', {}).get('monthly_visitors', 0),
+                'total_backlinks': seo_data.get('backlinks', {}).get('total_backlinks', 0),
+                'trends_interest': seo_data.get('trends', {}).get('current_interest', 0)
+            }
+            summaries.append(summary)
+            
+        except Exception as e:
+            logger.warning(f"SEO summary failed for {domain}: {e}")
+            summaries.append({
+                'domain': domain,
+                'seo_score': 0,
+                'domain_authority': 0,
+                'monthly_visitors': 0,
+                'total_backlinks': 0,
+                'trends_interest': 0,
+                'error': 'Analysis failed'
+            })
+    
+    return Response({
+        'summaries': summaries,
+        'note': 'Basic SEO metrics. Get detailed analysis with Pro subscription.'
+    })
 
 
 @api_view(['GET'])

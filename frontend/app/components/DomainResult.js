@@ -1,6 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import { TrademarkChecker } from './TrademarkChecker';
+import { SEOAnalytics } from './SEOAnalytics';
 
 const REGISTRAR_URL = 'https://www.namecheap.com/domains/registration/results/?domain=';
 
@@ -133,6 +135,7 @@ function IntelChips({ intel, available }) {
 export function DomainResult({ result, onCopy, copied, intel }) {
   const { full_domain, tld, available, price, currency } = result;
   const domainName = full_domain.split('.')[0];
+  const [showSEO, setShowSEO] = useState(false);
 
   return (
     <div style={{
@@ -205,7 +208,29 @@ export function DomainResult({ result, onCopy, copied, intel }) {
               </a>
             </>
           ) : (
-            <span style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>Taken</span>
+            <>
+              <span style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>Taken</span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowSEO(!showSEO);
+                }}
+                style={{
+                  padding: '4px 8px',
+                  background: showSEO ? 'var(--green)' : 'var(--border)',
+                  color: showSEO ? '#000' : 'var(--text-dim)',
+                  border: 'none',
+                  borderRadius: '6px',
+                  fontSize: '0.75rem',
+                  fontWeight: 500,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s'
+                }}
+                title="View SEO analytics"
+              >
+                📊 SEO
+              </button>
+            </>
           )}
         </div>
       </div>
@@ -214,6 +239,12 @@ export function DomainResult({ result, onCopy, copied, intel }) {
         <IntelChips intel={intel} available={available} />
         <TrademarkChecker domainName={domainName} inline />
       </div>
+      
+      {!available && showSEO && (
+        <div style={{ marginTop: '12px' }}>
+          <SEOAnalytics domain={full_domain} keyword={domainName} compact />
+        </div>
+      )}
     </div>
   );
 }
