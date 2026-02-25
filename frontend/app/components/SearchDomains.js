@@ -22,25 +22,8 @@ const SORT_OPTIONS = [
   { value: 'price-desc', label: 'Price ↓' },
 ];
 
-function getInitialQuery() {
-  if (typeof window === 'undefined') return '';
-  return new URLSearchParams(window.location.search).get('q') || '';
-}
 
-function getSearchHistory() {
-  if (typeof window === 'undefined') return [];
-  try { return JSON.parse(localStorage.getItem('domy_history') || '[]').slice(0, 8); }
-  catch { return []; }
-}
 
-function saveSearchHistory(query) {
-  if (typeof window === 'undefined' || !query) return;
-  try {
-    const hist = getSearchHistory().filter(h => h !== query);
-    hist.unshift(query);
-    localStorage.setItem('domy_history', JSON.stringify(hist.slice(0, 8)));
-  } catch {}
-}
 
 function sortResults(results, sort) {
   const sorted = [...results];
@@ -58,8 +41,6 @@ export function SearchDomains() {
   const [searched, setSearched] = useState(false);
   const [sort, setSort] = useState('default');
   const [hiddenTlds, setHiddenTlds] = useState(new Set());
-  const [history, setHistory] = useState([]);
-  const [showHistory, setShowHistory] = useState(false);
   const [copied, setCopied] = useState(null);
   const [progress, setProgress] = useState({ done: 0, total: 0 });
   const [intel, setIntel] = useState({});  // Store social/WHOIS data by domain name
@@ -70,9 +51,6 @@ export function SearchDomains() {
   const abortRef = useRef(null);
 
   useEffect(() => {
-    const initial = getInitialQuery();
-    if (initial) setQuery(initial);
-    setHistory(getSearchHistory());
     initialized.current = true;
   }, []);
 
@@ -101,7 +79,6 @@ export function SearchDomains() {
 
     const url = new URL(window.location);
     url.searchParams.set('q', trimmed);
-    window.history.replaceState({}, '', url);
 
     debounceRef.current = setTimeout(() => {
       setLoading(true); setError(null); setResults([]); setSearched(true);
@@ -127,8 +104,6 @@ export function SearchDomains() {
           } else if (data.type === 'done') {
             eventSource.close();
             setLoading(false);
-            saveSearchHistory(trimmed);
-            setHistory(getSearchHistory());
             loadIntelData(received);
           }
         } catch {}
@@ -142,8 +117,6 @@ export function SearchDomains() {
           .then(data => {
             setResults(data.results);
             setProgress({ done: data.results.length, total: data.results.length });
-            saveSearchHistory(trimmed);
-            setHistory(getSearchHistory());
             // Start loading intel data after domain search is complete
             loadIntelData(data.results);
           })
@@ -243,8 +216,8 @@ export function SearchDomains() {
         <input
           ref={inputRef} type="text" value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => setShowHistory(true)}
-          onBlur={() => setTimeout(() => setShowHistory(false), 200)}
+          
+          
           placeholder="Search for your next domain..."
           autoFocus
           style={{
@@ -266,24 +239,6 @@ export function SearchDomains() {
           </div>
         )}
 
-        {showHistory && !searched && history.length > 0 && query.length < 2 && (
-          <div style={{
-            position: 'absolute', top: '100%', left: 0, right: 0, marginTop: '4px',
-            background: 'var(--surface)', border: '1px solid var(--border)',
-            borderRadius: 'var(--radius)', zIndex: 10, overflow: 'hidden',
-          }}>
-            <div style={{ padding: '8px 14px', fontSize: '0.75rem', color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Recent searches
-            </div>
-            {history.map(h => (
-              <div key={h} onMouseDown={() => setQuery(h)}
-                style={{ padding: '10px 14px', cursor: 'pointer', fontSize: '0.9rem', color: 'var(--text-muted)', transition: 'background 0.1s' }}
-                onMouseEnter={(e) => e.target.style.background = 'var(--green-dim)'}
-                onMouseLeave={(e) => e.target.style.background = 'transparent'}>
-                🕐 {h}
-              </div>
-            ))}
-          </div>
         )}
       </div>
 
