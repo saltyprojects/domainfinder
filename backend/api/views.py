@@ -5,18 +5,25 @@ import requests as http_requests
 from django.conf import settings
 from django.core.cache import cache as django_cache
 from django.http import HttpResponse, StreamingHttpResponse
-from rest_framework import viewsets, status
-from rest_framework.decorators import api_view
+from rest_framework import viewsets, status, permissions
+from rest_framework.decorators import api_view, action, permission_classes
 from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
+from django.contrib.auth import login
+from django.db import transaction
 from .serializers import (
     DomainResultSerializer, DomainSearchSerializer,
     SuggestionSerializer, WhoisQuerySerializer, WhoisResultSerializer,
+    UserSerializer, UserRegistrationSerializer, LoginSerializer,
+    DomainListSerializer, SavedDomainSerializer, DomainWatchlistSerializer,
+    DomainAlertSerializer, ListShareSerializer,
 )
 from .services import search_domains, check_domain_availability, stream_domain_checks
 from .generators import generate_suggestions
 from .whois_services import lookup_domain_rdap
 from .trademark_services import search_uspto_trademarks, get_risk_assessment
 from .content_services import create_and_post_content, get_posting_stats, get_random_content
+from .models import User, DomainList, SavedDomain, DomainWatchlist, DomainAlert, ListShare
 
 
 class DomainSearchViewSet(viewsets.ViewSet):
@@ -174,6 +181,163 @@ class SocialContentViewSet(viewsets.ViewSet):
                 'error': result.get('error', 'Unknown error'),
                 'platforms': result['platforms']
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+# User Authentication Views
+
+@api_view(['POST'])
+@permission_classes([permissions.AllowAny])
+def register(request):
+    """User registration endpoint."""
+    serializer = UserRegistrationSerializer(data=request.data)
+    if serializer.is_valid():
+        user = serializer.save()
+        token, created = Token.objects.get_or_create(user=user)
+        
+        # Create a default "My Domains" list for new users
+        DomainList.objects.create(
+            user=user,
+            name="My Domains",
+            description="Your saved domains"
+        )
+        
+        return Response({
+            'user': UserSerializer(user).data,
+            'token': token.key,
+            'message': 'Registration successful'
+        }, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+@permission_classes([permissions.AllowAny])
+def login_view(request):
+    """User login endpoint."""
+    serializer = LoginSerializer(data=request.data)
+    if serializer.is_valid():
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        login(request, user)
+        
+        return Response({
+            'user': UserSerializer(user).data,
+            'token': token.key,
+            'message': 'Login successful'
+        })
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def logout_view(request):
+    """User logout endpoint."""
+    if request.user.is_authenticated:
+        try:
+            request.user.auth_token.delete()
+        except Token.DoesNotExist:
+            pass
+    return Response({'message': 'Logout successful'})
+
+
+# Domain Management Views
+
+class DomainListViewSet(viewsets.ModelViewSet):
+    """ViewSet for managing domain lists."""
+    serializer_class = DomainListSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return DomainList.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    @action(detail=True, methods=['post'])
+    def add_domain(self, request, pk=None):
+        """Add a domain to this list."""
+        domain_list = self.get_object()
+        serializer = SavedDomainSerializer(data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save(domain_list=domain_list)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['delete'])
+    def remove_domain(self, request, pk=None):
+        """Remove a domain from this list."""
+        domain_list = self.get_object()
+        domain_id = request.data.get('domain_id')
+        
+        try:
+            domain = domain_list.domains.get(id=domain_id)
+            domain.delete()
+            return Response({'message': 'Domain removed successfully'})
+        except SavedDomain.DoesNotExist:
+            return Response({'error': 'Domain not found'}, status=status.HTTP_404_NOT_FOUND)
+
+
+class DomainWatchlistViewSet(viewsets.ModelViewSet):
+    """ViewSet for managing domain watchlists."""
+    serializer_class = DomainWatchlistSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return DomainWatchlist.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
+class DomainAlertViewSet(viewsets.ReadOnlyModelViewSet):
+    """ViewSet for viewing domain alerts."""
+    serializer_class = DomainAlertSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return DomainAlert.objects.filter(watchlist__user=self.request.user)
+
+    @action(detail=True, methods=['post'])
+    def mark_read(self, request, pk=None):
+        """Mark an alert as read."""
+        alert = self.get_object()
+        alert.is_read = True
+        alert.save()
+        return Response({'message': 'Alert marked as read'})
+
+    @action(detail=False, methods=['post'])
+    def mark_all_read(self, request):
+        """Mark all alerts as read for the user."""
+        alerts = self.get_queryset().filter(is_read=False)
+        alerts.update(is_read=True)
+        return Response({'message': f'Marked {alerts.count()} alerts as read'})
+
+
+@api_view(['GET'])
+def user_dashboard(request):
+    """Get user dashboard data."""
+    if not request.user.is_authenticated:
+        return Response({'error': 'Authentication required'}, status=status.HTTP_401_UNAUTHORIZED)
+
+    user = request.user
+    
+    # Get user's lists and stats
+    domain_lists = DomainList.objects.filter(user=user)
+    watchlists = DomainWatchlist.objects.filter(user=user, is_active=True)
+    alerts = DomainAlert.objects.filter(watchlist__user=user, is_read=False)
+    
+    total_domains = SavedDomain.objects.filter(domain_list__user=user).count()
+    
+    return Response({
+        'user': UserSerializer(user).data,
+        'stats': {
+            'total_lists': domain_lists.count(),
+            'total_domains': total_domains,
+            'active_watchlists': watchlists.count(),
+            'unread_alerts': alerts.count(),
+        },
+        'recent_lists': DomainListSerializer(domain_lists[:5], many=True).data,
+        'recent_alerts': DomainAlertSerializer(alerts[:10], many=True).data,
+    })
 
 
 @api_view(['GET'])
