@@ -117,7 +117,7 @@ export function SearchDomains() {
   // Debounce search
   const debounceRef = useRef(null);
   const handleChange = (e) => {
-    const val = e.target.value;
+    const val = e.target.value.toLowerCase();
     setQuery(val);
     clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => doSearch(val), 300);
