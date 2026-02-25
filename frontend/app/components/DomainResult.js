@@ -2,7 +2,7 @@
 
 const REGISTRAR_URL = 'https://www.namecheap.com/domains/registration/results/?domain=';
 
-export function DomainResult({ result }) {
+export function DomainResult({ result, onCopy, copied }) {
   const { full_domain, tld, available, price, currency } = result;
 
   return (
@@ -18,9 +18,7 @@ export function DomainResult({ result }) {
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <span style={{
-          width: '8px',
-          height: '8px',
-          borderRadius: '50%',
+          width: '8px', height: '8px', borderRadius: '50%',
           background: available ? 'var(--green)' : 'var(--red)',
           flexShrink: 0,
         }} />
@@ -33,35 +31,44 @@ export function DomainResult({ result }) {
         </span>
       </div>
 
-      {available ? (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          {price && (
-            <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-              ${price.toFixed(2)}
-            </span>
-          )}
-          <a
-            href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              padding: '6px 16px',
-              background: 'var(--green)',
-              color: '#000',
-              borderRadius: '8px',
-              fontSize: '0.8rem',
-              fontWeight: 600,
-              transition: 'opacity 0.15s',
-            }}
-          >
-            Register →
-          </a>
-        </div>
-      ) : (
-        <span style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>
-          Taken
-        </span>
-      )}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        {/* Copy button */}
+        <button
+          onClick={(e) => { e.stopPropagation(); onCopy?.(); }}
+          title="Copy domain"
+          style={{
+            background: 'none', border: 'none', cursor: 'pointer',
+            fontSize: '0.8rem', color: copied ? 'var(--green)' : 'var(--text-dim)',
+            padding: '4px 6px', borderRadius: '4px', transition: 'color 0.15s',
+          }}
+        >
+          {copied ? '✓' : '📋'}
+        </button>
+
+        {available ? (
+          <>
+            {price && (
+              <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 500 }}>
+                ${price.toFixed(2)}
+              </span>
+            )}
+            <a
+              href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                padding: '6px 16px', background: 'var(--green)', color: '#000',
+                borderRadius: '8px', fontSize: '0.8rem', fontWeight: 600,
+                transition: 'opacity 0.15s', textDecoration: 'none',
+              }}
+            >
+              Register →
+            </a>
+          </>
+        ) : (
+          <span style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>Taken</span>
+        )}
+      </div>
     </div>
   );
 }
