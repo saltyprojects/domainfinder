@@ -1,6 +1,5 @@
 import httpx
 import logging
-from django.core.cache import cache
 from typing import List, Dict, Any
 
 logger = logging.getLogger(__name__)
@@ -42,9 +41,6 @@ def search_uspto_trademarks(search_term: str, limit: int = 10) -> Dict[str, Any]
         Dict with search results and metadata
     """
     cache_key = f"trademark:{search_term.lower()}"
-    cached = cache.get(cache_key)
-    if cached is not None:
-        return cached
     
     normalized_term = normalize_search_term(search_term)
     
@@ -84,7 +80,6 @@ def search_uspto_trademarks(search_term: str, limit: int = 10) -> Dict[str, Any]
         }
     
     # Cache results for 24 hours (trademarks don't change frequently)
-    cache.set(cache_key, response, timeout=86400)
     return response
 
 

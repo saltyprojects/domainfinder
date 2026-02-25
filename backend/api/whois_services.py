@@ -1,5 +1,4 @@
 import httpx
-from django.core.cache import cache
 from datetime import datetime
 
 
@@ -9,7 +8,6 @@ RDAP_BOOTSTRAP_URL = "https://data.iana.org/rdap/dns.json"
 # Cache the bootstrap data for 24 hours
 def get_rdap_server(tld: str) -> str | None:
     """Find the RDAP server for a given TLD using IANA bootstrap."""
-    bootstrap = cache.get("rdap:bootstrap")
     if bootstrap is None:
         try:
             with httpx.Client(timeout=10) as client:
@@ -23,7 +21,6 @@ def get_rdap_server(tld: str) -> str | None:
                     server_url = servers[0] if servers else None
                     for t in tlds_list:
                         bootstrap[t.lower()] = server_url
-                cache.set("rdap:bootstrap", bootstrap, timeout=86400)
         except Exception:
             return None
 
@@ -45,9 +42,6 @@ def parse_rdap_date(date_str: str | None) -> str | None:
 def lookup_domain_rdap(full_domain: str) -> dict:
     """Look up domain WHOIS data via RDAP protocol."""
     cache_key = f"whois:{full_domain}"
-    cached = cache.get(cache_key)
-    if cached is not None:
-        return cached
 
     parts = full_domain.rsplit(".", 1)
     if len(parts) != 2:
@@ -79,7 +73,6 @@ def lookup_domain_rdap(full_domain: str) -> dict:
                     "status": [],
                     "nameservers": [],
                 }
-                cache.set(cache_key, result, timeout=300)
                 return result
 
             resp.raise_for_status()
@@ -143,5 +136,4 @@ def lookup_domain_rdap(full_domain: str) -> dict:
         "expiring_soon": expiring_soon,
     }
 
-    cache.set(cache_key, result, timeout=300)
     return result

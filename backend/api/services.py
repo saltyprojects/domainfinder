@@ -3,7 +3,6 @@ import os
 import dns.resolver
 import requests
 from django.conf import settings
-from django.core.cache import cache
 
 GODADDY_API_KEY = os.environ.get('GODADDY_API_KEY', '')
 GODADDY_API_SECRET = os.environ.get('GODADDY_API_SECRET', '')
@@ -44,11 +43,7 @@ def check_rdap_registration(full_domain: str, tld: str) -> bool | None:
 def check_domain_godaddy(name: str, tld: str) -> dict:
     """Check domain availability via GoDaddy API (accurate + pricing)."""
     full_domain = f"{name}.{tld}"
-    cache_key = f"domain:{full_domain}"
 
-    cached = cache.get(cache_key)
-    if cached is not None:
-        return cached
 
     result = {
         'domain': name,
@@ -84,30 +79,20 @@ def check_domain_godaddy(name: str, tld: str) -> dict:
         # Fallback to DNS check
         result = check_domain_dns(name, tld)
 
-    cache.set(cache_key, result, timeout=300)
     return result
 
 
 def check_domain_availability_cached(name: str, tld: str) -> dict:
     """Check with longer cache for suggestions (30 min)."""
     full_domain = f"{name}.{tld}"
-    cache_key = f"domain:{full_domain}"
-    cached = cache.get(cache_key)
-    if cached is not None:
-        return cached
     result = check_domain_availability(name, tld)
-    cache.set(cache_key, result, timeout=1800)  # 30 min for suggestions
     return result
 
 
 def check_domain_dns(name: str, tld: str) -> dict:
     """Fast domain availability check via DNS with hard timeout."""
     full_domain = f"{name}.{tld}"
-    cache_key = f"domain:{full_domain}"
 
-    cached = cache.get(cache_key)
-    if cached is not None:
-        return cached
 
     available = True
     resolver = dns.resolver.Resolver()
@@ -132,7 +117,6 @@ def check_domain_dns(name: str, tld: str) -> dict:
         'currency': None,
     }
 
-    cache.set(cache_key, result, timeout=300)
     return result
 
 
@@ -143,7 +127,6 @@ def check_domain_dns_verified(name: str, tld: str) -> dict:
         rdap_result = check_rdap_registration(result['full_domain'], tld)
         if rdap_result is True:
             result['available'] = False
-            cache.set(f"domain:{result['full_domain']}", result, timeout=300)
     return result
 
 

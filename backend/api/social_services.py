@@ -1,6 +1,5 @@
 import concurrent.futures
 import httpx
-from django.core.cache import cache
 
 # Platform check configs: (url_template, method_to_detect_available)
 # We check if a profile URL returns 404 (available) or 200 (taken)
@@ -40,9 +39,6 @@ def check_handle(platform: str, username: str) -> dict:
     url = config['url'].format(username)
     cache_key = f"social:{platform}:{username}"
 
-    cached = cache.get(cache_key)
-    if cached is not None:
-        return cached
 
     available = None  # None = couldn't determine
     try:
@@ -68,7 +64,6 @@ def check_handle(platform: str, username: str) -> dict:
         'available': available,
     }
 
-    cache.set(cache_key, result, timeout=300)
     return result
 
 

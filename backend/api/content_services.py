@@ -4,7 +4,6 @@ import os
 import httpx
 import hashlib
 from datetime import datetime, timedelta
-from django.core.cache import cache
 from django.conf import settings
 import logging
 
@@ -142,13 +141,11 @@ def generate_content_hash(text, hashtags):
 def has_been_posted(content_hash, platform, days_lookback=7):
     """Check if content has been posted recently to avoid duplicates."""
     cache_key = f"posted_content:{platform}:{content_hash}"
-    return cache.get(cache_key) is not None
 
 
 def mark_as_posted(content_hash, platform, days_ttl=7):
     """Mark content as posted to avoid duplicates."""
     cache_key = f"posted_content:{platform}:{content_hash}"
-    cache.set(cache_key, True, timeout=days_ttl * 24 * 60 * 60)
 
 
 def generate_branded_image(prompt, style="domydomains"):

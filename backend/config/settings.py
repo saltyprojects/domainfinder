@@ -60,26 +60,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3")
 DATABASES = {"default": dj_database_url.parse(DATABASE_URL)}
 
-# Cache — Redis if REDIS_URL set, otherwise locmem fallback
-REDIS_URL = os.environ.get('REDIS_URL')
-if REDIS_URL:
-    CACHES = {
-        'default': {
-            'BACKEND': 'django_redis.cache.RedisCache',
-            'LOCATION': REDIS_URL,
-            'TIMEOUT': 300,
-            'OPTIONS': {
-                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            },
-        }
-    }
-else:
-    CACHES = {
-        'default': {
-            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-            'TIMEOUT': 300,
-        }
-    }
+# No cache — stateless DNS checks
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

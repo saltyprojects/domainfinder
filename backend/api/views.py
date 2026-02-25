@@ -3,7 +3,6 @@ import os
 import re
 import requests as http_requests
 from django.conf import settings
-from django.core.cache import cache as django_cache
 from django.http import HttpResponse, StreamingHttpResponse
 from rest_framework import viewsets, status, permissions
 from rest_framework.decorators import api_view, action, permission_classes
@@ -607,11 +606,3 @@ def linkedin_callback(request):
     return HttpResponse(token_resp.text, content_type='application/json', status=token_resp.status_code)
 
 
-@api_view(['POST'])
-def flush_cache(request):
-    """Flush the domain cache. Requires secret key."""
-    secret = request.query_params.get('key', '')
-    if secret != os.environ.get('DJANGO_SECRET_KEY', 'x'):
-        return HttpResponse('Unauthorized', status=401)
-    django_cache.clear()
-    return HttpResponse('Cache flushed', status=200)

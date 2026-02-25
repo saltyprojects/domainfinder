@@ -1,6 +1,5 @@
 import logging
 from datetime import datetime, timedelta, timezone
-from django.core.cache import cache
 from .whois_services import lookup_domain_rdap
 import concurrent.futures
 
@@ -130,10 +129,7 @@ def check_domain_expiry(domain_name):
 def find_expiring_domains(days_threshold=90, max_domains=20):
     """Find domains expiring within the specified threshold."""
     cache_key = f"expiring_domains:{days_threshold}:{max_domains}"
-    cached_result = cache.get(cache_key)
     
-    if cached_result is not None:
-        return cached_result
     
     expiring_domains = []
     
@@ -177,7 +173,6 @@ def find_expiring_domains(days_threshold=90, max_domains=20):
     }
     
     # Cache for 1 hour (expiry dates don't change frequently)
-    cache.set(cache_key, result, timeout=3600)
     
     return result
 
@@ -185,15 +180,11 @@ def find_expiring_domains(days_threshold=90, max_domains=20):
 def get_domain_expiry_info(domain_name):
     """Get detailed expiry information for a specific domain."""
     cache_key = f"domain_expiry:{domain_name}"
-    cached_result = cache.get(cache_key)
     
-    if cached_result is not None:
-        return cached_result
     
     result = check_domain_expiry(domain_name)
     
     # Cache for 4 hours
-    cache.set(cache_key, result, timeout=14400)
     
     return result
 

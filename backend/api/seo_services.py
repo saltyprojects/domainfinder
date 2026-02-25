@@ -2,7 +2,6 @@ import logging
 import hashlib
 import httpx
 from datetime import datetime, timedelta
-from django.core.cache import cache
 from typing import Dict, List, Any, Optional
 
 logger = logging.getLogger(__name__)
@@ -170,10 +169,7 @@ def get_comprehensive_seo_analysis(domain: str, keyword: Optional[str] = None) -
     Get comprehensive SEO analysis for a domain.
     """
     cache_key = f"seo_analysis:{domain}:{keyword or 'no_keyword'}"
-    cached_result = cache.get(cache_key)
     
-    if cached_result is not None:
-        return cached_result
     
     # Extract keyword from domain if not provided
     if not keyword:
@@ -202,7 +198,6 @@ def get_comprehensive_seo_analysis(domain: str, keyword: Optional[str] = None) -
         }
         
         # Cache for 6 hours (SEO data doesn't change frequently)
-        cache.set(cache_key, result, timeout=21600)
         
         return result
         
