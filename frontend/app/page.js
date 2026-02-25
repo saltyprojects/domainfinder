@@ -18,14 +18,11 @@ export default function Home() {
         </span>
       </nav>
 
-      {/* Main content - centers vertically when no results */}
       <div style={{
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
         alignItems: 'center',
-        padding: '0 16px 24px',
         width: '100%',
         boxSizing: 'border-box',
       }}>

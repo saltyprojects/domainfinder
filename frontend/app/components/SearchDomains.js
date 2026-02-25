@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 const REGISTRAR_URL = 'https://www.namecheap.com/domains/registration/results/?domain=';
@@ -12,7 +12,7 @@ function DomainRow({ result }) {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '14px 0',
+      padding: '13px 0',
       borderBottom: '1px solid var(--border)',
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -29,74 +29,24 @@ function DomainRow({ result }) {
           {full_domain}
         </span>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <a
-          href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            padding: '6px 20px',
-            background: available ? 'var(--green)' : 'var(--surface-hover)',
-            color: available ? '#000' : 'var(--text-muted)',
-            borderRadius: '6px',
-            fontSize: '0.85rem',
-            fontWeight: 600,
-            textDecoration: 'none',
-            border: available ? 'none' : '1px solid var(--border)',
-          }}
-        >
-          {available ? 'Register' : 'Lookup'}
-        </a>
-      </div>
-    </div>
-  );
-}
-
-function PrimaryResult({ result }) {
-  if (!result) return null;
-  const { full_domain, available } = result;
-  return (
-    <div style={{ marginBottom: '24px' }}>
-      <div style={{
-        fontSize: 'clamp(1.5rem, 5vw, 2rem)',
-        fontWeight: 800,
-        color: available ? 'var(--green)' : 'var(--red)',
-        marginBottom: '12px',
-      }}>
-        {full_domain}
-      </div>
-      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-        <a
-          href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            padding: '10px 28px',
-            background: available ? 'var(--green)' : 'var(--surface-hover)',
-            color: available ? '#000' : 'var(--text)',
-            borderRadius: '24px',
-            fontSize: '0.9rem',
-            fontWeight: 700,
-            textDecoration: 'none',
-            border: available ? 'none' : '1px solid var(--border)',
-          }}
-        >
-          {available ? 'Register' : 'Lookup'}
-        </a>
-        {!available && (
-          <span style={{
-            padding: '10px 28px',
-            background: 'var(--surface)',
-            color: 'var(--text-muted)',
-            borderRadius: '24px',
-            fontSize: '0.9rem',
-            fontWeight: 600,
-            border: '1px solid var(--border)',
-          }}>
-            Taken
-          </span>
-        )}
-      </div>
+      <a
+        href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          padding: '6px 20px',
+          background: available ? 'var(--green)' : 'var(--surface-hover)',
+          color: available ? '#000' : 'var(--text-muted)',
+          borderRadius: '6px',
+          fontSize: '0.85rem',
+          fontWeight: 600,
+          textDecoration: 'none',
+          border: available ? 'none' : '1px solid var(--border)',
+          flexShrink: 0,
+        }}
+      >
+        {available ? 'Register' : 'Lookup'}
+      </a>
     </div>
   );
 }
@@ -109,7 +59,6 @@ export function SearchDomains() {
   const [progress, setProgress] = useState({ done: 0, total: 0 });
   const inputRef = useRef(null);
   const eventSourceRef = useRef(null);
-  const resultsRef = useRef(null);
 
   const doSearch = (q) => {
     const trimmed = q.trim().toLowerCase().split('.')[0];
@@ -120,7 +69,6 @@ export function SearchDomains() {
     }
 
     if (eventSourceRef.current) eventSourceRef.current.close();
-
     setLoading(true);
     setSearched(true);
     setResults([]);
@@ -169,110 +117,178 @@ export function SearchDomains() {
     debounceRef.current = setTimeout(() => doSearch(val), 300);
   };
 
-  // Sort: .com first, then available first
+  const clear = () => {
+    setQuery('');
+    setSearched(false);
+    setResults([]);
+    if (eventSourceRef.current) eventSourceRef.current.close();
+    inputRef.current?.focus();
+  };
+
+  // Sort: .com first, then by TLD order
+  const tldOrder = ['com','net','org','io','dev','ai','app','co','me','xyz','tech','info','biz','cloud','design','blog','shop','site','store','online'];
   const sorted = [...results].sort((a, b) => {
-    if (a.tld === 'com') return -1;
-    if (b.tld === 'com') return 1;
-    if (a.available !== b.available) return a.available ? -1 : 1;
-    return 0;
+    const ai = tldOrder.indexOf(a.tld);
+    const bi = tldOrder.indexOf(b.tld);
+    return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
   });
 
-  const primary = sorted[0];
-  const rest = sorted.slice(1);
+  const primary = sorted.find(r => r.tld === 'com') || sorted[0];
+  const rest = sorted.filter(r => r !== primary);
 
-  return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      height: searched ? 'calc(100vh - 60px)' : 'auto',
-      width: '100%',
-      maxWidth: '600px',
-      margin: '0 auto',
-      boxSizing: 'border-box',
-    }}>
-      {/* Results area - scrollable */}
-      {searched && (
-        <div ref={resultsRef} style={{
-          flex: 1,
-          overflowY: 'auto',
-          padding: '0 16px',
-        }}>
-          {/* Primary .com result */}
-          {primary && <PrimaryResult result={primary} />}
-
-          {/* Extensions list */}
-          {rest.length > 0 && (
-            <>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '4px',
-              }}>
-                <span style={{ fontSize: '0.9rem', fontWeight: 600 }}>Domain extensions</span>
-                <span style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>
-                  {results.filter(r => r.available).length} available
-                </span>
-              </div>
-              {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
-            </>
-          )}
-
-          {/* Loading skeleton */}
-          {loading && results.length === 0 && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '24px' }}>
-              {[...Array(8)].map((_, i) => (
-                <div key={i} className="skeleton" style={{ height: '48px', borderRadius: '8px' }} />
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Search bar - at bottom when results showing, centered when not */}
+  // Empty state — centered search
+  if (!searched) {
+    return (
       <div style={{
-        padding: searched ? '12px 16px' : '0 16px',
-        borderTop: searched ? '1px solid var(--border)' : 'none',
-        background: 'var(--bg)',
-        ...(searched ? { position: 'sticky', bottom: 0 } : {}),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        width: '100%',
+        maxWidth: '600px',
+        padding: '0 16px',
+        boxSizing: 'border-box',
       }}>
-        {/* Progress bar */}
-        {loading && progress.total > 0 && (
-          <div style={{ marginBottom: '8px' }}>
-            <div style={{ height: '2px', background: 'var(--border)', borderRadius: '1px', overflow: 'hidden' }}>
-              <div style={{
-                width: `${(progress.done / progress.total) * 100}%`,
-                height: '100%', background: 'var(--green)',
-                transition: 'width 0.15s',
-              }} />
-            </div>
-          </div>
-        )}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {searched && (
-            <button
-              onClick={() => { setQuery(''); setSearched(false); setResults([]); inputRef.current?.focus(); }}
-              style={{
-                background: 'none', border: 'none', color: 'var(--text-muted)',
-                fontSize: '1.2rem', cursor: 'pointer', padding: '4px',
-              }}
-            >
-              ←
-            </button>
-          )}
+        <h1 style={{
+          fontSize: 'clamp(1.8rem, 5vw, 3rem)',
+          fontWeight: 800,
+          textAlign: 'center',
+          lineHeight: 1.1,
+          letterSpacing: '-0.03em',
+          marginBottom: '32px',
+        }}>
+          Find your perfect<br />
+          <span style={{ color: 'var(--green)' }}>domain name</span>
+        </h1>
+        <div style={{ position: 'relative', width: '100%' }}>
           <input
             ref={inputRef} type="text" value={query}
             onChange={handleChange}
             placeholder="Search domains..."
             autoFocus
             style={{
-              flex: 1, padding: '14px 16px', fontSize: '1rem',
+              width: '100%', padding: '16px 18px', fontSize: '1.05rem',
               background: 'var(--surface)', border: '1px solid var(--border)',
               borderRadius: 'var(--radius)', color: 'var(--text)', outline: 'none',
               boxSizing: 'border-box',
             }}
-            onKeyDown={(e) => { if (e.key === 'Escape') { setQuery(''); setSearched(false); setResults([]); } }}
           />
+        </div>
+      </div>
+    );
+  }
+
+  // Results state — list with search at bottom
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      height: 'calc(100vh - 60px)',
+      width: '100%',
+      maxWidth: '600px',
+      boxSizing: 'border-box',
+    }}>
+      {/* Scrollable results */}
+      <div style={{
+        flex: 1,
+        overflowY: 'auto',
+        padding: '0 16px 16px',
+      }}>
+        {/* Primary result */}
+        {primary && (
+          <div style={{ marginBottom: '20px' }}>
+            <div style={{
+              fontSize: 'clamp(1.5rem, 5vw, 2rem)',
+              fontWeight: 800,
+              color: primary.available ? 'var(--green)' : 'var(--red)',
+              marginBottom: '10px',
+            }}>
+              {primary.full_domain}
+            </div>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <a
+                href={`${REGISTRAR_URL}${encodeURIComponent(primary.full_domain)}`}
+                target="_blank" rel="noopener noreferrer"
+                style={{
+                  padding: '10px 28px', borderRadius: '24px',
+                  fontSize: '0.9rem', fontWeight: 700, textDecoration: 'none',
+                  background: primary.available ? 'var(--green)' : 'var(--surface-hover)',
+                  color: primary.available ? '#000' : 'var(--text)',
+                  border: primary.available ? 'none' : '1px solid var(--border)',
+                }}
+              >
+                {primary.available ? 'Register' : 'Lookup'}
+              </a>
+              {!primary.available && (
+                <span style={{
+                  padding: '10px 20px', borderRadius: '24px',
+                  fontSize: '0.85rem', color: 'var(--text-dim)',
+                  background: 'var(--surface)', border: '1px solid var(--border)',
+                }}>
+                  Taken
+                </span>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Extensions */}
+        {rest.length > 0 && (
+          <div style={{ fontSize: '0.85rem', fontWeight: 600, marginBottom: '4px', color: 'var(--text-muted)' }}>
+            Domain extensions
+          </div>
+        )}
+        {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
+
+        {/* Loading */}
+        {loading && results.length === 0 && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
+            {[...Array(10)].map((_, i) => (
+              <div key={i} className="skeleton" style={{ height: '44px', borderRadius: '6px' }} />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Bottom search bar */}
+      <div style={{
+        padding: '10px 16px',
+        paddingBottom: 'max(10px, env(safe-area-inset-bottom))',
+        borderTop: '1px solid var(--border)',
+        background: 'var(--bg)',
+      }}>
+        {loading && progress.total > 0 && (
+          <div style={{ marginBottom: '6px' }}>
+            <div style={{ height: '2px', background: 'var(--border)', borderRadius: '1px', overflow: 'hidden' }}>
+              <div style={{
+                width: `${(progress.done / progress.total) * 100}%`,
+                height: '100%', background: 'var(--green)', transition: 'width 0.15s',
+              }} />
+            </div>
+          </div>
+        )}
+        <div style={{ position: 'relative' }}>
+          <input
+            ref={inputRef} type="text" value={query}
+            onChange={handleChange}
+            placeholder="Search domains..."
+            style={{
+              width: '100%', padding: '12px 40px 12px 16px', fontSize: '1rem',
+              background: 'var(--surface)', border: '1px solid var(--border)',
+              borderRadius: 'var(--radius)', color: 'var(--text)', outline: 'none',
+              boxSizing: 'border-box',
+            }}
+          />
+          {query && (
+            <button onClick={clear} style={{
+              position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)',
+              background: 'var(--surface-hover)', border: 'none', color: 'var(--text-muted)',
+              width: '24px', height: '24px', borderRadius: '50%', cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '0.8rem', lineHeight: 1,
+            }}>✕</button>
+          )}
         </div>
       </div>
     </div>
