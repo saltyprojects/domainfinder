@@ -36,7 +36,7 @@ function FAQItem({ q, a }) {
 
 export function FAQ() {
   return (
-    <section id="faq" style={{ padding: '80px 20px', maxWidth: '700px', margin: '0 auto' }}>
+    <section id="faq" style={{ padding: '60px 16px', maxWidth: '700px', margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
       <h2 style={{ fontSize: '2rem', fontWeight: 700, textAlign: 'center', letterSpacing: '-0.02em', marginBottom: '8px' }}>
         Frequently asked <span style={{ color: 'var(--green)' }}>questions</span>
       </h2>

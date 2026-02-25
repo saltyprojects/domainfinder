@@ -6,7 +6,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section style={{ padding: '80px 20px', maxWidth: '900px', margin: '0 auto' }}>
+    <section style={{ padding: '60px 16px', maxWidth: '900px', margin: '0 auto', width: '100%', boxSizing: 'border-box' }}>
       <h2 style={{ fontSize: '2rem', fontWeight: 700, textAlign: 'center', letterSpacing: '-0.02em', marginBottom: '48px' }}>
         How it <span style={{ color: 'var(--green)' }}>works</span>
       </h2>

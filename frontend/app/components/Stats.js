@@ -8,20 +8,22 @@ const stats = [
 export function Stats() {
   return (
     <section style={{
-      padding: '48px 20px',
+      padding: '32px 16px',
       maxWidth: '800px',
       margin: '0 auto',
+      width: '100%',
+      boxSizing: 'border-box',
     }}>
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
-        gap: '16px',
+        gridTemplateColumns: 'repeat(4, 1fr)',
+        gap: '8px',
         textAlign: 'center',
       }}>
         {stats.map((s) => (
           <div key={s.label}>
             <div style={{
-              fontSize: '1.8rem',
+              fontSize: 'clamp(1.4rem, 4vw, 1.8rem)',
               fontWeight: 800,
               color: 'var(--green)',
               letterSpacing: '-0.02em',
@@ -29,7 +31,7 @@ export function Stats() {
               {s.value}
             </div>
             <div style={{
-              fontSize: '0.8rem',
+              fontSize: '0.75rem',
               color: 'var(--text-muted)',
               marginTop: '4px',
             }}>

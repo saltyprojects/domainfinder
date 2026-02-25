@@ -1,7 +1,7 @@
 export function Footer() {
   return (
     <footer style={{
-      padding: '48px 20px',
+      padding: '48px 16px',
       borderTop: '1px solid var(--border)',
       marginTop: '40px',
     }}>

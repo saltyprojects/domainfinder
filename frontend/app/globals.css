@@ -25,6 +25,11 @@
   --max-width: 720px;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   font-family: -apple-system, system-ui, 'Segoe UI', sans-serif;
   background: var(--bg);
@@ -41,6 +46,16 @@ a {
 ::selection {
   background: var(--green);
   color: #000;
+}
+
+/* Prevent any element from causing horizontal scroll */
+img, svg, video, canvas, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+input, textarea, select {
+  max-width: 100%;
 }
 
 @keyframes fadeIn {
@@ -61,7 +76,6 @@ a {
   animation: pulse 1.5s ease-in-out infinite;
 }
 
-/* Skeleton loading */
 @keyframes shimmer {
   0% { background-position: -200px 0; }
   100% { background-position: 200px 0; }
@@ -74,37 +88,19 @@ a {
   border-radius: var(--radius);
 }
 
-/* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* Mobile touch targets */
+/* All sections must respect viewport */
+section, nav, main, footer, div {
+  max-width: 100vw;
+}
+
+/* Mobile */
 @media (max-width: 640px) {
   button, a {
     min-height: 44px;
     min-width: 44px;
-  }
-
-  nav {
-    padding: 16px !important;
-  }
-
-  main {
-    padding: 48px 16px 24px !important;
-  }
-
-  h1 {
-    font-size: 2rem !important;
-  }
-
-  /* Prevent horizontal overflow */
-  body {
-    overflow-x: hidden;
-  }
-
-  /* Stack stats on small screens */
-  section > div[style*="grid-template-columns: repeat(4"] {
-    grid-template-columns: repeat(2, 1fr) !important;
   }
 }

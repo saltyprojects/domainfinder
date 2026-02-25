@@ -35,8 +35,8 @@ const features = [
 export function Features() {
   return (
     <section id="features" style={{
-      padding: '80px 20px',
-      maxWidth: '1100px',
+      padding: '60px 16px',
+      maxWidth: '1100px', width: '100%', boxSizing: 'border-box',
       margin: '0 auto',
     }}>
       <h2 style={{
