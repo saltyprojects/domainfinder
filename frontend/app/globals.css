@@ -25,17 +25,23 @@
   --max-width: 720px;
 }
 
-html, body {
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
   font-family: -apple-system, system-ui, 'Segoe UI', sans-serif;
   background: var(--bg);
   color: var(--text);
   height: 100%;
+  height: 100dvh; /* dynamic viewport height — shrinks with iOS keyboard */
   -webkit-font-smoothing: antialiased;
   overflow: hidden;
   width: 100%;
   max-width: 100%;
-  position: fixed;
-  inset: 0;
+  margin: 0;
+  padding: 0;
 }
 
 a {

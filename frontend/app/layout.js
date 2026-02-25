@@ -1,6 +1,13 @@
 import Script from 'next/script';
 import './globals.css';
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  interactiveWidget: 'resizes-content',
+};
+
 export const metadata = {
   title: 'DomyDomains — Find Your Perfect Domain Name Instantly',
   description:
