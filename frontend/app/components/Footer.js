@@ -15,7 +15,7 @@ export function Footer() {
         gap: '16px',
       }}>
         <div>
-          <span style={{ fontWeight: 700, fontSize: '1rem' }}>🌐 BestDomain</span>
+          <span style={{ fontWeight: 700, fontSize: '1rem' }}>🌐 DomyDomains</span>
           <p style={{ color: 'var(--text-dim)', fontSize: '0.8rem', marginTop: '4px' }}>
             Find your perfect domain — instantly.
           </p>
@@ -28,7 +28,7 @@ export function Footer() {
         }}>
           <a href="#features">Features</a>
           <a href="#pricing">Pricing</a>
-          <a href="mailto:hello@bestdomain.app">Contact</a>
+          <a href="mailto:hello@domydomains.com">Contact</a>
         </div>
       </div>
     </footer>

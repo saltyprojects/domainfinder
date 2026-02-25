@@ -9,7 +9,7 @@ class Command(BaseCommand):
         admin, created = User.objects.get_or_create(
             username="admin",
             defaults={
-                "email": "admin@bestdomain.app",
+                "email": "admin@domydomains.com",
                 "first_name": "Admin",
                 "last_name": "User",
                 "is_staff": True,

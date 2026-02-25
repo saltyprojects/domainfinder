@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'BestDomain - Find Your Perfect Domain',
+  title: 'DomyDomains - Find Your Perfect Domain',
   description: 'Instantly search domain availability across all TLDs',
 };
 

@@ -16,7 +16,7 @@ export default function Home() {
         margin: '0 auto',
       }}>
         <span style={{ fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
-          🌐 BestDomain
+          🌐 DomyDomains
         </span>
         <div style={{ display: 'flex', gap: '24px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
           <a href="#features" style={{ transition: 'color 0.2s' }}>Features</a>
