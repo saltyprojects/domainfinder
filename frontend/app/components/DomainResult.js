@@ -1,29 +1,24 @@
 'use client';
 
-import { useState } from 'react';
 import { WhoisPanel } from './WhoisPanel';
 
 const REGISTRAR_URL = 'https://www.namecheap.com/domains/registration/results/?domain=';
 
 export function DomainResult({ result }) {
   const { full_domain, tld, available } = result;
-  const [showWhois, setShowWhois] = useState(false);
 
   return (
-    <div>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '14px 18px',
-          background: 'var(--surface)',
-          border: '1px solid var(--border)',
-          borderRadius: showWhois ? 'var(--radius) var(--radius) 0 0' : 'var(--radius)',
-          cursor: available ? 'default' : 'pointer',
-        }}
-        onClick={() => !available && setShowWhois(!showWhois)}
-      >
+    <div style={{
+      padding: '14px 18px',
+      background: 'var(--surface)',
+      border: '1px solid var(--border)',
+      borderRadius: 'var(--radius)',
+    }}>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span style={{
             width: '10px',
@@ -51,7 +46,6 @@ export function DomainResult({ result }) {
             href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
             style={{
               padding: '8px 16px',
               background: 'var(--green)',
@@ -65,12 +59,12 @@ export function DomainResult({ result }) {
           </a>
         ) : (
           <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-            {showWhois ? '▲' : '▼'} WHOIS
+            Taken
           </span>
         )}
       </div>
 
-      {showWhois && <WhoisPanel domain={full_domain} />}
+      {!available && <WhoisPanel domain={full_domain} />}
     </div>
   );
 }
