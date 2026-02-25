@@ -101,8 +101,7 @@ def check_domain_availability_cached(name: str, tld: str) -> dict:
 
 
 def check_domain_dns(name: str, tld: str) -> dict:
-    """Fast domain availability check via socket DNS lookup."""
-    import socket as _socket
+    """Fast domain availability check via DNS with hard timeout."""
     full_domain = f"{name}.{tld}"
     cache_key = f"domain:{full_domain}"
 
@@ -111,16 +110,18 @@ def check_domain_dns(name: str, tld: str) -> dict:
         return cached
 
     available = True
+    resolver = dns.resolver.Resolver()
+    resolver.timeout = 0.5
+    resolver.lifetime = 0.5
     try:
-        _socket.setdefaulttimeout(0.8)
-        _socket.getaddrinfo(full_domain, 80)
+        resolver.resolve(full_domain, 'A')
         available = False  # Resolved = taken
-    except _socket.gaierror:
-        available = True  # Not found = available
-    except _socket.timeout:
-        available = True  # Timeout = assume available
-    except Exception:
-        available = True
+    except dns.resolver.NXDOMAIN:
+        available = True  # Doesn't exist = available
+    except dns.resolver.NoAnswer:
+        available = False  # Has records but no A = likely taken
+    except (dns.resolver.NoNameservers, dns.resolver.LifetimeTimeout, Exception):
+        available = True  # Timeout/error = assume available
 
     result = {
         'domain': name,
