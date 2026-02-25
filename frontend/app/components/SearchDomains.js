@@ -176,7 +176,6 @@ export function SearchDomains() {
             onFocus={activateSearch}
             onChange={handleChange}
             placeholder="Search domains..."
-            autoFocus
             style={{
               width: '100%', padding: '16px 18px', fontSize: '1.05rem',
               background: 'var(--surface)', border: '1px solid var(--border)',
