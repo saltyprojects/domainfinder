@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { TrademarkChecker } from './TrademarkChecker';
 import { SEOAnalytics } from './SEOAnalytics';
 
 const REGISTRAR_URL = 'https://www.namecheap.com/domains/registration/results/?domain=';
@@ -237,7 +236,6 @@ export function DomainResult({ result, onCopy, copied, intel }) {
       
       <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', alignItems: 'center' }}>
         <IntelChips intel={intel} available={available} />
-        <TrademarkChecker domainName={domainName} inline />
       </div>
       
       {!available && showSEO && (

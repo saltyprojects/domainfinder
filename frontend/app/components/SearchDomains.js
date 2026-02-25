@@ -104,7 +104,7 @@ export function SearchDomains() {
           } else if (data.type === 'done') {
             eventSource.close();
             setLoading(false);
-            loadIntelData(received);
+            
           }
         } catch {}
       };
@@ -118,7 +118,7 @@ export function SearchDomains() {
             setResults(data.results);
             setProgress({ done: data.results.length, total: data.results.length });
             // Start loading intel data after domain search is complete
-            loadIntelData(data.results);
+            
           })
           .catch(err => {
             if (!abort.signal.aborted) setError('Failed to search. Please try again.');
