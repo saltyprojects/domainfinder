@@ -6,6 +6,8 @@ class DomainResultSerializer(serializers.Serializer):
     tld = serializers.CharField()
     available = serializers.BooleanField()
     full_domain = serializers.CharField()
+    price = serializers.FloatField(allow_null=True, required=False)
+    currency = serializers.CharField(allow_null=True, required=False)
 
 
 class DomainSearchSerializer(serializers.Serializer):

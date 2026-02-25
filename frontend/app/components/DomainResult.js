@@ -3,7 +3,7 @@
 const REGISTRAR_URL = 'https://www.namecheap.com/domains/registration/results/?domain=';
 
 export function DomainResult({ result }) {
-  const { full_domain, tld, available } = result;
+  const { full_domain, tld, available, price, currency } = result;
 
   return (
     <div style={{
@@ -34,22 +34,29 @@ export function DomainResult({ result }) {
       </div>
 
       {available ? (
-        <a
-          href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            padding: '6px 16px',
-            background: 'var(--green)',
-            color: '#000',
-            borderRadius: '8px',
-            fontSize: '0.8rem',
-            fontWeight: 600,
-            transition: 'opacity 0.15s',
-          }}
-        >
-          Register →
-        </a>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          {price && (
+            <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 500 }}>
+              ${price.toFixed(2)}
+            </span>
+          )}
+          <a
+            href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              padding: '6px 16px',
+              background: 'var(--green)',
+              color: '#000',
+              borderRadius: '8px',
+              fontSize: '0.8rem',
+              fontWeight: 600,
+              transition: 'opacity 0.15s',
+            }}
+          >
+            Register →
+          </a>
+        </div>
       ) : (
         <span style={{ fontSize: '0.8rem', color: 'var(--text-dim)' }}>
           Taken
