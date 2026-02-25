@@ -5,7 +5,8 @@ from api.views import (
     DomainSearchViewSet, SuggestionsViewSet, WhoisViewSet, TrademarkViewSet, 
     SocialContentViewSet, DomainListViewSet, DomainWatchlistViewSet, DomainAlertViewSet,
     linkedin_callback, search_stream, social_whois_stream, preview_content,
-    register, login_view, logout_view, user_dashboard
+    register, login_view, logout_view, user_dashboard,
+    expiring_domains, expiring_domains_by_urgency, domain_expiry_info
 )
 
 router = DefaultRouter()
@@ -28,5 +29,8 @@ urlpatterns = [
     path('api/auth/login/', login_view, name='login'),
     path('api/auth/logout/', logout_view, name='logout'),
     path('api/dashboard/', user_dashboard, name='user-dashboard'),
+    path('api/expiring-domains/', expiring_domains, name='expiring-domains'),
+    path('api/expiring-domains/by-urgency/', expiring_domains_by_urgency, name='expiring-domains-by-urgency'),
+    path('api/domain-expiry/', domain_expiry_info, name='domain-expiry-info'),
     path('api/', include(router.urls)),
 ]

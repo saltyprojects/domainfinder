@@ -1,4 +1,5 @@
 import { SearchDomains } from './components/SearchDomains';
+import { ExpiringDomains } from './components/ExpiringDomains';
 import { Features } from './components/Features';
 import { Stats } from './components/Stats';
 import { HowItWorks } from './components/HowItWorks';
@@ -78,6 +79,12 @@ export default function Home() {
       </main>
 
       <Stats />
+      
+      {/* Expiring Domains Section */}
+      <section style={{ padding: '80px 20px', maxWidth: '900px', margin: '0 auto' }}>
+        <ExpiringDomains limit={6} />
+      </section>
+      
       <HowItWorks />
       <Features />
       <Testimonials />

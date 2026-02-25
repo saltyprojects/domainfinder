@@ -55,17 +55,57 @@ function IntelChips({ intel, available }) {
         </div>
       );
     } else if (whois.expiry_date) {
-      const year = whois.expiry_date.split('-')[0];
-      chips.push(
-        <div key="expiry" style={{
-          display: 'inline-flex', alignItems: 'center', gap: '4px',
-          padding: '2px 6px', background: 'var(--border)', 
-          borderRadius: '12px', fontSize: '0.7rem', color: 'var(--text-dim)',
-          border: '1px solid var(--border)',
-        }}>
-          📅 Expires {year}
-        </div>
-      );
+      // Calculate days until expiry
+      const expiryDate = new Date(whois.expiry_date);
+      const now = new Date();
+      const daysUntilExpiry = Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24));
+      
+      if (daysUntilExpiry <= 7) {
+        chips.push(
+          <div key="expiry-critical" style={{
+            display: 'inline-flex', alignItems: 'center', gap: '4px',
+            padding: '2px 6px', background: 'rgba(239, 68, 68, 0.1)', 
+            borderRadius: '12px', fontSize: '0.7rem', color: '#dc2626',
+            border: '1px solid rgba(239, 68, 68, 0.2)',
+          }}>
+            🚨 Expires in {daysUntilExpiry}d
+          </div>
+        );
+      } else if (daysUntilExpiry <= 30) {
+        chips.push(
+          <div key="expiry-warning" style={{
+            display: 'inline-flex', alignItems: 'center', gap: '4px',
+            padding: '2px 6px', background: 'rgba(251, 146, 60, 0.1)', 
+            borderRadius: '12px', fontSize: '0.7rem', color: '#d97706',
+            border: '1px solid rgba(251, 146, 60, 0.2)',
+          }}>
+            ⚠️ Expires in {daysUntilExpiry}d
+          </div>
+        );
+      } else if (daysUntilExpiry <= 90) {
+        chips.push(
+          <div key="expiry-notice" style={{
+            display: 'inline-flex', alignItems: 'center', gap: '4px',
+            padding: '2px 6px', background: 'rgba(254, 240, 138, 0.3)', 
+            borderRadius: '12px', fontSize: '0.7rem', color: '#ca8a04',
+            border: '1px solid rgba(254, 240, 138, 0.5)',
+          }}>
+            📅 Expires in {daysUntilExpiry}d
+          </div>
+        );
+      } else {
+        const year = whois.expiry_date.split('-')[0];
+        chips.push(
+          <div key="expiry" style={{
+            display: 'inline-flex', alignItems: 'center', gap: '4px',
+            padding: '2px 6px', background: 'var(--border)', 
+            borderRadius: '12px', fontSize: '0.7rem', color: 'var(--text-dim)',
+            border: '1px solid var(--border)',
+          }}>
+            📅 Expires {year}
+          </div>
+        );
+      }
     }
     
     if (whois.registered_date) {

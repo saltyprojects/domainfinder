@@ -23,6 +23,7 @@ from .generators import generate_suggestions
 from .whois_services import lookup_domain_rdap
 from .trademark_services import search_uspto_trademarks, get_risk_assessment
 from .content_services import create_and_post_content, get_posting_stats, get_random_content
+from .expiry_services import find_expiring_domains, get_domain_expiry_info, get_expiring_domains_by_urgency
 from .models import User, DomainList, SavedDomain, DomainWatchlist, DomainAlert, ListShare
 
 
@@ -338,6 +339,61 @@ def user_dashboard(request):
         'recent_lists': DomainListSerializer(domain_lists[:5], many=True).data,
         'recent_alerts': DomainAlertSerializer(alerts[:10], many=True).data,
     })
+
+
+# Domain Expiry Views
+
+@api_view(['GET'])
+def expiring_domains(request):
+    """Get domains that are expiring soon."""
+    days_threshold = request.query_params.get('days', 90)
+    max_domains = request.query_params.get('limit', 20)
+    
+    try:
+        days_threshold = int(days_threshold)
+        max_domains = int(max_domains)
+    except (ValueError, TypeError):
+        return Response(
+            {'error': 'Invalid parameters. days and limit must be integers.'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    # Limit to reasonable ranges
+    days_threshold = min(max(days_threshold, 1), 365)
+    max_domains = min(max(max_domains, 1), 100)
+    
+    result = find_expiring_domains(days_threshold, max_domains)
+    return Response(result)
+
+
+@api_view(['GET'])
+def expiring_domains_by_urgency(request):
+    """Get expiring domains categorized by urgency level."""
+    result = get_expiring_domains_by_urgency()
+    return Response(result)
+
+
+@api_view(['GET'])
+def domain_expiry_info(request):
+    """Get expiry information for a specific domain."""
+    domain = request.query_params.get('domain')
+    
+    if not domain:
+        return Response(
+            {'error': 'domain parameter is required'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    # Clean and validate domain name
+    domain = domain.lower().strip()
+    if not domain or len(domain) < 3:
+        return Response(
+            {'error': 'Invalid domain name'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    result = get_domain_expiry_info(domain)
+    return Response(result)
 
 
 @api_view(['GET'])
