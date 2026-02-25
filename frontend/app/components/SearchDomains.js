@@ -5,21 +5,23 @@ import { useState, useRef } from 'react';
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 const REGISTRAR_URL = 'https://www.namecheap.com/domains/registration/results/?domain=';
 
-function DomainRow({ result, index }) {
-  const { full_domain, tld, available } = result;
+function DomainRow({ result }) {
+  const { full_domain, available } = result;
   return (
-    <div
-      className="fade-in"
+    <a
+      href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
+      target="_blank" rel="noopener noreferrer"
       style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '12px 16px',
-        margin: '0 -16px',
-        borderRadius: '10px',
+        padding: '14px 16px',
+        borderRadius: '12px',
+        textDecoration: 'none',
         transition: 'background 0.15s',
-        cursor: 'pointer',
-        animationDelay: `${index * 30}ms`,
+        background: 'transparent',
+        minHeight: '48px',
+        boxSizing: 'border-box',
       }}
       onMouseEnter={e => e.currentTarget.style.background = 'var(--surface)'}
       onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
@@ -29,34 +31,25 @@ function DomainRow({ result, index }) {
           width: '8px', height: '8px', borderRadius: '50%',
           background: available ? 'var(--green)' : 'var(--red)',
           flexShrink: 0,
-          boxShadow: available ? '0 0 6px var(--green)' : 'none',
+          opacity: available ? 1 : 0.5,
         }} />
-        <div style={{ minWidth: 0 }}>
-          <span style={{
-            fontSize: '0.95rem', fontWeight: 500,
-            color: available ? 'var(--text)' : 'var(--text-muted)',
-          }}>
-            {full_domain}
-          </span>
-        </div>
+        <span style={{
+          fontSize: '0.9rem', fontWeight: 500,
+          color: available ? 'var(--text)' : 'var(--text-muted)',
+          letterSpacing: '-0.01em',
+        }}>
+          {full_domain}
+        </span>
       </div>
-      <a
-        href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
-        target="_blank" rel="noopener noreferrer"
-        onClick={e => e.stopPropagation()}
-        style={{
-          padding: '6px 16px',
-          background: available ? 'var(--green)' : 'transparent',
-          color: available ? '#000' : 'var(--text-dim)',
-          borderRadius: '8px', fontSize: '0.8rem', fontWeight: 600,
-          textDecoration: 'none', flexShrink: 0,
-          border: available ? 'none' : '1px solid var(--border)',
-          transition: 'all 0.15s',
-        }}
-      >
-        {available ? 'Register' : 'View'}
-      </a>
-    </div>
+      <span style={{
+        fontSize: '0.75rem', fontWeight: 500,
+        color: available ? 'var(--green)' : 'var(--text-dim)',
+        flexShrink: 0,
+        letterSpacing: '0.01em',
+      }}>
+        {available ? 'Register →' : 'Taken'}
+      </span>
+    </a>
   );
 }
 
@@ -65,33 +58,40 @@ function PrimaryResult({ result }) {
   const { full_domain, available } = result;
 
   return (
-    <div className="fade-in" style={{
+    <div style={{
       padding: '20px',
-      margin: '0 -4px 16px',
+      marginBottom: '12px',
       borderRadius: '16px',
-      background: available ? 'var(--green-dim)' : 'var(--red-dim)',
-      border: `1px solid ${available ? 'rgba(34,197,94,0.15)' : 'rgba(239,68,68,0.1)'}`,
+      background: available
+        ? 'rgba(34,197,94,0.06)'
+        : 'rgba(239,68,68,0.04)',
+      border: `1px solid ${available
+        ? 'rgba(34,197,94,0.12)'
+        : 'rgba(239,68,68,0.08)'}`,
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: '8px',
+        marginBottom: '8px',
+      }}>
         <div style={{
-          width: '10px', height: '10px', borderRadius: '50%',
+          width: '8px', height: '8px', borderRadius: '50%',
           background: available ? 'var(--green)' : 'var(--red)',
-          boxShadow: available ? '0 0 8px var(--green)' : '0 0 8px var(--red)',
         }} />
         <span style={{
-          fontSize: '0.75rem', fontWeight: 600, textTransform: 'uppercase',
-          letterSpacing: '0.06em',
+          fontSize: '0.7rem', fontWeight: 600, textTransform: 'uppercase',
+          letterSpacing: '0.08em',
           color: available ? 'var(--green)' : 'var(--red)',
         }}>
           {available ? 'Available' : 'Taken'}
         </span>
       </div>
       <div style={{
-        fontSize: 'clamp(1.4rem, 5vw, 1.8rem)',
-        fontWeight: 800,
+        fontSize: 'clamp(1.3rem, 4.5vw, 1.6rem)',
+        fontWeight: 700,
         color: 'var(--text)',
         letterSpacing: '-0.03em',
-        marginBottom: '14px',
+        marginBottom: '16px',
+        lineHeight: 1.2,
       }}>
         {full_domain}
       </div>
@@ -99,16 +99,19 @@ function PrimaryResult({ result }) {
         href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
         target="_blank" rel="noopener noreferrer"
         style={{
-          display: 'inline-flex', alignItems: 'center', gap: '6px',
-          padding: '10px 24px', borderRadius: '10px',
-          fontSize: '0.85rem', fontWeight: 700, textDecoration: 'none',
-          background: available ? 'var(--green)' : 'var(--surface-hover)',
-          color: available ? '#000' : 'var(--text)',
+          display: 'inline-flex', alignItems: 'center',
+          padding: '10px 20px',
+          borderRadius: '10px',
+          fontSize: '0.82rem', fontWeight: 600,
+          textDecoration: 'none',
+          background: available ? 'var(--green)' : 'var(--surface)',
+          color: available ? '#000' : 'var(--text-muted)',
           border: available ? 'none' : '1px solid var(--border)',
-          transition: 'transform 0.1s',
+          minHeight: '44px',
+          boxSizing: 'border-box',
         }}
       >
-        {available ? 'Register this domain →' : 'Check availability →'}
+        {available ? 'Register this domain →' : 'View on Namecheap →'}
       </a>
     </div>
   );
@@ -217,70 +220,50 @@ export function SearchDomains({ onActiveChange }) {
         justifyContent: 'center',
         flex: 1,
         width: '100%',
-        maxWidth: '520px',
+        maxWidth: '480px',
         padding: '0 24px',
         boxSizing: 'border-box',
       }}>
         <h1 style={{
-          fontSize: 'clamp(1.6rem, 6vw, 2.4rem)',
-          fontWeight: 800,
+          fontSize: 'clamp(1.5rem, 5.5vw, 2.2rem)',
+          fontWeight: 700,
           textAlign: 'center',
-          lineHeight: 1.15,
-          letterSpacing: '-0.04em',
-          marginBottom: '10px',
+          lineHeight: 1.2,
+          letterSpacing: '-0.03em',
+          marginBottom: '8px',
           color: 'var(--text)',
         }}>
-          Is your domain<br />name available?
+          Find available<br />domain names
         </h1>
         <p style={{
-          fontSize: 'clamp(0.85rem, 2.5vw, 0.95rem)',
-          color: 'var(--text-dim)',
+          fontSize: '0.88rem',
+          color: 'var(--text-muted)',
           textAlign: 'center',
-          marginBottom: '28px',
+          marginBottom: '24px',
           lineHeight: 1.5,
         }}>
-          Search across 20+ extensions instantly
+          Instant results across 20+ extensions
         </p>
         <div style={{ position: 'relative', width: '100%' }}>
-          <div style={{
-            position: 'absolute', left: '16px', top: '50%',
-            transform: 'translateY(-50%)', color: 'var(--text-dim)',
-            fontSize: '1rem', pointerEvents: 'none',
-          }}>⌕</div>
           <input
             ref={inputRef}
             type="text"
             value={query}
             onFocus={activateSearch}
             onChange={handleChange}
-            placeholder="Search for a domain name..."
+            placeholder="Enter a domain name..."
             style={{
-              width: '100%', padding: '16px 18px 16px 42px', fontSize: '1rem',
-              background: 'var(--surface)', border: '1px solid var(--border)',
-              borderRadius: '14px', color: 'var(--text)', outline: 'none',
+              width: '100%',
+              padding: '14px 16px',
+              fontSize: '0.95rem',
+              background: 'var(--surface)',
+              border: '1px solid var(--border)',
+              borderRadius: '12px',
+              color: 'var(--text)',
+              outline: 'none',
               boxSizing: 'border-box',
-              transition: 'border-color 0.2s, box-shadow 0.2s',
-            }}
-            onMouseEnter={e => {
-              e.target.style.borderColor = 'var(--text-dim)';
-            }}
-            onMouseLeave={e => {
-              if (document.activeElement !== e.target)
-                e.target.style.borderColor = 'var(--border)';
             }}
           />
-        </div>
-        <div style={{
-          display: 'flex', gap: '6px', marginTop: '16px', flexWrap: 'wrap',
-          justifyContent: 'center',
-        }}>
-          {['.com', '.io', '.dev', '.ai', '.app'].map(tld => (
-            <span key={tld} style={{
-              fontSize: '0.7rem', fontWeight: 600, color: 'var(--text-dim)',
-              background: 'var(--surface)', padding: '4px 10px',
-              borderRadius: '6px', border: '1px solid var(--border)',
-            }}>{tld}</span>
-          ))}
         </div>
       </div>
     );
@@ -292,68 +275,64 @@ export function SearchDomains({ onActiveChange }) {
       display: 'flex',
       flexDirection: 'column',
       width: '100%',
-      maxWidth: '600px',
+      maxWidth: '560px',
       flex: 1,
       minHeight: 0,
       boxSizing: 'border-box',
     }}>
-      {/* Scrollable results area */}
+      {/* Scrollable results */}
       <div data-scrollable style={{
         flex: 1,
         overflowY: 'auto',
-        padding: '16px 20px 8px',
+        padding: '12px 16px 8px',
         WebkitOverflowScrolling: 'touch',
         touchAction: 'pan-y',
       }}>
-        {/* Primary result */}
         <PrimaryResult result={primary} />
 
-        {/* Stats bar */}
+        {/* Stats */}
         {results.length > 0 && !loading && (
           <div style={{
-            display: 'flex', alignItems: 'center', gap: '12px',
-            marginBottom: '8px', padding: '0 4px',
+            display: 'flex', alignItems: 'center', gap: '8px',
+            marginBottom: '4px', padding: '4px 4px',
           }}>
-            <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-dim)' }}>
+            <span style={{
+              fontSize: '0.72rem', fontWeight: 600,
+              color: 'var(--text-dim)', textTransform: 'uppercase',
+              letterSpacing: '0.06em',
+            }}>
               Extensions
             </span>
             <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
-            {availableCount > 0 && (
-              <span style={{ fontSize: '0.7rem', fontWeight: 600, color: 'var(--green)' }}>
-                {availableCount} available
-              </span>
-            )}
-            {takenCount > 0 && (
-              <span style={{ fontSize: '0.7rem', fontWeight: 500, color: 'var(--text-dim)' }}>
-                {takenCount} taken
-              </span>
-            )}
+            <span style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
+              {availableCount > 0 && <span style={{ color: 'var(--green)' }}>{availableCount} available</span>}
+              {availableCount > 0 && takenCount > 0 && ' · '}
+              {takenCount > 0 && <span>{takenCount} taken</span>}
+            </span>
           </div>
         )}
 
-        {/* Extensions list */}
-        {rest.map((r, i) => <DomainRow key={r.full_domain} result={r} index={i} />)}
+        {/* Extension rows */}
+        <div style={{ margin: '0 -16px' }}>
+          {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
+        </div>
 
-        {/* Loading skeleton */}
+        {/* Loading */}
         {loading && results.length === 0 && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '12px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginTop: '8px' }}>
             {[...Array(8)].map((_, i) => (
-              <div key={i} className="skeleton" style={{
-                height: '48px', borderRadius: '10px',
-                animationDelay: `${i * 100}ms`,
-              }} />
+              <div key={i} className="skeleton" style={{ height: '48px', borderRadius: '12px' }} />
             ))}
           </div>
         )}
 
-        {/* Empty active state */}
+        {/* Empty */}
         {!loading && results.length === 0 && (
           <div style={{
             display: 'flex', flexDirection: 'column', alignItems: 'center',
-            justifyContent: 'center', flex: 1, minHeight: '200px',
-            color: 'var(--text-dim)', gap: '8px',
+            justifyContent: 'center', flex: 1, minHeight: '160px',
+            color: 'var(--text-dim)',
           }}>
-            <span style={{ fontSize: '2rem', opacity: 0.3 }}>⌕</span>
             <span style={{ fontSize: '0.85rem' }}>Type a domain name to search</span>
           </div>
         )}
@@ -361,30 +340,27 @@ export function SearchDomains({ onActiveChange }) {
 
       {/* Bottom search bar */}
       <div style={{
-        padding: '10px 16px',
-        paddingBottom: 'max(10px, env(safe-area-inset-bottom))',
+        padding: '8px 16px',
+        paddingBottom: 'max(8px, env(safe-area-inset-bottom))',
         borderTop: '1px solid var(--border)',
         background: 'var(--bg)',
         flexShrink: 0,
       }}>
         {loading && progress.total > 0 && (
           <div style={{ marginBottom: '6px' }}>
-            <div style={{ height: '2px', background: 'var(--border)', borderRadius: '1px', overflow: 'hidden' }}>
+            <div style={{
+              height: '2px', background: 'var(--border)',
+              borderRadius: '1px', overflow: 'hidden',
+            }}>
               <div style={{
                 width: `${(progress.done / progress.total) * 100}%`,
                 height: '100%', background: 'var(--green)',
                 transition: 'width 0.1s',
-                boxShadow: '0 0 8px var(--green)',
               }} />
             </div>
           </div>
         )}
         <div style={{ position: 'relative' }}>
-          <div style={{
-            position: 'absolute', left: '14px', top: '50%',
-            transform: 'translateY(-50%)', color: 'var(--text-dim)',
-            fontSize: '0.9rem', pointerEvents: 'none',
-          }}>⌕</div>
           <input
             ref={bottomInputRef}
             type="text"
@@ -392,20 +368,28 @@ export function SearchDomains({ onActiveChange }) {
             onChange={handleChange}
             placeholder="Search domains..."
             style={{
-              width: '100%', padding: '12px 40px 12px 38px', fontSize: '0.95rem',
-              background: 'var(--surface)', border: '1px solid var(--border)',
-              borderRadius: '12px', color: 'var(--text)', outline: 'none',
+              width: '100%',
+              padding: '12px 40px 12px 14px',
+              fontSize: '0.9rem',
+              background: 'var(--surface)',
+              border: '1px solid var(--border)',
+              borderRadius: '10px',
+              color: 'var(--text)',
+              outline: 'none',
               boxSizing: 'border-box',
             }}
             onKeyDown={(e) => { if (e.key === 'Escape') clear(); }}
           />
           <button onClick={clear} style={{
-            position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)',
-            background: 'var(--surface-hover)', border: 'none', color: 'var(--text-muted)',
-            width: '24px', height: '24px', borderRadius: '50%', cursor: 'pointer',
+            position: 'absolute', right: '10px', top: '50%',
+            transform: 'translateY(-50%)',
+            background: 'var(--surface-hover)', border: 'none',
+            color: 'var(--text-muted)',
+            width: '28px', height: '28px', borderRadius: '50%',
+            cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '0.75rem', lineHeight: 1, minHeight: 'auto', minWidth: 'auto',
-            transition: 'background 0.15s',
+            fontSize: '0.8rem', lineHeight: 1,
+            minHeight: 'auto', minWidth: 'auto',
           }}>✕</button>
         </div>
       </div>

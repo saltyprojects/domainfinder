@@ -59,35 +59,20 @@ export default function Home() {
       <nav style={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         padding: '0 20px',
-        height: '52px',
+        height: '48px',
         flexShrink: 0,
         borderBottom: '1px solid var(--border)',
         background: 'var(--bg)',
         zIndex: 10,
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <div style={{
-            width: '28px', height: '28px', borderRadius: '8px',
-            background: 'var(--green)', display: 'flex',
-            alignItems: 'center', justifyContent: 'center',
-            fontSize: '14px', fontWeight: 800, color: '#000',
-          }}>D</div>
-          <span style={{
-            fontSize: '1rem', fontWeight: 700,
-            letterSpacing: '-0.02em', color: 'var(--text)',
-          }}>
-            DomyDomains
-          </span>
-        </div>
-        <div style={{
-          fontSize: '0.7rem', fontWeight: 600,
-          color: 'var(--green)', opacity: 0.7,
-          letterSpacing: '0.05em', textTransform: 'uppercase',
+        <span style={{
+          fontSize: '0.95rem', fontWeight: 700,
+          letterSpacing: '-0.02em', color: 'var(--text)',
         }}>
-          20+ TLDs
-        </div>
+          DomyDomains
+        </span>
       </nav>
 
       {/* Main */}
@@ -108,19 +93,14 @@ export default function Home() {
         <footer style={{
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center',
-          gap: '6px',
-          padding: '12px 16px',
+          padding: '10px 16px',
           flexShrink: 0,
           borderTop: '1px solid var(--border)',
           fontSize: '0.7rem',
           color: 'var(--text-dim)',
           background: 'var(--bg)',
-          letterSpacing: '0.02em',
         }}>
-          <span>© 2026 DomyDomains</span>
-          <span style={{ opacity: 0.3 }}>·</span>
-          <span>Instant domain search</span>
+          domydomains.com
         </footer>
       )}
     </div>
