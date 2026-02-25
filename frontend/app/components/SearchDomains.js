@@ -148,42 +148,123 @@ export function SearchDomains({ onActiveChange }) {
         justifyContent: 'center',
         flex: 1,
         width: '100%',
-        maxWidth: '600px',
-        padding: '0 16px',
+        maxWidth: '640px',
+        padding: '0 20px',
         boxSizing: 'border-box',
       }}>
-        <h1 style={{
-          fontSize: 'clamp(1.8rem, 5vw, 3rem)',
-          fontWeight: 800,
-          textAlign: 'center',
-          lineHeight: 1.1,
-          letterSpacing: '-0.03em',
-          marginBottom: '12px',
+        {/* Hero Section */}
+        <div style={{ 
+          textAlign: 'center', 
+          marginBottom: 'clamp(40px, 8vw, 60px)',
+          maxWidth: '580px'
         }}>
-          Find your perfect<br />
-          <span style={{ color: 'var(--green)' }}>domain name</span>
-        </h1>
-        <p style={{
-          fontSize: '0.95rem', color: 'var(--text-muted)',
-          textAlign: 'center', marginBottom: '32px',
-        }}>
-          Instant availability across 20+ TLDs
-        </p>
-        <div style={{ position: 'relative', width: '100%' }}>
+          <h1 style={{
+            fontSize: 'clamp(2.2rem, 6vw, 3.8rem)',
+            fontWeight: 900,
+            lineHeight: 1.1,
+            letterSpacing: '-0.04em',
+            marginBottom: 'clamp(16px, 3vw, 24px)',
+            background: 'linear-gradient(135deg, var(--text) 0%, var(--green) 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}>
+            Find the perfect domain for your next big idea
+          </h1>
+          <p style={{
+            fontSize: 'clamp(1rem, 2.5vw, 1.2rem)', 
+            color: 'var(--text-muted)',
+            lineHeight: 1.5,
+            fontWeight: 500,
+          }}>
+            Search across 20+ extensions and secure your brand identity instantly
+          </p>
+        </div>
+
+        {/* Enhanced Search Input */}
+        <div style={{ position: 'relative', width: '100%', maxWidth: '520px' }}>
+          <div style={{
+            position: 'absolute',
+            left: '18px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            color: 'var(--text-muted)',
+            fontSize: '1.1rem',
+            pointerEvents: 'none',
+            zIndex: 1,
+          }}>
+            🔍
+          </div>
           <input
             ref={inputRef}
             type="text"
             value={query}
             onFocus={activateSearch}
             onChange={handleChange}
-            placeholder="Search domains..."
+            placeholder="Enter your dream domain name..."
             style={{
-              width: '100%', padding: '16px 18px', fontSize: '1.05rem',
-              background: 'var(--surface)', border: '1px solid var(--border)',
-              borderRadius: 'var(--radius)', color: 'var(--text)', outline: 'none',
+              width: '100%', 
+              padding: '20px 50px', 
+              fontSize: '1.1rem',
+              background: 'var(--surface)', 
+              border: '1px solid var(--border)',
+              borderRadius: 'var(--radius-lg)', 
+              color: 'var(--text)', 
+              outline: 'none',
               boxSizing: 'border-box',
+              transition: 'all 0.2s ease',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+            }}
+            onMouseEnter={(e) => {
+              e.target.style.borderColor = 'var(--green)';
+              e.target.style.boxShadow = '0 4px 20px rgba(34, 197, 94, 0.15)';
+            }}
+            onMouseLeave={(e) => {
+              e.target.style.borderColor = 'var(--border)';
+              e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
             }}
           />
+          <div style={{
+            position: 'absolute',
+            right: '20px',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            color: 'var(--text-dim)',
+            fontSize: '0.85rem',
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px',
+            pointerEvents: 'none',
+          }}>
+            Press Enter
+          </div>
+        </div>
+
+        {/* Feature Hints */}
+        <div style={{
+          display: 'flex',
+          gap: 'clamp(20px, 4vw, 32px)',
+          marginTop: 'clamp(32px, 6vw, 48px)',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+        }}>
+          {[
+            { icon: '⚡', label: 'Instant Results' },
+            { icon: '🌍', label: '20+ Extensions' },
+            { icon: '✨', label: 'Smart Suggestions' },
+          ].map(({ icon, label }, i) => (
+            <div key={i} style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              color: 'var(--text-muted)',
+              fontSize: '0.9rem',
+              fontWeight: 500,
+            }}>
+              <span style={{ fontSize: '1.1rem' }}>{icon}</span>
+              {label}
+            </div>
+          ))}
         </div>
       </div>
     );
@@ -204,7 +285,7 @@ export function SearchDomains({ onActiveChange }) {
       <div data-scrollable style={{
         flex: 1,
         overflowY: 'auto',
-        padding: '16px 16px 16px',
+        padding: '16px 16px 8px',
         WebkitOverflowScrolling: 'touch',
         touchAction: 'pan-y',
       }}>
