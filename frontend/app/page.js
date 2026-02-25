@@ -1,17 +1,67 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SearchDomains } from './components/SearchDomains';
 
 export default function Home() {
   const [searchActive, setSearchActive] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState(null);
+
+  useEffect(() => {
+    // Use visualViewport API to get the REAL visible area
+    // This correctly accounts for iOS keyboard, address bar, etc.
+    const update = () => {
+      if (window.visualViewport) {
+        setViewportHeight(window.visualViewport.height);
+      } else {
+        setViewportHeight(window.innerHeight);
+      }
+    };
+
+    update();
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', update);
+      window.visualViewport.addEventListener('scroll', update);
+    }
+    window.addEventListener('resize', update);
+
+    return () => {
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener('resize', update);
+        window.visualViewport.removeEventListener('scroll', update);
+      }
+      window.removeEventListener('resize', update);
+    };
+  }, []);
+
+  // Also reset scroll position on iOS when keyboard opens
+  useEffect(() => {
+    const resetScroll = () => {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', resetScroll);
+      return () => window.visualViewport.removeEventListener('resize', resetScroll);
+    }
+  }, []);
+
+  const h = viewportHeight ? `${viewportHeight}px` : '100dvh';
 
   return (
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      height: '100%',
+      height: h,
+      maxHeight: h,
       overflow: 'hidden',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
     }}>
       {/* Nav — always visible */}
       <nav style={{
@@ -34,6 +84,7 @@ export default function Home() {
         alignItems: 'center',
         overflow: 'hidden',
         position: 'relative',
+        minHeight: 0,
       }}>
         <SearchDomains onActiveChange={setSearchActive} />
       </div>
