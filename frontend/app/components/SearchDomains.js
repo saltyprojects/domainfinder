@@ -2,12 +2,14 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { DomainResult } from './DomainResult';
+import { SocialResult } from './SocialResult';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 export function SearchDomains() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
+  const [social, setSocial] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const debounceRef = useRef(null);
@@ -18,6 +20,7 @@ export function SearchDomains() {
     const trimmed = query.trim().toLowerCase().split('.')[0];
     if (!trimmed || trimmed.length < 2) {
       setResults([]);
+      setSocial([]);
       setError(null);
       return;
     }
@@ -30,9 +33,11 @@ export function SearchDomains() {
         if (!res.ok) throw new Error('Search failed');
         const data = await res.json();
         setResults(data.results);
+        setSocial(data.social || []);
       } catch (err) {
         setError('Failed to search. Please try again.');
         setResults([]);
+        setSocial([]);
       } finally {
         setLoading(false);
       }
@@ -83,6 +88,23 @@ export function SearchDomains() {
           {results.map((r) => (
             <DomainResult key={r.full_domain} result={r} />
           ))}
+        </div>
+      )}
+
+      {social.length > 0 && (
+        <div style={{ marginTop: '32px', width: '100%' }}>
+          <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '12px', color: 'var(--text-muted)' }}>
+            Social Media Handles
+          </h3>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '6px',
+          }}>
+            {social.map((s) => (
+              <SocialResult key={s.platform} result={s} />
+            ))}
+          </div>
         </div>
       )}
     </div>

@@ -1,8 +1,9 @@
 import re
 from rest_framework import viewsets, status
 from rest_framework.response import Response
-from .serializers import DomainResultSerializer, DomainSearchSerializer
+from .serializers import DomainResultSerializer, DomainSearchSerializer, SocialHandleResultSerializer
 from .services import search_domains
+from .social_services import check_all_handles
 
 
 class DomainSearchViewSet(viewsets.ViewSet):
@@ -31,7 +32,13 @@ class DomainSearchViewSet(viewsets.ViewSet):
 
         results = search_domains(query)
         output = DomainResultSerializer(results, many=True)
+
+        # Also check social handles
+        social_results = check_all_handles(query)
+        social_output = SocialHandleResultSerializer(social_results, many=True)
+
         return Response({
             'query': query,
             'results': output.data,
+            'social': social_output.data,
         })

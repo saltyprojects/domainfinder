@@ -15,3 +15,11 @@ class DomainSearchSerializer(serializers.Serializer):
         min_length=1,
         max_length=63,
     )
+
+
+class SocialHandleResultSerializer(serializers.Serializer):
+    platform = serializers.CharField()
+    display_name = serializers.CharField()
+    username = serializers.CharField()
+    url = serializers.CharField()
+    available = serializers.NullBooleanField()
