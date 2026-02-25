@@ -200,8 +200,8 @@ def post_to_twitter(text, hashtags, image_url=None):
         import tweepy
 
         # Twitter API credentials from environment
-        twitter_api_key = os.environ.get('DOMY_TWITTER_API_KEY')
-        twitter_api_secret = os.environ.get('DOMY_TWITTER_API_SECRET')
+        twitter_api_key = os.environ.get('DOMY_TWITTER_CONSUMER_KEY') or os.environ.get('DOMY_TWITTER_API_KEY')
+        twitter_api_secret = os.environ.get('DOMY_TWITTER_CONSUMER_SECRET') or os.environ.get('DOMY_TWITTER_API_SECRET')
         twitter_access_token = os.environ.get('DOMY_TWITTER_ACCESS_TOKEN')
         twitter_access_secret = os.environ.get('DOMY_TWITTER_ACCESS_TOKEN_SECRET')
 
