@@ -5,7 +5,8 @@ export default function Home() {
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      height: '100vh',
+      position: 'fixed',
+      inset: 0,
       overflow: 'hidden',
     }}>
       {/* Nav — always visible */}

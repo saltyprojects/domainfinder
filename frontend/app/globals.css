@@ -25,20 +25,17 @@
   --max-width: 720px;
 }
 
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
-body {
+html, body {
   font-family: -apple-system, system-ui, 'Segoe UI', sans-serif;
   background: var(--bg);
   color: var(--text);
-  min-height: 100vh;
+  height: 100%;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow: hidden;
   width: 100%;
   max-width: 100%;
+  position: fixed;
+  inset: 0;
 }
 
 a {
