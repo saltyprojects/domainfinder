@@ -46,7 +46,7 @@ function DomainRow({ result }) {
   );
 }
 
-export function SearchDomains() {
+export function SearchDomains({ onActiveChange }) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -114,7 +114,7 @@ export function SearchDomains() {
   const activateSearch = () => {
     if (!active) {
       setActive(true);
-      // Focus the bottom input after state update
+      onActiveChange?.(true);
       setTimeout(() => bottomInputRef.current?.focus(), 50);
     }
   };
@@ -123,6 +123,7 @@ export function SearchDomains() {
     setQuery('');
     setResults([]);
     setActive(false);
+    onActiveChange?.(false);
     if (eventSourceRef.current) eventSourceRef.current.close();
   };
 

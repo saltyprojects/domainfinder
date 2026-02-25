@@ -1,6 +1,11 @@
+'use client';
+
+import { useState } from 'react';
 import { SearchDomains } from './components/SearchDomains';
 
 export default function Home() {
+  const [searchActive, setSearchActive] = useState(false);
+
   return (
     <div style={{
       display: 'flex',
@@ -31,21 +36,23 @@ export default function Home() {
         overflow: 'hidden',
         position: 'relative',
       }}>
-        <SearchDomains />
+        <SearchDomains onActiveChange={setSearchActive} />
       </div>
 
-      {/* Footer — always visible */}
-      <footer style={{
-        display: 'flex',
-        justifyContent: 'center',
-        padding: '10px 16px',
-        flexShrink: 0,
-        borderTop: '1px solid var(--border)',
-        fontSize: '0.75rem',
-        color: 'var(--text-dim)',
-      }}>
-        © 2026 DomyDomains
-      </footer>
+      {/* Footer — hidden when search is active (saves space for keyboard) */}
+      {!searchActive && (
+        <footer style={{
+          display: 'flex',
+          justifyContent: 'center',
+          padding: '10px 16px',
+          flexShrink: 0,
+          borderTop: '1px solid var(--border)',
+          fontSize: '0.75rem',
+          color: 'var(--text-dim)',
+        }}>
+          © 2026 DomyDomains
+        </footer>
+      )}
     </div>
   );
 }
