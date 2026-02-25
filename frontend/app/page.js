@@ -64,42 +64,15 @@ export default function Home() {
       <nav style={{
         display: 'flex',
         justifyContent: 'center',
-        padding: '20px 24px',
+        padding: '16px',
         flexShrink: 0,
         borderBottom: '1px solid var(--border)',
         background: 'var(--bg)',
-        backdropFilter: 'blur(10px)',
         zIndex: 10,
       }}>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-        }}>
-          <span style={{ 
-            fontSize: '1.3rem', 
-            fontWeight: 900, 
-            letterSpacing: '-0.03em',
-            background: 'linear-gradient(135deg, var(--text) 0%, var(--green) 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}>
-            DomyDomains
-          </span>
-          <div style={{
-            fontSize: '0.75rem',
-            fontWeight: 600,
-            color: 'var(--green)',
-            background: 'var(--green-dim)',
-            padding: '4px 8px',
-            borderRadius: '6px',
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px',
-          }}>
-            Beta
-          </div>
-        </div>
+        <span style={{ fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
+          🌐 DomyDomains
+        </span>
       </nav>
 
       {/* Main content area */}
@@ -120,22 +93,14 @@ export default function Home() {
         <footer style={{
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center',
-          gap: '16px',
-          padding: '16px 24px',
+          padding: '10px 16px',
           flexShrink: 0,
           borderTop: '1px solid var(--border)',
-          fontSize: '0.8rem',
+          fontSize: '0.75rem',
           color: 'var(--text-dim)',
           background: 'var(--bg)',
         }}>
-          <span>© 2026 DomyDomains</span>
-          <div style={{ 
-            width: '1px', 
-            height: '12px', 
-            background: 'var(--border)' 
-          }} />
-          <span>Built for domain hunters 🎯</span>
+          © 2026 DomyDomains
         </footer>
       )}
     </div>
