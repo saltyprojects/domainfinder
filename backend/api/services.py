@@ -46,6 +46,9 @@ def check_domain_godaddy(name: str, tld: str) -> dict:
                 # GoDaddy returns price in micros (millionths)
                 result['price'] = data['price'] / 1_000_000
                 result['currency'] = data.get('currency', 'USD')
+        else:
+            # API error (403, 401, etc.) — fall back to DNS
+            result = check_domain_dns(name, tld)
     except Exception:
         # Fallback to DNS check
         result = check_domain_dns(name, tld)
@@ -64,15 +67,32 @@ def check_domain_dns(name: str, tld: str) -> dict:
         return cached
 
     available = True
+    resolver = dns.resolver.Resolver()
+    resolver.timeout = 2
+    resolver.lifetime = 2
     try:
-        dns.resolver.resolve(full_domain, 'A')
+        resolver.resolve(full_domain, 'A')
         available = False
-    except (dns.resolver.NXDOMAIN, dns.resolver.NoNameservers):
+    except dns.resolver.NXDOMAIN:
+        # Domain definitely doesn't exist = available
         available = True
-    except (dns.resolver.NoAnswer, dns.resolver.LifetimeTimeout):
-        available = False
+    except dns.resolver.NoNameservers:
+        # No nameservers = likely available
+        available = True
+    except dns.resolver.NoAnswer:
+        # Has DNS record but no A record — domain exists, probably taken
+        # But also try NS record to be sure
+        try:
+            dns.resolver.resolve(full_domain, 'NS')
+            available = False
+        except Exception:
+            available = True
+    except dns.resolver.LifetimeTimeout:
+        # Timeout — could go either way, default to available for better UX
+        available = True
     except Exception:
-        available = False
+        # Unknown error — default to available (better than false negatives)
+        available = True
 
     result = {
         'domain': name,
