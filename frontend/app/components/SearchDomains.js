@@ -204,7 +204,7 @@ export function SearchDomains() {
       <div style={{
         flex: 1,
         overflowY: 'auto',
-        padding: '16px 16px 0',
+        padding: '16px 16px 80px',
       }}>
         {/* Primary result */}
         {primary && (
