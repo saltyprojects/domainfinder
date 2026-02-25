@@ -180,36 +180,12 @@ def search_domains(name: str) -> list[dict]:
 
 def stream_domain_checks(name: str, tlds: list[str]):
     """Yield domain check results as they complete (for SSE streaming).
-    
-    Phase 1: Fast DNS checks — stream results immediately.
-    Phase 2: RDAP verification for domains that DNS says are available.
-    Yields corrections if RDAP disagrees.
+    DNS-only for speed. No RDAP verification in the hot path.
     """
-    # Phase 1: Fast DNS/GoDaddy checks (all TLDs in parallel)
-    dns_results = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
         futures = {
             executor.submit(check_domain_availability, name, tld): tld
             for tld in tlds
         }
         for future in concurrent.futures.as_completed(futures):
-            result = future.result()
-            dns_results.append(result)
-            yield result
-
-    # Phase 2: RDAP verification for "available" domains (in background)
-    available_results = [r for r in dns_results if r['available']]
-    if available_results:
-        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-            futures = {
-                executor.submit(check_rdap_registration, r['full_domain'], r['tld']): r
-                for r in available_results
-            }
-            for future in concurrent.futures.as_completed(futures):
-                original = futures[future]
-                rdap_result = future.result()
-                if rdap_result is True:
-                    # RDAP says it's registered — send correction
-                    corrected = {**original, 'available': False}
-                    cache.set(f"domain:{original['full_domain']}", corrected, timeout=300)
-                    yield {'_correction': True, **corrected}
+            yield future.result()

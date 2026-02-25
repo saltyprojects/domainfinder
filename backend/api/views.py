@@ -204,17 +204,8 @@ def search_stream(request):
         tlds = settings.DOMAIN_TLDS
         yield f"data: {json.dumps({'type': 'start', 'query': q, 'total': len(tlds)})}\n\n"
 
-        count = 0
         for result in stream_domain_checks(q, tlds):
-            if result.get('_correction'):
-                # RDAP correction — domain was marked available but is actually taken
-                result.pop('_correction', None)
-                yield f"data: {json.dumps({'type': 'correction', **result})}\n\n"
-            else:
-                count += 1
-                yield f"data: {json.dumps({'type': 'result', **result})}\n\n"
-                if count == len(tlds):
-                    yield f"data: {json.dumps({'type': 'verifying'})}\n\n"
+            yield f"data: {json.dumps({'type': 'result', **result})}\n\n"
 
         yield f"data: {json.dumps({'type': 'done'})}\n\n"
 
