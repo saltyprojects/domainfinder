@@ -15,21 +15,19 @@ const features = [
     desc: 'Verify matching usernames on X, Instagram, TikTok, GitHub, and LinkedIn — all at once.',
   },
   {
-    icon: '💰',
-    title: 'Price Comparison',
-    desc: 'Compare prices across top registrars. Find the cheapest deal — including renewal costs.',
-    badge: 'Coming Soon',
-  },
-  {
     icon: '🔍',
     title: 'WHOIS Intelligence',
-    desc: 'See who owns a taken domain, when it expires, and if it\'s available on aftermarkets.',
-    badge: 'Coming Soon',
+    desc: 'See who owns a taken domain, when it expires, and registration history.',
   },
   {
     icon: '🛡️',
     title: 'Trademark Check',
-    desc: 'Avoid legal trouble. We check your domain against trademark databases before you buy.',
+    desc: 'Check your domain against USPTO trademark databases before you buy.',
+  },
+  {
+    icon: '💰',
+    title: 'Price Comparison',
+    desc: 'Compare prices across top registrars. Find the cheapest deal — including renewal costs.',
     badge: 'Coming Soon',
   },
 ];
