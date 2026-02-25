@@ -22,8 +22,7 @@ function DomainRow({ result }) {
           flexShrink: 0,
         }} />
         <span style={{
-          fontSize: '1rem',
-          fontWeight: 500,
+          fontSize: '1rem', fontWeight: 500,
           color: available ? 'var(--text)' : 'var(--text-muted)',
         }}>
           {full_domain}
@@ -31,18 +30,14 @@ function DomainRow({ result }) {
       </div>
       <a
         href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
-        target="_blank"
-        rel="noopener noreferrer"
+        target="_blank" rel="noopener noreferrer"
         style={{
           padding: '6px 20px',
           background: available ? 'var(--green)' : 'var(--surface-hover)',
           color: available ? '#000' : 'var(--text-muted)',
-          borderRadius: '6px',
-          fontSize: '0.85rem',
-          fontWeight: 600,
-          textDecoration: 'none',
+          borderRadius: '6px', fontSize: '0.85rem', fontWeight: 600,
+          textDecoration: 'none', flexShrink: 0,
           border: available ? 'none' : '1px solid var(--border)',
-          flexShrink: 0,
         }}
       >
         {available ? 'Register' : 'Lookup'}
@@ -55,7 +50,7 @@ export function SearchDomains() {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [searched, setSearched] = useState(false);
+  const [active, setActive] = useState(false); // search bar focused/active
   const [progress, setProgress] = useState({ done: 0, total: 0 });
   const inputRef = useRef(null);
   const eventSourceRef = useRef(null);
@@ -64,13 +59,11 @@ export function SearchDomains() {
     const trimmed = q.trim().toLowerCase().split('.')[0];
     if (!trimmed || trimmed.length < 2) {
       setResults([]);
-      setSearched(false);
       return;
     }
 
     if (eventSourceRef.current) eventSourceRef.current.close();
     setLoading(true);
-    setSearched(true);
     setResults([]);
     setProgress({ done: 0, total: 0 });
 
@@ -117,15 +110,18 @@ export function SearchDomains() {
     debounceRef.current = setTimeout(() => doSearch(val), 300);
   };
 
-  const clear = () => {
-    setQuery('');
-    setSearched(false);
-    setResults([]);
-    if (eventSourceRef.current) eventSourceRef.current.close();
-    inputRef.current?.focus();
+  const handleFocus = () => {
+    setActive(true);
   };
 
-  // Sort: .com first, then by TLD order
+  const clear = () => {
+    setQuery('');
+    setResults([]);
+    setActive(false);
+    if (eventSourceRef.current) eventSourceRef.current.close();
+  };
+
+  // Sort: .com first, then TLD priority
   const tldOrder = ['com','net','org','io','dev','ai','app','co','me','xyz','tech','info','biz','cloud','design','blog','shop','site','store','online'];
   const sorted = [...results].sort((a, b) => {
     const ai = tldOrder.indexOf(a.tld);
@@ -136,64 +132,50 @@ export function SearchDomains() {
   const primary = sorted.find(r => r.tld === 'com') || sorted[0];
   const rest = sorted.filter(r => r !== primary);
 
-  // Empty state — centered search
-  if (!searched) {
-    return (
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex: 1,
-        width: '100%',
-        maxWidth: '600px',
-        padding: '0 16px',
-        boxSizing: 'border-box',
-      }}>
-        <h1 style={{
-          fontSize: 'clamp(1.8rem, 5vw, 3rem)',
-          fontWeight: 800,
-          textAlign: 'center',
-          lineHeight: 1.1,
-          letterSpacing: '-0.03em',
-          marginBottom: '32px',
-        }}>
-          Find your perfect<br />
-          <span style={{ color: 'var(--green)' }}>domain name</span>
-        </h1>
-        <div style={{ position: 'relative', width: '100%' }}>
-          <input
-            ref={inputRef} type="text" value={query}
-            onChange={handleChange}
-            placeholder="Search domains..."
-            autoFocus
-            style={{
-              width: '100%', padding: '16px 18px', fontSize: '1.05rem',
-              background: 'var(--surface)', border: '1px solid var(--border)',
-              borderRadius: 'var(--radius)', color: 'var(--text)', outline: 'none',
-              boxSizing: 'border-box',
-            }}
-          />
-        </div>
-      </div>
-    );
-  }
-
-  // Results state — list with search at bottom
   return (
     <div style={{
       display: 'flex',
       flexDirection: 'column',
-      height: 'calc(100vh - 60px)',
       width: '100%',
       maxWidth: '600px',
+      height: active ? 'calc(100vh - 60px)' : 'auto',
+      transition: 'height 0.3s ease',
       boxSizing: 'border-box',
     }}>
-      {/* Scrollable results */}
+      {/* Hero text — visible when inactive, fades out when active */}
       <div style={{
-        flex: 1,
-        overflowY: 'auto',
-        padding: '0 16px 16px',
+        textAlign: 'center',
+        padding: active ? '0 16px' : '0 16px 32px',
+        maxHeight: active ? '0px' : '200px',
+        opacity: active ? 0 : 1,
+        overflow: 'hidden',
+        transition: 'all 0.35s ease',
+      }}>
+        <h1 style={{
+          fontSize: 'clamp(1.8rem, 5vw, 3rem)',
+          fontWeight: 800,
+          lineHeight: 1.1,
+          letterSpacing: '-0.03em',
+          marginBottom: '12px',
+        }}>
+          Find your perfect<br />
+          <span style={{ color: 'var(--green)' }}>domain name</span>
+        </h1>
+        <p style={{
+          fontSize: '0.95rem',
+          color: 'var(--text-muted)',
+          lineHeight: 1.5,
+        }}>
+          Instant availability across 20+ TLDs
+        </p>
+      </div>
+
+      {/* Results area — grows when active */}
+      <div style={{
+        flex: active ? 1 : 0,
+        overflowY: active ? 'auto' : 'hidden',
+        padding: '0 16px',
+        transition: 'flex 0.3s ease',
       }}>
         {/* Primary result */}
         {primary && (
@@ -233,7 +215,7 @@ export function SearchDomains() {
           </div>
         )}
 
-        {/* Extensions */}
+        {/* Extensions list */}
         {rest.length > 0 && (
           <div style={{ fontSize: '0.85rem', fontWeight: 600, marginBottom: '4px', color: 'var(--text-muted)' }}>
             Domain extensions
@@ -241,7 +223,7 @@ export function SearchDomains() {
         )}
         {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
 
-        {/* Loading */}
+        {/* Loading skeleton */}
         {loading && results.length === 0 && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
             {[...Array(10)].map((_, i) => (
@@ -251,13 +233,15 @@ export function SearchDomains() {
         )}
       </div>
 
-      {/* Bottom search bar */}
+      {/* Search bar — slides to bottom when active */}
       <div style={{
         padding: '10px 16px',
         paddingBottom: 'max(10px, env(safe-area-inset-bottom))',
-        borderTop: '1px solid var(--border)',
+        borderTop: active ? '1px solid var(--border)' : 'none',
         background: 'var(--bg)',
+        transition: 'border-color 0.3s ease',
       }}>
+        {/* Progress */}
         {loading && progress.total > 0 && (
           <div style={{ marginBottom: '6px' }}>
             <div style={{ height: '2px', background: 'var(--border)', borderRadius: '1px', overflow: 'hidden' }}>
@@ -272,15 +256,18 @@ export function SearchDomains() {
           <input
             ref={inputRef} type="text" value={query}
             onChange={handleChange}
+            onFocus={handleFocus}
             placeholder="Search domains..."
+            autoFocus
             style={{
-              width: '100%', padding: '12px 40px 12px 16px', fontSize: '1rem',
+              width: '100%', padding: '14px 40px 14px 16px', fontSize: '1rem',
               background: 'var(--surface)', border: '1px solid var(--border)',
               borderRadius: 'var(--radius)', color: 'var(--text)', outline: 'none',
               boxSizing: 'border-box',
             }}
+            onKeyDown={(e) => { if (e.key === 'Escape') clear(); }}
           />
-          {query && (
+          {active && (
             <button onClick={clear} style={{
               position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)',
               background: 'var(--surface-hover)', border: 'none', color: 'var(--text-muted)',
