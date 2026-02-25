@@ -124,13 +124,26 @@ export function SearchDomains() {
             received = [...received, data];
             setResults([...received]);
             setProgress(p => ({ ...p, done: p.done + 1 }));
-          } else if (data.type === 'done') {
-            eventSource.close();
+          } else if (data.type === 'verifying') {
+            // All DNS results in, now verifying with RDAP
             setLoading(false);
             saveSearchHistory(trimmed);
             setHistory(getSearchHistory());
-            // Start loading intel data after domain search is complete
             loadIntelData(received);
+          } else if (data.type === 'correction') {
+            // RDAP found a domain is actually taken — update it
+            received = received.map(r =>
+              r.full_domain === data.full_domain ? { ...r, available: false } : r
+            );
+            setResults([...received]);
+          } else if (data.type === 'done') {
+            eventSource.close();
+            if (loading) {
+              setLoading(false);
+              saveSearchHistory(trimmed);
+              setHistory(getSearchHistory());
+              loadIntelData(received);
+            }
           }
         } catch {}
       };
