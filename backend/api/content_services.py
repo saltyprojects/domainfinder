@@ -2,6 +2,7 @@ import json
 import random
 import os
 import httpx
+import requests
 import hashlib
 from datetime import datetime, timedelta
 from django.conf import settings
@@ -194,63 +195,125 @@ def generate_branded_image(prompt, style="domydomains"):
 
 
 def post_to_twitter(text, hashtags, image_url=None):
-    """Post content to Twitter/X using API."""
+    """Post content to Twitter/X using Tweepy."""
     try:
+        import tweepy
+
         # Twitter API credentials from environment
         twitter_api_key = os.environ.get('DOMY_TWITTER_API_KEY')
-        twitter_api_secret = os.environ.get('DOMY_TWITTER_API_SECRET') 
+        twitter_api_secret = os.environ.get('DOMY_TWITTER_API_SECRET')
         twitter_access_token = os.environ.get('DOMY_TWITTER_ACCESS_TOKEN')
         twitter_access_secret = os.environ.get('DOMY_TWITTER_ACCESS_TOKEN_SECRET')
-        
+
         if not all([twitter_api_key, twitter_api_secret, twitter_access_token, twitter_access_secret]):
             logger.error("Missing Twitter API credentials")
             return False
-        
+
         # Format the tweet
         hashtag_str = ' '.join(hashtags)
         tweet_text = f"{text}\n\n{hashtag_str}"
-        
+
         # Truncate if too long (Twitter limit is 280 chars)
         if len(tweet_text) > 280:
             available_space = 280 - len(hashtag_str) - 3  # 3 for "\n\n"
             tweet_text = f"{text[:available_space]}...\n\n{hashtag_str}"
-        
-        # For now, just log the tweet (real implementation would use Twitter API)
-        logger.info(f"Would post to Twitter: {tweet_text}")
-        
-        # TODO: Implement actual Twitter API posting
-        # This would involve OAuth 1.0a authentication and v2 API calls
-        
+
+        # Upload media if we have an image
+        media_ids = []
+        if image_url:
+            try:
+                # Download the image
+                import tempfile
+                img_response = requests.get(image_url, timeout=15)
+                if img_response.status_code == 200:
+                    # Save to temp file for upload
+                    suffix = '.png' if 'png' in img_response.headers.get('content-type', '') else '.jpg'
+                    with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
+                        tmp.write(img_response.content)
+                        tmp_path = tmp.name
+                    # Use v1.1 API for media upload
+                    auth = tweepy.OAuth1UserHandler(
+                        twitter_api_key, twitter_api_secret,
+                        twitter_access_token, twitter_access_secret
+                    )
+                    api_v1 = tweepy.API(auth)
+                    media = api_v1.media_upload(filename=tmp_path)
+                    media_ids.append(media.media_id_string)
+                    os.unlink(tmp_path)
+            except Exception as e:
+                logger.warning(f"Failed to upload image to Twitter: {e}")
+
+        # Post tweet using v2 API
+        client = tweepy.Client(
+            consumer_key=twitter_api_key,
+            consumer_secret=twitter_api_secret,
+            access_token=twitter_access_token,
+            access_token_secret=twitter_access_secret,
+        )
+
+        kwargs = {'text': tweet_text}
+        if media_ids:
+            kwargs['media_ids'] = media_ids
+
+        response = client.create_tweet(**kwargs)
+        tweet_id = response.data['id']
+        logger.info(f"Posted tweet {tweet_id}: {tweet_text[:80]}...")
         return True
-        
+
     except Exception as e:
         logger.error(f"Failed to post to Twitter: {e}")
         return False
 
 
 def post_to_instagram(text, hashtags, image_url=None):
-    """Post content to Instagram using API."""
+    """Post content to Instagram using Meta Graph API."""
     try:
-        # Instagram API credentials from environment  
+        # Instagram Graph API credentials from environment
         instagram_access_token = os.environ.get('DOMY_INSTAGRAM_ACCESS_TOKEN')
         instagram_user_id = os.environ.get('DOMY_INSTAGRAM_USER_ID')
-        
+
         if not all([instagram_access_token, instagram_user_id]):
-            logger.error("Missing Instagram API credentials")
+            logger.warning("Missing Instagram API credentials — skipping Instagram post")
             return False
-        
+
+        if not image_url:
+            logger.warning("Instagram requires an image — skipping")
+            return False
+
         # Format the caption
         hashtag_str = ' '.join(hashtags)
         caption = f"{text}\n\n{hashtag_str}"
-        
-        # For now, just log the post (real implementation would use Instagram API)
-        logger.info(f"Would post to Instagram: {caption}")
-        
-        # TODO: Implement actual Instagram API posting
-        # This would involve the Instagram Basic Display API or Instagram Graph API
-        
-        return True
-        
+
+        # Step 1: Create media container
+        create_url = f"https://graph.facebook.com/v19.0/{instagram_user_id}/media"
+        create_resp = requests.post(create_url, data={
+            'image_url': image_url,
+            'caption': caption,
+            'access_token': instagram_access_token,
+        }, timeout=30)
+        create_data = create_resp.json()
+
+        if 'id' not in create_data:
+            logger.error(f"Instagram container creation failed: {create_data}")
+            return False
+
+        container_id = create_data['id']
+
+        # Step 2: Publish the container
+        publish_url = f"https://graph.facebook.com/v19.0/{instagram_user_id}/media_publish"
+        publish_resp = requests.post(publish_url, data={
+            'creation_id': container_id,
+            'access_token': instagram_access_token,
+        }, timeout=30)
+        publish_data = publish_resp.json()
+
+        if 'id' in publish_data:
+            logger.info(f"Posted to Instagram: {publish_data['id']}")
+            return True
+        else:
+            logger.error(f"Instagram publish failed: {publish_data}")
+            return False
+
     except Exception as e:
         logger.error(f"Failed to post to Instagram: {e}")
         return False
