@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { SearchDomains } from './components/SearchDomains';
 
 export default function Home() {
@@ -11,8 +11,6 @@ export default function Home() {
     const update = () => {
       const vv = window.visualViewport;
       if (vv) {
-        // Use visualViewport height and compensate for any scroll offset
-        // iOS Safari scrolls the visual viewport when keyboard opens
         setLayoutStyle({
           height: `${vv.height}px`,
           transform: `translateY(${vv.offsetTop}px)`,
@@ -23,7 +21,6 @@ export default function Home() {
     };
 
     update();
-
     const vv = window.visualViewport;
     if (vv) {
       vv.addEventListener('resize', update);
@@ -31,9 +28,7 @@ export default function Home() {
     }
     window.addEventListener('resize', update);
 
-    // Prevent touch-move on the document to stop iOS overscroll
     const preventScroll = (e) => {
-      // Allow scroll inside elements that need it (results list)
       if (e.target.closest('[data-scrollable]')) return;
       e.preventDefault();
     };
@@ -60,22 +55,42 @@ export default function Home() {
       right: 0,
       ...layoutStyle,
     }}>
-      {/* Nav — always visible */}
+      {/* Nav */}
       <nav style={{
         display: 'flex',
-        justifyContent: 'center',
-        padding: '16px',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '0 20px',
+        height: '52px',
         flexShrink: 0,
         borderBottom: '1px solid var(--border)',
         background: 'var(--bg)',
         zIndex: 10,
       }}>
-        <span style={{ fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em' }}>
-          🌐 DomyDomains
-        </span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div style={{
+            width: '28px', height: '28px', borderRadius: '8px',
+            background: 'var(--green)', display: 'flex',
+            alignItems: 'center', justifyContent: 'center',
+            fontSize: '14px', fontWeight: 800, color: '#000',
+          }}>D</div>
+          <span style={{
+            fontSize: '1rem', fontWeight: 700,
+            letterSpacing: '-0.02em', color: 'var(--text)',
+          }}>
+            DomyDomains
+          </span>
+        </div>
+        <div style={{
+          fontSize: '0.7rem', fontWeight: 600,
+          color: 'var(--green)', opacity: 0.7,
+          letterSpacing: '0.05em', textTransform: 'uppercase',
+        }}>
+          20+ TLDs
+        </div>
       </nav>
 
-      {/* Main content area */}
+      {/* Main */}
       <div style={{
         flex: 1,
         display: 'flex',
@@ -88,19 +103,24 @@ export default function Home() {
         <SearchDomains onActiveChange={setSearchActive} />
       </div>
 
-      {/* Footer — hidden when search is active */}
+      {/* Footer */}
       {!searchActive && (
         <footer style={{
           display: 'flex',
           justifyContent: 'center',
-          padding: '10px 16px',
+          alignItems: 'center',
+          gap: '6px',
+          padding: '12px 16px',
           flexShrink: 0,
           borderTop: '1px solid var(--border)',
-          fontSize: '0.75rem',
+          fontSize: '0.7rem',
           color: 'var(--text-dim)',
           background: 'var(--bg)',
+          letterSpacing: '0.02em',
         }}>
-          © 2026 DomyDomains
+          <span>© 2026 DomyDomains</span>
+          <span style={{ opacity: 0.3 }}>·</span>
+          <span>Instant domain search</span>
         </footer>
       )}
     </div>
