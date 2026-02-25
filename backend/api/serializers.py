@@ -22,7 +22,7 @@ class SocialHandleResultSerializer(serializers.Serializer):
     display_name = serializers.CharField()
     username = serializers.CharField()
     url = serializers.CharField()
-    available = serializers.NullBooleanField()
+    available = serializers.BooleanField(allow_null=True)
 
 
 class WhoisQuerySerializer(serializers.Serializer):
