@@ -9,6 +9,37 @@ GODADDY_API_KEY = os.environ.get('GODADDY_API_KEY', '')
 GODADDY_API_SECRET = os.environ.get('GODADDY_API_SECRET', '')
 GODADDY_BASE = 'https://api.godaddy.com/v1'
 
+# RDAP bootstrap URLs per TLD (common ones)
+RDAP_SERVERS = {
+    'com': 'https://rdap.verisign.com/com/v1',
+    'net': 'https://rdap.verisign.com/net/v1',
+    'org': 'https://rdap.org/org/v1',
+    'io': 'https://rdap.identitydigital.services/rdap/v1',
+    'dev': 'https://www.registry.google/rdap/',
+    'app': 'https://www.registry.google/rdap/',
+    'ai': 'https://rdap.nic.ai/v1',
+    'co': 'https://rdap.nic.co/v1',
+}
+
+
+def check_rdap_registration(full_domain: str, tld: str) -> bool | None:
+    """Check if domain is registered via RDAP. Returns True=taken, False=available, None=unknown."""
+    try:
+        # Try IANA RDAP bootstrap first (works for most TLDs)
+        resp = requests.get(
+            f'https://rdap.org/domain/{full_domain}',
+            timeout=3,
+            headers={'Accept': 'application/rdap+json'},
+            allow_redirects=True,
+        )
+        if resp.status_code == 200:
+            return True  # Domain found = registered = taken
+        elif resp.status_code == 404:
+            return False  # Not found = available
+        return None  # Unknown
+    except Exception:
+        return None  # Can't determine
+
 
 def check_domain_godaddy(name: str, tld: str) -> dict:
     """Check domain availability via GoDaddy API (accurate + pricing)."""
@@ -105,6 +136,12 @@ def check_domain_dns(name: str, tld: str) -> dict:
     except Exception:
         # Unknown error — default to available (better than false negatives)
         available = True
+
+    # If DNS says available, verify with RDAP (catches parked/held domains)
+    if available:
+        rdap_result = check_rdap_registration(full_domain, tld)
+        if rdap_result is True:
+            available = False  # RDAP says it's registered
 
     result = {
         'domain': name,
