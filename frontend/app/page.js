@@ -23,6 +23,7 @@ export default function Home() {
         </span>
         <div style={{ display: 'flex', gap: '24px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
           <a href="#features" style={{ transition: 'color 0.2s' }}>Features</a>
+          <a href="/blog" style={{ transition: 'color 0.2s' }}>Blog</a>
           <a href="#faq" style={{ transition: 'color 0.2s' }}>FAQ</a>
         </div>
       </nav>
