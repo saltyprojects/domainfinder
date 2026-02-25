@@ -6,6 +6,14 @@ import { Suggestions } from './Suggestions';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
+const LOADING_MESSAGES = [
+  '🏠 Domy is knocking on doors...',
+  '🔍 Checking the neighborhood...',
+  '🏘️ Exploring every street...',
+  '📬 Peeking in the mailbox...',
+  '🗺️ Mapping the domain landscape...',
+];
+
 const SORT_OPTIONS = [
   { value: 'default', label: 'Default' },
   { value: 'tld', label: 'TLD (A→Z)' },
@@ -174,7 +182,7 @@ export function SearchDomains() {
             position: 'absolute', right: '18px', top: '50%', transform: 'translateY(-50%)',
             fontSize: '0.85rem', color: 'var(--text-muted)',
           }}>
-            🔍 Searching...
+            {LOADING_MESSAGES[Math.floor(Date.now() / 2000) % LOADING_MESSAGES.length]}
           </div>
         )}
 
