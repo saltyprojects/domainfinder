@@ -15,12 +15,12 @@ function DomainRow({ result }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '14px 16px',
-        borderRadius: '12px',
+        padding: '10px 16px',
+        borderRadius: '10px',
         textDecoration: 'none',
         transition: 'background 0.15s',
         background: 'transparent',
-        minHeight: '48px',
+        minHeight: '44px',
         boxSizing: 'border-box',
       }}
       onMouseEnter={e => e.currentTarget.style.background = 'var(--surface)'}
@@ -61,13 +61,9 @@ function PrimaryResult({ result }) {
     <div style={{
       padding: '20px',
       marginBottom: '12px',
-      borderRadius: '16px',
-      background: available
-        ? 'rgba(34,197,94,0.06)'
-        : 'rgba(239,68,68,0.04)',
-      border: `1px solid ${available
-        ? 'rgba(34,197,94,0.12)'
-        : 'rgba(239,68,68,0.08)'}`,
+      borderRadius: '14px',
+      background: 'var(--surface)',
+      border: '1px solid var(--border)',
     }}>
       <div style={{
         display: 'flex', alignItems: 'center', gap: '8px',
@@ -104,8 +100,8 @@ function PrimaryResult({ result }) {
           borderRadius: '10px',
           fontSize: '0.82rem', fontWeight: 600,
           textDecoration: 'none',
-          background: available ? 'var(--green)' : 'var(--surface)',
-          color: available ? '#000' : 'var(--text-muted)',
+          background: available ? 'var(--text)' : 'var(--surface)',
+          color: available ? 'var(--bg)' : 'var(--text-muted)',
           border: available ? 'none' : '1px solid var(--border)',
           minHeight: '44px',
           boxSizing: 'border-box',
