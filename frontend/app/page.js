@@ -1,6 +1,9 @@
 import { SearchDomains } from './components/SearchDomains';
 import { Features } from './components/Features';
 import { Stats } from './components/Stats';
+import { HowItWorks } from './components/HowItWorks';
+import { Testimonials } from './components/Testimonials';
+import { FAQ } from './components/FAQ';
 import { Footer } from './components/Footer';
 
 export default function Home() {
@@ -20,7 +23,7 @@ export default function Home() {
         </span>
         <div style={{ display: 'flex', gap: '24px', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
           <a href="#features" style={{ transition: 'color 0.2s' }}>Features</a>
-          <a href="#pricing" style={{ transition: 'color 0.2s' }}>Pricing</a>
+          <a href="#faq" style={{ transition: 'color 0.2s' }}>FAQ</a>
         </div>
       </nav>
 
@@ -42,7 +45,7 @@ export default function Home() {
           marginBottom: '24px',
           fontWeight: 500,
         }}>
-          ✨ AI-powered domain intelligence
+          ✨ Free forever — no signup required
         </div>
 
         <h1 style={{
@@ -54,8 +57,8 @@ export default function Home() {
           marginBottom: '16px',
           maxWidth: '700px',
         }}>
-          Find your perfect<br />
-          <span style={{ color: 'var(--green)' }}>domain name</span>
+          Your next big idea<br />
+          <span style={{ color: 'var(--green)' }}>starts with a name</span>
         </h1>
 
         <p style={{
@@ -66,15 +69,18 @@ export default function Home() {
           lineHeight: 1.6,
           marginBottom: '48px',
         }}>
-          Instantly search availability across 20+ TLDs, check social handles,
-          and compare prices — all in one place.
+          Search availability across 20+ TLDs, check matching social handles,
+          and find the cheapest registrar — all in one place.
         </p>
 
         <SearchDomains />
       </main>
 
       <Stats />
+      <HowItWorks />
       <Features />
+      <Testimonials />
+      <FAQ />
       <Footer />
     </>
   );
