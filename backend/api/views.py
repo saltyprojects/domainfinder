@@ -126,6 +126,63 @@ def search_stream(request):
 
 
 @api_view(['GET'])
+def social_whois_stream(request):
+    """SSE endpoint: stream social + WHOIS data for domains."""
+    import concurrent.futures
+    from .social_services import check_all_handles
+    from .whois_services import lookup_domain_rdap
+    
+    domains = request.query_params.get('domains', '').split(',')
+    domains = [d.strip() for d in domains if d.strip()]
+    
+    if not domains:
+        return Response({'error': 'No domains provided'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def get_domain_intel(domain_name):
+        """Get social + WHOIS data for a single domain name."""
+        try:
+            # For available domains, check social handles
+            social_data = check_all_handles(domain_name)
+            
+            # For taken domains, get WHOIS data  
+            whois_data = lookup_domain_rdap(f"{domain_name}.com")  # Default to .com for WHOIS
+            
+            return {
+                'domain': domain_name,
+                'social': social_data,
+                'whois': whois_data,
+            }
+        except Exception as e:
+            return {
+                'domain': domain_name,
+                'error': str(e),
+                'social': [],
+                'whois': None,
+            }
+
+    def event_stream():
+        yield f"data: {json.dumps({'type': 'start', 'total': len(domains)})}\n\n"
+        
+        with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
+            future_to_domain = {executor.submit(get_domain_intel, domain): domain for domain in domains}
+            
+            for future in concurrent.futures.as_completed(future_to_domain):
+                try:
+                    result = future.result()
+                    yield f"data: {json.dumps({'type': 'intel', **result})}\n\n"
+                except Exception as e:
+                    domain = future_to_domain[future]
+                    yield f"data: {json.dumps({'type': 'intel', 'domain': domain, 'error': str(e)})}\n\n"
+        
+        yield f"data: {json.dumps({'type': 'done'})}\n\n"
+
+    response = StreamingHttpResponse(event_stream(), content_type='text/event-stream')
+    response['Cache-Control'] = 'no-cache'
+    response['X-Accel-Buffering'] = 'no'
+    return response
+
+
+@api_view(['GET'])
 def linkedin_callback(request):
     """Exchange LinkedIn OAuth code for access token and store it."""
     code = request.query_params.get('code')
