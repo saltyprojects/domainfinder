@@ -17,12 +17,10 @@ class DomainSearchSerializer(serializers.Serializer):
     )
 
 
-class SocialHandleResultSerializer(serializers.Serializer):
-    platform = serializers.CharField()
-    display_name = serializers.CharField()
-    username = serializers.CharField()
-    url = serializers.CharField()
+class SuggestionSerializer(serializers.Serializer):
+    name = serializers.CharField()
     available = serializers.BooleanField(allow_null=True)
+    full_domain = serializers.CharField()
 
 
 class WhoisQuerySerializer(serializers.Serializer):

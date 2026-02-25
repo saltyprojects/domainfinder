@@ -6,9 +6,8 @@ const features = [
   },
   {
     icon: '🤖',
-    title: 'AI Suggestions',
-    desc: 'Describe your idea and get 50+ brandable domain names scored by memorability and SEO value.',
-    badge: 'Coming Soon',
+    title: 'Name Generator',
+    desc: 'Get 50+ brandable domain name ideas instantly — prefixes, suffixes, mashups, and more.',
   },
   {
     icon: '📱',
