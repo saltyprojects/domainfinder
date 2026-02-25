@@ -28,7 +28,7 @@ def check_rdap_registration(full_domain: str, tld: str) -> bool | None:
         # Try IANA RDAP bootstrap first (works for most TLDs)
         resp = requests.get(
             f'https://rdap.org/domain/{full_domain}',
-            timeout=3,
+            timeout=2,
             headers={'Accept': 'application/rdap+json'},
             allow_redirects=True,
         )
@@ -101,7 +101,8 @@ def check_domain_availability_cached(name: str, tld: str) -> dict:
 
 
 def check_domain_dns(name: str, tld: str) -> dict:
-    """Fallback: Check domain availability via DNS lookup."""
+    """Fast domain availability check via socket DNS lookup."""
+    import socket as _socket
     full_domain = f"{name}.{tld}"
     cache_key = f"domain:{full_domain}"
 
@@ -110,31 +111,15 @@ def check_domain_dns(name: str, tld: str) -> dict:
         return cached
 
     available = True
-    resolver = dns.resolver.Resolver()
-    resolver.timeout = 2
-    resolver.lifetime = 2
     try:
-        resolver.resolve(full_domain, 'A')
-        available = False
-    except dns.resolver.NXDOMAIN:
-        # Domain definitely doesn't exist = available
-        available = True
-    except dns.resolver.NoNameservers:
-        # No nameservers = likely available
-        available = True
-    except dns.resolver.NoAnswer:
-        # Has DNS record but no A record — domain exists, probably taken
-        # But also try NS record to be sure
-        try:
-            dns.resolver.resolve(full_domain, 'NS')
-            available = False
-        except Exception:
-            available = True
-    except dns.resolver.LifetimeTimeout:
-        # Timeout — could go either way, default to available for better UX
-        available = True
+        _socket.setdefaulttimeout(0.8)
+        _socket.getaddrinfo(full_domain, 80)
+        available = False  # Resolved = taken
+    except _socket.gaierror:
+        available = True  # Not found = available
+    except _socket.timeout:
+        available = True  # Timeout = assume available
     except Exception:
-        # Unknown error — default to available (better than false negatives)
         available = True
 
     result = {
@@ -172,7 +157,7 @@ def search_domains(name: str) -> list[dict]:
     """Check availability across all configured TLDs concurrently."""
     tlds = settings.DOMAIN_TLDS
 
-    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
         futures = {
             executor.submit(check_domain_availability, name, tld): tld
             for tld in tlds
@@ -199,9 +184,9 @@ def stream_domain_checks(name: str, tlds: list[str]):
     Phase 2: RDAP verification for domains that DNS says are available.
     Yields corrections if RDAP disagrees.
     """
-    # Phase 1: Fast DNS/GoDaddy checks
+    # Phase 1: Fast DNS/GoDaddy checks (all TLDs in parallel)
     dns_results = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
         futures = {
             executor.submit(check_domain_availability, name, tld): tld
             for tld in tlds
