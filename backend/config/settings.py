@@ -98,6 +98,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
+# CSRF
+CSRF_TRUSTED_ORIGINS = [
+    f"https://{origin.strip()}"
+    for origin in os.environ.get("CSRF_TRUSTED_ORIGINS", "backend-production-4d81.up.railway.app").split(",")
+    if origin.strip()
+]
+
 # Domain search config
 DOMAIN_TLDS = [
     'com', 'io', 'co', 'ai', 'dev', 'app', 'net', 'org',
