@@ -27,7 +27,8 @@ export function Footer() {
           color: 'var(--text-muted)',
         }}>
           <a href="#features">Features</a>
-          <a href="#pricing">Pricing</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
           <a href="mailto:hello@domydomains.com">Contact</a>
         </div>
       </div>
