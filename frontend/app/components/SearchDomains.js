@@ -478,16 +478,33 @@ export function SearchDomains({ onActiveChange }) {
             maxWidth: '800px',
             margin: '40px auto 0',
           }}>
-            <div style={{
-              padding: '24px 16px',
-              background: 'rgba(139, 92, 246, 0.05)',
-              border: '1px solid rgba(139, 92, 246, 0.2)',
-              borderRadius: '12px',
-              textAlign: 'center',
-            }}>
+            <div 
+              style={{
+                padding: '24px 16px',
+                background: 'rgba(139, 92, 246, 0.05)',
+                border: '1px solid rgba(139, 92, 246, 0.2)',
+                borderRadius: '12px',
+                textAlign: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = 'rgba(139, 92, 246, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.4)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 8px 25px rgba(139, 92, 246, 0.15)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'rgba(139, 92, 246, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
               <div style={{
                 fontSize: '2rem',
                 marginBottom: '12px',
+                transition: 'transform 0.3s ease',
               }}>⚡</div>
               <div style={{
                 fontSize: '0.9rem',
@@ -506,16 +523,33 @@ export function SearchDomains({ onActiveChange }) {
               </div>
             </div>
 
-            <div style={{
-              padding: '24px 16px',
-              background: 'rgba(34, 197, 94, 0.05)',
-              border: '1px solid rgba(34, 197, 94, 0.2)',
-              borderRadius: '12px',
-              textAlign: 'center',
-            }}>
+            <div 
+              style={{
+                padding: '24px 16px',
+                background: 'rgba(34, 197, 94, 0.05)',
+                border: '1px solid rgba(34, 197, 94, 0.2)',
+                borderRadius: '12px',
+                textAlign: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = 'rgba(34, 197, 94, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.4)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 8px 25px rgba(34, 197, 94, 0.15)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'rgba(34, 197, 94, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.2)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
               <div style={{
                 fontSize: '2rem',
                 marginBottom: '12px',
+                transition: 'transform 0.3s ease',
               }}>🔍</div>
               <div style={{
                 fontSize: '0.9rem',
@@ -534,16 +568,33 @@ export function SearchDomains({ onActiveChange }) {
               </div>
             </div>
 
-            <div style={{
-              padding: '24px 16px',
-              background: 'rgba(59, 130, 246, 0.05)',
-              border: '1px solid rgba(59, 130, 246, 0.2)',
-              borderRadius: '12px',
-              textAlign: 'center',
-            }}>
+            <div 
+              style={{
+                padding: '24px 16px',
+                background: 'rgba(59, 130, 246, 0.05)',
+                border: '1px solid rgba(59, 130, 246, 0.2)',
+                borderRadius: '12px',
+                textAlign: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
+                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.4)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.15)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.05)';
+                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
               <div style={{
                 fontSize: '2rem',
                 marginBottom: '12px',
+                transition: 'transform 0.3s ease',
               }}>💎</div>
               <div style={{
                 fontSize: '0.9rem',
