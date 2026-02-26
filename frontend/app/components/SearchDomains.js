@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 const REGISTRAR_URL = 'https://www.namecheap.com/domains/registration/results/?domain=';
@@ -90,9 +90,21 @@ export function SearchDomains({ onActiveChange }) {
   const [active, setActive] = useState(false);
   const [progress, setProgress] = useState({ done: 0, total: 0 });
   const [activeTab, setActiveTab] = useState('search');
+  const [isDesktop, setIsDesktop] = useState(false);
   const inputRef = useRef(null);
   const bottomInputRef = useRef(null);
   const eventSourceRef = useRef(null);
+
+  // Responsive detection
+  useEffect(() => {
+    const updateDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1280);
+    };
+    
+    updateDesktop(); // Initial check
+    window.addEventListener('resize', updateDesktop);
+    return () => window.removeEventListener('resize', updateDesktop);
+  }, []);
 
   const doSearch = (q) => {
     const trimmed = q.trim().toLowerCase().split('.')[0];
@@ -511,38 +523,144 @@ export function SearchDomains({ onActiveChange }) {
           </div>
         )}
 
-        {/* Status legend + section header */}
+        {/* Results grid: responsive layout */}
         {results.length > 0 && !loading && (
-          <div style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            marginBottom: '4px', padding: '4px 0',
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>
-                Domain extensions
-              </span>
-              <span style={{ fontSize: '0.8rem', color: '#666' }}>
-                ({takenCount > 0 ? `${takenCount} taken` : `${availableCount} available`})
-              </span>
-            </div>
-            {/* Legend */}
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22c55e' }} />
-                <span style={{ fontSize: '0.7rem', color: '#22c55e' }}>Available</span>
+          <>
+            {/* Desktop 2-column grid */}
+            <div style={{
+              display: isDesktop ? 'grid' : 'block',
+              gridTemplateColumns: isDesktop ? '1fr 1fr' : '1fr',
+              gap: isDesktop ? '32px' : '0',
+              marginBottom: '8px',
+            }}>
+              {/* Left Column: Domain Extensions */}
+              <div>
+                <div style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  marginBottom: '8px', padding: '4px 0',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>
+                      Domain extensions
+                    </span>
+                    <span style={{ fontSize: '0.8rem', color: '#666' }}>
+                      ({rest.length} total)
+                    </span>
+                  </div>
+                  {/* Legend - only show on mobile/single column */}
+                  {!isDesktop && (
+                    <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22c55e' }} />
+                        <span style={{ fontSize: '0.7rem', color: '#22c55e' }}>Available</span>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ef4444' }} />
+                        <span style={{ fontSize: '0.7rem', color: '#ef4444' }}>Taken</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div style={{ margin: isDesktop ? '0' : '0 -12px' }}>
+                  {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
+                </div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ef4444' }} />
-                <span style={{ fontSize: '0.7rem', color: '#ef4444' }}>Taken</span>
-              </div>
-            </div>
-          </div>
-        )}
 
-        {/* Extension rows */}
-        <div style={{ margin: '0 -12px' }}>
-          {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
-        </div>
+              {/* Right Column: Premium/Marketplace Domains (Desktop only) */}
+              {isDesktop && (
+                <div>
+                  <div style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                    marginBottom: '8px', padding: '4px 0',
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>
+                        Premium domains
+                      </span>
+                      <span style={{ fontSize: '0.8rem', color: '#666' }}>
+                        (marketplace)
+                      </span>
+                    </div>
+                    <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#3b82f6' }} />
+                        <span style={{ fontSize: '0.7rem', color: '#3b82f6' }}>Premium</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    {/* Mock premium domains to match IDS layout */}
+                    {[
+                      { domain: `${query}marketplace.com`, price: '$2,500' },
+                      { domain: `${query}hub.com`, price: '$1,200' },
+                      { domain: `${query}pro.net`, price: '$850' },
+                      { domain: `get${query}.com`, price: '$3,200' },
+                      { domain: `${query}zone.com`, price: '$950' },
+                    ].filter(d => query && query.length > 1).map((premium, idx) => (
+                      <a
+                        key={idx}
+                        href={`${REGISTRAR_URL}${encodeURIComponent(premium.domain)}`}
+                        target="_blank" rel="noopener noreferrer"
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'space-between',
+                          padding: '0 12px',
+                          height: '38px',
+                          borderRadius: '4px',
+                          textDecoration: 'none',
+                          transition: 'background 0.12s',
+                        }}
+                        onMouseEnter={e => e.currentTarget.style.background = '#141414'}
+                        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                          <div style={{
+                            width: '8px', height: '8px', borderRadius: '50%',
+                            background: '#3b82f6',
+                            flexShrink: 0,
+                          }} />
+                          <span style={{
+                            fontSize: '0.9rem', fontWeight: 450,
+                            color: '#e5e5e5',
+                          }}>
+                            {premium.domain}
+                          </span>
+                        </div>
+                        <div style={{
+                          display: 'flex', alignItems: 'center', gap: '8px',
+                          flexShrink: 0,
+                        }}>
+                          <span style={{
+                            fontSize: '0.8rem', fontWeight: 600,
+                            color: '#3b82f6',
+                          }}>
+                            {premium.price}
+                          </span>
+                          <div style={{
+                            display: 'flex', alignItems: 'center',
+                            background: '#1a1a1a',
+                            borderRadius: '4px',
+                            height: '26px',
+                            padding: '0 8px',
+                            transition: 'all 0.2s ease',
+                          }}>
+                            <span style={{
+                              fontSize: '0.7rem', fontWeight: 600,
+                              color: '#3b82f6',
+                            }}>
+                              Buy
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </>
+        )}
 
         {/* Loading skeleton */}
         {loading && results.length === 0 && (
