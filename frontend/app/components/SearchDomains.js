@@ -659,6 +659,71 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
       minHeight: 0,
       boxSizing: 'border-box',
     }}>
+      {/* Top search bar */}
+      <div style={{
+        padding: '8px 12px',
+        borderBottom: '1px solid #1e1e1e',
+        background: '#000',
+        flexShrink: 0,
+      }}>
+        {loading && progress.total > 0 && (
+          <div style={{ marginBottom: '6px' }}>
+            <div style={{ height: '2px', background: '#1e1e1e', borderRadius: '1px', overflow: 'hidden' }}>
+              <div style={{
+                width: `${(progress.done / progress.total) * 100}%`,
+                height: '100%', background: '#22c55e', transition: 'width 0.1s',
+              }} />
+            </div>
+          </div>
+        )}
+        <div style={{
+          display: 'flex', alignItems: 'center',
+          background: '#141414',
+          borderRadius: '10px',
+          border: '1px solid #222',
+          padding: '0 4px',
+          transition: 'all 0.2s ease',
+        }}>
+          <input
+            ref={bottomInputRef}
+            type="text"
+            value={query}
+            onChange={handleChange}
+            placeholder="Search domains..."
+            style={{
+              flex: 1,
+              padding: '11px 12px',
+              fontSize: '0.9rem',
+              background: 'transparent',
+              border: 'none',
+              color: '#fff',
+              outline: 'none',
+              boxSizing: 'border-box',
+            }}
+            onKeyDown={(e) => { if (e.key === 'Escape') clear(); }}
+            onFocus={e => {
+              e.currentTarget.parentElement.style.borderColor = '#8b5cf6';
+              e.currentTarget.parentElement.style.boxShadow = '0 0 0 1px rgba(139, 92, 246, 0.2)';
+            }}
+            onBlur={e => {
+              e.currentTarget.parentElement.style.borderColor = '#222';
+              e.currentTarget.parentElement.style.boxShadow = 'none';
+            }}
+          />
+          <button 
+            onClick={clear} 
+            style={{
+              background: '#2a2a2a', border: 'none', color: '#888',
+              width: '28px', height: '28px', borderRadius: '6px',
+              cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '0.75rem', minHeight: 'auto', minWidth: 'auto',
+              flexShrink: 0,
+            }}
+          >✕</button>
+        </div>
+      </div>
+
       {/* Scrollable results */}
       <div data-scrollable style={{
         flex: 1,
@@ -946,85 +1011,8 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
         )}
       </div>
 
-      {/* Bottom search bar */}
-      <div style={{
-        padding: '8px 12px',
-        paddingBottom: 'max(8px, env(safe-area-inset-bottom))',
-        borderTop: '1px solid #1e1e1e',
-        background: '#000',
-        flexShrink: 0,
-      }}>
-        {loading && progress.total > 0 && (
-          <div style={{ marginBottom: '6px' }}>
-            <div style={{ height: '2px', background: '#1e1e1e', borderRadius: '1px', overflow: 'hidden' }}>
-              <div style={{
-                width: `${(progress.done / progress.total) * 100}%`,
-                height: '100%', background: '#22c55e', transition: 'width 0.1s',
-              }} />
-            </div>
-          </div>
-        )}
-        <div style={{
-          display: 'flex', alignItems: 'center',
-          background: '#141414',
-          borderRadius: '10px',
-          border: '1px solid #222',
-          padding: '0 4px',
-          transition: 'all 0.2s ease',
-        }}>
-          <input
-            ref={bottomInputRef}
-            type="text"
-            value={query}
-            onChange={handleChange}
-            placeholder="Search domains..."
-            style={{
-              flex: 1,
-              padding: '11px 12px',
-              fontSize: '0.9rem',
-              background: 'transparent',
-              border: 'none',
-              color: '#fff',
-              outline: 'none',
-              boxSizing: 'border-box',
-              transition: 'all 0.2s ease',
-            }}
-            onKeyDown={(e) => { if (e.key === 'Escape') clear(); }}
-            onFocus={e => {
-              e.currentTarget.style.background = 'rgba(139, 92, 246, 0.05)';
-              e.currentTarget.parentElement.style.borderColor = '#8b5cf6';
-              e.currentTarget.parentElement.style.boxShadow = '0 0 0 1px rgba(139, 92, 246, 0.2)';
-            }}
-            onBlur={e => {
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.parentElement.style.borderColor = '#222';
-              e.currentTarget.parentElement.style.boxShadow = 'none';
-            }}
-          />
-          <button 
-            onClick={clear} 
-            style={{
-              background: '#2a2a2a', border: 'none', color: '#888',
-              width: '28px', height: '28px', borderRadius: '6px',
-              cursor: 'pointer',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '0.75rem', minHeight: 'auto', minWidth: 'auto',
-              flexShrink: 0,
-              transition: 'all 0.2s ease',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.background = '#3a3a3a';
-              e.currentTarget.style.color = '#fff';
-              e.currentTarget.style.transform = 'scale(1.1)';
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.background = '#2a2a2a';
-              e.currentTarget.style.color = '#888';
-              e.currentTarget.style.transform = 'scale(1)';
-            }}
-          >✕</button>
-        </div>
-      </div>
+      {/* Safe area bottom padding for iOS */}
+      <div style={{ height: 'env(safe-area-inset-bottom)', background: '#000', flexShrink: 0 }} />
     </div>
   );
 }
