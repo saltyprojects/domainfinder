@@ -153,23 +153,26 @@ export function AppShell({ children, hideFooter = false, searchActive = false, a
             <img src="/domy-mascot.png" alt="Domy" style={{ width: '26px', height: '26px', borderRadius: '50%' }} />
             {isDesktop && 'DomyDomains'}
           </a>
-          {searchActive && isDesktop && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          {searchActive && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: isDesktop ? '20px' : '2px', marginLeft: isDesktop ? '0' : '8px' }}>
               {[
-                { label: 'Search', id: 'search' },
-                { label: 'Extensions', id: 'extensions' },
-                { label: 'Generator', id: 'generator' },
-                { label: 'Aftermarket', id: 'aftermarket' },
+                { label: 'Search', mobileLabel: 'Search', icon: '🔍', id: 'search' },
+                { label: 'Extensions', mobileLabel: 'Ext', icon: '🧩', id: 'extensions' },
+                { label: 'Generator', mobileLabel: 'Gen', icon: '⚡', id: 'generator' },
+                { label: 'Aftermarket', mobileLabel: 'Market', icon: '💎', id: 'aftermarket' },
               ].map(tab => (
                 <button key={tab.id} onClick={() => onTabChange?.(tab.id)} style={{
-                  fontSize: '0.82rem',
+                  display: 'flex', alignItems: 'center', gap: '3px',
+                  fontSize: isDesktop ? '0.82rem' : '0.65rem',
                   fontWeight: 500,
                   color: activeTab === tab.id ? '#fff' : '#666',
                   background: 'none', border: 'none', cursor: 'pointer',
-                  padding: '6px 8px',
+                  padding: isDesktop ? '6px 8px' : '6px 4px',
                   borderBottom: activeTab === tab.id ? '2px solid #8b5cf6' : '2px solid transparent',
+                  whiteSpace: 'nowrap',
                 }}>
-                  {tab.label}
+                  <span style={{ fontSize: isDesktop ? '0.85rem' : '0.65rem' }}>{tab.icon}</span>
+                  {isDesktop ? tab.label : tab.mobileLabel}
                 </button>
               ))}
             </div>
