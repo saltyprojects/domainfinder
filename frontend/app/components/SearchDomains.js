@@ -84,7 +84,7 @@ function DomainRow({ result }) {
 }
 
 // Extensions View — colored TLD cards grouped by category
-function ExtensionsView({ results, isMultiColumn }) {
+function ExtensionsView({ results, isMultiColumn, columns = 1 }) {
   // Show all results as extension cards — available first, then taken
   const sorted = [...results].sort((a, b) => {
     if (a.available !== b.available) return a.available ? -1 : 1;
@@ -100,7 +100,7 @@ function ExtensionsView({ results, isMultiColumn }) {
         <span style={{ fontSize: '0.7rem', color: '#22c55e' }}>{availCount} available</span>
         <span style={{ fontSize: '0.7rem', color: '#ef4444' }}>{takenCount} taken</span>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: isMultiColumn ? 'repeat(4, 1fr)' : 'repeat(3, 1fr)', gap: '6px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.max(3, columns + 2)}, 1fr)`, gap: '6px' }}>
         {sorted.map(r => (
           <a key={r.tld} href={`https://www.namecheap.com/domains/registration/results/?domain=${r.full_domain}`}
             target="_blank" rel="noopener noreferrer"
@@ -119,7 +119,7 @@ function ExtensionsView({ results, isMultiColumn }) {
 }
 
 // Generator View — name variations
-function GeneratorView({ query, isMultiColumn }) {
+function GeneratorView({ query, isMultiColumn, columns = 1 }) {
   const [shown, setShown] = useState(15);
   const ref = useRef(null);
   useEffect(() => {
@@ -136,7 +136,7 @@ function GeneratorView({ query, isMultiColumn }) {
   const suggestions = [...prefixes.map(p => `${p}${query}.com`), ...suffixes.map(s => `${query}${s}.com`)];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: isMultiColumn ? 'repeat(3,1fr)' : '1fr', gap: '2px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: '2px' }}>
       {suggestions.slice(0, shown).map(d => (
         <a key={d} href={`https://www.namecheap.com/domains/registration/results/?domain=${d}`}
           target="_blank" rel="noopener noreferrer"
@@ -159,7 +159,7 @@ function GeneratorView({ query, isMultiColumn }) {
 }
 
 // Aftermarket View — premium domains with prices
-function AftermarketView({ query, isMultiColumn }) {
+function AftermarketView({ query, isMultiColumn, columns = 1 }) {
   const [shown, setShown] = useState(10);
   const ref = useRef(null);
   useEffect(() => {
@@ -183,7 +183,7 @@ function AftermarketView({ query, isMultiColumn }) {
   ];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: isMultiColumn ? 'repeat(3,1fr)' : '1fr', gap: '2px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: '2px' }}>
       {aftermarket.slice(0, shown).map(item => (
         <a key={item.domain} href={`https://www.namecheap.com/domains/registration/results/?domain=${item.domain}`}
           target="_blank" rel="noopener noreferrer"
@@ -211,18 +211,24 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(false);
   const [isMultiColumn, setIsMultiColumn] = useState(false);
+  const [columns, setColumns] = useState(1); // 1=mobile, 2=tablet, 3=desktop, 4=wide
   const inputRef = useRef(null);
   const bottomInputRef = useRef(null);
 
   // Responsive detection - enable 2-column layout at tablet (768px+) like IDS
   useEffect(() => {
-    const updateMultiColumn = () => {
-      setIsMultiColumn(window.innerWidth >= 768);
+    const updateColumns = () => {
+      const w = window.innerWidth;
+      setIsMultiColumn(w >= 768);
+      if (w >= 1440) setColumns(4);
+      else if (w >= 1024) setColumns(3);
+      else if (w >= 768) setColumns(2);
+      else setColumns(1);
     };
     
-    updateMultiColumn(); // Initial check
-    window.addEventListener('resize', updateMultiColumn);
-    return () => window.removeEventListener('resize', updateMultiColumn);
+    updateColumns();
+    window.addEventListener('resize', updateColumns);
+    return () => window.removeEventListener('resize', updateColumns);
   }, []);
 
   const abortRef = useRef(null);
@@ -710,26 +716,26 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
 
         {/* Extensions tab */}
         {results.length > 0 && !loading && activeTab === 'extensions' && (
-          <ExtensionsView results={results} isMultiColumn={isMultiColumn} />
+          <ExtensionsView results={results} isMultiColumn={isMultiColumn} columns={columns} />
         )}
 
         {/* Generator tab */}
         {!loading && activeTab === 'generator' && query.length >= 2 && (
-          <GeneratorView query={query} isMultiColumn={isMultiColumn} />
+          <GeneratorView query={query} isMultiColumn={isMultiColumn} columns={columns} />
         )}
 
         {/* Aftermarket tab */}
         {!loading && activeTab === 'aftermarket' && query.length >= 2 && (
-          <AftermarketView query={query} isMultiColumn={isMultiColumn} />
+          <AftermarketView query={query} isMultiColumn={isMultiColumn} columns={columns} />
         )}
 
         {/* Search tab — results grid */}
         {results.length > 0 && !loading && activeTab === 'search' && (
           <>
             <div style={{
-              display: isMultiColumn ? 'grid' : 'block',
-              gridTemplateColumns: isMultiColumn ? '1fr 1fr' : '1fr',
-              gap: isMultiColumn ? '24px' : '0',
+              display: columns >= 2 ? 'grid' : 'block',
+              gridTemplateColumns: columns >= 3 ? '2fr 1fr' : columns >= 2 ? '1fr 1fr' : '1fr',
+              gap: columns >= 2 ? '24px' : '0',
               marginBottom: '8px',
             }}>
               {/* Left Column: Domain Extensions */}
@@ -758,10 +764,10 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                   </div>
                 </div>
                 <div style={{
-                  display: isMultiColumn ? 'grid' : 'block',
-                  gridTemplateColumns: isMultiColumn ? '1fr 1fr' : '1fr',
-                  gap: isMultiColumn ? '0 16px' : '0',
-                  margin: isMultiColumn ? '0' : '0 -12px',
+                  display: columns > 1 ? 'grid' : 'block',
+                  gridTemplateColumns: columns > 1 ? `repeat(${columns}, 1fr)` : '1fr',
+                  gap: columns > 1 ? '0 16px' : '0',
+                  margin: columns > 1 ? '0' : '0 -12px',
                 }}>
                   {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
                 </div>
