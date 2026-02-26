@@ -90,20 +90,20 @@ export function SearchDomains({ onActiveChange }) {
   const [active, setActive] = useState(false);
   const [progress, setProgress] = useState({ done: 0, total: 0 });
   const [activeTab, setActiveTab] = useState('search');
-  const [isDesktop, setIsDesktop] = useState(false);
+  const [isMultiColumn, setIsMultiColumn] = useState(false);
   const inputRef = useRef(null);
   const bottomInputRef = useRef(null);
   const eventSourceRef = useRef(null);
 
-  // Responsive detection
+  // Responsive detection - enable 2-column layout at tablet (768px+) like IDS
   useEffect(() => {
-    const updateDesktop = () => {
-      setIsDesktop(window.innerWidth >= 1280);
+    const updateMultiColumn = () => {
+      setIsMultiColumn(window.innerWidth >= 768);
     };
     
-    updateDesktop(); // Initial check
-    window.addEventListener('resize', updateDesktop);
-    return () => window.removeEventListener('resize', updateDesktop);
+    updateMultiColumn(); // Initial check
+    window.addEventListener('resize', updateMultiColumn);
+    return () => window.removeEventListener('resize', updateMultiColumn);
   }, []);
 
   const doSearch = (q) => {
@@ -526,11 +526,11 @@ export function SearchDomains({ onActiveChange }) {
         {/* Results grid: responsive layout */}
         {results.length > 0 && !loading && (
           <>
-            {/* Desktop 2-column grid */}
+            {/* Multi-column grid (tablet 768px+ and desktop) */}
             <div style={{
-              display: isDesktop ? 'grid' : 'block',
-              gridTemplateColumns: isDesktop ? '1fr 1fr' : '1fr',
-              gap: isDesktop ? '32px' : '0',
+              display: isMultiColumn ? 'grid' : 'block',
+              gridTemplateColumns: isMultiColumn ? '1fr 1fr' : '1fr',
+              gap: isMultiColumn ? '32px' : '0',
               marginBottom: '8px',
             }}>
               {/* Left Column: Domain Extensions */}
@@ -548,7 +548,7 @@ export function SearchDomains({ onActiveChange }) {
                     </span>
                   </div>
                   {/* Legend - only show on mobile/single column */}
-                  {!isDesktop && (
+                  {!isMultiColumn && (
                     <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                         <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22c55e' }} />
@@ -561,13 +561,13 @@ export function SearchDomains({ onActiveChange }) {
                     </div>
                   )}
                 </div>
-                <div style={{ margin: isDesktop ? '0' : '0 -12px' }}>
+                <div style={{ margin: isMultiColumn ? '0' : '0 -12px' }}>
                   {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
                 </div>
               </div>
 
-              {/* Right Column: Premium/Marketplace Domains (Desktop only) */}
-              {isDesktop && (
+              {/* Right Column: Premium/Marketplace Domains (tablet 768px+ and desktop) */}
+              {isMultiColumn && (
                 <div>
                   <div style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
