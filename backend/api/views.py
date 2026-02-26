@@ -50,10 +50,17 @@ class DomainSearchViewSet(viewsets.ViewSet):
 
         scope = request.query_params.get('scope', 'all')
         limit = request.query_params.get('limit')
+        offset = request.query_params.get('offset', '0')
         if scope == 'popular':
             tlds = settings.POPULAR_TLDS
         else:
             tlds = settings.DOMAIN_TLDS
+        try:
+            offset = int(offset)
+        except (ValueError, TypeError):
+            offset = 0
+        if offset:
+            tlds = tlds[offset:]
         if limit:
             try:
                 tlds = tlds[:int(limit)]

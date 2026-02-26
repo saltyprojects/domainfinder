@@ -241,31 +241,30 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
     setLoading(true);
     setResults([]);
 
-    // Calculate how many rows fit on screen (row=32px, primary=120px, nav=48px, searchbar=60px)
-    const availableHeight = (window.visualViewport?.height || window.innerHeight) - 48 - 120 - 60;
-    const rowsOnScreen = Math.max(30, Math.ceil(availableHeight / 32));
+    const BATCH = 30;
+    let offset = 0;
+    let allResults = [];
 
-    // Phase 1: enough TLDs to fill the visible screen
-    fetch(`${API_BASE}/api/search/?q=${encodeURIComponent(trimmed)}&scope=all&limit=${rowsOnScreen}`, { signal: controller.signal })
-      .then(r => r.json())
-      .then(data => {
-        if (controller.signal.aborted) return;
-        const phase1 = data.results || [];
-        setResults(phase1);
-        setLoading(false);
+    const loadBatch = () => {
+      fetch(`${API_BASE}/api/search/?q=${encodeURIComponent(trimmed)}&scope=all&limit=${BATCH}&offset=${offset}`, { signal: controller.signal })
+        .then(r => r.json())
+        .then(data => {
+          if (controller.signal.aborted) return;
+          const batch = data.results || [];
+          allResults = [...allResults, ...batch];
+          setResults([...allResults]);
+          setLoading(false);
 
-        // Phase 2: all TLDs in background — merge in new results
-        fetch(`${API_BASE}/api/search/?q=${encodeURIComponent(trimmed)}&scope=all`, { signal: controller.signal })
-          .then(r => r.json())
-          .then(data2 => {
-            if (controller.signal.aborted) return;
-            const seen = new Set(phase1.map(r => r.full_domain));
-            const newResults = (data2.results || []).filter(r => !seen.has(r.full_domain));
-            setResults([...phase1, ...newResults]);
-          })
-          .catch(() => {});
-      })
-      .catch(() => { if (!controller.signal.aborted) setLoading(false); });
+          // If we got a full batch, load more in background
+          if (batch.length === BATCH) {
+            offset += BATCH;
+            loadBatch();
+          }
+        })
+        .catch(() => { if (!controller.signal.aborted) setLoading(false); });
+    };
+
+    loadBatch();
   };
 
   const debounceRef = useRef(null);
