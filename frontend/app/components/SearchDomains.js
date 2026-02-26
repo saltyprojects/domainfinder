@@ -91,9 +91,22 @@ export function SearchDomains({ onActiveChange }) {
   const [progress, setProgress] = useState({ done: 0, total: 0 });
   const [activeTab, setActiveTab] = useState('search');
   const [isMultiColumn, setIsMultiColumn] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(20);
   const inputRef = useRef(null);
   const bottomInputRef = useRef(null);
+  const sentinelRef = useRef(null);
   const eventSourceRef = useRef(null);
+
+  // Infinite scroll — load more when sentinel becomes visible
+  useEffect(() => {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setVisibleCount(v => v + 20);
+    }, { threshold: 0 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  });
 
   // Responsive detection - enable 2-column layout at tablet (768px+) like IDS
   useEffect(() => {
@@ -116,6 +129,7 @@ export function SearchDomains({ onActiveChange }) {
     if (eventSourceRef.current) eventSourceRef.current.close();
     setLoading(true);
     setResults([]);
+    setVisibleCount(20);
     setProgress({ done: 0, total: 0 });
 
     const eventSource = new EventSource(
@@ -635,7 +649,8 @@ export function SearchDomains({ onActiveChange }) {
                   gap: isMultiColumn ? '0 16px' : '0',
                   margin: isMultiColumn ? '0' : '0 -12px',
                 }}>
-                  {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
+                  {rest.slice(0, visibleCount).map(r => <DomainRow key={r.full_domain} result={r} />)}
+                  {rest.length > visibleCount && <div ref={sentinelRef} style={{ height: '1px' }} />}
                 </div>
               </div>
 
