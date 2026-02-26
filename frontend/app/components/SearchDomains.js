@@ -263,39 +263,54 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
     setVisibleCount(20);
     setProgress({ done: 0, total: 0 });
 
-    const eventSource = new EventSource(
-      `${API_BASE}/api/search/stream/?q=${encodeURIComponent(trimmed)}`
-    );
-    eventSourceRef.current = eventSource;
-    let received = [];
+    // Phase 1: fast popular TLDs, then Phase 2: all remaining TLDs
+    const runStream = (scope, existingResults) => {
+      const seen = new Set(existingResults.map(r => r.tld));
+      const eventSource = new EventSource(
+        `${API_BASE}/api/search/stream/?q=${encodeURIComponent(trimmed)}&scope=${scope}`
+      );
+      eventSourceRef.current = eventSource;
+      let received = [...existingResults];
 
-    eventSource.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        if (data.type === 'start') {
-          setProgress({ done: 0, total: data.total });
-        } else if (data.type === 'result') {
-          received = [...received, data];
-          setResults([...received]);
-          setProgress(p => ({ ...p, done: p.done + 1 }));
-        } else if (data.type === 'done') {
-          eventSource.close();
+      eventSource.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          if (data.type === 'start') {
+            setProgress(p => ({ done: p.done, total: p.total || data.total }));
+          } else if (data.type === 'result') {
+            if (!seen.has(data.tld)) {
+              seen.add(data.tld);
+              received = [...received, data];
+              setResults([...received]);
+              setProgress(p => ({ ...p, done: received.length }));
+            }
+          } else if (data.type === 'done') {
+            eventSource.close();
+            if (scope === 'popular') {
+              // Phase 2: load all remaining TLDs
+              setProgress({ done: received.length, total: 324 });
+              runStream('all', received);
+            } else {
+              setLoading(false);
+            }
+          }
+        } catch (e) {}
+      };
+
+      eventSource.onerror = () => {
+        eventSource.close();
+        if (received.length === 0) {
+          fetch(`${API_BASE}/api/search/?q=${encodeURIComponent(trimmed)}`)
+            .then(r => r.json())
+            .then(data => { setResults(data.results || []); setLoading(false); })
+            .catch(() => setLoading(false));
+        } else {
           setLoading(false);
         }
-      } catch (e) {}
+      };
     };
 
-    eventSource.onerror = () => {
-      eventSource.close();
-      if (received.length === 0) {
-        fetch(`${API_BASE}/api/search/?q=${encodeURIComponent(trimmed)}`)
-          .then(r => r.json())
-          .then(data => { setResults(data.results || []); setLoading(false); })
-          .catch(() => setLoading(false));
-      } else {
-        setLoading(false);
-      }
-    };
+    runStream('popular', []);
   };
 
   const debounceRef = useRef(null);
