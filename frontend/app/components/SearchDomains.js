@@ -173,7 +173,7 @@ export function SearchDomains({ onActiveChange }) {
         flex: 1,
         width: '100%',
         maxWidth: '680px',
-        padding: '0 24px',
+        padding: 'clamp(20px, 4vh, 40px) 24px clamp(20px, 4vh, 40px)',
         boxSizing: 'border-box',
       }}>
         <h1 style={{
@@ -191,9 +191,9 @@ export function SearchDomains({ onActiveChange }) {
           fontSize: 'clamp(0.8rem, 2.3vw, 0.95rem)',
           color: '#9ca3af',
           textAlign: 'center',
-          marginBottom: '20px',
+          marginBottom: '32px',
           lineHeight: 1.5,
-          maxWidth: '400px',
+          maxWidth: '500px',
         }}>
           The fastest domain search tool on the internet. Check domain availability, find popular extensions, and buy premium domains as you type.
         </p>

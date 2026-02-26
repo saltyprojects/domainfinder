@@ -81,6 +81,7 @@ export default function Home() {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        justifyContent: 'flex-start',
         overflow: 'hidden',
         position: 'relative',
         minHeight: 0,
