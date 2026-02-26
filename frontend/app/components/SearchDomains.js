@@ -663,8 +663,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
       <div data-scrollable style={{
         flex: 1,
         overflowY: 'auto',
-        padding: '8px 16px 0',
-        paddingBottom: '50vh',
+        padding: '8px 16px 6px',
         WebkitOverflowScrolling: 'touch',
         touchAction: 'pan-y',
       }}>
