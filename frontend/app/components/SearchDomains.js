@@ -285,14 +285,17 @@ export function SearchDomains({ onActiveChange }) {
           border: '1px solid #8b5cf6',
           boxShadow: '0 0 0 1px rgba(139, 92, 246, 0.2)',
           transition: 'all 0.3s ease',
+          animation: 'pulse 3s ease-in-out infinite',
         }}
         onMouseEnter={e => {
-          e.currentTarget.style.boxShadow = '0 0 0 2px rgba(139, 92, 246, 0.3), 0 4px 20px rgba(139, 92, 246, 0.15)';
+          e.currentTarget.style.boxShadow = '0 0 0 2px rgba(139, 92, 246, 0.4), 0 4px 20px rgba(139, 92, 246, 0.2)';
           e.currentTarget.style.transform = 'translateY(-2px)';
+          e.currentTarget.style.animation = 'none';
         }}
         onMouseLeave={e => {
           e.currentTarget.style.boxShadow = '0 0 0 1px rgba(139, 92, 246, 0.2)';
           e.currentTarget.style.transform = 'translateY(0)';
+          e.currentTarget.style.animation = 'pulse 3s ease-in-out infinite';
         }}
         >
           <input
