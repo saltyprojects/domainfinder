@@ -443,9 +443,9 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           }}>
             {[
               { label: 'Search', short: 'Search', icon: '🔍', id: 'search' },
-              { label: 'Extensions', short: 'Ext', icon: '📑', id: 'extensions' },
-              { label: 'Generator', short: 'Gen', icon: '🎨', id: 'generator' },
-              { label: 'Premium', short: 'Premium', icon: '✨', id: 'aftermarket' },
+              { label: 'Extensions', short: 'Ext', icon: '🧩', id: 'extensions' },
+              { label: 'Generator', short: 'Gen', icon: '⚡', id: 'generator' },
+              { label: 'Aftermarket', short: 'Market', icon: '💎', id: 'aftermarket' },
             ].map(tab => (
               <button key={tab.id} onClick={() => { onTabChange?.(tab.id); }} style={{
                 display: 'flex', alignItems: 'center', gap: '4px',
@@ -547,7 +547,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           {activeTab === 'aftermarket' && (
             <div style={{ textAlign: 'center' }}>
               <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 2rem)', fontWeight: 700, color: '#fff', marginBottom: '12px', letterSpacing: '-0.03em' }}>
-                Explore premium domain names
+                Explore aftermarket domains
               </h2>
               <p style={{ fontSize: 'clamp(0.85rem, 2.2vw, 1rem)', color: '#9ca3af', lineHeight: 1.6, maxWidth: '500px', margin: '0 auto 24px' }}>
                 Discover premium domains for sale with existing traffic, backlinks, and domain authority.
