@@ -16,7 +16,7 @@ function DomainRow({ result }) {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 12px',
-        height: '38px',
+        height: '32px',
         borderRadius: '4px',
         textDecoration: 'none',
         transition: 'background 0.12s',
@@ -44,7 +44,7 @@ function DomainRow({ result }) {
           background: '#1a1a1a',
           borderRadius: '4px',
           overflow: 'hidden',
-          height: '26px',
+          height: '22px',
           flexShrink: 0,
           transition: 'all 0.2s ease',
         }}
@@ -61,7 +61,7 @@ function DomainRow({ result }) {
           padding: '0 8px',
           fontSize: '0.7rem', fontWeight: 600,
           color: available ? '#22c55e' : '#ef4444',
-          lineHeight: '26px',
+          lineHeight: '22px',
           transition: 'color 0.2s ease',
         }}>
           {available ? 'Continue' : 'Lookup'}
@@ -75,7 +75,7 @@ function DomainRow({ result }) {
           padding: '0 6px',
           fontSize: '0.6rem',
           color: '#444',
-          lineHeight: '26px',
+          lineHeight: '22px',
           transition: 'color 0.2s ease',
         }}>▾</span>
       </div>
@@ -290,186 +290,28 @@ export function SearchDomains({ onActiveChange }) {
         <div style={{
           width: '100%',
           background: '#1a1a1a',
-          borderRadius: '16px',
-          padding: '0',
-          border: '1px solid #8b5cf6',
-          boxShadow: '0 0 0 1px rgba(139, 92, 246, 0.2)',
-          transition: 'all 0.3s ease',
-          animation: 'pulse 3s ease-in-out infinite',
-        }}
-        onMouseEnter={e => {
-          e.currentTarget.style.boxShadow = '0 0 0 2px rgba(139, 92, 246, 0.4), 0 4px 20px rgba(139, 92, 246, 0.2)';
-          e.currentTarget.style.transform = 'translateY(-2px)';
-          e.currentTarget.style.animation = 'none';
-        }}
-        onMouseLeave={e => {
-          e.currentTarget.style.boxShadow = '0 0 0 1px rgba(139, 92, 246, 0.2)';
-          e.currentTarget.style.transform = 'translateY(0)';
-          e.currentTarget.style.animation = 'pulse 3s ease-in-out infinite';
-        }}
-        >
+          borderRadius: '12px',
+          border: '1px solid #333',
+        }}>
           <input
             ref={inputRef}
             type="text"
             value={query}
             onFocus={activateSearch}
             onChange={handleChange}
-            placeholder="Start typing here..."
+            placeholder="Search for a domain name..."
             style={{
               width: '100%',
-              padding: '18px 20px',
+              padding: '14px 16px',
               fontSize: 'clamp(0.95rem, 2.8vw, 1.1rem)',
               background: 'transparent',
               border: 'none',
               color: '#fff',
               outline: 'none',
               boxSizing: 'border-box',
-              borderRadius: '16px 16px 0 0',
-              transition: 'all 0.2s ease',
-            }}
-            onFocus={e => {
-              activateSearch();
-              e.currentTarget.style.background = 'rgba(139, 92, 246, 0.08)';
-              e.currentTarget.parentElement.style.boxShadow = '0 0 0 3px rgba(139, 92, 246, 0.4), 0 8px 30px rgba(139, 92, 246, 0.25)';
-              e.currentTarget.parentElement.style.transform = 'translateY(-3px) scale(1.01)';
-              e.currentTarget.parentElement.style.animation = 'none';
-            }}
-            onBlur={e => {
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.parentElement.style.boxShadow = '0 0 0 1px rgba(139, 92, 246, 0.2)';
-              e.currentTarget.parentElement.style.transform = 'translateY(0) scale(1)';
-              e.currentTarget.parentElement.style.animation = 'pulse 3s ease-in-out infinite';
+              borderRadius: '12px',
             }}
           />
-          
-          {/* IDS-style tabs */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            padding: '8px 12px',
-            borderTop: '1px solid #333',
-            gap: '16px',
-          }}>
-            {/* Search Tab */}
-            <button
-              onClick={() => setActiveTab('search')}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                background: 'none',
-                border: 'none',
-                color: activeTab === 'search' ? '#8b5cf6' : '#666',
-                fontSize: '0.85rem',
-                fontWeight: 500,
-                cursor: 'pointer',
-                padding: '4px 8px',
-                borderRadius: '6px',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = activeTab === 'search' ? 'rgba(139, 92, 246, 0.15)' : 'rgba(255, 255, 255, 0.05)';
-                e.currentTarget.querySelector('span').style.transform = 'scale(1.2) rotate(5deg)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'none';
-                e.currentTarget.querySelector('span').style.transform = 'scale(1) rotate(0deg)';
-              }}
-            >
-              <span style={{ fontSize: '1rem', transition: 'transform 0.2s ease' }}>🔍</span>
-              Search
-            </button>
-            
-            {/* Extensions Tab */}
-            <button
-              onClick={() => setActiveTab('extensions')}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                background: 'none',
-                border: 'none',
-                color: activeTab === 'extensions' ? '#22c55e' : '#666',
-                fontSize: '0.85rem',
-                fontWeight: 500,
-                cursor: 'pointer',
-                padding: '4px 8px',
-                borderRadius: '6px',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = activeTab === 'extensions' ? 'rgba(34, 197, 94, 0.15)' : 'rgba(255, 255, 255, 0.05)';
-                e.currentTarget.querySelector('span').style.transform = 'scale(1.2) rotate(-5deg)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'none';
-                e.currentTarget.querySelector('span').style.transform = 'scale(1) rotate(0deg)';
-              }}
-            >
-              <span style={{ fontSize: '1rem', transition: 'transform 0.2s ease' }}>🧩</span>
-              Extensions
-            </button>
-            
-            {/* Generator Tab */}
-            <button
-              onClick={() => setActiveTab('generator')}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                background: 'none',
-                border: 'none',
-                color: activeTab === 'generator' ? '#f97316' : '#666',
-                fontSize: '0.85rem',
-                fontWeight: 500,
-                cursor: 'pointer',
-                padding: '4px 8px',
-                borderRadius: '6px',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = activeTab === 'generator' ? 'rgba(249, 115, 22, 0.15)' : 'rgba(255, 255, 255, 0.05)';
-                e.currentTarget.querySelector('span').style.transform = 'scale(1.2) rotate(10deg)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'none';
-                e.currentTarget.querySelector('span').style.transform = 'scale(1) rotate(0deg)';
-              }}
-            >
-              <span style={{ fontSize: '1rem', transition: 'transform 0.2s ease' }}>⚡</span>
-              Generator
-            </button>
-            
-            {/* Premium Tab */}
-            <button
-              onClick={() => setActiveTab('premium')}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                background: 'none',
-                border: 'none',
-                color: activeTab === 'premium' ? '#3b82f6' : '#666',
-                fontSize: '0.85rem',
-                fontWeight: 500,
-                cursor: 'pointer',
-                padding: '4px 8px',
-                borderRadius: '6px',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = activeTab === 'premium' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(255, 255, 255, 0.05)';
-                e.currentTarget.querySelector('span').style.transform = 'scale(1.2) rotate(-3deg)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'none';
-                e.currentTarget.querySelector('span').style.transform = 'scale(1) rotate(0deg)';
-              }}
-            >
-              <span style={{ fontSize: '1rem', transition: 'transform 0.2s ease' }}>💎</span>
-              Premium
-            </button>
-          </div>
         </div>
 
         {/* Additional content sections matching IDS density */}
@@ -676,19 +518,19 @@ export function SearchDomains({ onActiveChange }) {
       <div data-scrollable style={{
         flex: 1,
         overflowY: 'auto',
-        padding: '12px 16px 8px',
+        padding: '8px 16px 6px',
         WebkitOverflowScrolling: 'touch',
         touchAction: 'pan-y',
       }}>
         {/* Primary result — large domain in status color */}
         {primary && (
-          <div style={{ marginBottom: '10px' }}>
+          <div style={{ marginBottom: '8px' }}>
             <div style={{
               fontSize: 'clamp(1.4rem, 4.5vw, 1.8rem)',
               fontWeight: 700,
               color: primary.available ? '#22c55e' : '#ef4444',
               letterSpacing: '-0.03em',
-              marginBottom: '10px',
+              marginBottom: '8px',
               lineHeight: 1.2,
             }}>
               {primary.full_domain}
@@ -759,14 +601,14 @@ export function SearchDomains({ onActiveChange }) {
             <div style={{
               display: isMultiColumn ? 'grid' : 'block',
               gridTemplateColumns: isMultiColumn ? '1fr 1fr' : '1fr',
-              gap: isMultiColumn ? '32px' : '0',
+              gap: isMultiColumn ? '24px' : '0',
               marginBottom: '8px',
             }}>
               {/* Left Column: Domain Extensions */}
               <div>
                 <div style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                  marginBottom: '8px', padding: '4px 0',
+                  marginBottom: '6px', padding: '2px 0',
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                     <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>
@@ -790,7 +632,7 @@ export function SearchDomains({ onActiveChange }) {
                 <div style={{
                   display: isMultiColumn ? 'grid' : 'block',
                   gridTemplateColumns: isMultiColumn ? '1fr 1fr' : '1fr',
-                  gap: isMultiColumn ? '0 24px' : '0',
+                  gap: isMultiColumn ? '0 16px' : '0',
                   margin: isMultiColumn ? '0' : '0 -12px',
                 }}>
                   {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
@@ -802,7 +644,7 @@ export function SearchDomains({ onActiveChange }) {
                 <div>
                   <div style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                    marginBottom: '8px', padding: '4px 0',
+                    marginBottom: '6px', padding: '2px 0',
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>
@@ -837,7 +679,7 @@ export function SearchDomains({ onActiveChange }) {
                           alignItems: 'center',
                           justifyContent: 'space-between',
                           padding: '0 12px',
-                          height: '38px',
+                          height: '32px',
                           borderRadius: '4px',
                           textDecoration: 'none',
                           transition: 'background 0.12s',
@@ -872,7 +714,7 @@ export function SearchDomains({ onActiveChange }) {
                             display: 'flex', alignItems: 'center',
                             background: '#1a1a1a',
                             borderRadius: '4px',
-                            height: '26px',
+                            height: '22px',
                             padding: '0 8px',
                             transition: 'all 0.2s ease',
                           }}>

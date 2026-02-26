@@ -153,28 +153,37 @@ export function AppShell({ children, hideFooter = false, searchActive = false })
             <img src="/domy-mascot.png" alt="Domy" style={{ width: '26px', height: '26px', borderRadius: '50%' }} />
             {isDesktop && 'DomyDomains'}
           </a>
-          <div style={{ display: 'flex', alignItems: 'center', gap: isDesktop ? '20px' : '4px', marginLeft: isDesktop ? '0' : '8px' }}>
-            {[
-              { label: 'Search', icon: '🔍', href: '/', active: true },
-              { label: 'Extensions', icon: '🧩', href: '/extensions', active: false },
-              { label: 'Generator', icon: '⚡', href: '/generator', active: false },
-              { label: 'Aftermarket', icon: '💎', href: '/aftermarket', active: false },
-            ].map(tab => (
-              <a key={tab.label} href={tab.href} style={{
-                display: 'flex', alignItems: 'center', gap: '4px',
-                fontSize: isDesktop ? '0.82rem' : '0.72rem',
-                fontWeight: 500,
-                color: tab.active ? '#fff' : '#666',
-                textDecoration: 'none',
-                padding: isDesktop ? '6px 8px' : '6px 6px',
-                borderBottom: tab.active ? '2px solid #8b5cf6' : '2px solid transparent',
-                whiteSpace: 'nowrap',
-              }}>
-                <span style={{ fontSize: isDesktop ? '0.85rem' : '0.75rem' }}>{tab.icon}</span>
-                {tab.label}
-              </a>
-            ))}
-          </div>
+          {searchActive && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: isDesktop ? '20px' : '2px', marginLeft: isDesktop ? '0' : '8px' }}>
+              {[
+                { label: 'Search', icon: '🔍', href: '/', active: true },
+                { label: 'Extensions', icon: '🧩', href: '/extensions', active: false },
+                { label: 'Generator', icon: '⚡', href: '/generator', active: false },
+                { label: 'Aftermarket', icon: '💎', href: '/aftermarket', active: false },
+              ].map(tab => (
+                <a key={tab.label} href={tab.href} style={{
+                  display: 'flex', alignItems: 'center', gap: '3px',
+                  fontSize: isDesktop ? '0.82rem' : '0.7rem',
+                  fontWeight: 500,
+                  color: tab.active ? '#fff' : '#666',
+                  textDecoration: 'none',
+                  padding: isDesktop ? '6px 8px' : '6px 4px',
+                  borderBottom: tab.active ? '2px solid #8b5cf6' : '2px solid transparent',
+                  whiteSpace: 'nowrap',
+                }}>
+                  <span style={{ fontSize: isDesktop ? '0.85rem' : '0.7rem' }}>{tab.icon}</span>
+                  {tab.label}
+                </a>
+              ))}
+            </div>
+          )}
+          {!searchActive && isDesktop && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+              <a href="/" style={{ fontSize: '0.82rem', fontWeight: 500, color: '#fff', textDecoration: 'none' }}>Search</a>
+              <a href="/extensions" style={{ fontSize: '0.82rem', fontWeight: 500, color: '#666', textDecoration: 'none' }}>Extensions</a>
+              <a href="/tools" style={{ fontSize: '0.82rem', fontWeight: 500, color: '#666', textDecoration: 'none' }}>Tools</a>
+            </div>
+          )}
         </div>
         {/* Right: theme toggle */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
