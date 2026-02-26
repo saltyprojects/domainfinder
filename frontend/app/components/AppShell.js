@@ -71,7 +71,7 @@ function Footer({ isDesktop }) {
   );
 }
 
-export function AppShell({ children, hideFooter = false }) {
+export function AppShell({ children, hideFooter = false, searchActive = false }) {
   const [layoutStyle, setLayoutStyle] = useState({ height: '100dvh' });
   const [isDesktop, setIsDesktop] = useState(false);
 
@@ -99,6 +99,7 @@ export function AppShell({ children, hideFooter = false }) {
 
     const preventScroll = (e) => {
       if (e.target.closest('[data-scrollable]')) return;
+      if (e.target.closest('[data-landing-scroll]')) return;
       e.preventDefault();
     };
     document.addEventListener('touchmove', preventScroll, { passive: false });
@@ -164,15 +165,19 @@ export function AppShell({ children, hideFooter = false }) {
       </nav>
 
       {/* Main */}
-      <div style={{
+      <div
+        data-landing-scroll={!searchActive ? '' : undefined}
+        style={{
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        overflow: 'hidden',
+        overflow: searchActive ? 'hidden' : 'auto',
+        WebkitOverflowScrolling: 'touch',
         position: 'relative',
         minHeight: 0,
+        touchAction: searchActive ? 'none' : 'pan-y',
       }}>
         {children}
       </div>

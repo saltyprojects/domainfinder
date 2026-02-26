@@ -8,7 +8,7 @@ export default function Home() {
   const [searchActive, setSearchActive] = useState(false);
 
   return (
-    <AppShell hideFooter={searchActive}>
+    <AppShell hideFooter={searchActive} searchActive={searchActive}>
       <SearchDomains onActiveChange={setSearchActive} />
     </AppShell>
   );
