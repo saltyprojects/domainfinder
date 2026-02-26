@@ -17,7 +17,7 @@ function timeAgo(dateStr) {
   return `${days}d ago`;
 }
 
-function Footer() {
+function Footer({ isDesktop }) {
   const [ago, setAgo] = useState('');
   useEffect(() => {
     setAgo(timeAgo(BUILD_TIME));
@@ -28,22 +28,45 @@ function Footer() {
   return (
     <footer style={{
       display: 'flex',
-      justifyContent: 'center',
+      justifyContent: 'space-between',
       alignItems: 'center',
-      gap: '6px',
-      padding: '10px 16px',
+      padding: '16px',
       flexShrink: 0,
       borderTop: '1px solid #1e1e1e',
-      fontSize: '0.65rem',
-      color: '#444',
+      fontSize: '0.75rem',
+      color: '#666',
       background: '#000',
-      fontFamily: 'ui-monospace, monospace',
     }}>
-      <span>domydomains.com</span>
-      <span style={{ opacity: 0.4 }}>·</span>
-      <span>{BUILD_SHA.slice(0, 7)}</span>
-      <span style={{ opacity: 0.4 }}>·</span>
-      <span>updated {ago}</span>
+      {/* Left side: Brand and links */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: isDesktop ? '24px' : '12px',
+        flexWrap: 'wrap',
+      }}>
+        <span style={{ fontWeight: 600, color: '#fff' }}>DomyDomains</span>
+        {isDesktop && (
+          <>
+            <a href="/privacy" style={{ color: '#888', textDecoration: 'none', fontSize: '0.7rem' }}>Privacy</a>
+            <a href="/terms" style={{ color: '#888', textDecoration: 'none', fontSize: '0.7rem' }}>Terms</a>
+            <a href="/trademark" style={{ color: '#888', textDecoration: 'none', fontSize: '0.7rem' }}>Trademark</a>
+          </>
+        )}
+      </div>
+
+      {/* Right side: Build info */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '6px',
+        fontSize: '0.65rem',
+        color: '#444',
+        fontFamily: 'ui-monospace, monospace',
+      }}>
+        <span>{BUILD_SHA.slice(0, 7)}</span>
+        <span style={{ opacity: 0.4 }}>·</span>
+        <span>updated {ago}</span>
+      </div>
     </footer>
   );
 }
@@ -155,7 +178,7 @@ export function AppShell({ children, hideFooter = false }) {
       </div>
 
       {/* Footer */}
-      {!hideFooter && <Footer />}
+      {!hideFooter && <Footer isDesktop={isDesktop} />}
     </div>
   );
 }
