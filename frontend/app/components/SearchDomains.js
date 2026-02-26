@@ -60,7 +60,7 @@ function DomainRow({ result }) {
         <span style={{
           padding: '0 8px',
           fontSize: '0.7rem', fontWeight: 600,
-          color: available ? '#22c55e' : '#666',
+          color: available ? '#22c55e' : '#ef4444',
           lineHeight: '26px',
           transition: 'color 0.2s ease',
         }}>
@@ -773,24 +773,26 @@ export function SearchDomains({ onActiveChange }) {
                       Domain extensions
                     </span>
                     <span style={{ fontSize: '0.8rem', color: '#666' }}>
-                      ({rest.length} total)
+                      ({rest.filter(r => r.available).length} available, {rest.filter(r => !r.available).length} taken)
                     </span>
                   </div>
-                  {/* Legend - only show on mobile/single column */}
-                  {!isMultiColumn && (
-                    <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22c55e' }} />
-                        <span style={{ fontSize: '0.7rem', color: '#22c55e' }}>Available</span>
-                      </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                        <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ef4444' }} />
-                        <span style={{ fontSize: '0.7rem', color: '#ef4444' }}>Taken</span>
-                      </div>
+                  <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22c55e' }} />
+                      <span style={{ fontSize: '0.7rem', color: '#22c55e' }}>Available</span>
                     </div>
-                  )}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                      <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ef4444' }} />
+                      <span style={{ fontSize: '0.7rem', color: '#ef4444' }}>Taken</span>
+                    </div>
+                  </div>
                 </div>
-                <div style={{ margin: isMultiColumn ? '0' : '0 -12px' }}>
+                <div style={{
+                  display: isMultiColumn ? 'grid' : 'block',
+                  gridTemplateColumns: isMultiColumn ? '1fr 1fr' : '1fr',
+                  gap: isMultiColumn ? '0 24px' : '0',
+                  margin: isMultiColumn ? '0' : '0 -12px',
+                }}>
                   {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
                 </div>
               </div>

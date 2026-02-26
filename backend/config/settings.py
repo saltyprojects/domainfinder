@@ -110,7 +110,26 @@ CSRF_TRUSTED_ORIGINS = [
 
 # Domain search config
 DOMAIN_TLDS = [
-    'com', 'io', 'co', 'ai', 'dev', 'app', 'net', 'org',
-    'xyz', 'me', 'info', 'biz', 'tech', 'site', 'online',
-    'store', 'shop', 'cloud', 'design', 'blog',
+    # Top-level
+    'com', 'net', 'org', 'info', 'biz',
+    # Country codes
+    'co', 'io', 'ai', 'me', 'cc', 'tv', 'us', 'uk', 'ca', 'de',
+    # Tech
+    'dev', 'app', 'tech', 'cloud', 'code', 'software', 'systems', 'digital', 'network',
+    # Business
+    'company', 'business', 'agency', 'solutions', 'services', 'consulting', 'ventures',
+    # Creative
+    'design', 'studio', 'media', 'art', 'photography',
+    # Web
+    'site', 'online', 'website', 'page', 'web',
+    # Commerce
+    'store', 'shop', 'market', 'buy', 'sale',
+    # Modern
+    'xyz', 'gg', 'lol', 'wtf', 'cool', 'fun',
+    # Blog/Content
+    'blog', 'news', 'live', 'tv', 'video',
+    # Professional
+    'pro', 'expert', 'guru', 'academy', 'institute',
+    # Startup
+    'startup', 'inc', 'ltd', 'group', 'team',
 ]
