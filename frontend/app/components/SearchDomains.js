@@ -136,20 +136,20 @@ function GeneratorView({ query, isMultiColumn, columns = 1 }) {
   const suggestions = [...prefixes.map(p => `${p}${query}.com`), ...suffixes.map(s => `${query}${s}.com`)];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: '2px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(columns, 3)}, 1fr)`, gap: '2px' }}>
       {suggestions.slice(0, shown).map(d => (
         <a key={d} href={`https://www.namecheap.com/domains/registration/results/?domain=${d}`}
           target="_blank" rel="noopener noreferrer"
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 12px', height: '36px', borderRadius: '4px', textDecoration: 'none' }}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 12px', height: 'clamp(36px, 4vw, 46px)', borderRadius: '4px', textDecoration: 'none' }}
           onMouseEnter={e => e.currentTarget.style.background = '#141414'}
           onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22c55e' }} />
-            <span style={{ fontSize: '0.85rem', color: '#e5e5e5' }}>{d}</span>
+            <span style={{ fontSize: 'clamp(0.85rem, 1.4vw, 1.25rem)', color: '#e5e5e5' }}>{d}</span>
           </div>
-          <div style={{ background: '#1a1a1a', borderRadius: '4px', height: '24px', display: 'flex', alignItems: 'center' }}>
-            <span style={{ padding: '0 8px', fontSize: '0.7rem', fontWeight: 600, color: '#22c55e' }}>Continue</span>
-            <span style={{ padding: '0 4px', fontSize: '0.55rem', color: '#444' }}>▾</span>
+          <div style={{ background: '#1a1a1a', borderRadius: '4px', height: 'clamp(24px, 2.5vw, 32px)', display: 'flex', alignItems: 'center' }}>
+            <span style={{ padding: '0 8px', fontSize: 'clamp(0.7rem, 1vw, 1rem)', fontWeight: 600, color: '#22c55e' }}>Continue</span>
+            <span style={{ padding: '0 4px', fontSize: 'clamp(0.55rem, 0.8vw, 0.8rem)', color: '#444' }}>▾</span>
           </div>
         </a>
       ))}
@@ -183,20 +183,20 @@ function AftermarketView({ query, isMultiColumn, columns = 1 }) {
   ];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: '2px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(columns, 3)}, 1fr)`, gap: '2px' }}>
       {aftermarket.slice(0, shown).map(item => (
         <a key={item.domain} href={`https://www.namecheap.com/domains/registration/results/?domain=${item.domain}`}
           target="_blank" rel="noopener noreferrer"
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 12px', height: '36px', borderRadius: '4px', textDecoration: 'none' }}
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 12px', height: 'clamp(36px, 4vw, 46px)', borderRadius: '4px', textDecoration: 'none' }}
           onMouseEnter={e => e.currentTarget.style.background = '#141414'}
           onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#3b82f6' }} />
-            <span style={{ fontSize: '0.85rem', color: '#e5e5e5' }}>{item.domain}</span>
+            <span style={{ fontSize: 'clamp(0.85rem, 1.4vw, 1.25rem)', color: '#e5e5e5' }}>{item.domain}</span>
           </div>
-          <div style={{ background: '#1a1a1a', borderRadius: '4px', height: '24px', display: 'flex', alignItems: 'center' }}>
-            <span style={{ padding: '0 8px', fontSize: '0.7rem', fontWeight: 600, color: '#3b82f6' }}>{item.price}</span>
-            <span style={{ padding: '0 4px', fontSize: '0.55rem', color: '#444' }}>▾</span>
+          <div style={{ background: '#1a1a1a', borderRadius: '4px', height: 'clamp(24px, 2.5vw, 32px)', display: 'flex', alignItems: 'center' }}>
+            <span style={{ padding: '0 8px', fontSize: 'clamp(0.7rem, 1vw, 1rem)', fontWeight: 600, color: '#3b82f6' }}>{item.price}</span>
+            <span style={{ padding: '0 4px', fontSize: 'clamp(0.55rem, 0.8vw, 0.8rem)', color: '#444' }}>▾</span>
           </div>
         </a>
       ))}
@@ -805,6 +805,16 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                       { domain: `${query}pro.net`, price: '$850' },
                       { domain: `get${query}.com`, price: '$3,200' },
                       { domain: `${query}zone.com`, price: '$950' },
+                      { domain: `the${query}.com`, price: '$8,999' },
+                      { domain: `${query}app.io`, price: '$1,500' },
+                      { domain: `my${query}.com`, price: '$4,200' },
+                      { domain: `${query}labs.com`, price: 'Make offer' },
+                      { domain: `${query}digital.com`, price: '$2,100' },
+                      { domain: `${query}now.com`, price: '$6,750' },
+                      { domain: `${query}world.com`, price: '$3,400' },
+                      { domain: `go${query}.com`, price: '$5,500' },
+                      { domain: `${query}global.com`, price: '$1,800' },
+                      { domain: `${query}online.net`, price: '$975' },
                     ].filter(d => query && query.length > 1).map((premium, idx) => (
                       <a
                         key={idx}
