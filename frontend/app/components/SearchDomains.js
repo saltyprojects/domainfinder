@@ -85,44 +85,35 @@ function DomainRow({ result }) {
 
 // Extensions View — colored TLD cards grouped by category
 function ExtensionsView({ results, isMultiColumn }) {
-  const categories = {
-    'Popular': ['com','net','org','io','ai','dev','app','co','xyz','me','tech','info','biz','cloud','gg','cc','tv'],
-    'Business': ['company','business','agency','solutions','services','consulting','ventures','enterprise','partners','inc','ltd','corp'],
-    'Tech': ['dev','app','tech','cloud','code','software','systems','digital','network'],
-    'Creative': ['design','studio','media','art','photography','film','music','video'],
-    'Commerce': ['store','shop','market','buy','sale','boutique','luxury','deals'],
-  };
-  const map = {};
-  results.forEach(r => { map[r.tld] = r; });
+  // Show all results as extension cards — available first, then taken
+  const sorted = [...results].sort((a, b) => {
+    if (a.available !== b.available) return a.available ? -1 : 1;
+    return a.tld.localeCompare(b.tld);
+  });
+  const availCount = results.filter(r => r.available).length;
+  const takenCount = results.filter(r => !r.available).length;
 
   return (
     <div style={{ padding: '4px 0' }}>
-      {Object.entries(categories).map(([cat, tlds]) => {
-        const items = tlds.map(t => map[t]).filter(Boolean);
-        if (!items.length) return null;
-        return (
-          <div key={cat} style={{ marginBottom: '20px' }}>
-            <div style={{ display: 'flex', gap: '8px', alignItems: 'baseline', marginBottom: '8px' }}>
-              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>{cat}</span>
-              <span style={{ fontSize: '0.7rem', color: '#666' }}>{items.filter(r => !r.available).length} taken</span>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: isMultiColumn ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)', gap: '6px' }}>
-              {items.map(r => (
-                <a key={r.tld} href={`https://www.namecheap.com/domains/registration/results/?domain=${r.full_domain}`}
-                  target="_blank" rel="noopener noreferrer"
-                  style={{
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    padding: '8px', borderRadius: '8px', textDecoration: 'none',
-                    fontSize: '0.78rem', fontWeight: 600,
-                    background: r.available ? 'rgba(34,197,94,0.12)' : 'rgba(239,68,68,0.12)',
-                    color: r.available ? '#22c55e' : '#ef4444',
-                    border: `1px solid ${r.available ? 'rgba(34,197,94,0.25)' : 'rgba(239,68,68,0.25)'}`,
-                  }}>.{r.tld}</a>
-              ))}
-            </div>
-          </div>
-        );
-      })}
+      <div style={{ display: 'flex', gap: '8px', alignItems: 'baseline', marginBottom: '10px' }}>
+        <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>{results.length} extensions</span>
+        <span style={{ fontSize: '0.7rem', color: '#22c55e' }}>{availCount} available</span>
+        <span style={{ fontSize: '0.7rem', color: '#ef4444' }}>{takenCount} taken</span>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: isMultiColumn ? 'repeat(4, 1fr)' : 'repeat(3, 1fr)', gap: '6px' }}>
+        {sorted.map(r => (
+          <a key={r.tld} href={`https://www.namecheap.com/domains/registration/results/?domain=${r.full_domain}`}
+            target="_blank" rel="noopener noreferrer"
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              padding: '8px', borderRadius: '8px', textDecoration: 'none',
+              fontSize: '0.78rem', fontWeight: 600,
+              background: r.available ? 'rgba(34,197,94,0.12)' : 'rgba(239,68,68,0.12)',
+              color: r.available ? '#22c55e' : '#ef4444',
+              border: `1px solid ${r.available ? 'rgba(34,197,94,0.25)' : 'rgba(239,68,68,0.25)'}`,
+            }}>.{r.tld}</a>
+        ))}
+      </div>
     </div>
   );
 }
