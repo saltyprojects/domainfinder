@@ -41,28 +41,28 @@ function DomainRow({ result }) {
       <div style={{
         display: 'flex', alignItems: 'center',
         background: '#1a1a1a',
-        borderRadius: '6px',
+        borderRadius: '4px',
         overflow: 'hidden',
-        height: '30px',
+        height: '26px',
         flexShrink: 0,
       }}>
         <span style={{
-          padding: '0 10px',
-          fontSize: '0.75rem', fontWeight: 600,
+          padding: '0 8px',
+          fontSize: '0.7rem', fontWeight: 600,
           color: available ? '#22c55e' : '#666',
-          lineHeight: '30px',
+          lineHeight: '26px',
         }}>
           {available ? 'Continue' : 'Lookup'}
         </span>
         <div style={{
-          width: '1px', height: '14px',
+          width: '1px', height: '12px',
           background: '#333',
         }} />
         <span style={{
-          padding: '0 8px',
-          fontSize: '0.65rem',
+          padding: '0 6px',
+          fontSize: '0.6rem',
           color: '#444',
-          lineHeight: '30px',
+          lineHeight: '26px',
         }}>▾</span>
       </div>
     </a>
@@ -266,13 +266,13 @@ export function SearchDomains({ onActiveChange }) {
                 target="_blank" rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: '4px',
-                  padding: '10px 20px',
-                  borderRadius: '10px',
-                  fontSize: '0.82rem', fontWeight: 600,
+                  padding: '8px 16px',
+                  borderRadius: '8px',
+                  fontSize: '0.78rem', fontWeight: 600,
                   textDecoration: 'none',
                   background: primary.available ? '#22c55e' : '#dc2626',
                   color: primary.available ? '#000' : '#fff',
-                  minHeight: '40px', boxSizing: 'border-box',
+                  minHeight: '34px', boxSizing: 'border-box',
                 }}
               >
                 {primary.available ? 'Continue' : 'Lookup'} →
@@ -282,12 +282,12 @@ export function SearchDomains({ onActiveChange }) {
                 target="_blank" rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex', alignItems: 'center',
-                  padding: '10px 16px',
-                  borderRadius: '10px',
-                  fontSize: '0.82rem', fontWeight: 500, color: '#999',
+                  padding: '8px 14px',
+                  borderRadius: '8px',
+                  fontSize: '0.78rem', fontWeight: 500, color: '#999',
                   textDecoration: 'none',
                   background: '#1a1a1a', border: '1px solid #2a2a2a',
-                  minHeight: '40px', boxSizing: 'border-box',
+                  minHeight: '34px', boxSizing: 'border-box',
                 }}
               >
                 Namecheap →
