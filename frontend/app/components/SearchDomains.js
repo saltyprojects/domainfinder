@@ -412,6 +412,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           background: '#1a1a1a',
           borderRadius: '12px',
           border: '1px solid #333',
+          overflow: 'hidden',
         }}>
           <input
             ref={inputRef}
@@ -419,7 +420,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
             value={query}
             onFocus={activateSearch}
             onChange={handleChange}
-            placeholder="Search for a domain name..."
+            placeholder="Start typing here..."
             style={{
               width: '100%',
               padding: '14px 16px',
@@ -429,9 +430,37 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
               color: '#fff',
               outline: 'none',
               boxSizing: 'border-box',
-              borderRadius: '12px',
             }}
           />
+          {/* Tabs inside search box */}
+          <div style={{
+            display: 'flex',
+            borderTop: '1px solid #333',
+            background: '#141414',
+          }}>
+            {[
+              { label: 'Search', icon: '🔍', id: 'search' },
+              { label: 'Extensions', icon: '📄', id: 'extensions' },
+              { label: 'Generator', icon: '🤖', id: 'generator' },
+              { label: 'Premium', icon: '⭐', id: 'aftermarket' },
+            ].map(tab => (
+              <button key={tab.id} onClick={() => { onTabChange?.(tab.id); activateSearch(); }} style={{
+                flex: 1,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
+                fontSize: '0.75rem',
+                fontWeight: activeTab === tab.id ? 600 : 400,
+                color: activeTab === tab.id ? '#fff' : '#888',
+                background: activeTab === tab.id ? 'rgba(255,255,255,0.05)' : 'transparent',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '10px 4px',
+                transition: 'all 0.15s',
+              }}>
+                <span style={{ fontSize: '0.8rem' }}>{tab.icon}</span>
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Additional content sections matching IDS density */}
