@@ -423,8 +423,8 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
             placeholder="Start typing here..."
             style={{
               width: '100%',
-              padding: '14px 16px',
-              fontSize: 'clamp(0.95rem, 2.8vw, 1.1rem)',
+              padding: '18px 16px',
+              fontSize: 'clamp(1rem, 3vw, 1.15rem)',
               background: 'transparent',
               border: 'none',
               color: '#fff',
@@ -435,34 +435,30 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           {/* Tabs inside search box */}
           <div style={{
             display: 'flex',
-            gap: '4px',
-            padding: '8px 8px 10px',
+            padding: '0',
             borderTop: '1px solid #2a2a2a',
-            overflowX: 'auto',
-            WebkitOverflowScrolling: 'touch',
           }}>
             {[
-              { label: 'Search', short: 'Search', icon: '🔍', id: 'search' },
-              { label: 'Extensions', short: 'Ext', icon: '🧩', id: 'extensions' },
-              { label: 'Generator', short: 'Gen', icon: '⚡', id: 'generator' },
-              { label: 'Aftermarket', short: 'Market', icon: '💎', id: 'aftermarket' },
+              { label: 'Search', icon: '🔍', id: 'search' },
+              { label: 'Extensions', icon: '🧩', id: 'extensions' },
+              { label: 'Generator', icon: '⚡', id: 'generator' },
+              { label: 'Premium', icon: '💎', id: 'aftermarket' },
             ].map(tab => (
               <button key={tab.id} onClick={() => { onTabChange?.(tab.id); }} style={{
-                display: 'flex', alignItems: 'center', gap: '4px',
+                flex: 1,
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px',
                 fontSize: '0.78rem',
                 fontWeight: 500,
-                color: activeTab === tab.id ? '#fff' : '#999',
-                background: activeTab === tab.id ? '#333' : 'transparent',
+                color: activeTab === tab.id ? '#fff' : '#777',
+                background: activeTab === tab.id ? 'rgba(255,255,255,0.08)' : 'transparent',
                 border: 'none',
-                borderRadius: '20px',
                 cursor: 'pointer',
-                padding: '6px 10px',
+                padding: '10px 0',
                 transition: 'all 0.15s',
-                whiteSpace: 'nowrap',
-                flexShrink: 0,
+                borderBottom: activeTab === tab.id ? '2px solid #8b5cf6' : '2px solid transparent',
               }}>
-                <span style={{ fontSize: '0.82rem', lineHeight: 1 }}>{tab.icon}</span>
-                {isMultiColumn ? tab.label : tab.short}
+                <span style={{ fontSize: '0.8rem', lineHeight: 1 }}>{tab.icon}</span>
+                {tab.label}
               </button>
             ))}
           </div>
