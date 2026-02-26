@@ -53,6 +53,7 @@ export default function Home() {
       top: 0,
       left: 0,
       right: 0,
+      background: '#000',
       ...layoutStyle,
     }}>
       {/* Nav */}
@@ -60,16 +61,15 @@ export default function Home() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '0 20px',
         height: '48px',
         flexShrink: 0,
-        borderBottom: '1px solid var(--border)',
-        background: 'var(--bg)',
+        borderBottom: '1px solid #1e1e1e',
+        background: '#000',
         zIndex: 10,
       }}>
         <span style={{
-          fontSize: '0.95rem', fontWeight: 700,
-          letterSpacing: '-0.02em', color: 'var(--text)',
+          fontSize: '0.9rem', fontWeight: 700,
+          letterSpacing: '-0.01em', color: '#fff',
         }}>
           DomyDomains
         </span>
@@ -95,10 +95,10 @@ export default function Home() {
           justifyContent: 'center',
           padding: '10px 16px',
           flexShrink: 0,
-          borderTop: '1px solid var(--border)',
+          borderTop: '1px solid #1e1e1e',
           fontSize: '0.7rem',
-          color: 'var(--text-dim)',
-          background: 'var(--bg)',
+          color: '#444',
+          background: '#000',
         }}>
           domydomains.com
         </footer>
