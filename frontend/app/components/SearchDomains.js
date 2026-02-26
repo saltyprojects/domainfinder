@@ -187,8 +187,8 @@ export function SearchDomains({ onActiveChange }) {
         justifyContent: 'center',
         flex: 1,
         width: '100%',
-        maxWidth: '680px',
-        padding: 'clamp(20px, 4vh, 40px) 24px clamp(20px, 4vh, 40px)',
+        maxWidth: 'min(90vw, max(680px, 50vw))',
+        padding: 'clamp(20px, 4vh, 40px) clamp(20px, 4vw, 60px) clamp(20px, 4vh, 40px)',
         boxSizing: 'border-box',
       }}>
         {/* Promotional banner matching IDS style */}
@@ -426,7 +426,7 @@ export function SearchDomains({ onActiveChange }) {
       display: 'flex',
       flexDirection: 'column',
       width: '100%',
-      maxWidth: '680px',
+      maxWidth: 'min(90vw, max(680px, 50vw))',
       flex: 1,
       minHeight: 0,
       boxSizing: 'border-box',
