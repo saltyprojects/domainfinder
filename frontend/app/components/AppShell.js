@@ -145,7 +145,9 @@ export function AppShell({ children, hideFooter = false, searchActive = false })
             fontSize: '0.9rem', fontWeight: 700,
             letterSpacing: '-0.01em', color: '#fff',
             textDecoration: 'none',
+            display: 'flex', alignItems: 'center', gap: '8px',
           }}>
+            <img src="/domy-mascot.png" alt="Domy" style={{ width: '28px', height: '28px', borderRadius: '50%' }} />
             DomyDomains
           </a>
           {isDesktop && (

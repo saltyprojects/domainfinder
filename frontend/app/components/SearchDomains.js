@@ -258,6 +258,13 @@ export function SearchDomains({ onActiveChange }) {
           }}>›</span>
         </div>
 
+        <img src="/domy-mascot.png" alt="Domy mascot" style={{
+          width: 'clamp(60px, 15vw, 90px)',
+          height: 'clamp(60px, 15vw, 90px)',
+          borderRadius: '50%',
+          marginBottom: '16px',
+          filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.3))',
+        }} />
         <h1 style={{
           fontSize: 'clamp(1.6rem, 5.5vw, 2.4rem)',
           fontWeight: 800,
