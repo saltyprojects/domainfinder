@@ -445,7 +445,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
               { label: 'Generator', icon: '🎨', id: 'generator' },
               { label: 'Premium', icon: '✨', id: 'aftermarket' },
             ].map(tab => (
-              <button key={tab.id} onClick={() => { onTabChange?.(tab.id); activateSearch(); }} style={{
+              <button key={tab.id} onClick={() => { onTabChange?.(tab.id); }} style={{
                 display: 'flex', alignItems: 'center', gap: '5px',
                 fontSize: '0.8rem',
                 fontWeight: 500,
@@ -465,190 +465,104 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           </div>
         </div>
 
-        {/* Additional content sections matching IDS density */}
-        <div style={{
-          width: '100%',
-          marginTop: 'clamp(40px, 8vh, 80px)',
-          textAlign: 'center',
-        }}>
-          {/* Call-to-action section */}
-          <div style={{
-            fontSize: 'clamp(0.75rem, 2vw, 0.9rem)',
-            fontWeight: 600,
-            color: '#8b5cf6',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            marginBottom: '16px',
-          }}>
-            Search millions of domains instantly
-          </div>
-
-          <h2 style={{
-            fontSize: 'clamp(1.8rem, 5vw, 3rem)',
-            fontWeight: 700,
-            lineHeight: 1.2,
-            letterSpacing: '-0.03em',
-            color: '#fff',
-            marginBottom: '20px',
-          }}>
-            The fastest domain search tool on the internet
-          </h2>
-
-          <p style={{
-            fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)',
-            color: '#9ca3af',
-            lineHeight: 1.6,
-            maxWidth: '600px',
-            margin: '0 auto',
-            marginBottom: '32px',
-          }}>
-            DomyDomains is the ultimate domain search engine to find, buy, and register available domain names and extensions (TLDs). Our tool shows hundreds of results as you type, surfacing the best domain names at the lowest prices. We are a trusted domain registrar partner.
-          </p>
-
-          {/* Feature highlights */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: isMultiColumn ? 'repeat(3, 1fr)' : '1fr',
-            gap: '24px',
-            marginTop: '40px',
-            maxWidth: '800px',
-            margin: '40px auto 0',
-          }}>
-            <div 
-              style={{
-                padding: '24px 16px',
-                background: 'rgba(139, 92, 246, 0.05)',
-                border: '1px solid rgba(139, 92, 246, 0.2)',
-                borderRadius: '12px',
-                textAlign: 'center',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = 'rgba(139, 92, 246, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.4)';
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 8px 25px rgba(139, 92, 246, 0.15)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'rgba(139, 92, 246, 0.05)';
-                e.currentTarget.style.borderColor = 'rgba(139, 92, 246, 0.2)';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              <div style={{
-                fontSize: '2rem',
-                marginBottom: '12px',
-                transition: 'transform 0.3s ease',
-              }}>⚡</div>
-              <div style={{
-                fontSize: '0.9rem',
-                fontWeight: 600,
-                color: '#fff',
-                marginBottom: '8px',
-              }}>
-                Instant Results
-              </div>
-              <div style={{
-                fontSize: '0.8rem',
-                color: '#9ca3af',
-                lineHeight: 1.4,
-              }}>
-                Search results appear as you type, no waiting required
+        {/* Tab-dependent preview content */}
+        <div style={{ width: '100%', marginTop: '32px' }}>
+          {activeTab === 'search' && (
+            <div style={{ textAlign: 'center' }}>
+              <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 2rem)', fontWeight: 700, color: '#fff', marginBottom: '12px', letterSpacing: '-0.03em' }}>
+                Search available domain names
+              </h2>
+              <p style={{ fontSize: 'clamp(0.85rem, 2.2vw, 1rem)', color: '#9ca3af', lineHeight: 1.6, maxWidth: '500px', margin: '0 auto 24px' }}>
+                Our tool instantly shows you every domain and extension combination in real-time as you type.
+              </p>
+              {/* Mock results preview */}
+              <div style={{ background: '#111', borderRadius: '12px', padding: '12px', textAlign: 'left', border: '1px solid #1e1e1e' }}>
+                {['boldapparel.com', 'boldapparel.net', 'boldapparel.org', 'boldapparel.ai'].map((d, i) => (
+                  <div key={d} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 8px', borderBottom: i < 3 ? '1px solid #1a1a1a' : 'none' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: i < 2 ? '#22c55e' : '#ef4444' }} />
+                      <span style={{ fontSize: '0.88rem', color: '#e5e5e5' }}>{d}</span>
+                    </div>
+                    <span style={{ fontSize: '0.72rem', fontWeight: 600, color: i < 2 ? '#22c55e' : '#ef4444' }}>{i < 2 ? 'Continue' : 'Taken'}</span>
+                  </div>
+                ))}
               </div>
             </div>
+          )}
 
-            <div 
-              style={{
-                padding: '24px 16px',
-                background: 'rgba(34, 197, 94, 0.05)',
-                border: '1px solid rgba(34, 197, 94, 0.2)',
-                borderRadius: '12px',
-                textAlign: 'center',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = 'rgba(34, 197, 94, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.4)';
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 8px 25px rgba(34, 197, 94, 0.15)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'rgba(34, 197, 94, 0.05)';
-                e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.2)';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              <div style={{
-                fontSize: '2rem',
-                marginBottom: '12px',
-                transition: 'transform 0.3s ease',
-              }}>🔍</div>
-              <div style={{
-                fontSize: '0.9rem',
-                fontWeight: 600,
-                color: '#fff',
-                marginBottom: '8px',
-              }}>
-                400+ Extensions
-              </div>
-              <div style={{
-                fontSize: '0.8rem',
-                color: '#9ca3af',
-                lineHeight: 1.4,
-              }}>
-                Support for all major TLDs and new domain extensions
+          {activeTab === 'extensions' && (
+            <div style={{ textAlign: 'center' }}>
+              <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 2rem)', fontWeight: 700, color: '#fff', marginBottom: '12px', letterSpacing: '-0.03em' }}>
+                Check 400+ domain extensions
+              </h2>
+              <p style={{ fontSize: 'clamp(0.85rem, 2.2vw, 1rem)', color: '#9ca3af', lineHeight: 1.6, maxWidth: '500px', margin: '0 auto 24px' }}>
+                Instantly browse the most popular, relevant, and cheapest domain extensions for your website.
+              </p>
+              {/* Mock extension cards */}
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '4px', flexWrap: 'wrap' }}>
+                {[
+                  { tld: '.com', color: '#22c55e' }, { tld: '.net', color: '#22c55e' }, { tld: '.org', color: '#ef4444' },
+                  { tld: '.ai', color: '#22c55e' }, { tld: '.io', color: '#ef4444' }, { tld: '.xyz', color: '#22c55e' },
+                  { tld: '.app', color: '#22c55e' }, { tld: '.shop', color: '#22c55e' }, { tld: '.info', color: '#ef4444' },
+                  { tld: '.co', color: '#ef4444' }, { tld: '.dev', color: '#22c55e' }, { tld: '.site', color: '#22c55e' },
+                ].map(ext => (
+                  <span key={ext.tld} style={{
+                    padding: '8px 14px', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 600,
+                    background: ext.color === '#22c55e' ? 'rgba(34,197,94,0.12)' : 'rgba(239,68,68,0.12)',
+                    color: ext.color,
+                    border: `1px solid ${ext.color === '#22c55e' ? 'rgba(34,197,94,0.25)' : 'rgba(239,68,68,0.25)'}`,
+                  }}>{ext.tld}</span>
+                ))}
               </div>
             </div>
+          )}
 
-            <div 
-              style={{
-                padding: '24px 16px',
-                background: 'rgba(59, 130, 246, 0.05)',
-                border: '1px solid rgba(59, 130, 246, 0.2)',
-                borderRadius: '12px',
-                textAlign: 'center',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.1)';
-                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.4)';
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 8px 25px rgba(59, 130, 246, 0.15)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'rgba(59, 130, 246, 0.05)';
-                e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              <div style={{
-                fontSize: '2rem',
-                marginBottom: '12px',
-                transition: 'transform 0.3s ease',
-              }}>💎</div>
-              <div style={{
-                fontSize: '0.9rem',
-                fontWeight: 600,
-                color: '#fff',
-                marginBottom: '8px',
-              }}>
-                Best Prices
-              </div>
-              <div style={{
-                fontSize: '0.8rem',
-                color: '#9ca3af',
-                lineHeight: 1.4,
-              }}>
-                Competitive pricing through trusted registrar partners
+          {activeTab === 'generator' && (
+            <div style={{ textAlign: 'center' }}>
+              <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 2rem)', fontWeight: 700, color: '#fff', marginBottom: '12px', letterSpacing: '-0.03em' }}>
+                Domain name generator
+              </h2>
+              <p style={{ fontSize: 'clamp(0.85rem, 2.2vw, 1rem)', color: '#9ca3af', lineHeight: 1.6, maxWidth: '500px', margin: '0 auto 24px' }}>
+                Search through millions of available domains to find creative, short, and unique names.
+              </p>
+              {/* Mock generator results */}
+              <div style={{ background: '#111', borderRadius: '12px', padding: '12px', textAlign: 'left', border: '1px solid #1e1e1e' }}>
+                {['getboldapparel', 'myboldapparel', 'boldapparelteam'].map((name, i) => (
+                  <div key={name} style={{ padding: '10px 8px', borderBottom: i < 2 ? '1px solid #1a1a1a' : 'none' }}>
+                    <span style={{ fontSize: '0.88rem', color: '#e5e5e5', fontWeight: 500 }}>{name}</span>
+                    <div style={{ display: 'flex', gap: '6px', marginTop: '4px' }}>
+                      {['.com', '.ai', '.io', '.xyz'].map(tld => (
+                        <span key={tld} style={{ fontSize: '0.7rem', padding: '2px 8px', borderRadius: '4px', background: '#1a1a1a', color: '#22c55e' }}>{tld}</span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </div>
+          )}
+
+          {activeTab === 'aftermarket' && (
+            <div style={{ textAlign: 'center' }}>
+              <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 2rem)', fontWeight: 700, color: '#fff', marginBottom: '12px', letterSpacing: '-0.03em' }}>
+                Explore premium domain names
+              </h2>
+              <p style={{ fontSize: 'clamp(0.85rem, 2.2vw, 1rem)', color: '#9ca3af', lineHeight: 1.6, maxWidth: '500px', margin: '0 auto 24px' }}>
+                Discover premium domains for sale with existing traffic, backlinks, and domain authority.
+              </p>
+              {/* Mock premium domains */}
+              <div style={{ background: '#111', borderRadius: '12px', padding: '12px', textAlign: 'left', border: '1px solid #1e1e1e' }}>
+                {[{ d: 'boldapparel.com', p: '$12,500' }, { d: 'getbold.com', p: '$4,995' }, { d: 'boldstyle.com', p: 'Make offer' }].map((item, i) => (
+                  <div key={item.d} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px 8px', borderBottom: i < 2 ? '1px solid #1a1a1a' : 'none' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#3b82f6' }} />
+                      <span style={{ fontSize: '0.88rem', color: '#e5e5e5' }}>{item.d}</span>
+                    </div>
+                    <span style={{ fontSize: '0.78rem', fontWeight: 600, color: '#3b82f6' }}>{item.p}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
