@@ -322,10 +322,16 @@ export function SearchDomains({ onActiveChange }) {
             }}
             onFocus={e => {
               activateSearch();
-              e.currentTarget.style.background = 'rgba(139, 92, 246, 0.05)';
+              e.currentTarget.style.background = 'rgba(139, 92, 246, 0.08)';
+              e.currentTarget.parentElement.style.boxShadow = '0 0 0 3px rgba(139, 92, 246, 0.4), 0 8px 30px rgba(139, 92, 246, 0.25)';
+              e.currentTarget.parentElement.style.transform = 'translateY(-3px) scale(1.01)';
+              e.currentTarget.parentElement.style.animation = 'none';
             }}
             onBlur={e => {
               e.currentTarget.style.background = 'transparent';
+              e.currentTarget.parentElement.style.boxShadow = '0 0 0 1px rgba(139, 92, 246, 0.2)';
+              e.currentTarget.parentElement.style.transform = 'translateY(0) scale(1)';
+              e.currentTarget.parentElement.style.animation = 'pulse 3s ease-in-out infinite';
             }}
           />
           
