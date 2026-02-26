@@ -218,16 +218,19 @@ export function SearchDomains({ onActiveChange }) {
           color: '#22c55e',
           transition: 'all 0.3s ease',
           cursor: 'pointer',
+          animation: 'bannerPulse 4s ease-in-out infinite',
         }}
         onMouseEnter={e => {
           e.currentTarget.style.background = 'rgba(34, 197, 94, 0.15)';
           e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.5)';
           e.currentTarget.style.transform = 'translateY(-1px)';
+          e.currentTarget.style.animation = 'none';
         }}
         onMouseLeave={e => {
           e.currentTarget.style.background = 'rgba(34, 197, 94, 0.1)';
           e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.3)';
           e.currentTarget.style.transform = 'translateY(0)';
+          e.currentTarget.style.animation = 'bannerPulse 4s ease-in-out infinite';
         }}
         >
           <div style={{
