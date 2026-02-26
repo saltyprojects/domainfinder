@@ -910,13 +910,36 @@ export function SearchDomains({ onActiveChange }) {
           </div>
         )}
 
-        {/* Empty */}
+        {/* Empty state — show useful content instead of void */}
         {!loading && results.length === 0 && (
-          <div style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            flex: 1, minHeight: '160px', color: '#666', fontSize: '0.9rem',
-          }}>
-            Start typing to search domains...
+          <div style={{ padding: '8px 0' }}>
+            <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#888', marginBottom: '12px' }}>
+              Popular extensions
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '20px' }}>
+              {['.com', '.io', '.ai', '.dev', '.app', '.co', '.xyz', '.net', '.org', '.tech', '.gg', '.me'].map(tld => (
+                <span key={tld} style={{
+                  padding: '4px 10px', borderRadius: '12px', fontSize: '0.75rem', fontWeight: 500,
+                  background: '#1a1a1a', color: '#aaa', border: '1px solid #2a2a2a',
+                }}>{tld}</span>
+              ))}
+            </div>
+            <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#888', marginBottom: '12px' }}>
+              Try searching
+            </div>
+            {['cloudvault', 'nextshift', 'pixelforge', 'dataflow'].map(term => (
+              <div key={term} onClick={() => { setQuery(term); doSearch(term); bottomInputRef.current && (bottomInputRef.current.value = term); }}
+                style={{
+                  padding: '10px 12px', borderRadius: '8px', fontSize: '0.85rem', color: '#ccc',
+                  cursor: 'pointer', transition: 'background 0.15s',
+                  display: 'flex', alignItems: 'center', gap: '8px',
+                }}
+                onMouseEnter={e => e.currentTarget.style.background = '#141414'}
+                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+              >
+                <span style={{ color: '#666' }}>🔍</span> {term}
+              </div>
+            ))}
           </div>
         )}
       </div>
