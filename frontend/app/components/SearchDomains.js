@@ -219,25 +219,10 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(false);
-  const [progress, setProgress] = useState({ done: 0, total: 0 });
-  // activeTab controlled by parent props
   const [isMultiColumn, setIsMultiColumn] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(50);
   const inputRef = useRef(null);
   const bottomInputRef = useRef(null);
-  const sentinelRef = useRef(null);
   const eventSourceRef = useRef(null);
-
-  // Infinite scroll — load more when sentinel becomes visible
-  useEffect(() => {
-    const el = sentinelRef.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) setVisibleCount(v => v + 20);
-    }, { threshold: 0 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  });
 
   // Responsive detection - enable 2-column layout at tablet (768px+) like IDS
   useEffect(() => {
@@ -260,57 +245,14 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
     if (eventSourceRef.current) eventSourceRef.current.close();
     setLoading(true);
     setResults([]);
-    setVisibleCount(50);
-    setProgress({ done: 0, total: 0 });
 
-    // Phase 1: fast popular TLDs, then Phase 2: all remaining TLDs
-    const runStream = (scope, existingResults) => {
-      const seen = new Set(existingResults.map(r => r.tld));
-      const eventSource = new EventSource(
-        `${API_BASE}/api/search/stream/?q=${encodeURIComponent(trimmed)}&scope=${scope}`
-      );
-      eventSourceRef.current = eventSource;
-      let received = [...existingResults];
-
-      eventSource.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          if (data.type === 'start') {
-            setProgress(p => ({ done: p.done, total: p.total || data.total }));
-          } else if (data.type === 'result') {
-            if (!seen.has(data.tld)) {
-              seen.add(data.tld);
-              received = [...received, data];
-              setResults([...received]);
-              setProgress(p => ({ ...p, done: received.length }));
-            }
-          } else if (data.type === 'done') {
-            eventSource.close();
-            if (scope === 'popular') {
-              // Phase 2: load all remaining TLDs
-              setProgress({ done: received.length, total: 324 });
-              runStream('all', received);
-            } else {
-              setLoading(false);
-            }
-          }
-        } catch (e) {}
-      };
-
-      eventSource.onerror = () => {
-        eventSource.close();
-        if (received.length === 0) {
-          fetch(`${API_BASE}/api/search/?q=${encodeURIComponent(trimmed)}`)
-            .then(r => r.json())
-            .then(data => { setResults(data.results || []); setLoading(false); })
-            .catch(() => setLoading(false));
-        } else {
-          setLoading(false);
-        }
-      };
-    };
-
-    runStream('popular', []);
+    fetch(`${API_BASE}/api/search/?q=${encodeURIComponent(trimmed)}&scope=all`)
+      .then(r => r.json())
+      .then(data => {
+        setResults(data.results || []);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   };
 
   const debounceRef = useRef(null);
@@ -968,16 +910,6 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
         background: '#000',
         flexShrink: 0,
       }}>
-        {loading && progress.total > 0 && (
-          <div style={{ marginBottom: '6px' }}>
-            <div style={{ height: '2px', background: '#1e1e1e', borderRadius: '1px', overflow: 'hidden' }}>
-              <div style={{
-                width: `${(progress.done / progress.total) * 100}%`,
-                height: '100%', background: '#22c55e', transition: 'width 0.1s',
-              }} />
-            </div>
-          </div>
-        )}
         <div style={{
           display: 'flex', alignItems: 'center',
           background: '#141414',
