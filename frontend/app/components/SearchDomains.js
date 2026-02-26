@@ -320,7 +320,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
         flex: 1,
         width: '100%',
         maxWidth: '720px',
-        padding: 'clamp(20px, 4vh, 40px) 16px clamp(20px, 4vh, 40px)',
+        padding: 'clamp(12px, 3vh, 32px) 16px clamp(12px, 3vh, 32px)',
         boxSizing: 'border-box',
       }}>
         {/* Promotional banner matching IDS style */}
@@ -435,31 +435,34 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           {/* Tabs inside search box */}
           <div style={{
             display: 'flex',
-            gap: '6px',
-            padding: '8px 12px 10px',
+            gap: '4px',
+            padding: '8px 8px 10px',
             borderTop: '1px solid #2a2a2a',
+            overflowX: 'auto',
+            WebkitOverflowScrolling: 'touch',
           }}>
             {[
-              { label: 'Search', icon: '🔍', id: 'search' },
-              { label: 'Extensions', icon: '📑', id: 'extensions' },
-              { label: 'Generator', icon: '🎨', id: 'generator' },
-              { label: 'Premium', icon: '✨', id: 'aftermarket' },
+              { label: 'Search', short: 'Search', icon: '🔍', id: 'search' },
+              { label: 'Extensions', short: 'Ext', icon: '📑', id: 'extensions' },
+              { label: 'Generator', short: 'Gen', icon: '🎨', id: 'generator' },
+              { label: 'Premium', short: 'Premium', icon: '✨', id: 'aftermarket' },
             ].map(tab => (
               <button key={tab.id} onClick={() => { onTabChange?.(tab.id); }} style={{
-                display: 'flex', alignItems: 'center', gap: '5px',
-                fontSize: '0.8rem',
+                display: 'flex', alignItems: 'center', gap: '4px',
+                fontSize: '0.78rem',
                 fontWeight: 500,
                 color: activeTab === tab.id ? '#fff' : '#999',
                 background: activeTab === tab.id ? '#333' : 'transparent',
                 border: 'none',
                 borderRadius: '20px',
                 cursor: 'pointer',
-                padding: '6px 12px',
+                padding: '6px 10px',
                 transition: 'all 0.15s',
                 whiteSpace: 'nowrap',
+                flexShrink: 0,
               }}>
-                <span style={{ fontSize: '0.85rem', lineHeight: 1 }}>{tab.icon}</span>
-                {tab.label}
+                <span style={{ fontSize: '0.82rem', lineHeight: 1 }}>{tab.icon}</span>
+                {isMultiColumn ? tab.label : tab.short}
               </button>
             ))}
           </div>
