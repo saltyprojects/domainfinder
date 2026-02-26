@@ -16,7 +16,7 @@ function DomainRow({ result }) {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 12px',
-        height: '32px',
+        height: 'clamp(34px, 4vw, 42px)',
         borderRadius: '4px',
         textDecoration: 'none',
         transition: 'background 0.12s',
@@ -31,7 +31,7 @@ function DomainRow({ result }) {
           flexShrink: 0,
         }} />
         <span style={{
-          fontSize: '0.9rem', fontWeight: 450,
+          fontSize: 'clamp(0.88rem, 1.2vw, 1.05rem)', fontWeight: 450,
           color: '#e5e5e5',
         }}>
           {full_domain}
@@ -206,12 +206,18 @@ function AftermarketView({ query, isMultiColumn, columns = 1 }) {
 }
 
 export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChange }) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return new URLSearchParams(window.location.search).get('q') || '';
+    }
+    return '';
+  });
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [totalLoaded, setTotalLoaded] = useState(0);
   const [active, setActive] = useState(false);
+  const [showAll, setShowAll] = useState(false);
   const [isMultiColumn, setIsMultiColumn] = useState(false);
   const [columns, setColumns] = useState(1); // 1=mobile, 2=tablet, 3=desktop, 4=wide
   const inputRef = useRef(null);
@@ -235,12 +241,27 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
 
   const abortRef = useRef(null);
 
+  // Auto-search on mount if ?q= present
+  useEffect(() => {
+    const initialQ = new URLSearchParams(window.location.search).get('q');
+    if (initialQ && initialQ.trim().length >= 2) {
+      setActive(true);
+      onActiveChange?.(true);
+      doSearch(initialQ);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const doSearch = (q) => {
     const trimmed = q.trim().toLowerCase().split('.')[0];
     if (!trimmed || trimmed.length < 2) {
       setResults([]);
       return;
     }
+
+    // Update URL
+    const url = new URL(window.location);
+    url.searchParams.set('q', trimmed);
+    window.history.replaceState({}, '', url);
 
     if (abortRef.current) abortRef.current.abort();
     const controller = new AbortController();
@@ -253,6 +274,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
     let offset = 0;
     let allResults = [];
     setTotalLoaded(0);
+    setShowAll(false);
 
     const loadBatch = () => {
       if (offset > 0) setLoadingMore(true);
@@ -303,6 +325,9 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
     setActive(false);
     onActiveChange?.(false);
     if (abortRef.current) abortRef.current.abort();
+    const url = new URL(window.location);
+    url.searchParams.delete('q');
+    window.history.replaceState({}, '', url);
   };
 
   const tldOrder = ['com','net','org','io','dev','ai','app','co','me','xyz','tech','info','biz','cloud','design','blog','shop','site','store','online'];
@@ -590,10 +615,44 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
       <div data-scrollable style={{
         flex: 1,
         overflowY: 'auto',
-        padding: '8px 16px 6px',
+        padding: '0',
         WebkitOverflowScrolling: 'touch',
         touchAction: 'pan-y',
       }}>
+        {/* Sticky search bar at top — desktop only */}
+        {isMultiColumn && (
+          <div style={{
+            position: 'sticky', top: 0, zIndex: 5,
+            background: '#000',
+            padding: '8px 24px',
+            borderBottom: '1px solid #1e1e1e',
+          }}>
+            <div style={{
+              display: 'flex', alignItems: 'center',
+              background: '#141414', borderRadius: '10px',
+              border: '1px solid #222', padding: '0 4px',
+              maxWidth: '600px',
+            }}>
+              <input
+                type="text" value={query} onChange={handleChange}
+                placeholder="Search domains..."
+                style={{
+                  flex: 1, padding: '10px 12px', fontSize: '0.95rem',
+                  background: 'transparent', border: 'none', color: '#fff', outline: 'none',
+                }}
+                onKeyDown={(e) => { if (e.key === 'Escape') clear(); }}
+              />
+              <button onClick={clear} style={{
+                background: '#2a2a2a', border: 'none', color: '#888',
+                width: '28px', height: '28px', borderRadius: '6px',
+                cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: '0.75rem', flexShrink: 0,
+              }}>✕</button>
+            </div>
+          </div>
+        )}
+
+        <div style={{ padding: '8px clamp(12px, 2vw, 24px) 6px' }}>
         {/* Primary result — large domain in status color */}
         {primary && (
           <div style={{ marginBottom: '8px' }}>
@@ -721,7 +780,19 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                   gap: columns > 1 ? '0 16px' : '0',
                   margin: columns > 1 ? '0' : '0 -12px',
                 }}>
-                  {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
+                  {rest.slice(0, showAll ? rest.length : 30).map(r => <DomainRow key={r.full_domain} result={r} />)}
+                  {!showAll && rest.length > 30 && (
+                    <div style={{ display: 'flex', justifyContent: 'center', padding: '16px 0' }}>
+                      <button onClick={() => setShowAll(true)} style={{
+                        padding: '10px 32px', borderRadius: '8px', fontSize: '0.85rem', fontWeight: 600,
+                        background: '#1a1a1a', border: '1px solid #333', color: '#ccc', cursor: 'pointer',
+                        transition: 'all 0.15s',
+                      }}
+                      onMouseEnter={e => { e.currentTarget.style.background = '#2a2a2a'; e.currentTarget.style.borderColor = '#555'; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = '#1a1a1a'; e.currentTarget.style.borderColor = '#333'; }}
+                      >Load More</button>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -935,15 +1006,17 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
             ))}
           </div>
         )}
+        </div>{/* close padding wrapper */}
       </div>
 
-      {/* Bottom search bar */}
+      {/* Bottom search bar — mobile only */}
       <div style={{
         padding: '8px 12px',
         paddingBottom: 'max(8px, env(safe-area-inset-bottom))',
         borderTop: '1px solid #1e1e1e',
         background: '#000',
         flexShrink: 0,
+        display: isMultiColumn ? 'none' : 'block',
       }}>
         <div style={{
           display: 'flex', alignItems: 'center',
