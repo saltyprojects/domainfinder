@@ -428,6 +428,141 @@ export function SearchDomains({ onActiveChange }) {
             </button>
           </div>
         </div>
+
+        {/* Additional content sections matching IDS density */}
+        <div style={{
+          width: '100%',
+          marginTop: 'clamp(40px, 8vh, 80px)',
+          textAlign: 'center',
+        }}>
+          {/* Call-to-action section */}
+          <div style={{
+            fontSize: 'clamp(0.75rem, 2vw, 0.9rem)',
+            fontWeight: 600,
+            color: '#8b5cf6',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            marginBottom: '16px',
+          }}>
+            Search millions of domains instantly
+          </div>
+
+          <h2 style={{
+            fontSize: 'clamp(1.8rem, 5vw, 3rem)',
+            fontWeight: 700,
+            lineHeight: 1.2,
+            letterSpacing: '-0.03em',
+            color: '#fff',
+            marginBottom: '20px',
+          }}>
+            The fastest domain search tool on the internet
+          </h2>
+
+          <p style={{
+            fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)',
+            color: '#9ca3af',
+            lineHeight: 1.6,
+            maxWidth: '600px',
+            margin: '0 auto',
+            marginBottom: '32px',
+          }}>
+            DomyDomains is the ultimate domain search engine to find, buy, and register available domain names and extensions (TLDs). Our tool shows hundreds of results as you type, surfacing the best domain names at the lowest prices. We are a trusted domain registrar partner.
+          </p>
+
+          {/* Feature highlights */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: isMultiColumn ? 'repeat(3, 1fr)' : '1fr',
+            gap: '24px',
+            marginTop: '40px',
+            maxWidth: '800px',
+            margin: '40px auto 0',
+          }}>
+            <div style={{
+              padding: '24px 16px',
+              background: 'rgba(139, 92, 246, 0.05)',
+              border: '1px solid rgba(139, 92, 246, 0.2)',
+              borderRadius: '12px',
+              textAlign: 'center',
+            }}>
+              <div style={{
+                fontSize: '2rem',
+                marginBottom: '12px',
+              }}>⚡</div>
+              <div style={{
+                fontSize: '0.9rem',
+                fontWeight: 600,
+                color: '#fff',
+                marginBottom: '8px',
+              }}>
+                Instant Results
+              </div>
+              <div style={{
+                fontSize: '0.8rem',
+                color: '#9ca3af',
+                lineHeight: 1.4,
+              }}>
+                Search results appear as you type, no waiting required
+              </div>
+            </div>
+
+            <div style={{
+              padding: '24px 16px',
+              background: 'rgba(34, 197, 94, 0.05)',
+              border: '1px solid rgba(34, 197, 94, 0.2)',
+              borderRadius: '12px',
+              textAlign: 'center',
+            }}>
+              <div style={{
+                fontSize: '2rem',
+                marginBottom: '12px',
+              }}>🔍</div>
+              <div style={{
+                fontSize: '0.9rem',
+                fontWeight: 600,
+                color: '#fff',
+                marginBottom: '8px',
+              }}>
+                400+ Extensions
+              </div>
+              <div style={{
+                fontSize: '0.8rem',
+                color: '#9ca3af',
+                lineHeight: 1.4,
+              }}>
+                Support for all major TLDs and new domain extensions
+              </div>
+            </div>
+
+            <div style={{
+              padding: '24px 16px',
+              background: 'rgba(59, 130, 246, 0.05)',
+              border: '1px solid rgba(59, 130, 246, 0.2)',
+              borderRadius: '12px',
+              textAlign: 'center',
+            }}>
+              <div style={{
+                fontSize: '2rem',
+                marginBottom: '12px',
+              }}>💎</div>
+              <div style={{
+                fontSize: '0.9rem',
+                fontWeight: 600,
+                color: '#fff',
+                marginBottom: '8px',
+              }}>
+                Best Prices
+              </div>
+              <div style={{
+                fontSize: '0.8rem',
+                color: '#9ca3af',
+                lineHeight: 1.4,
+              }}>
+                Competitive pricing through trusted registrar partners
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
