@@ -3,6 +3,51 @@
 import { useState, useEffect } from 'react';
 import { SearchDomains } from './components/SearchDomains';
 
+const BUILD_SHA = process.env.NEXT_PUBLIC_BUILD_SHA || 'dev';
+const BUILD_TIME = process.env.NEXT_PUBLIC_BUILD_TIME || '';
+
+function timeAgo(dateStr) {
+  const seconds = Math.floor((Date.now() - new Date(dateStr).getTime()) / 1000);
+  if (seconds < 60) return 'just now';
+  const minutes = Math.floor(seconds / 60);
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return `${days}d ago`;
+}
+
+function Footer() {
+  const [ago, setAgo] = useState('');
+  useEffect(() => {
+    setAgo(timeAgo(BUILD_TIME));
+    const interval = setInterval(() => setAgo(timeAgo(BUILD_TIME)), 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <footer style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: '6px',
+      padding: '10px 16px',
+      flexShrink: 0,
+      borderTop: '1px solid #1e1e1e',
+      fontSize: '0.65rem',
+      color: '#444',
+      background: '#000',
+      fontFamily: 'ui-monospace, monospace',
+    }}>
+      <span>domydomains.com</span>
+      <span style={{ opacity: 0.4 }}>·</span>
+      <span>{BUILD_SHA.slice(0, 7)}</span>
+      <span style={{ opacity: 0.4 }}>·</span>
+      <span>updated {ago}</span>
+    </footer>
+  );
+}
+
 export default function Home() {
   const [searchActive, setSearchActive] = useState(false);
   const [layoutStyle, setLayoutStyle] = useState({ height: '100dvh' });
@@ -170,18 +215,7 @@ export default function Home() {
 
       {/* Footer */}
       {!searchActive && (
-        <footer style={{
-          display: 'flex',
-          justifyContent: 'center',
-          padding: '10px 16px',
-          flexShrink: 0,
-          borderTop: '1px solid #1e1e1e',
-          fontSize: '0.7rem',
-          color: '#444',
-          background: '#000',
-        }}>
-          domydomains.com
-        </footer>
+        <Footer />
       )}
     </div>
   );
