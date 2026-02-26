@@ -920,14 +920,40 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
         )}
       </div>
 
-      {/* Bottom search bar */}
+      {/* Bottom search bar with tabs */}
       <div style={{
-        padding: '8px 12px',
+        padding: '0 12px',
         paddingBottom: 'max(8px, env(safe-area-inset-bottom))',
         borderTop: '1px solid #1e1e1e',
         background: '#000',
         flexShrink: 0,
       }}>
+        {/* Tabs row */}
+        <div style={{
+          display: 'flex',
+          gap: '0',
+          padding: '6px 0 4px',
+        }}>
+          {[
+            { label: 'Search', id: 'search' },
+            { label: 'Extensions', id: 'extensions' },
+            { label: 'Generator', id: 'generator' },
+            { label: 'Aftermarket', id: 'aftermarket' },
+          ].map(tab => (
+            <button key={tab.id} onClick={() => onTabChange?.(tab.id)} style={{
+              flex: 1,
+              fontSize: '0.72rem',
+              fontWeight: activeTab === tab.id ? 600 : 500,
+              color: activeTab === tab.id ? '#fff' : '#666',
+              background: 'none',
+              border: 'none',
+              borderBottom: activeTab === tab.id ? '2px solid #8b5cf6' : '2px solid transparent',
+              cursor: 'pointer',
+              padding: '4px 0 6px',
+              transition: 'color 0.15s',
+            }}>{tab.label}</button>
+          ))}
+        </div>
         <div style={{
           display: 'flex', alignItems: 'center',
           background: '#141414',
