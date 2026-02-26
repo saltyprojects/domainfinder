@@ -15,9 +15,9 @@ function DomainRow({ result }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 8px',
-        height: '40px',
-        borderRadius: '6px',
+        padding: '0 12px',
+        height: '38px',
+        borderRadius: '4px',
         textDecoration: 'none',
         transition: 'background 0.12s',
       }}
@@ -177,33 +177,33 @@ export function SearchDomains({ onActiveChange }) {
         boxSizing: 'border-box',
       }}>
         <h1 style={{
-          fontSize: 'clamp(1.8rem, 6vw, 3rem)',
+          fontSize: 'clamp(1.6rem, 5.5vw, 2.4rem)',
           fontWeight: 800,
           textAlign: 'center',
           lineHeight: 1.1,
           letterSpacing: '-0.04em',
-          marginBottom: '12px',
+          marginBottom: '8px',
           color: '#fff',
         }}>
           Domain name search
         </h1>
         <p style={{
-          fontSize: 'clamp(0.85rem, 2.5vw, 1rem)',
+          fontSize: 'clamp(0.8rem, 2.3vw, 0.95rem)',
           color: '#9ca3af',
           textAlign: 'center',
-          marginBottom: '32px',
-          lineHeight: 1.6,
-          maxWidth: '420px',
+          marginBottom: '20px',
+          lineHeight: 1.5,
+          maxWidth: '400px',
         }}>
-          Find available domains instantly across 20+ extensions
+          The fastest domain search tool on the internet. Check domain availability, find popular extensions, and buy premium domains as you type.
         </p>
         {/* Search box container like IDS */}
         <div style={{
           width: '100%',
-          background: '#141414',
-          borderRadius: '16px',
-          padding: '4px',
-          border: '1px solid #222',
+          background: '#1a1a1a',
+          borderRadius: '12px',
+          padding: '2px',
+          border: '1px solid #2a2a2a',
         }}>
           <input
             ref={inputRef}
@@ -214,8 +214,8 @@ export function SearchDomains({ onActiveChange }) {
             placeholder="Start typing here..."
             style={{
               width: '100%',
-              padding: '18px 20px',
-              fontSize: 'clamp(1rem, 3vw, 1.2rem)',
+              padding: '16px 18px',
+              fontSize: 'clamp(0.95rem, 2.8vw, 1.1rem)',
               background: 'transparent',
               border: 'none',
               color: '#fff',
@@ -243,13 +243,13 @@ export function SearchDomains({ onActiveChange }) {
       <div data-scrollable style={{
         flex: 1,
         overflowY: 'auto',
-        padding: '16px 16px 8px',
+        padding: '12px 16px 8px',
         WebkitOverflowScrolling: 'touch',
         touchAction: 'pan-y',
       }}>
         {/* Primary result — large domain in status color */}
         {primary && (
-          <div style={{ marginBottom: '14px' }}>
+          <div style={{ marginBottom: '10px' }}>
             <div style={{
               fontSize: 'clamp(1.4rem, 4.5vw, 1.8rem)',
               fontWeight: 700,
