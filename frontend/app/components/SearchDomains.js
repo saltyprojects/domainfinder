@@ -222,7 +222,6 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
   const [isMultiColumn, setIsMultiColumn] = useState(false);
   const inputRef = useRef(null);
   const bottomInputRef = useRef(null);
-  const eventSourceRef = useRef(null);
 
   // Responsive detection - enable 2-column layout at tablet (768px+) like IDS
   useEffect(() => {
@@ -235,6 +234,8 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
     return () => window.removeEventListener('resize', updateMultiColumn);
   }, []);
 
+  const abortRef = useRef(null);
+
   const doSearch = (q) => {
     const trimmed = q.trim().toLowerCase().split('.')[0];
     if (!trimmed || trimmed.length < 2) {
@@ -242,17 +243,34 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
       return;
     }
 
-    if (eventSourceRef.current) eventSourceRef.current.close();
+    if (abortRef.current) abortRef.current.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+
     setLoading(true);
     setResults([]);
 
-    fetch(`${API_BASE}/api/search/?q=${encodeURIComponent(trimmed)}&scope=all`)
+    // Phase 1: popular TLDs — fills the screen fast
+    fetch(`${API_BASE}/api/search/?q=${encodeURIComponent(trimmed)}&scope=popular`, { signal: controller.signal })
       .then(r => r.json())
       .then(data => {
-        setResults(data.results || []);
+        if (controller.signal.aborted) return;
+        const phase1 = data.results || [];
+        setResults(phase1);
         setLoading(false);
+
+        // Phase 2: all TLDs in background — merge in new results
+        fetch(`${API_BASE}/api/search/?q=${encodeURIComponent(trimmed)}&scope=all`, { signal: controller.signal })
+          .then(r => r.json())
+          .then(data2 => {
+            if (controller.signal.aborted) return;
+            const seen = new Set(phase1.map(r => r.full_domain));
+            const newResults = (data2.results || []).filter(r => !seen.has(r.full_domain));
+            setResults([...phase1, ...newResults]);
+          })
+          .catch(() => {});
       })
-      .catch(() => setLoading(false));
+      .catch(() => { if (!controller.signal.aborted) setLoading(false); });
   };
 
   const debounceRef = useRef(null);
@@ -276,7 +294,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
     setResults([]);
     setActive(false);
     onActiveChange?.(false);
-    if (eventSourceRef.current) eventSourceRef.current.close();
+    if (abortRef.current) abortRef.current.abort();
   };
 
   const tldOrder = ['com','net','org','io','dev','ai','app','co','me','xyz','tech','info','biz','cloud','design','blog','shop','site','store','online'];
