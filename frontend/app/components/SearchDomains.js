@@ -809,8 +809,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                   gap: isMultiColumn ? '0 16px' : '0',
                   margin: isMultiColumn ? '0' : '0 -12px',
                 }}>
-                  {rest.slice(0, visibleCount).map(r => <DomainRow key={r.full_domain} result={r} />)}
-                  {rest.length > visibleCount && <div ref={sentinelRef} style={{ height: '1px' }} />}
+                  {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
                 </div>
               </div>
 
