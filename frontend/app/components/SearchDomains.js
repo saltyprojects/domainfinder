@@ -360,10 +360,16 @@ export function SearchDomains({ onActiveChange }) {
                 borderRadius: '6px',
                 transition: 'all 0.2s ease',
               }}
-              onMouseEnter={e => e.currentTarget.style.background = activeTab === 'search' ? 'rgba(139, 92, 246, 0.15)' : 'rgba(255, 255, 255, 0.05)'}
-              onMouseLeave={e => e.currentTarget.style.background = 'none'}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = activeTab === 'search' ? 'rgba(139, 92, 246, 0.15)' : 'rgba(255, 255, 255, 0.05)';
+                e.currentTarget.querySelector('span').style.transform = 'scale(1.2) rotate(5deg)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'none';
+                e.currentTarget.querySelector('span').style.transform = 'scale(1) rotate(0deg)';
+              }}
             >
-              <span style={{ fontSize: '1rem', transition: 'transform 0.15s ease' }}>🔍</span>
+              <span style={{ fontSize: '1rem', transition: 'transform 0.2s ease' }}>🔍</span>
               Search
             </button>
             
@@ -384,10 +390,16 @@ export function SearchDomains({ onActiveChange }) {
                 borderRadius: '6px',
                 transition: 'all 0.2s ease',
               }}
-              onMouseEnter={e => e.currentTarget.style.background = activeTab === 'extensions' ? 'rgba(34, 197, 94, 0.15)' : 'rgba(255, 255, 255, 0.05)'}
-              onMouseLeave={e => e.currentTarget.style.background = 'none'}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = activeTab === 'extensions' ? 'rgba(34, 197, 94, 0.15)' : 'rgba(255, 255, 255, 0.05)';
+                e.currentTarget.querySelector('span').style.transform = 'scale(1.2) rotate(-5deg)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'none';
+                e.currentTarget.querySelector('span').style.transform = 'scale(1) rotate(0deg)';
+              }}
             >
-              <span style={{ fontSize: '1rem', transition: 'transform 0.15s ease' }}>🧩</span>
+              <span style={{ fontSize: '1rem', transition: 'transform 0.2s ease' }}>🧩</span>
               Extensions
             </button>
             
@@ -408,10 +420,16 @@ export function SearchDomains({ onActiveChange }) {
                 borderRadius: '6px',
                 transition: 'all 0.2s ease',
               }}
-              onMouseEnter={e => e.currentTarget.style.background = activeTab === 'generator' ? 'rgba(249, 115, 22, 0.15)' : 'rgba(255, 255, 255, 0.05)'}
-              onMouseLeave={e => e.currentTarget.style.background = 'none'}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = activeTab === 'generator' ? 'rgba(249, 115, 22, 0.15)' : 'rgba(255, 255, 255, 0.05)';
+                e.currentTarget.querySelector('span').style.transform = 'scale(1.2) rotate(10deg)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'none';
+                e.currentTarget.querySelector('span').style.transform = 'scale(1) rotate(0deg)';
+              }}
             >
-              <span style={{ fontSize: '1rem', transition: 'transform 0.15s ease' }}>⚡</span>
+              <span style={{ fontSize: '1rem', transition: 'transform 0.2s ease' }}>⚡</span>
               Generator
             </button>
             
@@ -432,10 +450,16 @@ export function SearchDomains({ onActiveChange }) {
                 borderRadius: '6px',
                 transition: 'all 0.2s ease',
               }}
-              onMouseEnter={e => e.currentTarget.style.background = activeTab === 'premium' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(255, 255, 255, 0.05)'}
-              onMouseLeave={e => e.currentTarget.style.background = 'none'}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = activeTab === 'premium' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(255, 255, 255, 0.05)';
+                e.currentTarget.querySelector('span').style.transform = 'scale(1.2) rotate(-3deg)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'none';
+                e.currentTarget.querySelector('span').style.transform = 'scale(1) rotate(0deg)';
+              }}
             >
-              <span style={{ fontSize: '1rem', transition: 'transform 0.15s ease' }}>💎</span>
+              <span style={{ fontSize: '1rem', transition: 'transform 0.2s ease' }}>💎</span>
               Premium
             </button>
           </div>
