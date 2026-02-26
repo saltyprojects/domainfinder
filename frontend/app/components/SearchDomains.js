@@ -16,7 +16,7 @@ function DomainRow({ result }) {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 12px',
-        height: '32px',
+        height: 'clamp(32px, 5vw, 56px)',
         borderRadius: '4px',
         textDecoration: 'none',
         transition: 'background 0.12s',
@@ -31,7 +31,7 @@ function DomainRow({ result }) {
           flexShrink: 0,
         }} />
         <span style={{
-          fontSize: '0.9rem', fontWeight: 450,
+          fontSize: 'clamp(0.9rem, 1.8vw, 1.6rem)', fontWeight: 450,
           color: '#e5e5e5',
         }}>
           {full_domain}
@@ -59,9 +59,9 @@ function DomainRow({ result }) {
       >
         <span style={{
           padding: '0 8px',
-          fontSize: '0.7rem', fontWeight: 600,
+          fontSize: 'clamp(0.7rem, 1.2vw, 1.2rem)', fontWeight: 600,
           color: available ? '#22c55e' : '#ef4444',
-          lineHeight: '22px',
+          lineHeight: 'clamp(22px, 3vw, 36px)',
           transition: 'color 0.2s ease',
         }}>
           {available ? 'Continue' : 'Lookup'}
@@ -648,7 +648,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
         {primary && (
           <div style={{ marginBottom: '8px' }}>
             <div style={{
-              fontSize: 'clamp(1.4rem, 4.5vw, 1.8rem)',
+              fontSize: 'clamp(1.4rem, 4.5vw, 3rem)',
               fontWeight: 700,
               color: primary.available ? '#22c55e' : '#ef4444',
               letterSpacing: '-0.03em',
@@ -665,7 +665,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                   display: 'inline-flex', alignItems: 'center', gap: '4px',
                   padding: '8px 16px',
                   borderRadius: '8px',
-                  fontSize: '0.78rem', fontWeight: 600,
+                  fontSize: 'clamp(0.78rem, 1.3vw, 1.3rem)', fontWeight: 600,
                   textDecoration: 'none',
                   background: primary.available ? '#22c55e' : '#dc2626',
                   color: primary.available ? '#000' : '#fff',
@@ -693,7 +693,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                   display: 'inline-flex', alignItems: 'center',
                   padding: '8px 14px',
                   borderRadius: '8px',
-                  fontSize: '0.78rem', fontWeight: 500, color: '#999',
+                  fontSize: 'clamp(0.78rem, 1.3vw, 1.3rem)', fontWeight: 500, color: '#999',
                   textDecoration: 'none',
                   background: '#1a1a1a', border: '1px solid #2a2a2a',
                   minHeight: '34px', boxSizing: 'border-box',
@@ -747,21 +747,21 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                   marginBottom: '6px', padding: '2px 0',
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                    <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>
+                    <span style={{ fontSize: 'clamp(0.85rem, 1.5vw, 1.5rem)', fontWeight: 700, color: '#fff' }}>
                       Domain extensions
                     </span>
-                    <span style={{ fontSize: '0.8rem', color: '#666' }}>
+                    <span style={{ fontSize: 'clamp(0.8rem, 1.3vw, 1.3rem)', color: '#666' }}>
                       ({rest.filter(r => r.available).length} available, {rest.filter(r => !r.available).length} taken)
                     </span>
                   </div>
                   <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22c55e' }} />
-                      <span style={{ fontSize: '0.7rem', color: '#22c55e' }}>Available</span>
+                      <span style={{ fontSize: 'clamp(0.7rem, 1.1vw, 1.1rem)', color: '#22c55e' }}>Available</span>
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ef4444' }} />
-                      <span style={{ fontSize: '0.7rem', color: '#ef4444' }}>Taken</span>
+                      <span style={{ fontSize: 'clamp(0.7rem, 1.1vw, 1.1rem)', color: '#ef4444' }}>Taken</span>
                     </div>
                   </div>
                 </div>
@@ -783,10 +783,10 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                     marginBottom: '6px', padding: '2px 0',
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>
+                      <span style={{ fontSize: 'clamp(0.85rem, 1.5vw, 1.5rem)', fontWeight: 700, color: '#fff' }}>
                         Premium domains
                       </span>
-                      <span style={{ fontSize: '0.8rem', color: '#666' }}>
+                      <span style={{ fontSize: 'clamp(0.8rem, 1.3vw, 1.3rem)', color: '#666' }}>
                         (marketplace)
                       </span>
                     </div>
@@ -815,7 +815,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                           alignItems: 'center',
                           justifyContent: 'space-between',
                           padding: '0 12px',
-                          height: '32px',
+                          height: 'clamp(32px, 5vw, 56px)',
                           borderRadius: '4px',
                           textDecoration: 'none',
                           transition: 'background 0.12s',
@@ -830,7 +830,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                             flexShrink: 0,
                           }} />
                           <span style={{
-                            fontSize: '0.9rem', fontWeight: 450,
+                            fontSize: 'clamp(0.9rem, 1.8vw, 1.6rem)', fontWeight: 450,
                             color: '#e5e5e5',
                           }}>
                             {premium.domain}
@@ -841,7 +841,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                           flexShrink: 0,
                         }}>
                           <span style={{
-                            fontSize: '0.8rem', fontWeight: 600,
+                            fontSize: 'clamp(0.8rem, 1.4vw, 1.4rem)', fontWeight: 600,
                             color: '#3b82f6',
                           }}>
                             {premium.price}
@@ -850,12 +850,12 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                             display: 'flex', alignItems: 'center',
                             background: '#1a1a1a',
                             borderRadius: '4px',
-                            height: '22px',
+                            height: 'clamp(22px, 3vw, 36px)',
                             padding: '0 8px',
                             transition: 'all 0.2s ease',
                           }}>
                             <span style={{
-                              fontSize: '0.7rem', fontWeight: 600,
+                              fontSize: 'clamp(0.7rem, 1.2vw, 1.2rem)', fontWeight: 600,
                               color: '#3b82f6',
                             }}>
                               Buy
