@@ -319,8 +319,8 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
         justifyContent: 'center',
         flex: 1,
         width: '100%',
-        maxWidth: 'min(90vw, max(680px, 50vw))',
-        padding: 'clamp(20px, 4vh, 40px) clamp(20px, 4vw, 60px) clamp(20px, 4vh, 40px)',
+        maxWidth: '720px',
+        padding: 'clamp(20px, 4vh, 40px) 16px clamp(20px, 4vh, 40px)',
         boxSizing: 'border-box',
       }}>
         {/* Promotional banner matching IDS style */}
@@ -435,28 +435,30 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           {/* Tabs inside search box */}
           <div style={{
             display: 'flex',
-            borderTop: '1px solid #333',
-            background: '#141414',
+            gap: '6px',
+            padding: '8px 12px 10px',
+            borderTop: '1px solid #2a2a2a',
           }}>
             {[
               { label: 'Search', icon: '🔍', id: 'search' },
-              { label: 'Extensions', icon: '📄', id: 'extensions' },
-              { label: 'Generator', icon: '🤖', id: 'generator' },
-              { label: 'Premium', icon: '⭐', id: 'aftermarket' },
+              { label: 'Extensions', icon: '📑', id: 'extensions' },
+              { label: 'Generator', icon: '🎨', id: 'generator' },
+              { label: 'Premium', icon: '✨', id: 'aftermarket' },
             ].map(tab => (
               <button key={tab.id} onClick={() => { onTabChange?.(tab.id); activateSearch(); }} style={{
-                flex: 1,
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
-                fontSize: '0.75rem',
-                fontWeight: activeTab === tab.id ? 600 : 400,
-                color: activeTab === tab.id ? '#fff' : '#888',
-                background: activeTab === tab.id ? 'rgba(255,255,255,0.05)' : 'transparent',
+                display: 'flex', alignItems: 'center', gap: '5px',
+                fontSize: '0.8rem',
+                fontWeight: 500,
+                color: activeTab === tab.id ? '#fff' : '#999',
+                background: activeTab === tab.id ? '#333' : 'transparent',
                 border: 'none',
+                borderRadius: '20px',
                 cursor: 'pointer',
-                padding: '10px 4px',
+                padding: '6px 12px',
                 transition: 'all 0.15s',
+                whiteSpace: 'nowrap',
               }}>
-                <span style={{ fontSize: '0.8rem' }}>{tab.icon}</span>
+                <span style={{ fontSize: '0.85rem', lineHeight: 1 }}>{tab.icon}</span>
                 {tab.label}
               </button>
             ))}
@@ -658,7 +660,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
       display: 'flex',
       flexDirection: 'column',
       width: '100%',
-      maxWidth: 'min(90vw, max(680px, 50vw))',
+      maxWidth: '960px',
       flex: 1,
       minHeight: 0,
       boxSizing: 'border-box',
