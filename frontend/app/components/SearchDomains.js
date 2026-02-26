@@ -75,6 +75,7 @@ export function SearchDomains({ onActiveChange }) {
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(false);
   const [progress, setProgress] = useState({ done: 0, total: 0 });
+  const [activeTab, setActiveTab] = useState('search');
   const inputRef = useRef(null);
   const bottomInputRef = useRef(null);
   const eventSourceRef = useRef(null);
@@ -197,13 +198,14 @@ export function SearchDomains({ onActiveChange }) {
         }}>
           The fastest domain search tool on the internet. Check domain availability, find popular extensions, and buy premium domains as you type.
         </p>
-        {/* Search box container like IDS */}
+        {/* Enhanced search box container matching IDS */}
         <div style={{
           width: '100%',
           background: '#1a1a1a',
-          borderRadius: '12px',
-          padding: '2px',
-          border: '1px solid #2a2a2a',
+          borderRadius: '16px',
+          padding: '0',
+          border: '1px solid #8b5cf6',
+          boxShadow: '0 0 0 1px rgba(139, 92, 246, 0.2)',
         }}>
           <input
             ref={inputRef}
@@ -214,15 +216,105 @@ export function SearchDomains({ onActiveChange }) {
             placeholder="Start typing here..."
             style={{
               width: '100%',
-              padding: '16px 18px',
+              padding: '18px 20px',
               fontSize: 'clamp(0.95rem, 2.8vw, 1.1rem)',
               background: 'transparent',
               border: 'none',
               color: '#fff',
               outline: 'none',
               boxSizing: 'border-box',
+              borderRadius: '16px 16px 0 0',
             }}
           />
+          
+          {/* IDS-style tabs */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            padding: '8px 12px',
+            borderTop: '1px solid #333',
+            gap: '16px',
+          }}>
+            {/* Search Tab */}
+            <button
+              onClick={() => setActiveTab('search')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                background: 'none',
+                border: 'none',
+                color: activeTab === 'search' ? '#8b5cf6' : '#666',
+                fontSize: '0.85rem',
+                fontWeight: 500,
+                cursor: 'pointer',
+                padding: '4px 0',
+              }}
+            >
+              <span style={{ fontSize: '1rem' }}>🔍</span>
+              Search
+            </button>
+            
+            {/* Extensions Tab */}
+            <button
+              onClick={() => setActiveTab('extensions')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                background: 'none',
+                border: 'none',
+                color: activeTab === 'extensions' ? '#22c55e' : '#666',
+                fontSize: '0.85rem',
+                fontWeight: 500,
+                cursor: 'pointer',
+                padding: '4px 0',
+              }}
+            >
+              <span style={{ fontSize: '1rem' }}>🧩</span>
+              Extensions
+            </button>
+            
+            {/* Generator Tab */}
+            <button
+              onClick={() => setActiveTab('generator')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                background: 'none',
+                border: 'none',
+                color: activeTab === 'generator' ? '#f97316' : '#666',
+                fontSize: '0.85rem',
+                fontWeight: 500,
+                cursor: 'pointer',
+                padding: '4px 0',
+              }}
+            >
+              <span style={{ fontSize: '1rem' }}>⚡</span>
+              Generator
+            </button>
+            
+            {/* Premium Tab */}
+            <button
+              onClick={() => setActiveTab('premium')}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '6px',
+                background: 'none',
+                border: 'none',
+                color: activeTab === 'premium' ? '#3b82f6' : '#666',
+                fontSize: '0.85rem',
+                fontWeight: 500,
+                cursor: 'pointer',
+                padding: '4px 0',
+              }}
+            >
+              <span style={{ fontSize: '1rem' }}>💎</span>
+              Premium
+            </button>
+          </div>
         </div>
       </div>
     );
