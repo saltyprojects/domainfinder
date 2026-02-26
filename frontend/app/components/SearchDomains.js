@@ -447,7 +447,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
               <button key={tab.id} onClick={() => { onTabChange?.(tab.id); }} style={{
                 flex: 1,
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px',
-                fontSize: '0.78rem',
+                fontSize: 'clamp(0.68rem, 2vw, 0.78rem)',
                 fontWeight: 500,
                 color: activeTab === tab.id ? '#fff' : '#777',
                 background: activeTab === tab.id ? 'rgba(255,255,255,0.08)' : 'transparent',
