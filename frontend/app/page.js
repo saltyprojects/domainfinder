@@ -6,6 +6,7 @@ import { SearchDomains } from './components/SearchDomains';
 export default function Home() {
   const [searchActive, setSearchActive] = useState(false);
   const [layoutStyle, setLayoutStyle] = useState({ height: '100dvh' });
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const update = () => {
@@ -18,6 +19,9 @@ export default function Home() {
       } else {
         setLayoutStyle({ height: `${window.innerHeight}px` });
       }
+      
+      // Update desktop detection
+      setIsDesktop(window.innerWidth >= 768);
     };
 
     update();
@@ -60,19 +64,94 @@ export default function Home() {
       <nav style={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         height: '48px',
         flexShrink: 0,
         borderBottom: '1px solid #1e1e1e',
         background: '#000',
         zIndex: 10,
+        padding: '0 16px',
+        maxWidth: '100vw',
+        boxSizing: 'border-box',
       }}>
-        <span style={{
-          fontSize: '0.9rem', fontWeight: 700,
-          letterSpacing: '-0.01em', color: '#fff',
-        }}>
-          DomyDomains
-        </span>
+        {/* Left: Brand + Desktop Nav */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
+          <span style={{
+            fontSize: '0.9rem', fontWeight: 700,
+            letterSpacing: '-0.01em', color: '#fff',
+          }}>
+            DomyDomains
+          </span>
+          
+          {/* Desktop Navigation Items */}
+          {isDesktop && (
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '24px',
+            }}>
+              <a href="/" style={{
+                fontSize: '0.85rem',
+                fontWeight: 500,
+                color: '#fff',
+                textDecoration: 'none',
+                padding: '8px 0',
+              }}>
+                Search
+              </a>
+              <a href="/extensions" style={{
+                fontSize: '0.85rem',
+                fontWeight: 500,
+                color: '#888',
+                textDecoration: 'none',
+                padding: '8px 0',
+              }}>
+                Extensions
+              </a>
+              <a href="/tools" style={{
+                fontSize: '0.85rem',
+                fontWeight: 500,
+                color: '#888',
+                textDecoration: 'none',
+                padding: '8px 0',
+              }}>
+                Tools
+              </a>
+            </div>
+          )}
+        </div>
+
+        {/* Right: Desktop Controls */}
+        {isDesktop && (
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+          }}>
+            <button style={{
+              background: 'transparent',
+              border: '1px solid #333',
+              color: '#888',
+              padding: '6px 8px',
+              borderRadius: '4px',
+              fontSize: '0.8rem',
+              cursor: 'pointer',
+            }}>
+              ☾
+            </button>
+            <button style={{
+              background: 'transparent',
+              border: '1px solid #333',
+              color: '#888',
+              padding: '6px 8px',
+              borderRadius: '4px',
+              fontSize: '0.8rem',
+              cursor: 'pointer',
+            }}>
+              ⚙
+            </button>
+          </div>
+        )}
       </nav>
 
       {/* Main */}
