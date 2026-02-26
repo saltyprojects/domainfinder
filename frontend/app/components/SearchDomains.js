@@ -243,7 +243,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
 
     // Calculate how many rows fit on screen (row=32px, primary=120px, nav=48px, searchbar=60px)
     const availableHeight = (window.visualViewport?.height || window.innerHeight) - 48 - 120 - 60;
-    const rowsOnScreen = Math.max(10, Math.ceil(availableHeight / 32));
+    const rowsOnScreen = Math.max(30, Math.ceil(availableHeight / 32));
 
     // Phase 1: enough TLDs to fill the visible screen
     fetch(`${API_BASE}/api/search/?q=${encodeURIComponent(trimmed)}&scope=all&limit=${rowsOnScreen}`, { signal: controller.signal })
