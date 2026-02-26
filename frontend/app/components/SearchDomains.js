@@ -38,31 +38,45 @@ function DomainRow({ result }) {
         </span>
       </div>
       {/* Split button */}
-      <div style={{
-        display: 'flex', alignItems: 'center',
-        background: '#1a1a1a',
-        borderRadius: '4px',
-        overflow: 'hidden',
-        height: '26px',
-        flexShrink: 0,
-      }}>
+      <div 
+        style={{
+          display: 'flex', alignItems: 'center',
+          background: '#1a1a1a',
+          borderRadius: '4px',
+          overflow: 'hidden',
+          height: '26px',
+          flexShrink: 0,
+          transition: 'all 0.2s ease',
+        }}
+        onMouseEnter={e => {
+          e.currentTarget.style.background = '#2a2a2a';
+          e.currentTarget.style.transform = 'scale(1.02)';
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.background = '#1a1a1a';
+          e.currentTarget.style.transform = 'scale(1)';
+        }}
+      >
         <span style={{
           padding: '0 8px',
           fontSize: '0.7rem', fontWeight: 600,
           color: available ? '#22c55e' : '#666',
           lineHeight: '26px',
+          transition: 'color 0.2s ease',
         }}>
           {available ? 'Continue' : 'Lookup'}
         </span>
         <div style={{
           width: '1px', height: '12px',
           background: '#333',
+          transition: 'background 0.2s ease',
         }} />
         <span style={{
           padding: '0 6px',
           fontSize: '0.6rem',
           color: '#444',
           lineHeight: '26px',
+          transition: 'color 0.2s ease',
         }}>▾</span>
       </div>
     </a>
@@ -206,7 +220,17 @@ export function SearchDomains({ onActiveChange }) {
           padding: '0',
           border: '1px solid #8b5cf6',
           boxShadow: '0 0 0 1px rgba(139, 92, 246, 0.2)',
-        }}>
+          transition: 'all 0.3s ease',
+        }}
+        onMouseEnter={e => {
+          e.currentTarget.style.boxShadow = '0 0 0 2px rgba(139, 92, 246, 0.3), 0 4px 20px rgba(139, 92, 246, 0.15)';
+          e.currentTarget.style.transform = 'translateY(-2px)';
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.boxShadow = '0 0 0 1px rgba(139, 92, 246, 0.2)';
+          e.currentTarget.style.transform = 'translateY(0)';
+        }}
+        >
           <input
             ref={inputRef}
             type="text"
@@ -224,6 +248,14 @@ export function SearchDomains({ onActiveChange }) {
               outline: 'none',
               boxSizing: 'border-box',
               borderRadius: '16px 16px 0 0',
+              transition: 'all 0.2s ease',
+            }}
+            onFocus={e => {
+              activateSearch();
+              e.currentTarget.style.background = 'rgba(139, 92, 246, 0.05)';
+            }}
+            onBlur={e => {
+              e.currentTarget.style.background = 'transparent';
             }}
           />
           
@@ -248,10 +280,14 @@ export function SearchDomains({ onActiveChange }) {
                 fontSize: '0.85rem',
                 fontWeight: 500,
                 cursor: 'pointer',
-                padding: '4px 0',
+                padding: '4px 8px',
+                borderRadius: '6px',
+                transition: 'all 0.2s ease',
               }}
+              onMouseEnter={e => e.currentTarget.style.background = activeTab === 'search' ? 'rgba(139, 92, 246, 0.15)' : 'rgba(255, 255, 255, 0.05)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'none'}
             >
-              <span style={{ fontSize: '1rem' }}>🔍</span>
+              <span style={{ fontSize: '1rem', transition: 'transform 0.15s ease' }}>🔍</span>
               Search
             </button>
             
@@ -268,10 +304,14 @@ export function SearchDomains({ onActiveChange }) {
                 fontSize: '0.85rem',
                 fontWeight: 500,
                 cursor: 'pointer',
-                padding: '4px 0',
+                padding: '4px 8px',
+                borderRadius: '6px',
+                transition: 'all 0.2s ease',
               }}
+              onMouseEnter={e => e.currentTarget.style.background = activeTab === 'extensions' ? 'rgba(34, 197, 94, 0.15)' : 'rgba(255, 255, 255, 0.05)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'none'}
             >
-              <span style={{ fontSize: '1rem' }}>🧩</span>
+              <span style={{ fontSize: '1rem', transition: 'transform 0.15s ease' }}>🧩</span>
               Extensions
             </button>
             
@@ -288,10 +328,14 @@ export function SearchDomains({ onActiveChange }) {
                 fontSize: '0.85rem',
                 fontWeight: 500,
                 cursor: 'pointer',
-                padding: '4px 0',
+                padding: '4px 8px',
+                borderRadius: '6px',
+                transition: 'all 0.2s ease',
               }}
+              onMouseEnter={e => e.currentTarget.style.background = activeTab === 'generator' ? 'rgba(249, 115, 22, 0.15)' : 'rgba(255, 255, 255, 0.05)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'none'}
             >
-              <span style={{ fontSize: '1rem' }}>⚡</span>
+              <span style={{ fontSize: '1rem', transition: 'transform 0.15s ease' }}>⚡</span>
               Generator
             </button>
             
@@ -308,10 +352,14 @@ export function SearchDomains({ onActiveChange }) {
                 fontSize: '0.85rem',
                 fontWeight: 500,
                 cursor: 'pointer',
-                padding: '4px 0',
+                padding: '4px 8px',
+                borderRadius: '6px',
+                transition: 'all 0.2s ease',
               }}
+              onMouseEnter={e => e.currentTarget.style.background = activeTab === 'premium' ? 'rgba(59, 130, 246, 0.15)' : 'rgba(255, 255, 255, 0.05)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'none'}
             >
-              <span style={{ fontSize: '1rem' }}>💎</span>
+              <span style={{ fontSize: '1rem', transition: 'transform 0.15s ease' }}>💎</span>
               Premium
             </button>
           </div>
@@ -365,6 +413,18 @@ export function SearchDomains({ onActiveChange }) {
                   background: primary.available ? '#22c55e' : '#dc2626',
                   color: primary.available ? '#000' : '#fff',
                   minHeight: '34px', boxSizing: 'border-box',
+                  transition: 'all 0.2s ease',
+                  transform: 'translateY(0)',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-1px)';
+                  e.currentTarget.style.boxShadow = primary.available 
+                    ? '0 4px 12px rgba(34, 197, 94, 0.4)' 
+                    : '0 4px 12px rgba(220, 38, 38, 0.4)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'none';
                 }}
               >
                 {primary.available ? 'Continue' : 'Lookup'} →
@@ -380,6 +440,17 @@ export function SearchDomains({ onActiveChange }) {
                   textDecoration: 'none',
                   background: '#1a1a1a', border: '1px solid #2a2a2a',
                   minHeight: '34px', boxSizing: 'border-box',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.background = '#2a2a2a';
+                  e.currentTarget.style.borderColor = '#404040';
+                  e.currentTarget.style.color = '#ccc';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.background = '#1a1a1a';
+                  e.currentTarget.style.borderColor = '#2a2a2a';
+                  e.currentTarget.style.color = '#999';
                 }}
               >
                 Namecheap →
@@ -465,6 +536,7 @@ export function SearchDomains({ onActiveChange }) {
           borderRadius: '10px',
           border: '1px solid #222',
           padding: '0 4px',
+          transition: 'all 0.2s ease',
         }}>
           <input
             ref={bottomInputRef}
@@ -481,17 +553,42 @@ export function SearchDomains({ onActiveChange }) {
               color: '#fff',
               outline: 'none',
               boxSizing: 'border-box',
+              transition: 'all 0.2s ease',
             }}
             onKeyDown={(e) => { if (e.key === 'Escape') clear(); }}
+            onFocus={e => {
+              e.currentTarget.style.background = 'rgba(139, 92, 246, 0.05)';
+              e.currentTarget.parentElement.style.borderColor = '#8b5cf6';
+              e.currentTarget.parentElement.style.boxShadow = '0 0 0 1px rgba(139, 92, 246, 0.2)';
+            }}
+            onBlur={e => {
+              e.currentTarget.style.background = 'transparent';
+              e.currentTarget.parentElement.style.borderColor = '#222';
+              e.currentTarget.parentElement.style.boxShadow = 'none';
+            }}
           />
-          <button onClick={clear} style={{
-            background: '#2a2a2a', border: 'none', color: '#888',
-            width: '28px', height: '28px', borderRadius: '6px',
-            cursor: 'pointer',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontSize: '0.75rem', minHeight: 'auto', minWidth: 'auto',
-            flexShrink: 0,
-          }}>✕</button>
+          <button 
+            onClick={clear} 
+            style={{
+              background: '#2a2a2a', border: 'none', color: '#888',
+              width: '28px', height: '28px', borderRadius: '6px',
+              cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '0.75rem', minHeight: 'auto', minWidth: 'auto',
+              flexShrink: 0,
+              transition: 'all 0.2s ease',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = '#3a3a3a';
+              e.currentTarget.style.color = '#fff';
+              e.currentTarget.style.transform = 'scale(1.1)';
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = '#2a2a2a';
+              e.currentTarget.style.color = '#888';
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+          >✕</button>
         </div>
       </div>
     </div>
