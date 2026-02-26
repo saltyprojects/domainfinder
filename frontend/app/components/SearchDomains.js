@@ -222,7 +222,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
   const [progress, setProgress] = useState({ done: 0, total: 0 });
   // activeTab controlled by parent props
   const [isMultiColumn, setIsMultiColumn] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(20);
+  const [visibleCount, setVisibleCount] = useState(50);
   const inputRef = useRef(null);
   const bottomInputRef = useRef(null);
   const sentinelRef = useRef(null);
@@ -260,7 +260,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
     if (eventSourceRef.current) eventSourceRef.current.close();
     setLoading(true);
     setResults([]);
-    setVisibleCount(20);
+    setVisibleCount(50);
     setProgress({ done: 0, total: 0 });
 
     // Phase 1: fast popular TLDs, then Phase 2: all remaining TLDs
