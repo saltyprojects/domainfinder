@@ -153,41 +153,30 @@ export function AppShell({ children, hideFooter = false, searchActive = false, a
             <img src="/domy-mascot.png" alt="Domy" style={{ width: '26px', height: '26px', borderRadius: '50%' }} />
             {isDesktop && 'DomyDomains'}
           </a>
-          {searchActive && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: isDesktop ? '20px' : '2px', marginLeft: isDesktop ? '0' : '8px' }}>
-              {[
-                { label: 'Search', mobileLabel: 'Search', icon: '🔍', id: 'search' },
-                { label: 'Extensions', mobileLabel: 'Ext', icon: '🧩', id: 'extensions' },
-                { label: 'Generator', mobileLabel: 'Gen', icon: '⚡', id: 'generator' },
-                { label: 'Aftermarket', mobileLabel: 'Market', icon: '💎', id: 'aftermarket' },
-              ].map(tab => (
-                <button key={tab.id} onClick={() => onTabChange?.(tab.id)} style={{
-                  display: 'flex', alignItems: 'center', gap: '3px',
-                  fontSize: isDesktop ? '0.82rem' : '0.65rem',
-                  fontWeight: 500,
-                  color: activeTab === tab.id ? '#fff' : '#666',
-                  background: 'none', border: 'none', cursor: 'pointer',
-                  padding: isDesktop ? '6px 8px' : '6px 4px',
-                  borderBottom: activeTab === tab.id ? '2px solid #8b5cf6' : '2px solid transparent',
-                  whiteSpace: 'nowrap',
-                }}>
-                  <span style={{ fontSize: isDesktop ? '0.85rem' : '0.65rem' }}>{tab.icon}</span>
-                  {isDesktop ? tab.label : tab.mobileLabel}
-                </button>
-              ))}
-            </div>
-          )}
-          {!searchActive && isDesktop && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-              <a href="/" style={{ fontSize: '0.82rem', fontWeight: 500, color: '#fff', textDecoration: 'none' }}>Search</a>
-              <a href="/extensions" style={{ fontSize: '0.82rem', fontWeight: 500, color: '#666', textDecoration: 'none' }}>Extensions</a>
-              <a href="/tools" style={{ fontSize: '0.82rem', fontWeight: 500, color: '#666', textDecoration: 'none' }}>Tools</a>
-            </div>
-          )}
-        </div>
-        {/* Right: theme toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-          <button style={{ background: 'transparent', border: 'none', color: '#666', padding: '4px', fontSize: '1rem', cursor: 'pointer' }}>☾</button>
+          {/* Tabs — always visible */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0', marginLeft: isDesktop ? '0' : '4px', flex: 1 }}>
+            {[
+              { label: 'Search', icon: '🔍', id: 'search' },
+              { label: 'Extensions', icon: '🧩', id: 'extensions' },
+              { label: 'Generator', icon: '⚡', id: 'generator' },
+              { label: 'Premium', icon: '💎', id: 'aftermarket' },
+            ].map(tab => (
+              <button key={tab.id} onClick={() => onTabChange?.(tab.id)} style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
+                fontSize: isDesktop ? '0.8rem' : 'clamp(0.62rem, 1.8vw, 0.72rem)',
+                fontWeight: 500,
+                color: activeTab === tab.id ? '#fff' : '#666',
+                background: 'none', border: 'none', cursor: 'pointer',
+                padding: isDesktop ? '6px 12px' : '6px 4px',
+                borderBottom: activeTab === tab.id ? '2px solid #8b5cf6' : '2px solid transparent',
+                whiteSpace: 'nowrap',
+                flex: isDesktop ? 'none' : 1,
+              }}>
+                <span style={{ fontSize: isDesktop ? '0.82rem' : '0.7rem' }}>{tab.icon}</span>
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
       </nav>
 
