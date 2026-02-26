@@ -83,13 +83,144 @@ function DomainRow({ result }) {
   );
 }
 
-export function SearchDomains({ onActiveChange }) {
+// Extensions View — colored TLD cards grouped by category
+function ExtensionsView({ results, isMultiColumn }) {
+  const categories = {
+    'Popular': ['com','net','org','io','ai','dev','app','co','xyz','me','tech','info','biz','cloud','gg','cc','tv'],
+    'Business': ['company','business','agency','solutions','services','consulting','ventures','enterprise','partners','inc','ltd','corp'],
+    'Tech': ['dev','app','tech','cloud','code','software','systems','digital','network'],
+    'Creative': ['design','studio','media','art','photography','film','music','video'],
+    'Commerce': ['store','shop','market','buy','sale','boutique','luxury','deals'],
+  };
+  const map = {};
+  results.forEach(r => { map[r.tld] = r; });
+
+  return (
+    <div style={{ padding: '4px 0' }}>
+      {Object.entries(categories).map(([cat, tlds]) => {
+        const items = tlds.map(t => map[t]).filter(Boolean);
+        if (!items.length) return null;
+        return (
+          <div key={cat} style={{ marginBottom: '20px' }}>
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'baseline', marginBottom: '8px' }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#fff' }}>{cat}</span>
+              <span style={{ fontSize: '0.7rem', color: '#666' }}>{items.filter(r => !r.available).length} taken</span>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: isMultiColumn ? 'repeat(3, 1fr)' : 'repeat(2, 1fr)', gap: '6px' }}>
+              {items.map(r => (
+                <a key={r.tld} href={`https://www.namecheap.com/domains/registration/results/?domain=${r.full_domain}`}
+                  target="_blank" rel="noopener noreferrer"
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    padding: '8px', borderRadius: '8px', textDecoration: 'none',
+                    fontSize: '0.78rem', fontWeight: 600,
+                    background: r.available ? 'rgba(34,197,94,0.12)' : 'rgba(239,68,68,0.12)',
+                    color: r.available ? '#22c55e' : '#ef4444',
+                    border: `1px solid ${r.available ? 'rgba(34,197,94,0.25)' : 'rgba(239,68,68,0.25)'}`,
+                  }}>.{r.tld}</a>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+// Generator View — name variations
+function GeneratorView({ query, isMultiColumn }) {
+  const [shown, setShown] = useState(15);
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setShown(s => s + 15); }, { threshold: 0 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  });
+
+  if (!query || query.length < 2) return null;
+  const prefixes = ['try','go','use','join','hey','meet','get','my','the','pro','new','web','re'];
+  const suffixes = ['hq','tech','studio','site','shop','team','labs','hub','group','cloud','design','media','app','dev','zone'];
+  const suggestions = [...prefixes.map(p => `${p}${query}.com`), ...suffixes.map(s => `${query}${s}.com`)];
+
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: isMultiColumn ? 'repeat(3,1fr)' : '1fr', gap: '2px' }}>
+      {suggestions.slice(0, shown).map(d => (
+        <a key={d} href={`https://www.namecheap.com/domains/registration/results/?domain=${d}`}
+          target="_blank" rel="noopener noreferrer"
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 12px', height: '36px', borderRadius: '4px', textDecoration: 'none' }}
+          onMouseEnter={e => e.currentTarget.style.background = '#141414'}
+          onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22c55e' }} />
+            <span style={{ fontSize: '0.85rem', color: '#e5e5e5' }}>{d}</span>
+          </div>
+          <div style={{ background: '#1a1a1a', borderRadius: '4px', height: '24px', display: 'flex', alignItems: 'center' }}>
+            <span style={{ padding: '0 8px', fontSize: '0.7rem', fontWeight: 600, color: '#22c55e' }}>Continue</span>
+            <span style={{ padding: '0 4px', fontSize: '0.55rem', color: '#444' }}>▾</span>
+          </div>
+        </a>
+      ))}
+      {suggestions.length > shown && <div ref={ref} style={{ height: '1px' }} />}
+    </div>
+  );
+}
+
+// Aftermarket View — premium domains with prices
+function AftermarketView({ query, isMultiColumn }) {
+  const [shown, setShown] = useState(10);
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setShown(s => s + 10); }, { threshold: 0 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  });
+
+  if (!query || query.length < 2) return null;
+  const aftermarket = [
+    { domain: `${query}pro.com`, price: '$2,500' }, { domain: `get${query}.com`, price: '$4,995' },
+    { domain: `${query}hub.com`, price: '$1,200' }, { domain: `the${query}.com`, price: '$12,095' },
+    { domain: `${query}cloud.com`, price: '$3,200' }, { domain: `smart${query}.com`, price: '$2,388' },
+    { domain: `${query}ai.com`, price: '$8,999' }, { domain: `${query}tech.com`, price: 'Make offer' },
+    { domain: `${query}data.com`, price: '$700' }, { domain: `${query}safe.com`, price: '$149' },
+    { domain: `cyber${query}.com`, price: '$500,000' }, { domain: `${query}labs.com`, price: '$995' },
+    { domain: `${query}digital.com`, price: '$4,095' }, { domain: `${query}group.com`, price: 'Make offer' },
+    { domain: `${query}zone.com`, price: '$950' },
+  ];
+
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: isMultiColumn ? 'repeat(3,1fr)' : '1fr', gap: '2px' }}>
+      {aftermarket.slice(0, shown).map(item => (
+        <a key={item.domain} href={`https://www.namecheap.com/domains/registration/results/?domain=${item.domain}`}
+          target="_blank" rel="noopener noreferrer"
+          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 12px', height: '36px', borderRadius: '4px', textDecoration: 'none' }}
+          onMouseEnter={e => e.currentTarget.style.background = '#141414'}
+          onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#3b82f6' }} />
+            <span style={{ fontSize: '0.85rem', color: '#e5e5e5' }}>{item.domain}</span>
+          </div>
+          <div style={{ background: '#1a1a1a', borderRadius: '4px', height: '24px', display: 'flex', alignItems: 'center' }}>
+            <span style={{ padding: '0 8px', fontSize: '0.7rem', fontWeight: 600, color: '#3b82f6' }}>{item.price}</span>
+            <span style={{ padding: '0 4px', fontSize: '0.55rem', color: '#444' }}>▾</span>
+          </div>
+        </a>
+      ))}
+      {aftermarket.length > shown && <div ref={ref} style={{ height: '1px' }} />}
+    </div>
+  );
+}
+
+export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChange }) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(false);
   const [progress, setProgress] = useState({ done: 0, total: 0 });
-  const [activeTab, setActiveTab] = useState('search');
+  // activeTab controlled by parent props
   const [isMultiColumn, setIsMultiColumn] = useState(false);
   const [visibleCount, setVisibleCount] = useState(20);
   const inputRef = useRef(null);
@@ -608,10 +739,24 @@ export function SearchDomains({ onActiveChange }) {
           </div>
         )}
 
-        {/* Results grid: responsive layout */}
-        {results.length > 0 && !loading && (
+        {/* Extensions tab */}
+        {results.length > 0 && !loading && activeTab === 'extensions' && (
+          <ExtensionsView results={results} isMultiColumn={isMultiColumn} />
+        )}
+
+        {/* Generator tab */}
+        {!loading && activeTab === 'generator' && query.length >= 2 && (
+          <GeneratorView query={query} isMultiColumn={isMultiColumn} />
+        )}
+
+        {/* Aftermarket tab */}
+        {!loading && activeTab === 'aftermarket' && query.length >= 2 && (
+          <AftermarketView query={query} isMultiColumn={isMultiColumn} />
+        )}
+
+        {/* Search tab — results grid */}
+        {results.length > 0 && !loading && activeTab === 'search' && (
           <>
-            {/* Multi-column grid (tablet 768px+ and desktop) */}
             <div style={{
               display: isMultiColumn ? 'grid' : 'block',
               gridTemplateColumns: isMultiColumn ? '1fr 1fr' : '1fr',
@@ -767,8 +912,8 @@ export function SearchDomains({ onActiveChange }) {
           </div>
         )}
 
-        {/* Empty state — show useful content instead of void */}
-        {!loading && results.length === 0 && (
+        {/* Empty state — only on search tab */}
+        {!loading && results.length === 0 && activeTab === 'search' && (
           <div style={{ padding: '8px 0' }}>
             <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#888', marginBottom: '12px' }}>
               Popular extensions

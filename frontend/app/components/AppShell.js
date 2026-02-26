@@ -71,7 +71,7 @@ function Footer({ isDesktop }) {
   );
 }
 
-export function AppShell({ children, hideFooter = false, searchActive = false }) {
+export function AppShell({ children, hideFooter = false, searchActive = false, activeTab = 'search', onTabChange }) {
   const [layoutStyle, setLayoutStyle] = useState({ height: '100dvh' });
   const [isDesktop, setIsDesktop] = useState(false);
 
@@ -156,24 +156,24 @@ export function AppShell({ children, hideFooter = false, searchActive = false })
           {searchActive && (
             <div style={{ display: 'flex', alignItems: 'center', gap: isDesktop ? '20px' : '2px', marginLeft: isDesktop ? '0' : '8px' }}>
               {[
-                { label: 'Search', icon: '🔍', href: '/', active: true },
-                { label: 'Extensions', icon: '🧩', href: '/extensions', active: false },
-                { label: 'Generator', icon: '⚡', href: '/generator', active: false },
-                { label: 'Aftermarket', icon: '💎', href: '/aftermarket', active: false },
+                { label: 'Search', mobileLabel: 'Search', icon: '🔍', id: 'search' },
+                { label: 'Extensions', mobileLabel: 'Ext', icon: '🧩', id: 'extensions' },
+                { label: 'Generator', mobileLabel: 'Gen', icon: '⚡', id: 'generator' },
+                { label: 'Aftermarket', mobileLabel: 'Market', icon: '💎', id: 'aftermarket' },
               ].map(tab => (
-                <a key={tab.label} href={tab.href} style={{
+                <button key={tab.id} onClick={() => onTabChange?.(tab.id)} style={{
                   display: 'flex', alignItems: 'center', gap: '3px',
-                  fontSize: isDesktop ? '0.82rem' : '0.7rem',
+                  fontSize: isDesktop ? '0.82rem' : '0.65rem',
                   fontWeight: 500,
-                  color: tab.active ? '#fff' : '#666',
-                  textDecoration: 'none',
+                  color: activeTab === tab.id ? '#fff' : '#666',
+                  background: 'none', border: 'none', cursor: 'pointer',
                   padding: isDesktop ? '6px 8px' : '6px 4px',
-                  borderBottom: tab.active ? '2px solid #8b5cf6' : '2px solid transparent',
+                  borderBottom: activeTab === tab.id ? '2px solid #8b5cf6' : '2px solid transparent',
                   whiteSpace: 'nowrap',
                 }}>
-                  <span style={{ fontSize: isDesktop ? '0.85rem' : '0.7rem' }}>{tab.icon}</span>
-                  {tab.label}
-                </a>
+                  <span style={{ fontSize: isDesktop ? '0.85rem' : '0.65rem' }}>{tab.icon}</span>
+                  {isDesktop ? tab.label : tab.mobileLabel}
+                </button>
               ))}
             </div>
           )}
