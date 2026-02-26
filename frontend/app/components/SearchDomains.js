@@ -206,7 +206,10 @@ function AftermarketView({ query, isMultiColumn, columns = 1 }) {
 }
 
 export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChange }) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(() => {
+    if (typeof window !== 'undefined') return new URLSearchParams(window.location.search).get('q') || '';
+    return '';
+  });
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -235,12 +238,27 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
 
   const abortRef = useRef(null);
 
+  // Auto-search if ?q= present on load
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search).get('q');
+    if (q && q.trim().length >= 2) {
+      setActive(true);
+      onActiveChange?.(true);
+      doSearch(q);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const doSearch = (q) => {
     const trimmed = q.trim().toLowerCase().split('.')[0];
     if (!trimmed || trimmed.length < 2) {
       setResults([]);
       return;
     }
+
+    // Update URL
+    const url = new URL(window.location);
+    url.searchParams.set('q', trimmed);
+    window.history.replaceState({}, '', url);
 
     if (abortRef.current) abortRef.current.abort();
     const controller = new AbortController();
@@ -303,6 +321,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
     setActive(false);
     onActiveChange?.(false);
     if (abortRef.current) abortRef.current.abort();
+    window.history.replaceState({}, '', window.location.pathname);
   };
 
   const tldOrder = ['com','net','org','io','dev','ai','app','co','me','xyz','tech','info','biz','cloud','design','blog','shop','site','store','online'];
@@ -590,10 +609,41 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
       <div data-scrollable style={{
         flex: 1,
         overflowY: 'auto',
-        padding: '8px 16px 6px',
+        padding: '0',
         WebkitOverflowScrolling: 'touch',
         touchAction: 'pan-y',
       }}>
+        {/* Sticky search bar — desktop only */}
+        {isMultiColumn && (
+          <div style={{
+            position: 'sticky', top: 0, zIndex: 5,
+            background: '#000', padding: '8px 20px',
+            borderBottom: '1px solid #1e1e1e',
+          }}>
+            <div style={{
+              display: 'flex', alignItems: 'center',
+              background: '#141414', borderRadius: '10px',
+              border: '1px solid #222', padding: '0 4px',
+              maxWidth: '560px',
+            }}>
+              <input type="text" value={query} onChange={handleChange}
+                placeholder="Search domains..." style={{
+                  flex: 1, padding: '10px 12px', fontSize: '0.95rem',
+                  background: 'transparent', border: 'none', color: '#fff', outline: 'none',
+                }}
+                onKeyDown={e => { if (e.key === 'Escape') clear(); }}
+              />
+              <button onClick={clear} style={{
+                background: '#2a2a2a', border: 'none', color: '#888',
+                width: '28px', height: '28px', borderRadius: '6px', cursor: 'pointer',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: '0.75rem', flexShrink: 0,
+              }}>✕</button>
+            </div>
+          </div>
+        )}
+
+        <div style={{ padding: '8px 16px 6px' }}>
         {/* Primary result — large domain in status color */}
         {primary && (
           <div style={{ marginBottom: '8px' }}>
@@ -935,14 +985,16 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
             ))}
           </div>
         )}
+        </div>{/* close padding wrapper */}
       </div>
 
-      {/* Bottom search bar */}
+      {/* Bottom search bar — mobile only */}
       <div style={{
         padding: '8px 12px',
         paddingBottom: 'max(8px, env(safe-area-inset-bottom))',
         borderTop: '1px solid #1e1e1e',
         background: '#000',
+        display: isMultiColumn ? 'none' : 'block',
         flexShrink: 0,
       }}>
         <div style={{
