@@ -125,3 +125,7 @@ input, textarea, select {
     min-width: 44px;
   }
 }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

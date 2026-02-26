@@ -209,6 +209,8 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [totalLoaded, setTotalLoaded] = useState(0);
   const [active, setActive] = useState(false);
   const [isMultiColumn, setIsMultiColumn] = useState(false);
   const [columns, setColumns] = useState(1); // 1=mobile, 2=tablet, 3=desktop, 4=wide
@@ -250,8 +252,10 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
     const BATCH = 30;
     let offset = 0;
     let allResults = [];
+    setTotalLoaded(0);
 
     const loadBatch = () => {
+      if (offset > 0) setLoadingMore(true);
       fetch(`${API_BASE}/api/search/?q=${encodeURIComponent(trimmed)}&scope=all&limit=${BATCH}&offset=${offset}`, { signal: controller.signal })
         .then(r => r.json())
         .then(data => {
@@ -259,15 +263,19 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           const batch = data.results || [];
           allResults = [...allResults, ...batch];
           setResults([...allResults]);
+          setTotalLoaded(allResults.length);
           setLoading(false);
 
-          // If we got a full batch, load more in background
           if (batch.length === BATCH) {
             offset += BATCH;
             loadBatch();
+          } else {
+            setLoadingMore(false);
           }
         })
-        .catch(() => { if (!controller.signal.aborted) setLoading(false); });
+        .catch(() => {
+          if (!controller.signal.aborted) { setLoading(false); setLoadingMore(false); }
+        });
     };
 
     loadBatch();
@@ -573,7 +581,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
       display: 'flex',
       flexDirection: 'column',
       width: '100%',
-      maxWidth: '960px',
+      maxWidth: '100%',
       flex: 1,
       minHeight: 0,
       boxSizing: 'border-box',
@@ -811,6 +819,17 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
               )}
             </div>
           </>
+        )}
+
+        {/* Batch loading indicator */}
+        {loadingMore && (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '12px 0' }}>
+            <div style={{
+              width: '16px', height: '16px', border: '2px solid #333', borderTopColor: '#8b5cf6',
+              borderRadius: '50%', animation: 'spin 0.8s linear infinite',
+            }} />
+            <span style={{ fontSize: '0.78rem', color: '#888' }}>Loading more extensions... ({totalLoaded} loaded)</span>
+          </div>
         )}
 
         {/* Loading skeleton */}
