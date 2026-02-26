@@ -191,6 +191,58 @@ export function SearchDomains({ onActiveChange }) {
         padding: 'clamp(20px, 4vh, 40px) 24px clamp(20px, 4vh, 40px)',
         boxSizing: 'border-box',
       }}>
+        {/* Promotional banner matching IDS style */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '12px',
+          background: 'rgba(34, 197, 94, 0.1)',
+          border: '1px solid rgba(34, 197, 94, 0.3)',
+          borderRadius: '24px',
+          padding: '8px 16px',
+          marginBottom: '24px',
+          fontSize: 'clamp(0.75rem, 2vw, 0.85rem)',
+          fontWeight: 500,
+          color: '#22c55e',
+          transition: 'all 0.3s ease',
+          cursor: 'pointer',
+        }}
+        onMouseEnter={e => {
+          e.currentTarget.style.background = 'rgba(34, 197, 94, 0.15)';
+          e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.5)';
+          e.currentTarget.style.transform = 'translateY(-1px)';
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.background = 'rgba(34, 197, 94, 0.1)';
+          e.currentTarget.style.borderColor = 'rgba(34, 197, 94, 0.3)';
+          e.currentTarget.style.transform = 'translateY(0)';
+        }}
+        >
+          <div style={{
+            width: '8px',
+            height: '8px',
+            borderRadius: '50%',
+            background: '#22c55e',
+            flexShrink: 0,
+          }} />
+          <span>We now support 400+ TLDs</span>
+          <span style={{ 
+            color: '#22c55e', 
+            fontWeight: 700,
+            background: 'rgba(34, 197, 94, 0.2)',
+            padding: '2px 8px',
+            borderRadius: '12px',
+            fontSize: '0.7rem',
+          }}>
+            .new
+          </span>
+          <span style={{ 
+            fontSize: '0.8rem', 
+            color: '#666',
+            transition: 'color 0.2s ease',
+          }}>›</span>
+        </div>
+
         <h1 style={{
           fontSize: 'clamp(1.6rem, 5.5vw, 2.4rem)',
           fontWeight: 800,
