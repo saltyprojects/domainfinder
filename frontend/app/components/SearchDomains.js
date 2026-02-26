@@ -852,7 +852,15 @@ export function SearchDomains({ onActiveChange }) {
         {loading && results.length === 0 && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '8px' }}>
             {[...Array(10)].map((_, i) => (
-              <div key={i} className="skeleton" style={{ height: '48px', borderRadius: '8px' }} />
+              <div 
+                key={i} 
+                className="skeleton" 
+                style={{ 
+                  height: '48px',
+                  opacity: 0,
+                  animation: `shimmer 1.5s ease-in-out infinite, fadeIn 0.3s ease-out ${i * 0.05}s forwards`
+                }} 
+              />
             ))}
           </div>
         )}
