@@ -123,13 +123,13 @@ DOMAIN_TLDS = [
     # Web
     'site', 'online', 'website', 'page', 'web',
     # Commerce
-    'store', 'shop', 'market', 'buy', 'sale',
+    'store', 'shop', 'market', 'buy', 'sale', 'deals', 'discount',
     # Modern
-    'xyz', 'gg', 'lol', 'wtf', 'cool', 'fun',
+    'xyz', 'gg', 'lol', 'wtf', 'cool', 'fun', 'vip', 'club', 'one', 'top', 'best', 'new',
     # Blog/Content
     'blog', 'news', 'live', 'tv', 'video',
     # Professional
     'pro', 'expert', 'guru', 'academy', 'institute',
     # Startup
-    'startup', 'inc', 'ltd', 'group', 'team',
+    'startup', 'inc', 'ltd', 'group', 'team', 'labs', 'works',
 ]
