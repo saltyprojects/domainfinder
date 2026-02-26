@@ -48,7 +48,19 @@ class DomainSearchViewSet(viewsets.ViewSet):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        results = search_domains(query)
+        scope = request.query_params.get('scope', 'all')
+        limit = request.query_params.get('limit')
+        if scope == 'popular':
+            tlds = settings.POPULAR_TLDS
+        else:
+            tlds = settings.DOMAIN_TLDS
+        if limit:
+            try:
+                tlds = tlds[:int(limit)]
+            except (ValueError, TypeError):
+                pass
+
+        results = search_domains(query, tlds=tlds)
         output = DomainResultSerializer(results, many=True)
         return Response({
             'query': query,

@@ -137,9 +137,10 @@ def check_domain_availability(name: str, tld: str) -> dict:
     return check_domain_dns(name, tld)
 
 
-def search_domains(name: str) -> list[dict]:
-    """Check availability across all configured TLDs concurrently."""
-    tlds = settings.DOMAIN_TLDS
+def search_domains(name: str, tlds=None) -> list[dict]:
+    """Check availability across TLDs concurrently."""
+    if tlds is None:
+        tlds = settings.DOMAIN_TLDS
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
         futures = {
