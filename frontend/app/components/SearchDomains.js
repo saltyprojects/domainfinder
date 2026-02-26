@@ -16,7 +16,7 @@ function DomainRow({ result }) {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 12px',
-        height: '32px',
+        height: '38px',
         borderRadius: '4px',
         textDecoration: 'none',
         transition: 'background 0.12s',
@@ -31,7 +31,7 @@ function DomainRow({ result }) {
           flexShrink: 0,
         }} />
         <span style={{
-          fontSize: '0.9rem', fontWeight: 450,
+          fontSize: '1rem', fontWeight: 450,
           color: '#e5e5e5',
         }}>
           {full_domain}
@@ -206,7 +206,12 @@ function AftermarketView({ query, isMultiColumn, columns = 1 }) {
 }
 
 export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChange }) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return new URLSearchParams(window.location.search).get('q') || '';
+    }
+    return '';
+  });
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -235,12 +240,27 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
 
   const abortRef = useRef(null);
 
+  // Auto-search on mount if ?q= present
+  useEffect(() => {
+    const initialQ = new URLSearchParams(window.location.search).get('q');
+    if (initialQ && initialQ.trim().length >= 2) {
+      setActive(true);
+      onActiveChange?.(true);
+      doSearch(initialQ);
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   const doSearch = (q) => {
     const trimmed = q.trim().toLowerCase().split('.')[0];
     if (!trimmed || trimmed.length < 2) {
       setResults([]);
       return;
     }
+
+    // Update URL
+    const url = new URL(window.location);
+    url.searchParams.set('q', trimmed);
+    window.history.replaceState({}, '', url);
 
     if (abortRef.current) abortRef.current.abort();
     const controller = new AbortController();
@@ -303,6 +323,9 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
     setActive(false);
     onActiveChange?.(false);
     if (abortRef.current) abortRef.current.abort();
+    const url = new URL(window.location);
+    url.searchParams.delete('q');
+    window.history.replaceState({}, '', url);
   };
 
   const tldOrder = ['com','net','org','io','dev','ai','app','co','me','xyz','tech','info','biz','cloud','design','blog','shop','site','store','online'];
@@ -721,7 +744,12 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                   gap: columns > 1 ? '0 16px' : '0',
                   margin: columns > 1 ? '0' : '0 -12px',
                 }}>
-                  {rest.map(r => <DomainRow key={r.full_domain} result={r} />)}
+                  {rest.slice(0, 20).map(r => <DomainRow key={r.full_domain} result={r} />)}
+                  {rest.length > 20 && (
+                    <div style={{ padding: '6px 12px', fontSize: '0.75rem', color: '#666' }}>
+                      +{rest.length - 20} more — switch to Extensions tab to see all
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -755,7 +783,12 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                       { domain: `${query}pro.net`, price: '$850' },
                       { domain: `get${query}.com`, price: '$3,200' },
                       { domain: `${query}zone.com`, price: '$950' },
-                    ].filter(d => query && query.length > 1).map((premium, idx) => (
+                      { domain: `the${query}.com`, price: '$8,999' },
+                      { domain: `${query}app.io`, price: '$1,500' },
+                      { domain: `my${query}.com`, price: '$4,200' },
+                      { domain: `${query}labs.com`, price: 'Make offer' },
+                      { domain: `${query}digital.com`, price: '$2,100' },
+                    ].filter(d => query && query.length > 1).slice(0, 10).map((premium, idx) => (
                       <a
                         key={idx}
                         href={`${REGISTRAR_URL}${encodeURIComponent(premium.domain)}`}
