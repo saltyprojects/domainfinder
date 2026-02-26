@@ -830,7 +830,61 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           </div>
         )}
 
-        {/* Empty state — only on search tab */}
+        {/* Empty state — extensions tab */}
+        {!loading && results.length === 0 && activeTab === 'extensions' && (
+          <div style={{ padding: '16px 0' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>Browse 400+ domain extensions</h3>
+            <p style={{ fontSize: '0.85rem', color: '#999', lineHeight: 1.5, marginBottom: '16px' }}>
+              Type a name above to see availability across every TLD — from .com and .net to .ai, .dev, .shop, and hundreds more.
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+              {['.com','.net','.org','.io','.ai','.dev','.app','.co','.xyz','.tech','.shop','.site','.cloud','.design','.store','.online','.gg','.me','.tv','.info'].map(tld => (
+                <span key={tld} style={{ padding: '6px 12px', borderRadius: '8px', fontSize: '0.78rem', fontWeight: 600, background: 'rgba(34,197,94,0.1)', color: '#22c55e', border: '1px solid rgba(34,197,94,0.2)' }}>{tld}</span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Empty state — generator tab */}
+        {!loading && results.length === 0 && activeTab === 'generator' && (
+          <div style={{ padding: '16px 0' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>Generate domain name ideas</h3>
+            <p style={{ fontSize: '0.85rem', color: '#999', lineHeight: 1.5, marginBottom: '16px' }}>
+              Enter a keyword and we'll generate creative variations — prefixes like try, get, my and suffixes like hq, hub, labs, pro.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              {['trycloud.com', 'getcloud.com', 'cloudhq.com', 'cloudlabs.com', 'mycloudapp.com'].map(d => (
+                <div key={d} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px', borderRadius: '6px', background: '#111' }}>
+                  <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22c55e' }} />
+                  <span style={{ fontSize: '0.85rem', color: '#ccc' }}>{d}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Empty state — aftermarket/premium tab */}
+        {!loading && results.length === 0 && activeTab === 'aftermarket' && (
+          <div style={{ padding: '16px 0' }}>
+            <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>Discover premium domains</h3>
+            <p style={{ fontSize: '0.85rem', color: '#999', lineHeight: 1.5, marginBottom: '16px' }}>
+              Find premium domains for sale with existing traffic and authority. Type a keyword to explore the aftermarket.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              {[{ d: 'cloudmarket.com', p: '$12,500' }, { d: 'getcloud.io', p: '$4,995' }, { d: 'cloudpro.com', p: 'Make offer' }].map(item => (
+                <div key={item.d} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px', borderRadius: '6px', background: '#111' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#3b82f6' }} />
+                    <span style={{ fontSize: '0.85rem', color: '#ccc' }}>{item.d}</span>
+                  </div>
+                  <span style={{ fontSize: '0.78rem', fontWeight: 600, color: '#3b82f6' }}>{item.p}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Empty state — search tab */}
         {!loading && results.length === 0 && activeTab === 'search' && (
           <div style={{ padding: '8px 0' }}>
             <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#888', marginBottom: '12px' }}>

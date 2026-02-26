@@ -153,30 +153,32 @@ export function AppShell({ children, hideFooter = false, searchActive = false, a
             <img src="/domy-mascot.png" alt="Domy" style={{ width: '26px', height: '26px', borderRadius: '50%' }} />
             {isDesktop && 'DomyDomains'}
           </a>
-          {/* Tabs — always visible */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0', marginLeft: isDesktop ? '0' : '4px', flex: 1 }}>
-            {[
-              { label: 'Search', icon: '🔍', id: 'search' },
-              { label: 'Extensions', icon: '🧩', id: 'extensions' },
-              { label: 'Generator', icon: '⚡', id: 'generator' },
-              { label: 'Premium', icon: '💎', id: 'aftermarket' },
-            ].map(tab => (
-              <button key={tab.id} onClick={() => onTabChange?.(tab.id)} style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
-                fontSize: isDesktop ? '0.8rem' : 'clamp(0.62rem, 1.8vw, 0.72rem)',
-                fontWeight: 500,
-                color: activeTab === tab.id ? '#fff' : '#666',
-                background: 'none', border: 'none', cursor: 'pointer',
-                padding: isDesktop ? '6px 12px' : '6px 4px',
-                borderBottom: activeTab === tab.id ? '2px solid #8b5cf6' : '2px solid transparent',
-                whiteSpace: 'nowrap',
-                flex: isDesktop ? 'none' : 1,
-              }}>
-                <span style={{ fontSize: isDesktop ? '0.82rem' : '0.7rem' }}>{tab.icon}</span>
-                {tab.label}
-              </button>
-            ))}
-          </div>
+          {/* Tabs — only when search is active */}
+          {searchActive && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0', marginLeft: isDesktop ? '0' : '4px', flex: 1 }}>
+              {[
+                { label: 'Search', icon: '🔍', id: 'search' },
+                { label: 'Extensions', icon: '🧩', id: 'extensions' },
+                { label: 'Generator', icon: '⚡', id: 'generator' },
+                { label: 'Premium', icon: '💎', id: 'aftermarket' },
+              ].map(tab => (
+                <button key={tab.id} onClick={() => onTabChange?.(tab.id)} style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
+                  fontSize: isDesktop ? '0.8rem' : 'clamp(0.62rem, 1.8vw, 0.72rem)',
+                  fontWeight: 500,
+                  color: activeTab === tab.id ? '#fff' : '#666',
+                  background: 'none', border: 'none', cursor: 'pointer',
+                  padding: isDesktop ? '6px 12px' : '6px 4px',
+                  borderBottom: activeTab === tab.id ? '2px solid #8b5cf6' : '2px solid transparent',
+                  whiteSpace: 'nowrap',
+                  flex: isDesktop ? 'none' : 1,
+                }}>
+                  <span style={{ fontSize: isDesktop ? '0.82rem' : '0.7rem' }}>{tab.icon}</span>
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </nav>
 
