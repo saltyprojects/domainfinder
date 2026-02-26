@@ -15,9 +15,9 @@ function DomainRow({ result }) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 12px',
-        height: '48px',
-        borderRadius: '8px',
+        padding: '0 8px',
+        height: '40px',
+        borderRadius: '6px',
         textDecoration: 'none',
         transition: 'background 0.12s',
       }}
@@ -37,32 +37,32 @@ function DomainRow({ result }) {
           {full_domain}
         </span>
       </div>
-      {/* Split button style like IDS */}
+      {/* Split button */}
       <div style={{
         display: 'flex', alignItems: 'center',
-        background: '#1e1e1e',
-        borderRadius: '8px',
+        background: '#1a1a1a',
+        borderRadius: '6px',
         overflow: 'hidden',
-        height: '34px',
+        height: '30px',
         flexShrink: 0,
       }}>
         <span style={{
-          padding: '0 14px',
-          fontSize: '0.8rem', fontWeight: 600,
-          color: available ? '#22c55e' : '#ef4444',
-          lineHeight: '34px',
+          padding: '0 10px',
+          fontSize: '0.75rem', fontWeight: 600,
+          color: available ? '#22c55e' : '#666',
+          lineHeight: '30px',
         }}>
           {available ? 'Continue' : 'Lookup'}
         </span>
         <div style={{
-          width: '1px', height: '18px',
+          width: '1px', height: '14px',
           background: '#333',
         }} />
         <span style={{
-          padding: '0 10px',
-          fontSize: '0.7rem',
-          color: '#666',
-          lineHeight: '34px',
+          padding: '0 8px',
+          fontSize: '0.65rem',
+          color: '#444',
+          lineHeight: '30px',
         }}>▾</span>
       </div>
     </a>
@@ -249,45 +249,49 @@ export function SearchDomains({ onActiveChange }) {
       }}>
         {/* Primary result — large domain in status color */}
         {primary && (
-          <div style={{ marginBottom: '20px' }}>
+          <div style={{ marginBottom: '14px' }}>
             <div style={{
-              fontSize: 'clamp(1.6rem, 5vw, 2.2rem)',
-              fontWeight: 800,
+              fontSize: 'clamp(1.4rem, 4.5vw, 1.8rem)',
+              fontWeight: 700,
               color: primary.available ? '#22c55e' : '#ef4444',
               letterSpacing: '-0.03em',
-              marginBottom: '12px',
+              marginBottom: '10px',
               lineHeight: 1.2,
             }}>
               {primary.full_domain}
             </div>
-            {/* Hero action buttons */}
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               <a
                 href={`${REGISTRAR_URL}${encodeURIComponent(primary.full_domain)}`}
                 target="_blank" rel="noopener noreferrer"
                 style={{
-                  display: 'inline-flex', alignItems: 'center', gap: '6px',
-                  padding: '12px 24px',
-                  borderRadius: '12px',
-                  fontSize: '0.85rem', fontWeight: 600,
+                  display: 'inline-flex', alignItems: 'center', gap: '4px',
+                  padding: '10px 20px',
+                  borderRadius: '10px',
+                  fontSize: '0.82rem', fontWeight: 600,
                   textDecoration: 'none',
                   background: primary.available ? '#22c55e' : '#dc2626',
                   color: primary.available ? '#000' : '#fff',
-                  minHeight: '44px', boxSizing: 'border-box',
+                  minHeight: '40px', boxSizing: 'border-box',
                 }}
               >
                 {primary.available ? 'Continue' : 'Lookup'} →
               </a>
-              <div style={{
-                display: 'inline-flex', alignItems: 'center',
-                padding: '12px 20px',
-                borderRadius: '12px',
-                fontSize: '0.85rem', fontWeight: 500, color: '#ccc',
-                background: '#1e1e1e', border: '1px solid #333',
-                minHeight: '44px', boxSizing: 'border-box',
-              }}>
-                {primary.available ? 'Register on Namecheap →' : 'Check WHOIS →'}
-              </div>
+              <a
+                href={`${REGISTRAR_URL}${encodeURIComponent(primary.full_domain)}`}
+                target="_blank" rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex', alignItems: 'center',
+                  padding: '10px 16px',
+                  borderRadius: '10px',
+                  fontSize: '0.82rem', fontWeight: 500, color: '#999',
+                  textDecoration: 'none',
+                  background: '#1a1a1a', border: '1px solid #2a2a2a',
+                  minHeight: '40px', boxSizing: 'border-box',
+                }}
+              >
+                Namecheap →
+              </a>
             </div>
           </div>
         )}
