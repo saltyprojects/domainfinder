@@ -109,27 +109,62 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # Domain search config
+# Fast search — 23 popular TLDs for instant results
+POPULAR_TLDS = [
+    'com', 'net', 'org', 'io', 'ai', 'dev', 'app', 'co', 'me', 'xyz',
+    'tech', 'info', 'biz', 'cloud', 'design', 'blog', 'shop', 'site',
+    'store', 'online', 'gg', 'cc', 'tv',
+]
+
+# Full list — 400+ TLDs for Extensions tab
 DOMAIN_TLDS = [
-    # Top-level
-    'com', 'net', 'org', 'info', 'biz',
-    # Country codes
-    'co', 'io', 'ai', 'me', 'cc', 'tv', 'us', 'uk', 'ca', 'de',
-    # Tech
-    'dev', 'app', 'tech', 'cloud', 'code', 'software', 'systems', 'digital', 'network',
-    # Business
-    'company', 'business', 'agency', 'solutions', 'services', 'consulting', 'ventures',
-    # Creative
-    'design', 'studio', 'media', 'art', 'photography',
-    # Web
-    'site', 'online', 'website', 'page', 'web',
-    # Commerce
+    'com', 'net', 'org', 'info', 'biz', 'name', 'mobi', 'pro', 'tel',
+    'co', 'io', 'ai', 'me', 'cc', 'tv', 'us', 'uk', 'ca', 'de', 'fr',
+    'nl', 'eu', 'au', 'nz', 'jp', 'kr', 'in', 'br', 'mx', 'ar', 'za',
+    'se', 'no', 'dk', 'fi', 'pl', 'cz', 'at', 'ch', 'be', 'it', 'es',
+    'pt', 'ie', 'ru', 'il', 'sg', 'hk', 'tw', 'ph', 'th', 'id', 'my',
+    'ae', 'sa', 'tr', 'gr', 'ro', 'hu', 'bg', 'hr', 'sk', 'lt', 'lv',
+    'ee', 'is', 'lu', 'si', 'cy',
+    'dev', 'app', 'tech', 'cloud', 'code', 'software', 'systems', 'digital',
+    'network', 'computer', 'technology', 'engineering', 'data', 'hosting',
+    'company', 'business', 'agency', 'solutions', 'services', 'consulting',
+    'ventures', 'enterprise', 'partners', 'group', 'inc', 'ltd', 'corp',
+    'industries', 'holdings', 'capital', 'investments', 'financial', 'finance',
+    'management', 'marketing', 'careers', 'jobs', 'work', 'team', 'office',
+    'design', 'studio', 'media', 'art', 'photography', 'photo', 'gallery',
+    'graphics', 'creative', 'film', 'music', 'video', 'game', 'games',
+    'site', 'online', 'website', 'page', 'web', 'link', 'click', 'host',
+    'space', 'zone', 'land', 'world', 'global', 'international', 'wiki',
     'store', 'shop', 'market', 'buy', 'sale', 'deals', 'discount',
-    # Modern
-    'xyz', 'gg', 'lol', 'wtf', 'cool', 'fun', 'vip', 'club', 'one', 'top', 'best', 'new',
-    # Blog/Content
-    'blog', 'news', 'live', 'tv', 'video',
-    # Professional
-    'pro', 'expert', 'guru', 'academy', 'institute',
-    # Startup
-    'startup', 'inc', 'ltd', 'group', 'team', 'labs', 'works',
+    'shopping', 'boutique', 'luxury', 'premium', 'auction',
+    'fashion', 'shoes', 'jewelry', 'gifts', 'flowers',
+    'restaurant', 'bar', 'cafe', 'coffee', 'pizza', 'beer', 'wine',
+    'recipes', 'cooking', 'kitchen', 'organic', 'farm', 'garden',
+    'xyz', 'gg', 'lol', 'wtf', 'cool', 'fun', 'vip', 'club', 'one',
+    'top', 'best', 'new', 'now', 'today', 'life', 'style', 'rocks',
+    'ninja', 'guru', 'expert', 'plus', 'tips', 'review', 'fail',
+    'blog', 'news', 'live', 'stream', 'press', 'social', 'chat',
+    'email', 'forum', 'community',
+    'academy', 'school', 'university', 'education', 'training', 'courses',
+    'science', 'research', 'institute', 'college',
+    'health', 'healthcare', 'dental', 'doctor', 'clinic', 'hospital',
+    'pharmacy', 'fitness', 'yoga', 'diet', 'wellness', 'care',
+    'house', 'homes', 'property', 'realty', 'estate', 'apartments',
+    'mortgage', 'rent', 'construction', 'build',
+    'travel', 'tours', 'holiday', 'flights', 'hotel', 'resort', 'cruise',
+    'taxi', 'city', 'town', 'place', 'country',
+    'car', 'cars', 'auto', 'motorcycle', 'bike', 'boat', 'racing',
+    'law', 'legal', 'attorney', 'lawyer', 'tax', 'insurance',
+    'church', 'faith',
+    'sport', 'football', 'soccer', 'basketball', 'golf', 'tennis',
+    'hockey', 'cricket', 'fishing', 'camp', 'ski',
+    'pet', 'dog', 'cat', 'vet',
+    'cleaning', 'moving', 'storage', 'security', 'delivery', 'salon', 'spa',
+    'money', 'cash', 'gold', 'bitcoin', 'crypto', 'exchange', 'trade',
+    'forex', 'fund', 'bank', 'credit', 'loan', 'pay',
+    'green', 'eco', 'solar', 'energy', 'bio', 'nature',
+    'black', 'red', 'blue', 'pink', 'purple', 'orange',
+    'startup', 'labs', 'works', 'supply', 'tools', 'foundation',
+    'charity', 'nonprofit', 'radio', 'podcast', 'show', 'channel',
+    'download', 'support', 'help', 'guide',
 ]

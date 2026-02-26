@@ -165,7 +165,7 @@ def stream_domain_checks(name: str, tlds: list[str]):
     """Yield domain check results as they complete (for SSE streaming).
     DNS-only for speed. No RDAP verification in the hot path.
     """
-    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as executor:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=50) as executor:
         futures = {
             executor.submit(check_domain_availability, name, tld): tld
             for tld in tlds

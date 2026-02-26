@@ -502,8 +502,11 @@ def preview_content(request):
 
 
 def search_stream(request):
-    """SSE endpoint: stream domain availability results as they arrive."""
+    """SSE endpoint: stream domain availability results as they arrive.
+    ?q=<name>&scope=popular|all (default: popular for speed)
+    """
     q = request.GET.get('q', '').lower().strip().split('.')[0]
+    scope = request.GET.get('scope', 'popular')
 
     if not q or len(q) < 2:
         return HttpResponse(json.dumps({'error': 'Query too short'}), content_type='application/json', status=400)
@@ -512,7 +515,7 @@ def search_stream(request):
         return HttpResponse(json.dumps({'error': 'Invalid domain name'}), content_type='application/json', status=400)
 
     def event_stream():
-        tlds = settings.DOMAIN_TLDS
+        tlds = settings.DOMAIN_TLDS if scope == 'all' else settings.POPULAR_TLDS
         yield f"data: {json.dumps({'type': 'start', 'query': q, 'total': len(tlds)})}\n\n"
 
         for result in stream_domain_checks(q, tlds):
