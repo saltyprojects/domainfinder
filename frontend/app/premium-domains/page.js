@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { StaticPage } from '../components/StaticPage';
 
 export const metadata = {
   title: 'Premium Domains for Sale — Aftermarket Domain Marketplace | DomyDomains',
@@ -14,15 +15,7 @@ export const metadata = {
 
 export default function PremiumDomains() {
   return (
-    <div style={{ background: '#000', color: '#fff', minHeight: '100vh', fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif' }}>
-      <nav style={{ display: 'flex', alignItems: 'center', height: '48px', borderBottom: '1px solid #1e1e1e', padding: '0 16px' }}>
-        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
-          <img src="/domy-mascot.png" alt="Domy" style={{ width: 26, height: 26, borderRadius: '50%' }} />
-          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: '#fff' }}>DomyDomains</span>
-        </Link>
-      </nav>
-
-      <main style={{ maxWidth: '900px', margin: '0 auto', padding: '48px 16px 96px' }}>
+    <StaticPage>
         <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '16px' }}>
           Premium Domains
         </h1>
@@ -136,7 +129,6 @@ export default function PremiumDomains() {
             Search domains →
           </Link>
         </section>
-      </main>
-    </div>
+    </StaticPage>
   );
 }

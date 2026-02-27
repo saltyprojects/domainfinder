@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { StaticPage } from '../components/StaticPage';
 
 export const metadata = {
   title: 'Domain Pricing Guide 2026 — How Much Does a Domain Cost? | DomyDomains',
@@ -73,125 +74,97 @@ const TIPS = [
 
 export default function DomainPricingPage() {
   return (
-    <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 20px 80px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-      <div style={{ textAlign: 'center', marginBottom: 48 }}>
-        <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 800, marginBottom: 12, color: '#1a1a2e' }}>
-          💵 Domain Pricing Guide 2026
-        </h1>
-        <p style={{ fontSize: 'clamp(1rem, 2.5vw, 1.2rem)', color: '#666', maxWidth: 600, margin: '0 auto' }}>
-          How much does a domain really cost? Compare prices across 400+ extensions and find the best deals.
-        </p>
-        <Link href="/" style={{ display: 'inline-block', marginTop: 20, padding: '12px 28px', background: '#7c3aed', color: '#fff', borderRadius: 8, textDecoration: 'none', fontWeight: 600 }}>
-          Search Available Domains →
-        </Link>
-      </div>
+    <StaticPage>
+      <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '16px' }}>
+        Domain Pricing Guide
+      </h1>
+      <p style={{ fontSize: '1.1rem', color: '#9ca3af', lineHeight: 1.7, marginBottom: '48px', maxWidth: '700px' }}>
+        How much does a domain really cost? Compare prices across 400+ extensions and find the best deals.
+      </p>
 
-      {/* Pricing Tiers */}
       {PRICING_TIERS.map((tier) => (
-        <div key={tier.tier} style={{ marginBottom: 40 }}>
-          <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#1a1a2e' }}>
-            {tier.emoji} {tier.tier} <span style={{ color: '#7c3aed', fontSize: '1rem', fontWeight: 500 }}>({tier.range})</span>
+        <section key={tier.tier} style={{ marginBottom: '48px' }}>
+          <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>
+            {tier.emoji} {tier.tier} <span style={{ color: '#8b5cf6', fontSize: '1rem', fontWeight: 500 }}>({tier.range})</span>
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 12 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: '12px' }}>
             {tier.tlds.map((tld) => (
-              <div key={tld.ext} style={{ background: '#f8f7ff', borderRadius: 10, padding: 16, border: '1px solid #e8e5f0' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-                  <span style={{ fontWeight: 700, fontSize: '1.1rem', color: '#7c3aed' }}>{tld.ext}</span>
-                  <span style={{ fontSize: '0.85rem', color: '#444', fontWeight: 600 }}>{tld.reg}</span>
+              <div key={tld.ext} style={{ background: '#111', borderRadius: '12px', padding: '20px', border: '1px solid #1e1e1e' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                  <span style={{ fontWeight: 700, fontSize: '1.3rem', color: '#8b5cf6' }}>{tld.ext}</span>
+                  <span style={{ fontSize: '0.85rem', color: '#22c55e', fontWeight: 600 }}>{tld.reg}</span>
                 </div>
-                <p style={{ fontSize: '0.82rem', color: '#666', margin: '0 0 4px' }}>{tld.notes}</p>
-                <p style={{ fontSize: '0.75rem', color: '#999', margin: 0 }}>Renewal: {tld.renewal}/yr</p>
+                <p style={{ fontSize: '0.85rem', color: '#9ca3af', margin: '0 0 4px', lineHeight: 1.5 }}>{tld.notes}</p>
+                <p style={{ fontSize: '0.75rem', color: '#666', margin: 0 }}>Renewal: {tld.renewal}/yr</p>
               </div>
             ))}
           </div>
-        </div>
+        </section>
       ))}
 
-      {/* Registrar Comparison */}
-      <div style={{ marginBottom: 40 }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#1a1a2e' }}>
-          🏪 Registrar Price Comparison (.com)
-        </h2>
+      <section style={{ marginBottom: '48px' }}>
+        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>🏪 Registrar Price Comparison (.com)</h2>
         <div style={{ overflowX: 'auto' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
             <thead>
-              <tr style={{ borderBottom: '2px solid #7c3aed' }}>
-                <th style={{ textAlign: 'left', padding: '10px 12px', color: '#1a1a2e' }}>Registrar</th>
-                <th style={{ textAlign: 'left', padding: '10px 12px', color: '#1a1a2e' }}>.com Price</th>
-                <th style={{ textAlign: 'left', padding: '10px 12px', color: '#1a1a2e' }}>Key Benefit</th>
-                <th style={{ textAlign: 'left', padding: '10px 12px', color: '#1a1a2e' }}>Best For</th>
+              <tr style={{ borderBottom: '2px solid #8b5cf6' }}>
+                <th style={{ textAlign: 'left', padding: '10px 12px', color: '#fff' }}>Registrar</th>
+                <th style={{ textAlign: 'left', padding: '10px 12px', color: '#fff' }}>.com Price</th>
+                <th style={{ textAlign: 'left', padding: '10px 12px', color: '#fff' }}>Key Benefit</th>
+                <th style={{ textAlign: 'left', padding: '10px 12px', color: '#fff' }}>Best For</th>
               </tr>
             </thead>
             <tbody>
               {REGISTRAR_COMPARISON.map((r) => (
-                <tr key={r.name} style={{ borderBottom: '1px solid #eee' }}>
-                  <td style={{ padding: '10px 12px', fontWeight: 600 }}>{r.name}</td>
-                  <td style={{ padding: '10px 12px', color: '#7c3aed', fontWeight: 600 }}>{r.comPrice}/yr</td>
-                  <td style={{ padding: '10px 12px', color: '#666' }}>{r.pros}</td>
-                  <td style={{ padding: '10px 12px', color: '#666' }}>{r.bestFor}</td>
+                <tr key={r.name} style={{ borderBottom: '1px solid #1e1e1e' }}>
+                  <td style={{ padding: '10px 12px', fontWeight: 600, color: '#fff' }}>{r.name}</td>
+                  <td style={{ padding: '10px 12px', color: '#8b5cf6', fontWeight: 600 }}>{r.comPrice}/yr</td>
+                  <td style={{ padding: '10px 12px', color: '#9ca3af' }}>{r.pros}</td>
+                  <td style={{ padding: '10px 12px', color: '#9ca3af' }}>{r.bestFor}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-      </div>
+      </section>
 
-      {/* Premium Domains Section */}
-      <div style={{ marginBottom: 40, background: '#fef3c7', borderRadius: 12, padding: 24 }}>
-        <h2 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: 12, color: '#92400e' }}>
-          💎 What About Premium Domains?
-        </h2>
-        <p style={{ color: '#78350f', lineHeight: 1.7, marginBottom: 12 }}>
-          Premium domains are pre-registered names sold at a markup — typically <strong>$50 to $50,000+</strong> depending on length, keywords, and brandability. Short .com domains (3-4 letters) and keyword-rich names command the highest prices.
+      <section style={{ marginBottom: '48px', background: '#111', borderRadius: '16px', padding: '24px', border: '1px solid #1e1e1e' }}>
+        <h2 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: '12px' }}>💎 What About Premium Domains?</h2>
+        <p style={{ color: '#9ca3af', lineHeight: 1.7, marginBottom: '12px' }}>
+          Premium domains are pre-registered names sold at a markup — typically <strong style={{ color: '#fff' }}>$50 to $50,000+</strong> depending on length, keywords, and brandability.
         </p>
-        <p style={{ color: '#78350f', lineHeight: 1.7, marginBottom: 12 }}>
-          Factors that affect premium domain pricing:
-        </p>
-        <ul style={{ color: '#78350f', lineHeight: 1.8, paddingLeft: 20 }}>
-          <li><strong>Length:</strong> Shorter = more expensive. 3-letter .coms can be $10,000+</li>
-          <li><strong>Keywords:</strong> High-value keywords (insurance, crypto, AI) drive prices up</li>
-          <li><strong>Extension:</strong> .com premiums are highest, followed by .ai and .io</li>
-          <li><strong>Existing traffic:</strong> Domains with backlinks and SEO history cost more</li>
-          <li><strong>Brandability:</strong> Easy to say, spell, and remember = premium price</li>
+        <ul style={{ color: '#9ca3af', lineHeight: 1.8, paddingLeft: '20px' }}>
+          <li><strong style={{ color: '#fff' }}>Length:</strong> Shorter = more expensive. 3-letter .coms can be $10,000+</li>
+          <li><strong style={{ color: '#fff' }}>Keywords:</strong> High-value keywords (insurance, crypto, AI) drive prices up</li>
+          <li><strong style={{ color: '#fff' }}>Extension:</strong> .com premiums are highest, followed by .ai and .io</li>
+          <li><strong style={{ color: '#fff' }}>Existing traffic:</strong> Domains with backlinks and SEO history cost more</li>
         </ul>
-        <Link href="/premium-domains" style={{ display: 'inline-block', marginTop: 12, color: '#7c3aed', fontWeight: 600, textDecoration: 'none' }}>
+        <Link href="/premium-domains" style={{ display: 'inline-block', marginTop: '12px', color: '#8b5cf6', fontWeight: 600, textDecoration: 'none' }}>
           Browse Premium Domains →
         </Link>
-      </div>
+      </section>
 
-      {/* Tips */}
-      <div style={{ marginBottom: 40 }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#1a1a2e' }}>
-          🧠 Domain Buying Tips
-        </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 16 }}>
+      <section style={{ marginBottom: '48px' }}>
+        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>🧠 Domain Buying Tips</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '12px' }}>
           {TIPS.map((tip) => (
-            <div key={tip.title} style={{ background: '#f0fdf4', borderRadius: 10, padding: 16, border: '1px solid #bbf7d0' }}>
-              <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 6, color: '#166534' }}>
+            <div key={tip.title} style={{ background: '#111', borderRadius: '12px', padding: '20px', border: '1px solid #1e1e1e' }}>
+              <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '6px', color: '#22c55e' }}>
                 {tip.icon} {tip.title}
               </h3>
-              <p style={{ fontSize: '0.85rem', color: '#15803d', lineHeight: 1.6, margin: 0 }}>{tip.text}</p>
+              <p style={{ fontSize: '0.85rem', color: '#9ca3af', lineHeight: 1.6, margin: 0 }}>{tip.text}</p>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* CTA */}
-      <div style={{ textAlign: 'center', padding: '32px 20px', background: '#f8f7ff', borderRadius: 12 }}>
-        <h2 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: 8, color: '#1a1a2e' }}>Ready to find your domain?</h2>
-        <p style={{ color: '#666', marginBottom: 16 }}>Search 400+ extensions and find the perfect domain at the best price.</p>
-        <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: '#7c3aed', color: '#fff', borderRadius: 8, textDecoration: 'none', fontWeight: 600, fontSize: '1.05rem' }}>
-          Search Domains Free →
+      <section style={{ background: '#111', borderRadius: '16px', padding: '32px', border: '1px solid #1e1e1e', textAlign: 'center' }}>
+        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '12px' }}>Ready to find your domain?</h2>
+        <p style={{ color: '#9ca3af', marginBottom: '20px' }}>Search 400+ extensions and find the perfect domain at the best price.</p>
+        <Link href="/" style={{ display: 'inline-block', background: '#8b5cf6', color: '#fff', padding: '12px 24px', borderRadius: '8px', fontWeight: 600, textDecoration: 'none' }}>
+          Search domains →
         </Link>
-      </div>
-
-      {/* Internal Links */}
-      <div style={{ marginTop: 40, padding: '20px 0', borderTop: '1px solid #eee', display: 'flex', flexWrap: 'wrap', gap: 16, justifyContent: 'center' }}>
-        <Link href="/domain-extensions" style={{ color: '#7c3aed', textDecoration: 'none', fontSize: '0.9rem' }}>📚 Extensions Guide</Link>
-        <Link href="/domain-generator" style={{ color: '#7c3aed', textDecoration: 'none', fontSize: '0.9rem' }}>⚡ Name Generator</Link>
-        <Link href="/premium-domains" style={{ color: '#7c3aed', textDecoration: 'none', fontSize: '0.9rem' }}>💎 Premium Domains</Link>
-        <Link href="/about" style={{ color: '#7c3aed', textDecoration: 'none', fontSize: '0.9rem' }}>ℹ️ About Us</Link>
-      </div>
-    </div>
+      </section>
+    </StaticPage>
   );
 }
