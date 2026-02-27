@@ -145,3 +145,5 @@ export function StaticPage({ children }) {
     </div>
   );
 }
+
+export default StaticPage;

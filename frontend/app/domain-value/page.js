@@ -52,10 +52,10 @@ export default function DomainValuePage() {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 20px 80px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       <div style={{ textAlign: 'center', marginBottom: 48 }}>
-        <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 800, marginBottom: 12, color: '#1a1a2e' }}>
+        <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 800, marginBottom: 12, color: '#fff' }}>
           💰 Domain Value Guide
         </h1>
-        <p style={{ fontSize: 'clamp(1rem, 2.5vw, 1.15rem)', color: '#666', maxWidth: 620, margin: '0 auto' }}>
+        <p style={{ fontSize: 'clamp(1rem, 2.5vw, 1.15rem)', color: '#aaa', maxWidth: 620, margin: '0 auto' }}>
           How much is a domain name worth? Learn the factors that determine domain value and how to estimate prices before buying or selling.
         </p>
         <Link href="/" style={{ display: 'inline-block', marginTop: 20, padding: '12px 28px', background: '#7c3aed', color: '#fff', borderRadius: 8, textDecoration: 'none', fontWeight: 600 }}>
@@ -65,15 +65,15 @@ export default function DomainValuePage() {
 
       {/* Value Factors */}
       <div style={{ marginBottom: 44 }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#1a1a2e' }}>🎯 What Determines Domain Value?</h2>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#fff' }}>🎯 What Determines Domain Value?</h2>
         <div style={{ display: 'grid', gap: 14 }}>
           {VALUE_FACTORS.map((f) => (
             <div key={f.factor} style={{ background: '#f8f7ff', borderRadius: 10, padding: 18, border: '1px solid #e8e5f0' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6, flexWrap: 'wrap', gap: 8 }}>
-                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#1a1a2e', margin: 0 }}>{f.emoji} {f.factor}</h3>
+                <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#fff', margin: 0 }}>{f.emoji} {f.factor}</h3>
                 <span style={{ fontSize: '0.78rem', background: '#7c3aed', color: '#fff', padding: '2px 10px', borderRadius: 12, fontWeight: 600 }}>Impact: {f.weight}</span>
               </div>
-              <p style={{ fontSize: '0.88rem', color: '#555', lineHeight: 1.6, margin: '0 0 6px' }}>{f.desc}</p>
+              <p style={{ fontSize: '0.88rem', color: '#bbb', lineHeight: 1.6, margin: '0 0 6px' }}>{f.desc}</p>
               <p style={{ fontSize: '0.8rem', color: '#7c3aed', margin: 0, fontStyle: 'italic' }}>Example: {f.examples}</p>
             </div>
           ))}
@@ -82,15 +82,15 @@ export default function DomainValuePage() {
 
       {/* Price Ranges */}
       <div style={{ marginBottom: 44 }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#1a1a2e' }}>📊 Domain Price Ranges</h2>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#fff' }}>📊 Domain Price Ranges</h2>
         <div style={{ display: 'grid', gap: 10 }}>
           {PRICE_RANGES.map((p) => (
             <div key={p.range} style={{ display: 'flex', gap: 14, padding: '14px 16px', background: '#fafafa', borderRadius: 10, borderLeft: `4px solid ${p.color}`, alignItems: 'flex-start' }}>
               <div style={{ minWidth: 140 }}>
                 <div style={{ fontWeight: 800, color: p.color, fontSize: '1rem' }}>{p.range}</div>
-                <div style={{ fontSize: '0.75rem', color: '#888', fontWeight: 600 }}>{p.label}</div>
+                <div style={{ fontSize: '0.75rem', color: '#999', fontWeight: 600 }}>{p.label}</div>
               </div>
-              <p style={{ fontSize: '0.86rem', color: '#555', margin: 0, lineHeight: 1.5 }}>{p.desc}</p>
+              <p style={{ fontSize: '0.86rem', color: '#bbb', margin: 0, lineHeight: 1.5 }}>{p.desc}</p>
             </div>
           ))}
         </div>
@@ -102,8 +102,8 @@ export default function DomainValuePage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 12 }}>
           {RECENT_SALES.map((s) => (
             <div key={s.domain} style={{ background: 'rgba(255,255,255,0.7)', borderRadius: 8, padding: 14 }}>
-              <div style={{ fontWeight: 800, fontSize: '1rem', color: '#1a1a2e' }}>{s.domain}</div>
-              <div style={{ fontWeight: 700, color: '#7c3aed', fontSize: '1.1rem', margin: '4px 0' }}>{s.price} <span style={{ fontSize: '0.75rem', color: '#888', fontWeight: 500 }}>({s.year})</span></div>
+              <div style={{ fontWeight: 800, fontSize: '1rem', color: '#fff' }}>{s.domain}</div>
+              <div style={{ fontWeight: 700, color: '#7c3aed', fontSize: '1.1rem', margin: '4px 0' }}>{s.price} <span style={{ fontSize: '0.75rem', color: '#999', fontWeight: 500 }}>({s.year})</span></div>
               <p style={{ fontSize: '0.8rem', color: '#78350f', margin: 0 }}>{s.why}</p>
             </div>
           ))}
@@ -112,15 +112,15 @@ export default function DomainValuePage() {
 
       {/* Appraisal Tools */}
       <div style={{ marginBottom: 44 }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#1a1a2e' }}>🛠️ Domain Appraisal Tools</h2>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#fff' }}>🛠️ Domain Appraisal Tools</h2>
         <div style={{ display: 'grid', gap: 12 }}>
           {APPRAISAL_TOOLS.map((t) => (
-            <div key={t.name} style={{ background: '#fff', borderRadius: 10, padding: 16, border: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
+            <div key={t.name} style={{ background: '#1a1a2e', borderRadius: 10, padding: 16, border: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
               <div style={{ flex: 1, minWidth: 200 }}>
-                <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 4, color: '#1a1a2e' }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 4, color: '#fff' }}>
                   {t.name} <span style={{ fontSize: '0.75rem', background: '#f0fdf4', color: '#166534', padding: '2px 8px', borderRadius: 4, marginLeft: 6 }}>Reliability: {t.reliability}</span>
                 </h3>
-                <p style={{ fontSize: '0.85rem', color: '#666', margin: 0 }}>{t.desc}</p>
+                <p style={{ fontSize: '0.85rem', color: '#aaa', margin: 0 }}>{t.desc}</p>
               </div>
               <a href={t.url} target="_blank" rel="noopener noreferrer" style={{ color: '#7c3aed', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none', whiteSpace: 'nowrap' }}>Visit →</a>
             </div>
@@ -143,7 +143,7 @@ export default function DomainValuePage() {
             <div key={item.q} style={{ background: 'rgba(255,255,255,0.7)', borderRadius: 8, padding: 14 }}>
               <div style={{ fontWeight: 700, fontSize: '0.92rem', color: '#166534', marginBottom: 6 }}>{item.q}</div>
               <div style={{ fontSize: '0.82rem', color: '#15803d', marginBottom: 3 }}>✅ Yes: {item.yes}</div>
-              <div style={{ fontSize: '0.82rem', color: '#666' }}>❌ No: {item.no}</div>
+              <div style={{ fontSize: '0.82rem', color: '#aaa' }}>❌ No: {item.no}</div>
             </div>
           ))}
         </div>
@@ -151,8 +151,8 @@ export default function DomainValuePage() {
 
       {/* CTA */}
       <div style={{ textAlign: 'center', padding: '32px 20px', background: '#f8f7ff', borderRadius: 12 }}>
-        <h2 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: 8, color: '#1a1a2e' }}>Find undervalued domains</h2>
-        <p style={{ color: '#666', marginBottom: 16 }}>Search 400+ extensions and discover available domains before they&apos;re taken.</p>
+        <h2 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: 8, color: '#fff' }}>Find undervalued domains</h2>
+        <p style={{ color: '#aaa', marginBottom: 16 }}>Search 400+ extensions and discover available domains before they&apos;re taken.</p>
         <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: '#7c3aed', color: '#fff', borderRadius: 8, textDecoration: 'none', fontWeight: 600, fontSize: '1.05rem' }}>
           Search Domains Free →
         </Link>

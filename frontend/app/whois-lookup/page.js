@@ -51,10 +51,10 @@ export default function WhoisLookupPage() {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 20px 80px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       <div style={{ textAlign: 'center', marginBottom: 48 }}>
-        <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 800, marginBottom: 12, color: '#1a1a2e' }}>
+        <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 800, marginBottom: 12, color: '#fff' }}>
           🔎 WHOIS Lookup Guide
         </h1>
-        <p style={{ fontSize: 'clamp(1rem, 2.5vw, 1.15rem)', color: '#666', maxWidth: 620, margin: '0 auto' }}>
+        <p style={{ fontSize: 'clamp(1rem, 2.5vw, 1.15rem)', color: '#aaa', maxWidth: 620, margin: '0 auto' }}>
           Find out who owns any domain, when it was registered, and when it expires. Essential knowledge for domain buyers.
         </p>
         <Link href="/" style={{ display: 'inline-block', marginTop: 20, padding: '12px 28px', background: '#7c3aed', color: '#fff', borderRadius: 8, textDecoration: 'none', fontWeight: 600 }}>
@@ -64,23 +64,23 @@ export default function WhoisLookupPage() {
 
       {/* What is WHOIS */}
       <div style={{ marginBottom: 40, background: '#f8f7ff', borderRadius: 12, padding: 24 }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 12, color: '#1a1a2e' }}>What is WHOIS?</h2>
-        <p style={{ color: '#444', lineHeight: 1.7, marginBottom: 12 }}>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 12, color: '#fff' }}>What is WHOIS?</h2>
+        <p style={{ color: '#ccc', lineHeight: 1.7, marginBottom: 12 }}>
           WHOIS (pronounced &quot;who is&quot;) is a public database that stores registration information for every domain name on the internet. When someone registers a domain, their contact details, registration dates, and nameserver information are recorded in the WHOIS database.
         </p>
-        <p style={{ color: '#444', lineHeight: 1.7 }}>
+        <p style={{ color: '#ccc', lineHeight: 1.7 }}>
           Think of it like a phone book for the internet — it tells you who owns a domain, where it was registered, and when it expires. WHOIS data is maintained by domain registrars and accessible through lookup tools.
         </p>
       </div>
 
       {/* WHOIS Fields */}
       <div style={{ marginBottom: 40 }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#1a1a2e' }}>📋 What WHOIS Records Contain</h2>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#fff' }}>📋 What WHOIS Records Contain</h2>
         <div style={{ display: 'grid', gap: 8 }}>
           {WHOIS_FIELDS.map((f) => (
             <div key={f.field} style={{ display: 'flex', gap: 12, padding: '10px 14px', background: '#fafafa', borderRadius: 8, alignItems: 'baseline' }}>
               <span style={{ fontWeight: 700, color: '#7c3aed', minWidth: 160, fontSize: '0.9rem' }}>{f.field}</span>
-              <span style={{ color: '#555', fontSize: '0.88rem' }}>{f.desc}</span>
+              <span style={{ color: '#bbb', fontSize: '0.88rem' }}>{f.desc}</span>
             </div>
           ))}
         </div>
@@ -88,7 +88,7 @@ export default function WhoisLookupPage() {
 
       {/* Use Cases */}
       <div style={{ marginBottom: 40 }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#1a1a2e' }}>🎯 Why Use WHOIS Lookup?</h2>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#fff' }}>🎯 Why Use WHOIS Lookup?</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))', gap: 14 }}>
           {USE_CASES.map((uc) => (
             <div key={uc.title} style={{ background: '#f0fdf4', borderRadius: 10, padding: 16, border: '1px solid #bbf7d0' }}>
@@ -101,15 +101,15 @@ export default function WhoisLookupPage() {
 
       {/* Free Tools */}
       <div style={{ marginBottom: 40 }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#1a1a2e' }}>🛠️ Best WHOIS Lookup Tools</h2>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 16, color: '#fff' }}>🛠️ Best WHOIS Lookup Tools</h2>
         <div style={{ display: 'grid', gap: 12 }}>
           {WHOIS_TOOLS.map((t) => (
-            <div key={t.name} style={{ background: '#fff', borderRadius: 10, padding: 16, border: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
+            <div key={t.name} style={{ background: '#1a1a2e', borderRadius: 10, padding: 16, border: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
               <div style={{ flex: 1, minWidth: 200 }}>
-                <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 4, color: '#1a1a2e' }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 4, color: '#fff' }}>
                   {t.name} {t.free ? <span style={{ fontSize: '0.75rem', background: '#dcfce7', color: '#166534', padding: '2px 8px', borderRadius: 4, marginLeft: 6 }}>FREE</span> : <span style={{ fontSize: '0.75rem', background: '#fef3c7', color: '#92400e', padding: '2px 8px', borderRadius: 4, marginLeft: 6 }}>FREEMIUM</span>}
                 </h3>
-                <p style={{ fontSize: '0.85rem', color: '#666', margin: 0 }}>{t.desc}</p>
+                <p style={{ fontSize: '0.85rem', color: '#aaa', margin: 0 }}>{t.desc}</p>
               </div>
               <a href={t.url} target="_blank" rel="noopener noreferrer" style={{ color: '#7c3aed', fontWeight: 600, fontSize: '0.9rem', textDecoration: 'none', whiteSpace: 'nowrap' }}>Visit →</a>
             </div>
@@ -135,8 +135,8 @@ export default function WhoisLookupPage() {
 
       {/* Domain Status Codes */}
       <div style={{ marginBottom: 40 }}>
-        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 12, color: '#1a1a2e' }}>🏷️ Common Domain Status Codes</h2>
-        <p style={{ color: '#666', marginBottom: 16, lineHeight: 1.6 }}>WHOIS records include EPP status codes that tell you exactly what state a domain is in:</p>
+        <h2 style={{ fontSize: '1.4rem', fontWeight: 700, marginBottom: 12, color: '#fff' }}>🏷️ Common Domain Status Codes</h2>
+        <p style={{ color: '#aaa', marginBottom: 16, lineHeight: 1.6 }}>WHOIS records include EPP status codes that tell you exactly what state a domain is in:</p>
         <div style={{ display: 'grid', gap: 8 }}>
           {[
             { code: 'clientTransferProhibited', meaning: 'Transfer locked by registrar — standard protection against unauthorized transfers' },
@@ -148,7 +148,7 @@ export default function WhoisLookupPage() {
           ].map((s) => (
             <div key={s.code} style={{ display: 'flex', gap: 12, padding: '10px 14px', background: '#f9fafb', borderRadius: 8, alignItems: 'baseline', flexWrap: 'wrap' }}>
               <code style={{ fontWeight: 700, color: '#7c3aed', fontSize: '0.85rem', minWidth: 220 }}>{s.code}</code>
-              <span style={{ color: '#555', fontSize: '0.85rem', flex: 1, minWidth: 200 }}>{s.meaning}</span>
+              <span style={{ color: '#bbb', fontSize: '0.85rem', flex: 1, minWidth: 200 }}>{s.meaning}</span>
             </div>
           ))}
         </div>
@@ -156,8 +156,8 @@ export default function WhoisLookupPage() {
 
       {/* CTA */}
       <div style={{ textAlign: 'center', padding: '32px 20px', background: '#f8f7ff', borderRadius: 12 }}>
-        <h2 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: 8, color: '#1a1a2e' }}>Ready to find your domain?</h2>
-        <p style={{ color: '#666', marginBottom: 16 }}>Search 400+ extensions and check availability instantly.</p>
+        <h2 style={{ fontSize: '1.3rem', fontWeight: 700, marginBottom: 8, color: '#fff' }}>Ready to find your domain?</h2>
+        <p style={{ color: '#aaa', marginBottom: 16 }}>Search 400+ extensions and check availability instantly.</p>
         <Link href="/" style={{ display: 'inline-block', padding: '14px 32px', background: '#7c3aed', color: '#fff', borderRadius: 8, textDecoration: 'none', fontWeight: 600, fontSize: '1.05rem' }}>
           Search Domains Free →
         </Link>
