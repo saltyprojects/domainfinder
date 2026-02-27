@@ -156,6 +156,7 @@ class SEOArticle(models.Model):
         ('linkedin', 'LinkedIn'),
         ('wordpress', 'WordPress'),
         ('substack', 'Substack'),
+        ('self', 'DomyDomains Blog'),
         ('other', 'Other'),
     ]
     STATUS_CHOICES = [
