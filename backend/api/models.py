@@ -170,6 +170,7 @@ class SEOArticle(models.Model):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
     backlink_url = models.URLField(max_length=500, default='https://domydomains.com', help_text='The domydomains.com URL this article links to')
     backlink_anchor = models.CharField(max_length=200, default='DomyDomains', help_text='Anchor text for the backlink')
+    body = models.TextField(blank=True, help_text='Full article content (Markdown)')
     content_summary = models.TextField(blank=True, help_text='Brief summary of article content')
     target_keywords = models.CharField(max_length=500, blank=True, help_text='Comma-separated target keywords')
     published_date = models.DateTimeField(null=True, blank=True)

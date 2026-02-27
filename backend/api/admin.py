@@ -9,6 +9,12 @@ class SEOArticleAdmin(admin.ModelAdmin):
     search_fields = ('title', 'target_keywords', 'content_summary')
     list_editable = ('status',)
     ordering = ('-published_date',)
+    fieldsets = (
+        (None, {'fields': ('title', 'slug', 'url', 'platform', 'status')}),
+        ('Content', {'fields': ('body', 'content_summary', 'target_keywords')}),
+        ('Backlink', {'fields': ('backlink_url', 'backlink_anchor')}),
+        ('Dates', {'fields': ('published_date',)}),
+    )
 
 
 @admin.register(User)
