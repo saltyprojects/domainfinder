@@ -47,9 +47,10 @@ function Footer({ isDesktop }) {
         <span style={{ fontWeight: 600, color: '#fff' }}>DomyDomains</span>
         {isDesktop && (
           <>
-            <a href="/privacy" style={{ color: '#888', textDecoration: 'none', fontSize: '0.7rem' }}>Privacy</a>
-            <a href="/terms" style={{ color: '#888', textDecoration: 'none', fontSize: '0.7rem' }}>Terms</a>
-            <a href="/trademark" style={{ color: '#888', textDecoration: 'none', fontSize: '0.7rem' }}>Trademark</a>
+            <a href="/domain-extensions" style={{ color: '#888', textDecoration: 'none', fontSize: '0.7rem' }}>Extensions</a>
+            <a href="/domain-generator" style={{ color: '#888', textDecoration: 'none', fontSize: '0.7rem' }}>Generator</a>
+            <a href="/premium-domains" style={{ color: '#888', textDecoration: 'none', fontSize: '0.7rem' }}>Premium</a>
+            <a href="/about" style={{ color: '#888', textDecoration: 'none', fontSize: '0.7rem' }}>About</a>
           </>
         )}
       </div>
