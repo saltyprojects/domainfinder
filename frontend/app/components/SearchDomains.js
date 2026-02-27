@@ -409,12 +409,12 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           }}>›</span>
         </div>
 
-        <img src="/domy-mascot.png" alt="Domy mascot" style={{
-          width: 'clamp(60px, 15vw, 90px)',
-          height: 'clamp(60px, 15vw, 90px)',
-          borderRadius: '50%',
-          marginBottom: '16px',
-          filter: 'drop-shadow(0 0 20px rgba(139, 92, 246, 0.3))',
+        <img src="/domy-hero.png" alt="Domy searching for domains" style={{
+          width: 'clamp(140px, 35vw, 220px)',
+          height: 'auto',
+          marginBottom: '20px',
+          filter: 'drop-shadow(0 0 30px rgba(139, 92, 246, 0.25))',
+          borderRadius: '16px',
         }} />
         <h1 style={{
           fontSize: 'clamp(1.6rem, 5.5vw, 2.4rem)',
