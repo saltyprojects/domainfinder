@@ -22,6 +22,7 @@ DomyDomains is a domain availability search engine that checks hundreds of domai
 - Premium Domains: https://domydomains.com/premium-domains
 - Domain Pricing: https://domydomains.com/domain-pricing
 - WHOIS Lookup Guide: https://domydomains.com/whois-lookup
+- Domain Value Guide: https://domydomains.com/domain-value
 - About: https://domydomains.com/about
 
 ## API

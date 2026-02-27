@@ -86,6 +86,7 @@ Includes all popular TLDs plus country codes (.uk, .de, .fr, .jp, .au, etc.), ne
 - [Premium Domains](https://domydomains.com/premium-domains) — Aftermarket domain marketplace guide, pricing tiers
 - [Domain Pricing](https://domydomains.com/domain-pricing) — Registration and renewal costs across registrars
 - [WHOIS Lookup Guide](https://domydomains.com/whois-lookup) — How to check domain ownership, history, and privacy tips
+- [Domain Value Guide](https://domydomains.com/domain-value) — How to estimate domain worth, valuation factors, notable sales, appraisal tools
 - [About DomyDomains](https://domydomains.com/about) — Our mission, technology, and team
 
 ## Contact
