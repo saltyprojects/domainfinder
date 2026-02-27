@@ -52,7 +52,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  const gtag = process.env.NEXT_PUBLIC_GOOGLE_TAG;
+  const gaTag = 'G-QV0XLGRGCK';
 
   const jsonLd = [
     {
@@ -86,22 +86,17 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {gtag && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${gtag}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gtag}');
-              `}
-            </Script>
-          </>
-        )}
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaTag}`} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${gaTag}');
+            `,
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>
