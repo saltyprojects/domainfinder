@@ -17,6 +17,11 @@ DomyDomains is a domain availability search engine that checks hundreds of domai
 - Website: https://domydomains.com
 - API: https://api.domydomains.com
 - Search: https://domydomains.com/?q={query}
+- Domain Extensions Guide: https://domydomains.com/domain-extensions
+- Domain Name Generator: https://domydomains.com/domain-generator
+- Premium Domains: https://domydomains.com/premium-domains
+- Domain Pricing: https://domydomains.com/domain-pricing
+- About: https://domydomains.com/about
 
 ## API
 
