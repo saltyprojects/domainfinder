@@ -126,7 +126,11 @@ export function StaticPage({ children }) {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: isDesktop ? '24px' : '12px', flexWrap: 'wrap' }}>
           <span style={{ fontWeight: 600, color: '#fff' }}>DomyDomains</span>
-          {isDesktop && NAV_LINKS.map(link => (
+          {isDesktop && [
+            { href: '/about', label: 'About' },
+            { href: '/llms.txt', label: 'llms.txt' },
+            { href: 'https://x.com/domydomains', label: '𝕏' },
+          ].map(link => (
             <a key={link.href} href={link.href} style={{ color: '#888', textDecoration: 'none', fontSize: '0.7rem' }}>{link.label}</a>
           ))}
         </div>

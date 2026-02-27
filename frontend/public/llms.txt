@@ -31,6 +31,13 @@ The search API is available at:
 - `GET https://api.domydomains.com/api/search/?q={name}&scope=popular` — Search popular TLDs only
 - `GET https://api.domydomains.com/api/suggestions/?q={name}` — Get name suggestions
 
+## Agent Integration
+
+DomyDomains is designed for AI agents and assistants. The search API is free, requires no authentication, and returns structured JSON. Agents can:
+- Search domain availability: `GET /api/search/?q={name}&scope=all`
+- Generate domain suggestions: `GET /api/suggestions/?q={name}`
+- Deep-link to results: `https://domydomains.com/?q={name}`
+
 ## Documentation
 
 - [Full documentation](https://domydomains.com/llms-full.txt)

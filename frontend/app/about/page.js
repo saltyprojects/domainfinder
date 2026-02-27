@@ -77,6 +77,29 @@ export default function About() {
         </div>
 
         <div style={{ marginTop: '48px' }}>
+          <h2 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 700, marginBottom: '12px' }}>AI & Agent Friendly</h2>
+          <div style={{ color: '#9ca3af', lineHeight: 1.9, fontSize: '1.05rem' }}>
+            <p>DomyDomains is built for the agentic web. We believe AI assistants and agents should be able to discover and use tools on behalf of users — and we&apos;ve made that easy:</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px', margin: '24px 0' }}>
+              {[
+                { icon: '📄', title: 'llms.txt', desc: 'We publish llms.txt and llms-full.txt following the open standard for LLM discoverability. AI assistants can read our capabilities, endpoints, and documentation in a structured format.', href: '/llms.txt' },
+                { icon: '🔌', title: 'REST API', desc: 'Our search API is open and simple. Any agent can query domain availability programmatically: GET /api/search/?q=name&scope=all returns JSON with availability for 400+ TLDs.', href: null },
+                { icon: '🔗', title: 'Deep Linking', desc: 'Every search is shareable via URL params (?q=name). Agents can generate direct links to search results for any domain name.', href: null },
+                { icon: '📊', title: 'Structured Data', desc: 'We use JSON-LD schema (WebApplication + SearchAction) so search engines and AI systems understand what we do and how to use us.', href: null },
+              ].map(item => (
+                <div key={item.title} style={{ background: '#111', borderRadius: '12px', padding: '20px', border: '1px solid #1e1e1e' }}>
+                  <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>{item.icon}</div>
+                  <div style={{ fontSize: '1rem', fontWeight: 600, color: '#fff', marginBottom: '4px' }}>{item.title}</div>
+                  <p style={{ fontSize: '0.85rem', color: '#9ca3af', lineHeight: 1.6, margin: 0 }}>{item.desc}</p>
+                  {item.href && <a href={item.href} style={{ display: 'inline-block', marginTop: '8px', fontSize: '0.8rem', color: '#8b5cf6', textDecoration: 'none' }}>View →</a>}
+                </div>
+              ))}
+            </div>
+            <p>We&apos;re part of the movement toward an <strong style={{ color: '#fff' }}>open, agent-friendly internet</strong> where AI can help users find and register domains without friction. If you&apos;re building an AI agent that helps with domain selection, our API is free to use.</p>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '48px' }}>
           <h2 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Explore Our Tools</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '12px' }}>
             {[
