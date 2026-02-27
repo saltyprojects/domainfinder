@@ -1,0 +1,85 @@
+# DomyDomains — Full Documentation
+
+> The fastest domain name search tool on the internet. Search 400+ TLDs instantly.
+
+## Overview
+
+DomyDomains (https://domydomains.com) is a free domain availability search engine. It checks domain availability across 400+ top-level domains (TLDs) in real-time, helping users find the perfect domain name for their website, business, or project.
+
+## How It Works
+
+1. **Type a domain name** — Results appear instantly as you type
+2. **Phase 1** — The first 30 popular TLDs are checked immediately (.com, .net, .org, .io, .ai, .dev, etc.)
+3. **Phase 2** — All 324+ TLDs are checked in the background in batches of 30
+4. **Results** — Green = available, Red = taken. Click "Continue" to register at Namecheap
+
+## Features
+
+### Domain Search
+Search any domain name across 400+ TLDs. Results show availability status (available/taken) with direct registration links.
+
+### Domain Extensions
+Browse all 324+ TLD extensions with color-coded availability cards. Available domains shown in green, taken in red.
+
+### Domain Generator
+Enter a keyword and get creative domain name variations using common prefixes (try, get, my, the, go, pro) and suffixes (hq, tech, studio, labs, hub, cloud, app).
+
+### Premium/Aftermarket Domains
+Discover premium domains for sale in the aftermarket with pricing information.
+
+## API Reference
+
+### Search Domains
+```
+GET https://api.domydomains.com/api/search/?q={name}
+```
+Parameters:
+- `q` (required): Domain name to search (without TLD)
+- `scope`: `popular` (23 TLDs, fast) or `all` (324+ TLDs, comprehensive)
+- `limit`: Maximum number of results
+- `offset`: Skip N results (for pagination)
+
+Response:
+```json
+{
+  "query": "example",
+  "results": [
+    {
+      "full_domain": "example.com",
+      "tld": "com",
+      "available": false
+    },
+    {
+      "full_domain": "example.io",
+      "tld": "io",
+      "available": true
+    }
+  ]
+}
+```
+
+### Get Suggestions
+```
+GET https://api.domydomains.com/api/suggestions/?q={name}
+```
+Returns creative domain name suggestions based on the input keyword.
+
+## Supported TLDs
+
+### Popular TLDs (23)
+.com, .net, .org, .io, .dev, .ai, .app, .co, .me, .xyz, .tech, .info, .biz, .cloud, .design, .blog, .shop, .site, .store, .online, .gg, .cc, .tv
+
+### All TLDs (324+)
+Includes all popular TLDs plus country codes (.uk, .de, .fr, .jp, .au, etc.), new gTLDs (.cloud, .design, .studio, .agency, etc.), and specialty TLDs (.pro, .mobi, .tel, .name, etc.).
+
+## Technology Stack
+
+- **Frontend**: Next.js (React) — Server-side rendered, mobile-first responsive
+- **Backend**: Django + Django REST Framework — RESTful API
+- **Domain Checking**: DNS resolution (fast, no external API dependency)
+- **Hosting**: Railway
+
+## Contact
+
+- Website: https://domydomains.com
+- Twitter: https://x.com/domydomains

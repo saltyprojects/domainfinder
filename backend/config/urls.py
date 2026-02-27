@@ -3,7 +3,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from api.views import (
     DomainSearchViewSet, SuggestionsViewSet, WhoisViewSet, TrademarkViewSet, 
-    SocialContentViewSet, DomainListViewSet, DomainWatchlistViewSet, DomainAlertViewSet,
+    SocialContentViewSet, DomainListViewSet, DomainWatchlistViewSet, DomainAlertViewSet, SEOArticleViewSet,
     linkedin_callback, search_stream, social_whois_stream, preview_content,
     register, login_view, logout_view, user_dashboard,
     expiring_domains, expiring_domains_by_urgency, domain_expiry_info,
@@ -19,6 +19,7 @@ router.register(r'social-content', SocialContentViewSet, basename='social-conten
 router.register(r'domain-lists', DomainListViewSet, basename='domain-lists')
 router.register(r'watchlist', DomainWatchlistViewSet, basename='watchlist')
 router.register(r'alerts', DomainAlertViewSet, basename='alerts')
+router.register(r'seo-articles', SEOArticleViewSet, basename='seo-articles')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

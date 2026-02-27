@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import authenticate
-from .models import User, DomainList, SavedDomain, DomainWatchlist, DomainAlert, ListShare
+from .models import User, SEOArticle, DomainList, SavedDomain, DomainWatchlist, DomainAlert, ListShare
 
 
 class DomainResultSerializer(serializers.Serializer):
@@ -146,3 +146,9 @@ class ListShareSerializer(serializers.ModelSerializer):
         model = ListShare
         fields = ['id', 'domain_list', 'shared_with', 'shared_with_email', 'domain_list_name', 'permission', 'created_at']
         read_only_fields = ['id', 'created_at']
+
+
+class SEOArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SEOArticle
+        fields = '__all__'

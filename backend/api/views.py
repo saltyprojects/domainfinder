@@ -628,3 +628,12 @@ def linkedin_callback(request):
     return HttpResponse(token_resp.text, content_type='application/json', status=token_resp.status_code)
 
 
+
+
+# SEO Article tracking
+from .models import SEOArticle
+from .serializers import SEOArticleSerializer
+
+class SEOArticleViewSet(viewsets.ModelViewSet):
+    queryset = SEOArticle.objects.all()
+    serializer_class = SEOArticleSerializer

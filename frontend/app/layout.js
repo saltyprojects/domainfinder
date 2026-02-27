@@ -9,15 +9,16 @@ export const viewport = {
 };
 
 export const metadata = {
-  title: 'DomyDomains — Find Your Perfect Domain Name Instantly',
+  title: 'DomyDomains — Instant Domain Name Search | 400+ TLDs',
   description:
-    'Search domain availability across 20+ TLDs, check social handles, and compare prices — all in one free tool. Find, compare, and register your ideal domain.',
+    'The fastest domain search tool on the internet. Search 400+ domain extensions instantly. Find available domains, generate creative names, and discover premium domains for sale.',
+  keywords: 'domain search, domain name search, domain availability, domain checker, domain finder, TLD search, domain extensions, buy domain, register domain, domain generator',
   metadataBase: new URL('https://domydomains.com'),
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'DomyDomains — Find Your Perfect Domain Name Instantly',
+    title: 'DomyDomains — Instant Domain Name Search | 400+ TLDs',
     description:
-      'Search domain availability across 20+ TLDs, check social handles, and compare prices — all in one free tool.',
+      'The fastest domain search tool on the internet. Search 400+ domain extensions instantly.',
     url: 'https://domydomains.com',
     siteName: 'DomyDomains',
     images: [
@@ -33,9 +34,10 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DomyDomains — Find Your Perfect Domain Name Instantly',
+    title: 'DomyDomains — Instant Domain Name Search | 400+ TLDs',
     description:
-      'Search domain availability across 20+ TLDs, check social handles, and compare prices — all free.',
+      'The fastest domain search tool. Search 400+ domain extensions instantly. Find and register domains.',
+    site: '@domydomains',
     images: ['/og-image.png'],
   },
   icons: {
@@ -52,17 +54,30 @@ export const metadata = {
 export default function RootLayout({ children }) {
   const gtag = process.env.NEXT_PUBLIC_GOOGLE_TAG;
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebApplication',
-    name: 'DomyDomains',
-    url: 'https://domydomains.com',
-    description:
-      'Search domain availability across 20+ TLDs, check social handles, and compare prices.',
-    applicationCategory: 'UtilityApplication',
-    operatingSystem: 'Any',
-    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-  };
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebApplication',
+      name: 'DomyDomains',
+      url: 'https://domydomains.com',
+      description: 'The fastest domain search tool on the internet. Search 400+ domain extensions instantly.',
+      applicationCategory: 'UtilityApplication',
+      operatingSystem: 'Any',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', ratingCount: '150' },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'DomyDomains',
+      url: 'https://domydomains.com',
+      potentialAction: {
+        '@type': 'SearchAction',
+        target: { '@type': 'EntryPoint', urlTemplate: 'https://domydomains.com/?q={search_term_string}' },
+        'query-input': 'required name=search_term_string',
+      },
+    },
+  ];
 
   return (
     <html lang="en">

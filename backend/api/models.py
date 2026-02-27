@@ -145,3 +145,39 @@ class ListShare(models.Model):
 
     def __str__(self):
         return f"{self.domain_list.name} shared with {self.shared_with.email}"
+
+
+class SEOArticle(models.Model):
+    """Track published SEO articles with backlinks to domydomains.com."""
+    PLATFORM_CHOICES = [
+        ('medium', 'Medium'),
+        ('devto', 'Dev.to'),
+        ('hashnode', 'Hashnode'),
+        ('linkedin', 'LinkedIn'),
+        ('wordpress', 'WordPress'),
+        ('substack', 'Substack'),
+        ('other', 'Other'),
+    ]
+    STATUS_CHOICES = [
+        ('draft', 'Draft'),
+        ('published', 'Published'),
+        ('indexed', 'Indexed by Google'),
+    ]
+    title = models.CharField(max_length=300)
+    slug = models.SlugField(max_length=300, unique=True)
+    url = models.URLField(max_length=500, blank=True)
+    platform = models.CharField(max_length=20, choices=PLATFORM_CHOICES)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
+    backlink_url = models.URLField(max_length=500, default='https://domydomains.com', help_text='The domydomains.com URL this article links to')
+    backlink_anchor = models.CharField(max_length=200, default='DomyDomains', help_text='Anchor text for the backlink')
+    content_summary = models.TextField(blank=True, help_text='Brief summary of article content')
+    target_keywords = models.CharField(max_length=500, blank=True, help_text='Comma-separated target keywords')
+    published_date = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-published_date', '-created_at']
+
+    def __str__(self):
+        return f"[{self.platform}] {self.title} ({self.status})"
