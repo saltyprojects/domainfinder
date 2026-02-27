@@ -104,7 +104,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 # CSRF
 CSRF_TRUSTED_ORIGINS = [
     f"https://{origin.strip()}"
-    for origin in os.environ.get("CSRF_TRUSTED_ORIGINS", "backend-production-4d81.up.railway.app").split(",")
+    for origin in os.environ.get("CSRF_TRUSTED_ORIGINS", "backend-production-4d81.up.railway.app,api.domydomains.com").split(",")
     if origin.strip()
 ]
 
