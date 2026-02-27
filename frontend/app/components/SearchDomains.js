@@ -140,22 +140,30 @@ function GeneratorView({ query, isMultiColumn, columns = 1 }) {
   const suggestions = [...prefixes.map(p => `${p}${query}.com`), ...suffixes.map(s => `${query}${s}.com`)];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(columns, 3)}, 1fr)`, gap: '2px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(columns, 3)}, 1fr)`, gap: '4px' }}>
       {suggestions.slice(0, shown).map(d => (
-        <a key={d} href={`${buildAffiliateUrl(d)}`}
-          target="_blank" rel="noopener noreferrer"
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 12px', height: 'clamp(36px, 4vw, 46px)', borderRadius: '4px', textDecoration: 'none' }}
+        <div key={d} style={{ borderRadius: '8px', padding: '10px 12px', background: 'transparent', transition: 'background 0.15s' }}
           onMouseEnter={e => e.currentTarget.style.background = '#141414'}
           onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22c55e' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+            <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22c55e', flexShrink: 0 }} />
             <span style={{ fontSize: 'clamp(0.85rem, 1.4vw, 1.25rem)', color: '#e5e5e5' }}>{d}</span>
           </div>
-          <div style={{ background: '#1a1a1a', borderRadius: '4px', height: 'clamp(24px, 2.5vw, 32px)', display: 'flex', alignItems: 'center' }}>
-            <span style={{ padding: '0 8px', fontSize: 'clamp(0.7rem, 1vw, 1rem)', fontWeight: 600, color: '#22c55e' }}>Continue</span>
-            <span style={{ padding: '0 4px', fontSize: 'clamp(0.55rem, 0.8vw, 0.8rem)', color: '#444' }}>▾</span>
+          <div style={{ display: 'flex', gap: '6px', paddingLeft: '17px' }}>
+            <a href={buildAffiliateUrl(d)} target="_blank" rel="noopener noreferrer"
+              style={{ padding: '5px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 600, background: 'rgba(34,197,94,0.15)', color: '#22c55e', textDecoration: 'none', border: '1px solid rgba(34,197,94,0.2)' }}>
+              Register
+            </a>
+            <a href={`https://who.is/whois/${d}`} target="_blank" rel="noopener noreferrer"
+              style={{ padding: '5px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 600, background: 'rgba(139,92,246,0.12)', color: '#8b5cf6', textDecoration: 'none', border: '1px solid rgba(139,92,246,0.2)' }}>
+              WHOIS
+            </a>
+            <button onClick={() => { navigator.clipboard.writeText(d); }}
+              style={{ padding: '5px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 600, background: 'rgba(255,255,255,0.06)', color: '#888', border: '1px solid #333', cursor: 'pointer' }}>
+              Copy
+            </button>
           </div>
-        </a>
+        </div>
       ))}
       {suggestions.length > shown && <div ref={ref} style={{ height: '1px' }} />}
     </div>
@@ -187,22 +195,33 @@ function AftermarketView({ query, isMultiColumn, columns = 1 }) {
   ];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(columns, 3)}, 1fr)`, gap: '2px' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(columns, 3)}, 1fr)`, gap: '4px' }}>
       {aftermarket.slice(0, shown).map(item => (
-        <a key={item.domain} href={`${buildAffiliateUrl(item.domain)}`}
-          target="_blank" rel="noopener noreferrer"
-          style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 12px', height: 'clamp(36px, 4vw, 46px)', borderRadius: '4px', textDecoration: 'none' }}
+        <div key={item.domain} style={{ borderRadius: '8px', padding: '10px 12px', background: 'transparent', transition: 'background 0.15s' }}
           onMouseEnter={e => e.currentTarget.style.background = '#141414'}
           onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#3b82f6' }} />
-            <span style={{ fontSize: 'clamp(0.85rem, 1.4vw, 1.25rem)', color: '#e5e5e5' }}>{item.domain}</span>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#3b82f6', flexShrink: 0 }} />
+              <span style={{ fontSize: 'clamp(0.85rem, 1.4vw, 1.25rem)', color: '#e5e5e5' }}>{item.domain}</span>
+            </div>
+            <span style={{ fontSize: 'clamp(0.75rem, 1vw, 1rem)', fontWeight: 700, color: '#3b82f6' }}>{item.price}</span>
           </div>
-          <div style={{ background: '#1a1a1a', borderRadius: '4px', height: 'clamp(24px, 2.5vw, 32px)', display: 'flex', alignItems: 'center' }}>
-            <span style={{ padding: '0 8px', fontSize: 'clamp(0.7rem, 1vw, 1rem)', fontWeight: 600, color: '#3b82f6' }}>{item.price}</span>
-            <span style={{ padding: '0 4px', fontSize: 'clamp(0.55rem, 0.8vw, 0.8rem)', color: '#444' }}>▾</span>
+          <div style={{ display: 'flex', gap: '6px', paddingLeft: '17px' }}>
+            <a href={buildAffiliateUrl(item.domain)} target="_blank" rel="noopener noreferrer"
+              style={{ padding: '5px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 600, background: 'rgba(59,130,246,0.15)', color: '#3b82f6', textDecoration: 'none', border: '1px solid rgba(59,130,246,0.2)' }}>
+              Buy Now
+            </a>
+            <a href={`https://who.is/whois/${item.domain}`} target="_blank" rel="noopener noreferrer"
+              style={{ padding: '5px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 600, background: 'rgba(139,92,246,0.12)', color: '#8b5cf6', textDecoration: 'none', border: '1px solid rgba(139,92,246,0.2)' }}>
+              WHOIS
+            </a>
+            <button onClick={() => { navigator.clipboard.writeText(item.domain); }}
+              style={{ padding: '5px 12px', borderRadius: '6px', fontSize: '0.75rem', fontWeight: 600, background: 'rgba(255,255,255,0.06)', color: '#888', border: '1px solid #333', cursor: 'pointer' }}>
+              Copy
+            </button>
           </div>
-        </a>
+        </div>
       ))}
       {aftermarket.length > shown && <div ref={ref} style={{ height: '1px' }} />}
     </div>
