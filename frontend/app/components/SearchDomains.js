@@ -823,13 +823,13 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           <ExtensionsView results={results} isMultiColumn={isMultiColumn} columns={columns} />
         )}
 
-        {/* Generator tab */}
-        {!loading && activeTab === 'generator' && query.length >= 2 && (
+        {/* Generator tab — independent of search loading */}
+        {activeTab === 'generator' && query.length >= 2 && (
           <GeneratorView query={query} isMultiColumn={isMultiColumn} columns={columns} />
         )}
 
-        {/* Aftermarket tab */}
-        {!loading && activeTab === 'aftermarket' && query.length >= 2 && (
+        {/* Aftermarket/Premium tab — independent of search loading */}
+        {activeTab === 'aftermarket' && query.length >= 2 && (
           <AftermarketView query={query} isMultiColumn={isMultiColumn} columns={columns} />
         )}
 
@@ -1028,7 +1028,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
         )}
 
         {/* Empty state — generator tab */}
-        {!loading && results.length === 0 && activeTab === 'generator' && (
+        {results.length === 0 && activeTab === 'generator' && (
           <div style={{ padding: '16px 0' }}>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>Generate domain name ideas</h3>
             <p style={{ fontSize: '0.85rem', color: '#999', lineHeight: 1.5, marginBottom: '16px' }}>
@@ -1047,7 +1047,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
         )}
 
         {/* Empty state — aftermarket/premium tab */}
-        {!loading && results.length === 0 && activeTab === 'aftermarket' && (
+        {results.length === 0 && activeTab === 'aftermarket' && (
           <div style={{ padding: '16px 0' }}>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>Discover premium domains</h3>
             <p style={{ fontSize: '0.85rem', color: '#999', lineHeight: 1.5, marginBottom: '16px' }}>
