@@ -6,7 +6,7 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 // Dynadot affiliate via CJ (publisher 101695072, 25% commission)
 const AFFILIATE_URL = 'https://www.anrdoezrs.net/click-101695072-12589558';
 function buildAffiliateUrl(domain) {
-  return `${AFFILIATE_URL}?url=${encodeURIComponent('https://www.dynadot.com/domain/search?q=' + domain)}`;
+  return `${AFFILIATE_URL}?url=${encodeURIComponent('https://www.dynadot.com/domain/search?domain=' + domain)}`;
 }
 
 function DomainRow({ result }) {
