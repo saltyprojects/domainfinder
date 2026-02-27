@@ -208,8 +208,9 @@ export function AppShell({ children, hideFooter = false, searchActive = false, a
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               style={{
-                background: 'none', border: 'none', cursor: 'pointer', padding: '4px',
-                display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'center',
+                background: 'none', border: 'none', cursor: 'pointer',
+                width: '44px', height: '44px',
+                display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'center', justifyContent: 'center',
               }}
             >
               <span style={{ display: 'block', width: '18px', height: '2px', background: menuOpen ? '#8b5cf6' : '#999', borderRadius: '1px', transition: 'all 0.2s', transform: menuOpen ? 'rotate(45deg) translateY(6px)' : 'none' }} />
