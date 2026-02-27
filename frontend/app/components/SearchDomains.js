@@ -983,8 +983,8 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           </>
         )}
 
-        {/* Batch loading indicator */}
-        {loadingMore && (
+        {/* Batch loading indicator — only on extensions/search tabs */}
+        {loadingMore && (activeTab === 'extensions' || activeTab === 'search') && (
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '12px 0' }}>
             <div style={{
               width: '16px', height: '16px', border: '2px solid #333', borderTopColor: '#8b5cf6',
