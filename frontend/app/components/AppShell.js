@@ -77,6 +77,7 @@ const NAV_LINKS = [
   { href: '/domain-generator', label: 'Generator' },
   { href: '/premium-domains', label: 'Premium' },
   { href: '/domain-pricing', label: 'Pricing' },
+  { href: '/whois-lookup', label: 'WHOIS' },
   { href: '/about', label: 'About' },
 ];
 
