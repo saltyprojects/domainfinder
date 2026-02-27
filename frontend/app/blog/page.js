@@ -85,9 +85,18 @@ export default function BlogIndex() {
               >
                 ← Newer
               </button>
-              <span style={{ color: '#888', fontSize: '0.85rem' }}>
-                Page {page} of {totalPages}
-              </span>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
+                <button key={n} onClick={() => setPage(n)}
+                  style={{
+                    width: '36px', height: '36px', borderRadius: '8px', fontSize: '0.85rem', fontWeight: 600,
+                    border: n === page ? '1px solid #8b5cf6' : '1px solid #333',
+                    background: n === page ? 'rgba(139,92,246,0.15)' : 'transparent',
+                    color: n === page ? '#8b5cf6' : '#888',
+                    cursor: 'pointer',
+                  }}>
+                  {n}
+                </button>
+              ))}
               <button
                 onClick={() => setPage(p => p + 1)}
                 disabled={!hasNext}
