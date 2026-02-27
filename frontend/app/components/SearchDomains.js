@@ -1027,8 +1027,8 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           </div>
         )}
 
-        {/* Empty state — generator tab */}
-        {results.length === 0 && activeTab === 'generator' && (
+        {/* Empty state — generator tab (only when no query) */}
+        {query.length < 2 && activeTab === 'generator' && (
           <div style={{ padding: '16px 0' }}>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>Generate domain name ideas</h3>
             <p style={{ fontSize: '0.85rem', color: '#999', lineHeight: 1.5, marginBottom: '16px' }}>
@@ -1047,7 +1047,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
         )}
 
         {/* Empty state — aftermarket/premium tab */}
-        {results.length === 0 && activeTab === 'aftermarket' && (
+        {query.length < 2 && activeTab === 'aftermarket' && (
           <div style={{ padding: '16px 0' }}>
             <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>Discover premium domains</h3>
             <p style={{ fontSize: '0.85rem', color: '#999', lineHeight: 1.5, marginBottom: '16px' }}>
