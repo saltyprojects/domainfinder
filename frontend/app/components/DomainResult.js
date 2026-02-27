@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { SEOAnalytics } from './SEOAnalytics';
 
-const REGISTRAR_URL = 'https://www.namecheap.com/domains/registration/results/?domain=';
+const AFFILIATE_URL = 'https://www.anrdoezrs.net/click-101695072-12589558';
+function buildAffiliateUrl(domain) { return `${AFFILIATE_URL}?url=${encodeURIComponent('https://www.dynadot.com/domain/search.html?domain=' + domain)}`; }
 
 function IntelChips({ intel, available }) {
   if (!intel) return null;
@@ -194,7 +195,7 @@ export function DomainResult({ result, onCopy, copied, intel }) {
                 </span>
               )}
               <a
-                href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
+                href={buildAffiliateUrl(full_domain)}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

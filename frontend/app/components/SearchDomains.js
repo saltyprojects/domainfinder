@@ -3,13 +3,17 @@
 import { useState, useRef, useEffect } from 'react';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-const REGISTRAR_URL = 'https://www.namecheap.com/domains/registration/results/?domain=';
+// Dynadot affiliate via CJ (publisher 101695072, 25% commission)
+const AFFILIATE_URL = 'https://www.anrdoezrs.net/click-101695072-12589558';
+function buildAffiliateUrl(domain) {
+  return `${AFFILIATE_URL}?url=${encodeURIComponent('https://www.dynadot.com/domain/search.html?domain=' + domain)}`;
+}
 
 function DomainRow({ result }) {
   const { full_domain, available } = result;
   return (
     <a
-      href={`${REGISTRAR_URL}${encodeURIComponent(full_domain)}`}
+      href={buildAffiliateUrl(full_domain)}
       target="_blank" rel="noopener noreferrer"
       style={{
         display: 'flex',
@@ -102,7 +106,7 @@ function ExtensionsView({ results, isMultiColumn, columns = 1 }) {
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.max(3, columns + 2)}, 1fr)`, gap: '6px' }}>
         {sorted.map(r => (
-          <a key={r.tld} href={`https://www.namecheap.com/domains/registration/results/?domain=${r.full_domain}`}
+          <a key={r.tld} href={`${buildAffiliateUrl(r.full_domain)}`}
             target="_blank" rel="noopener noreferrer"
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -138,7 +142,7 @@ function GeneratorView({ query, isMultiColumn, columns = 1 }) {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(columns, 3)}, 1fr)`, gap: '2px' }}>
       {suggestions.slice(0, shown).map(d => (
-        <a key={d} href={`https://www.namecheap.com/domains/registration/results/?domain=${d}`}
+        <a key={d} href={`${buildAffiliateUrl(d)}`}
           target="_blank" rel="noopener noreferrer"
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 12px', height: 'clamp(36px, 4vw, 46px)', borderRadius: '4px', textDecoration: 'none' }}
           onMouseEnter={e => e.currentTarget.style.background = '#141414'}
@@ -185,7 +189,7 @@ function AftermarketView({ query, isMultiColumn, columns = 1 }) {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(columns, 3)}, 1fr)`, gap: '2px' }}>
       {aftermarket.slice(0, shown).map(item => (
-        <a key={item.domain} href={`https://www.namecheap.com/domains/registration/results/?domain=${item.domain}`}
+        <a key={item.domain} href={`${buildAffiliateUrl(item.domain)}`}
           target="_blank" rel="noopener noreferrer"
           style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 12px', height: 'clamp(36px, 4vw, 46px)', borderRadius: '4px', textDecoration: 'none' }}
           onMouseEnter={e => e.currentTarget.style.background = '#141414'}
@@ -662,7 +666,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
             {[
               { q: 'Is DomyDomains free to use?', a: 'Yes, 100% free. No account required. Search unlimited domains across 400+ extensions.' },
               { q: 'How do you check domain availability?', a: 'We use direct DNS resolution — the fastest method possible. No slow third-party APIs. Results appear in milliseconds.' },
-              { q: 'Can I register a domain through DomyDomains?', a: 'We partner with top registrars like Namecheap. Click "Continue" on any available domain to register it at the best price.' },
+              { q: 'Can I register a domain through DomyDomains?', a: 'We partner with top registrars like Dynadot. Click "Continue" on any available domain to register it at the best price.' },
               { q: 'What TLDs do you support?', a: 'We support 400+ TLDs including .com, .net, .org, .ai, .io, .dev, .app, .co, .xyz, and hundreds of country-code and specialty extensions.' },
               { q: 'Do you store my search history?', a: 'No. We don\'t store searches, don\'t require accounts, and don\'t track users. Your searches are completely private.' },
             ].map((faq, i) => (
@@ -757,7 +761,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
             </div>
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               <a
-                href={`${REGISTRAR_URL}${encodeURIComponent(primary.full_domain)}`}
+                href={buildAffiliateUrl(primary.full_domain)}
                 target="_blank" rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex', alignItems: 'center', gap: '4px',
@@ -785,7 +789,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                 {primary.available ? 'Continue' : 'Lookup'} →
               </a>
               <a
-                href={`${REGISTRAR_URL}${encodeURIComponent(primary.full_domain)}`}
+                href={buildAffiliateUrl(primary.full_domain)}
                 target="_blank" rel="noopener noreferrer"
                 style={{
                   display: 'inline-flex', alignItems: 'center',
@@ -808,7 +812,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                   e.currentTarget.style.color = '#999';
                 }}
               >
-                Namecheap →
+                Dynadot →
               </a>
             </div>
           </div>
@@ -916,7 +920,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                     ].filter(d => query && query.length > 1).map((premium, idx) => (
                       <a
                         key={idx}
-                        href={`${REGISTRAR_URL}${encodeURIComponent(premium.domain)}`}
+                        href={buildAffiliateUrl(premium.domain)}
                         target="_blank" rel="noopener noreferrer"
                         style={{
                           display: 'flex',

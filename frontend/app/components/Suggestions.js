@@ -3,7 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-const REGISTRAR_URL = 'https://www.namecheap.com/domains/registration/results/?domain=';
+const AFFILIATE_URL = 'https://www.anrdoezrs.net/click-101695072-12589558';
+function buildAffiliateUrl(domain) { return `${AFFILIATE_URL}?url=${encodeURIComponent('https://www.dynadot.com/domain/search.html?domain=' + domain)}`; }
 
 export function Suggestions({ query }) {
   const [suggestions, setSuggestions] = useState([]);
@@ -62,7 +63,7 @@ export function Suggestions({ query }) {
           {available.map((s) => (
             <a
               key={s.full_domain}
-              href={`${REGISTRAR_URL}${encodeURIComponent(s.full_domain)}`}
+              href={buildAffiliateUrl(s.full_domain)}
               target="_blank"
               rel="noopener noreferrer"
               style={{
