@@ -5,17 +5,8 @@ echo "Running migrations..."
 python manage.py migrate --noinput 2>&1 || {
     echo "Migration failed — resetting migration history..."
     python manage.py migrate --fake-initial --noinput 2>&1 || {
-        echo "Fake initial failed — flushing DB and re-migrating..."
-        python -c "
-import django, os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-django.setup()
-from django.db import connection
-with connection.cursor() as cursor:
-    cursor.execute('DROP SCHEMA public CASCADE; CREATE SCHEMA public;')
-print('DB reset.')
-"
-        python manage.py migrate --noinput
+        echo "Fake initial also failed — NOT dropping DB (data safety). Manual intervention needed."
+        exit 1
     }
 }
 echo "Migrations complete."
