@@ -634,8 +634,16 @@ def linkedin_callback(request):
 from .models import SEOArticle
 from .serializers import SEOArticleSerializer
 
+from rest_framework.pagination import PageNumberPagination
+
+class ArticlePagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 50
+
 class SEOArticleViewSet(viewsets.ModelViewSet):
     queryset = SEOArticle.objects.all()
     serializer_class = SEOArticleSerializer
     authentication_classes = []
     permission_classes = []
+    pagination_class = ArticlePagination
