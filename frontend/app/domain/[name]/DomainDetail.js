@@ -6,7 +6,7 @@ import Link from 'next/link';
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 const REGISTRARS = [
-  { name: 'Dynadot', url: (d) => `https://www.anrdoezrs.net/click-101695072-12589558?url=${encodeURIComponent('https://www.dynadot.com/domain/search.html?domain=' + d)}` },
+  { name: 'Dynadot', url: (d) => `https://www.anrdoezrs.net/click-101695072-12589558?url=${encodeURIComponent('https://www.dynadot.com/domain/search?q=' + d)}` },
   { name: 'GoDaddy', url: (d) => `https://www.godaddy.com/domainsearch/find?domainToCheck=${d}` },
   { name: 'Cloudflare', url: (d) => `https://www.cloudflare.com/products/registrar/` },
   { name: 'Porkbun', url: (d) => `https://porkbun.com/checkout/search?q=${d}` },
@@ -204,7 +204,7 @@ export function DomainDetail({ domain }) {
                   </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                     {r.price && <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>${r.price.toFixed(2)}</span>}
-                    <a href={`${(() => { const AFFILIATE_URL='https://www.anrdoezrs.net/click-101695072-12589558'; return `${AFFILIATE_URL}?url=${encodeURIComponent('https://www.dynadot.com/domain/search.html?domain='+r.full_domain)}`; })()}`}
+                    <a href={`${(() => { const AFFILIATE_URL='https://www.anrdoezrs.net/click-101695072-12589558'; return `${AFFILIATE_URL}?url=${encodeURIComponent('https://www.dynadot.com/domain/search?q='+r.full_domain)}`; })()}`}
                       target="_blank" rel="noopener noreferrer"
                       style={{ padding: '6px 14px', background: 'var(--green)', color: '#000', borderRadius: '8px', fontSize: '0.8rem', fontWeight: 600 }}>
                       Register →
