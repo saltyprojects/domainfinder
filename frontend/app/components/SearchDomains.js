@@ -994,8 +994,8 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           </div>
         )}
 
-        {/* Loading skeleton */}
-        {loading && results.length === 0 && (
+        {/* Loading skeleton — only for tabs that fetch data */}
+        {loading && results.length === 0 && (activeTab === 'extensions' || activeTab === 'search') && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '8px' }}>
             {[...Array(10)].map((_, i) => (
               <div 
