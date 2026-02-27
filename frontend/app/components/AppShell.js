@@ -72,9 +72,18 @@ function Footer({ isDesktop }) {
   );
 }
 
+const NAV_LINKS = [
+  { href: '/domain-extensions', label: 'Extensions' },
+  { href: '/domain-generator', label: 'Generator' },
+  { href: '/premium-domains', label: 'Premium' },
+  { href: '/domain-pricing', label: 'Pricing' },
+  { href: '/about', label: 'About' },
+];
+
 export function AppShell({ children, hideFooter = false, searchActive = false, activeTab = 'search', onTabChange }) {
   const [layoutStyle, setLayoutStyle] = useState({ height: '100dvh' });
   const [isDesktop, setIsDesktop] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const update = () => {
@@ -177,6 +186,56 @@ export function AppShell({ children, hideFooter = false, searchActive = false, a
                   <span style={{ fontSize: isDesktop ? '0.82rem' : '0.7rem' }}>{tab.icon}</span>
                   {tab.label}
                 </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Right: Desktop nav links / Mobile burger */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexShrink: 0, position: 'relative' }}>
+          {isDesktop ? (
+            NAV_LINKS.map(link => (
+              <a key={link.href} href={link.href} style={{
+                fontSize: '0.78rem', color: '#999', textDecoration: 'none',
+                transition: 'color 0.15s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+              onMouseLeave={e => e.currentTarget.style.color = '#999'}>
+                {link.label}
+              </a>
+            ))
+          ) : (
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              style={{
+                background: 'none', border: 'none', cursor: 'pointer', padding: '4px',
+                display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'center',
+              }}
+            >
+              <span style={{ display: 'block', width: '18px', height: '2px', background: menuOpen ? '#8b5cf6' : '#999', borderRadius: '1px', transition: 'all 0.2s', transform: menuOpen ? 'rotate(45deg) translateY(6px)' : 'none' }} />
+              <span style={{ display: 'block', width: '18px', height: '2px', background: menuOpen ? 'transparent' : '#999', borderRadius: '1px', transition: 'all 0.2s' }} />
+              <span style={{ display: 'block', width: '18px', height: '2px', background: menuOpen ? '#8b5cf6' : '#999', borderRadius: '1px', transition: 'all 0.2s', transform: menuOpen ? 'rotate(-45deg) translateY(-6px)' : 'none' }} />
+            </button>
+          )}
+
+          {/* Mobile dropdown */}
+          {!isDesktop && menuOpen && (
+            <div style={{
+              position: 'absolute', top: '40px', right: 0,
+              background: '#111', border: '1px solid #2a2a2a', borderRadius: '12px',
+              padding: '8px 0', minWidth: '160px', zIndex: 100,
+              boxShadow: '0 8px 32px rgba(0,0,0,0.6)',
+            }}>
+              {NAV_LINKS.map(link => (
+                <a key={link.href} href={link.href} onClick={() => setMenuOpen(false)} style={{
+                  display: 'block', padding: '10px 16px',
+                  fontSize: '0.85rem', color: '#ccc', textDecoration: 'none',
+                  transition: 'background 0.12s',
+                }}
+                onMouseEnter={e => e.currentTarget.style.background = '#1a1a1a'}
+                onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                  {link.label}
+                </a>
               ))}
             </div>
           )}
