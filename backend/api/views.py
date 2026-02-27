@@ -637,3 +637,5 @@ from .serializers import SEOArticleSerializer
 class SEOArticleViewSet(viewsets.ModelViewSet):
     queryset = SEOArticle.objects.all()
     serializer_class = SEOArticleSerializer
+    authentication_classes = []
+    permission_classes = []
