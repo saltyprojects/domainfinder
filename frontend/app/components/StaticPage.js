@@ -39,22 +39,33 @@ export function StaticPage({ children }) {
 
   // Override body scroll lock for static pages
   useEffect(() => {
-    document.body.style.position = 'static';
-    document.body.style.overflow = 'auto';
-    document.body.style.height = 'auto';
-    document.documentElement.style.overflow = 'auto';
-    document.documentElement.style.height = 'auto';
+    // Override globals.css scroll lock for static pages
+    const el = document.documentElement;
+    const bd = document.body;
+    el.style.overflow = 'auto';
+    el.style.height = 'auto';
+    el.style.overscrollBehavior = 'auto';
+    bd.style.position = 'static';
+    bd.style.inset = 'auto';
+    bd.style.overflow = 'auto';
+    bd.style.height = 'auto';
+    bd.style.overscrollBehavior = 'auto';
+    bd.style.touchAction = 'auto';
     return () => {
-      document.body.style.position = '';
-      document.body.style.overflow = '';
-      document.body.style.height = '';
-      document.documentElement.style.overflow = '';
-      document.documentElement.style.height = '';
+      el.style.overflow = '';
+      el.style.height = '';
+      el.style.overscrollBehavior = '';
+      bd.style.position = '';
+      bd.style.inset = '';
+      bd.style.overflow = '';
+      bd.style.height = '';
+      bd.style.overscrollBehavior = '';
+      bd.style.touchAction = '';
     };
   }, []);
 
   return (
-    <div style={{ background: '#000', color: '#fff', minHeight: '100vh', fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif' }}>
+    <div style={{ background: '#000', color: '#fff', minHeight: '100vh', fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif', position: 'fixed', inset: 0, overflow: 'auto', zIndex: 50 }}>
       {/* Nav — matches AppShell */}
       <nav style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',

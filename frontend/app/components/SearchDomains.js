@@ -590,6 +590,104 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
             </div>
           )}
         </div>
+
+        {/* SEO content below landing — makes page taller */}
+        <div style={{ width: '100%', maxWidth: '720px', marginTop: '64px' }}>
+          <section style={{ marginBottom: '48px' }}>
+            <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.8rem)', fontWeight: 700, color: '#fff', marginBottom: '16px', letterSpacing: '-0.02em' }}>Why DomyDomains?</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
+              {[
+                { icon: '⚡', title: 'Instant Results', desc: 'See domain availability as you type — no waiting, no clicking search.' },
+                { icon: '🌐', title: '400+ Extensions', desc: 'Check .com, .ai, .io, .dev, and hundreds more TLDs simultaneously.' },
+                { icon: '💰', title: '100% Free', desc: 'No account needed. No limits. Search as many domains as you want.' },
+                { icon: '🔒', title: 'Private', desc: 'We don\'t store your searches. No tracking, no data collection.' },
+              ].map(f => (
+                <div key={f.title} style={{ background: '#111', borderRadius: '12px', padding: '20px', border: '1px solid #1e1e1e' }}>
+                  <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>{f.icon}</div>
+                  <h3 style={{ fontSize: '1rem', fontWeight: 600, color: '#fff', marginBottom: '4px' }}>{f.title}</h3>
+                  <p style={{ fontSize: '0.85rem', color: '#9ca3af', lineHeight: 1.5, margin: 0 }}>{f.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section style={{ marginBottom: '48px' }}>
+            <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.8rem)', fontWeight: 700, color: '#fff', marginBottom: '16px', letterSpacing: '-0.02em' }}>Popular Domain Extensions</h2>
+            <p style={{ fontSize: '0.95rem', color: '#9ca3af', lineHeight: 1.7, marginBottom: '16px' }}>
+              Not sure which extension to pick? Here are the most popular TLDs and what they&apos;re best for:
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '8px' }}>
+              {[
+                { ext: '.com', use: 'Any website', color: '#22c55e' },
+                { ext: '.ai', use: 'AI & tech', color: '#8b5cf6' },
+                { ext: '.io', use: 'Startups', color: '#3b82f6' },
+                { ext: '.dev', use: 'Developers', color: '#f59e0b' },
+                { ext: '.app', use: 'Apps', color: '#ec4899' },
+                { ext: '.co', use: 'Companies', color: '#06b6d4' },
+                { ext: '.xyz', use: 'Modern sites', color: '#22c55e' },
+                { ext: '.shop', use: 'E-commerce', color: '#ef4444' },
+              ].map(t => (
+                <div key={t.ext} style={{ background: '#111', borderRadius: '8px', padding: '12px 16px', border: '1px solid #1e1e1e' }}>
+                  <span style={{ fontWeight: 700, fontSize: '1.1rem', color: t.color }}>{t.ext}</span>
+                  <div style={{ fontSize: '0.75rem', color: '#666', marginTop: '2px' }}>{t.use}</div>
+                </div>
+              ))}
+            </div>
+            <a href="/domain-extensions" style={{ display: 'inline-block', marginTop: '16px', fontSize: '0.85rem', color: '#8b5cf6', textDecoration: 'none' }}>
+              View all 400+ extensions →
+            </a>
+          </section>
+
+          <section style={{ marginBottom: '48px' }}>
+            <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.8rem)', fontWeight: 700, color: '#fff', marginBottom: '16px', letterSpacing: '-0.02em' }}>How It Works</h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {[
+                { step: '1', title: 'Type your domain name', desc: 'Start typing any word or phrase. Results appear instantly.' },
+                { step: '2', title: 'Browse availability', desc: 'Green means available, red means taken. We check 400+ extensions.' },
+                { step: '3', title: 'Register your domain', desc: 'Click "Continue" to register at the best price through our partners.' },
+              ].map(s => (
+                <div key={s.step} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                  <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#8b5cf6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.9rem', flexShrink: 0 }}>{s.step}</div>
+                  <div>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 600, color: '#fff', marginBottom: '4px' }}>{s.title}</h3>
+                    <p style={{ fontSize: '0.85rem', color: '#9ca3af', lineHeight: 1.5, margin: 0 }}>{s.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section style={{ marginBottom: '48px' }}>
+            <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.8rem)', fontWeight: 700, color: '#fff', marginBottom: '24px', letterSpacing: '-0.02em' }}>Frequently Asked Questions</h2>
+            {[
+              { q: 'Is DomyDomains free to use?', a: 'Yes, 100% free. No account required. Search unlimited domains across 400+ extensions.' },
+              { q: 'How do you check domain availability?', a: 'We use direct DNS resolution — the fastest method possible. No slow third-party APIs. Results appear in milliseconds.' },
+              { q: 'Can I register a domain through DomyDomains?', a: 'We partner with top registrars like Namecheap. Click "Continue" on any available domain to register it at the best price.' },
+              { q: 'What TLDs do you support?', a: 'We support 400+ TLDs including .com, .net, .org, .ai, .io, .dev, .app, .co, .xyz, and hundreds of country-code and specialty extensions.' },
+              { q: 'Do you store my search history?', a: 'No. We don\'t store searches, don\'t require accounts, and don\'t track users. Your searches are completely private.' },
+            ].map((faq, i) => (
+              <div key={i} style={{ marginBottom: '20px', paddingBottom: '20px', borderBottom: i < 4 ? '1px solid #1e1e1e' : 'none' }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 600, color: '#fff', marginBottom: '6px' }}>{faq.q}</h3>
+                <p style={{ color: '#9ca3af', lineHeight: 1.6, fontSize: '0.9rem', margin: 0 }}>{faq.a}</p>
+              </div>
+            ))}
+          </section>
+
+          <section style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'center', marginBottom: '32px' }}>
+            {[
+              { href: '/domain-extensions', label: '🧩 Extensions Guide' },
+              { href: '/domain-generator', label: '⚡ Name Generator' },
+              { href: '/premium-domains', label: '💎 Premium Domains' },
+              { href: '/domain-pricing', label: '💰 Pricing Guide' },
+              { href: '/whois-lookup', label: '🔍 WHOIS Lookup' },
+              { href: '/about', label: '🏠 About' },
+            ].map(link => (
+              <a key={link.href} href={link.href} style={{ background: '#111', border: '1px solid #1e1e1e', borderRadius: '8px', padding: '10px 16px', color: '#9ca3af', textDecoration: 'none', fontSize: '0.85rem', transition: 'border-color 0.2s' }}>
+                {link.label}
+              </a>
+            ))}
+          </section>
+        </div>
       </div>
     );
   }
