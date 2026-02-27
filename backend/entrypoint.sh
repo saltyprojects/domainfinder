@@ -30,13 +30,13 @@ User = get_user_model()
 username = os.environ.get('DJANGO_SUPERUSER_USERNAME', 'root')
 email = os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@domydomains.com')
 password = os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'changeme')
-# Force recreate superuser
-User.objects.filter(username=username).delete()
-User.objects.filter(email=email).delete()
-user = User(username=username, email=email, is_staff=True, is_superuser=True, is_active=True)
-user.set_password(password)
-user.save()
-print(f'Superuser force-created: {username}')
+if not User.objects.filter(username=username).exists():
+    user = User(username=username, email=email, is_staff=True, is_superuser=True, is_active=True)
+    user.set_password(password)
+    user.save()
+    print(f'Superuser created: {username}')
+else:
+    print(f'Superuser exists: {username}')
 " 2>&1 || true
 
 echo "Seeding data..."
