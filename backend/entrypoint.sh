@@ -30,17 +30,13 @@ User = get_user_model()
 username = os.environ.get('DJANGO_SUPERUSER_USERNAME', 'root')
 email = os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@domydomains.com')
 password = os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'changeme')
-user, created = User.objects.get_or_create(username=username, defaults={'email': email, 'is_staff': True, 'is_superuser': True})
-if created:
-    user.set_password(password)
-    user.save()
-    print(f'Superuser created: {username}')
-else:
-    user.is_staff = True
-    user.is_superuser = True
-    user.set_password(password)
-    user.save()
-    print(f'Superuser updated: {username}')
+# Force recreate superuser
+User.objects.filter(username=username).delete()
+User.objects.filter(email=email).delete()
+user = User(username=username, email=email, is_staff=True, is_superuser=True, is_active=True)
+user.set_password(password)
+user.save()
+print(f'Superuser force-created: {username}')
 " 2>&1 || true
 
 echo "Seeding data..."
