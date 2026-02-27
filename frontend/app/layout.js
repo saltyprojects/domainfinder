@@ -86,17 +86,16 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaTag}`} />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${gaTag}');
-            `,
-          }}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaTag}`}
+          strategy="beforeInteractive"
         />
+        <Script id="google-analytics" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${gaTag}');`}
+        </Script>
       </head>
       <body>{children}</body>
     </html>
