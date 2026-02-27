@@ -191,8 +191,8 @@ export function AppShell({ children, hideFooter = false, searchActive = false, a
           )}
         </div>
 
-        {/* Right: Desktop nav links / Mobile burger */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexShrink: 0, position: 'relative' }}>
+        {/* Right: Desktop nav links / Mobile burger (hidden when search active on mobile) */}
+        <div style={{ display: (searchActive && !isDesktop) ? 'none' : 'flex', alignItems: 'center', gap: '16px', flexShrink: 0, position: 'relative' }}>
           {isDesktop ? (
             NAV_LINKS.map(link => (
               <a key={link.href} href={link.href} style={{

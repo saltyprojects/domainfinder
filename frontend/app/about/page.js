@@ -74,6 +74,33 @@ export default function About() {
           </div>
         </div>
 
+        <div style={{ marginTop: '48px' }}>
+          <h2 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 700, marginBottom: '12px' }}>Why We Built DomyDomains</h2>
+          <div style={{ color: '#9ca3af', lineHeight: 1.9, fontSize: '1.05rem' }}>
+            <p>We were tired of slow domain search tools that make you click &ldquo;Search&rdquo; and wait seconds for each query. We wanted something that feels like Google — type and see results instantly.</p>
+            <p>So we built DomyDomains from scratch with one goal: <strong style={{ color: '#fff' }}>be the fastest domain search on the internet</strong>. No bloat, no upsells, no 10-second loading spinners. Just instant results across 400+ extensions.</p>
+            <p>We use DNS resolution directly instead of third-party APIs, which means our availability checks are as fast as physically possible — limited only by the speed of light to DNS servers worldwide.</p>
+          </div>
+        </div>
+
+        <div style={{ marginTop: '48px' }}>
+          <h2 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Explore Our Tools</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '12px' }}>
+            {[
+              { href: '/domain-extensions', icon: '🧩', title: 'Extensions Guide', desc: '400+ TLDs explained' },
+              { href: '/domain-generator', icon: '⚡', title: 'Name Generator', desc: 'Creative domain ideas' },
+              { href: '/premium-domains', icon: '💎', title: 'Premium Domains', desc: 'Aftermarket marketplace' },
+              { href: '/domain-pricing', icon: '💰', title: 'Pricing Guide', desc: 'Compare registrar costs' },
+            ].map(tool => (
+              <a key={tool.href} href={tool.href} style={{ background: '#111', borderRadius: '12px', padding: '20px', border: '1px solid #1e1e1e', textDecoration: 'none', transition: 'border-color 0.2s' }}>
+                <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>{tool.icon}</div>
+                <div style={{ fontSize: '1rem', fontWeight: 600, color: '#fff', marginBottom: '4px' }}>{tool.title}</div>
+                <div style={{ fontSize: '0.85rem', color: '#666' }}>{tool.desc}</div>
+              </a>
+            ))}
+          </div>
+        </div>
+
         <div style={{ marginTop: '48px', background: '#111', borderRadius: '16px', padding: '32px', border: '1px solid #1e1e1e', textAlign: 'center' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '12px' }}>Ready to find your domain?</h2>
           <Link href="/" style={{ display: 'inline-block', background: '#8b5cf6', color: '#fff', padding: '12px 24px', borderRadius: '8px', fontWeight: 600, textDecoration: 'none' }}>

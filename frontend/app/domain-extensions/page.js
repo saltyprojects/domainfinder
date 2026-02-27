@@ -127,6 +127,46 @@ export default function DomainExtensions() {
           </div>
         </section>
 
+        <section style={{ marginTop: '64px' }}>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: 700, marginBottom: '16px' }}>New TLDs Worth Watching in 2026</h2>
+          <div style={{ color: '#9ca3af', lineHeight: 1.8, fontSize: '1rem' }}>
+            <p>The domain landscape is constantly evolving. Here are the newest and most exciting TLDs gaining traction:</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '8px', marginTop: '16px' }}>
+              {[
+                { ext: '.ai', trend: '🔥 Hottest', note: 'AI/ML startups' },
+                { ext: '.app', trend: '📱 Growing', note: 'Mobile & web apps' },
+                { ext: '.dev', trend: '👨‍💻 Developer fave', note: 'Dev tools & portfolios' },
+                { ext: '.xyz', trend: '🚀 Gen Z pick', note: 'Modern & affordable' },
+                { ext: '.io', trend: '💼 Startup staple', note: 'Tech companies' },
+                { ext: '.gg', trend: '🎮 Gaming boom', note: 'Gaming & esports' },
+              ].map(t => (
+                <div key={t.ext} style={{ background: '#111', borderRadius: '8px', padding: '16px', border: '1px solid #1e1e1e' }}>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 700, color: '#8b5cf6' }}>{t.ext}</div>
+                  <div style={{ fontSize: '0.8rem', color: '#22c55e', marginTop: '4px' }}>{t.trend}</div>
+                  <div style={{ fontSize: '0.8rem', color: '#666', marginTop: '2px' }}>{t.note}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section style={{ marginTop: '64px' }}>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: 700, marginBottom: '24px' }}>Frequently Asked Questions</h2>
+          {[
+            { q: 'What is a domain extension (TLD)?', a: 'A TLD (Top-Level Domain) is the last part of a domain name, like .com, .org, or .ai. It helps categorize websites and can signal the purpose or region of a site.' },
+            { q: 'Does my domain extension affect SEO?', a: 'Google treats all TLDs equally for ranking. However, .com domains tend to get higher click-through rates because users trust them more. Choose a TLD that fits your brand rather than optimizing for SEO.' },
+            { q: 'Can I change my domain extension later?', a: 'You can register a new domain with a different extension, but you\'ll need to set up redirects and may lose some SEO equity. It\'s best to choose the right extension from the start.' },
+            { q: 'Why are some TLDs more expensive?', a: 'Pricing depends on the registry operator. Country-code TLDs and premium extensions like .ai charge more because of limited supply and high demand. Generic TLDs like .xyz are cheap because registries want volume.' },
+            { q: 'What\'s the difference between gTLDs and ccTLDs?', a: 'gTLDs (generic TLDs) like .com, .org, .net are open to anyone. ccTLDs (country-code TLDs) like .uk, .de, .jp are tied to specific countries, though many are available globally.' },
+            { q: 'How many domain extensions exist?', a: 'There are over 1,500 TLDs as of 2026, including traditional ones (.com, .net), new gTLDs (.app, .dev, .ai), and country codes (.uk, .de). DomyDomains supports 400+ of the most popular ones.' },
+          ].map((faq, i) => (
+            <div key={i} style={{ marginBottom: '24px', paddingBottom: '24px', borderBottom: i < 5 ? '1px solid #1e1e1e' : 'none' }}>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#fff', marginBottom: '8px' }}>{faq.q}</h3>
+              <p style={{ color: '#9ca3af', lineHeight: 1.7, fontSize: '0.95rem', margin: 0 }}>{faq.a}</p>
+            </div>
+          ))}
+        </section>
+
         <section style={{ marginTop: '64px', background: '#111', borderRadius: '16px', padding: '32px', border: '1px solid #1e1e1e' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '12px' }}>Ready to find your domain?</h2>
           <p style={{ color: '#9ca3af', marginBottom: '20px' }}>Search 400+ extensions instantly with DomyDomains.</p>

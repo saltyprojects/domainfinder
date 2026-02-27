@@ -103,6 +103,45 @@ export default function DomainGenerator() {
           </div>
         </section>
 
+        <section style={{ marginBottom: '64px' }}>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: 700, marginBottom: '16px' }}>Popular Domain Name Patterns</h2>
+          <div style={{ color: '#9ca3af', lineHeight: 1.8, fontSize: '1rem' }}>
+            <p>Studying successful brands reveals common naming patterns you can use:</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '12px', marginTop: '16px' }}>
+              {[
+                { pattern: 'Verb + Noun', examples: 'ScanLines, DropBox, SoundCloud', desc: 'Action-oriented, implies what the product does' },
+                { pattern: 'Misspelling', examples: 'Lyft, Tumblr, Fiverr', desc: 'Unique and memorable, easy to trademark' },
+                { pattern: 'Two Syllables', examples: 'Google, Apple, Stripe', desc: 'Short, punchy, easy to say and remember' },
+                { pattern: 'Prefix + Word', examples: 'Instagram, Intercom, Outreach', desc: 'Familiar root word with a twist' },
+                { pattern: 'Compound Word', examples: 'Facebook, Snapchat, WordPress', desc: 'Two words combined into one brand' },
+                { pattern: 'Made-up Word', examples: 'Spotify, Zillow, Hulu', desc: 'Completely original, no competition for the name' },
+              ].map(p => (
+                <div key={p.pattern} style={{ background: '#111', borderRadius: '12px', padding: '20px', border: '1px solid #1e1e1e' }}>
+                  <h3 style={{ fontSize: '1rem', fontWeight: 600, color: '#8b5cf6', marginBottom: '6px' }}>{p.pattern}</h3>
+                  <div style={{ fontSize: '0.85rem', color: '#22c55e', marginBottom: '6px' }}>{p.examples}</div>
+                  <p style={{ fontSize: '0.85rem', color: '#666', margin: 0 }}>{p.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section style={{ marginBottom: '64px' }}>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: 700, marginBottom: '24px' }}>Frequently Asked Questions</h2>
+          {[
+            { q: 'How does a domain name generator work?', a: 'Domain name generators take your keyword and create variations by adding prefixes (get, try, my, go), suffixes (hub, lab, hq, app), and combining words. Our generator also checks availability in real-time.' },
+            { q: 'Should I use a .com or a newer TLD?', a: 'If your target audience is mainstream consumers, .com is still king. For tech-savvy audiences, .io, .ai, and .dev carry credibility. Use our generator to check availability across all extensions.' },
+            { q: 'How long should a domain name be?', a: 'Aim for 6-14 characters. Shorter is better for memorability, but a slightly longer brandable name beats a short generic one. Avoid anything over 20 characters.' },
+            { q: 'Can I use hyphens or numbers in my domain?', a: 'Technically yes, but it\'s strongly discouraged. Hyphens are hard to communicate verbally, and numbers cause confusion (is it "5" or "five"?). Stick to letters only.' },
+            { q: 'What if my dream domain is taken?', a: 'Try variations with prefixes/suffixes, explore alternative TLDs, or consider buying the domain on the aftermarket. Check our premium domains page for available pre-owned names.' },
+          ].map((faq, i) => (
+            <div key={i} style={{ marginBottom: '24px', paddingBottom: '24px', borderBottom: i < 4 ? '1px solid #1e1e1e' : 'none' }}>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#fff', marginBottom: '8px' }}>{faq.q}</h3>
+              <p style={{ color: '#9ca3af', lineHeight: 1.7, fontSize: '0.95rem', margin: 0 }}>{faq.a}</p>
+            </div>
+          ))}
+        </section>
+
         <section style={{ background: '#111', borderRadius: '16px', padding: '32px', border: '1px solid #1e1e1e' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '12px' }}>Try our domain generator</h2>
           <p style={{ color: '#9ca3af', marginBottom: '20px' }}>Type any keyword and get hundreds of creative domain suggestions instantly.</p>

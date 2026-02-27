@@ -88,6 +88,47 @@ export default function PremiumDomains() {
           </div>
         </section>
 
+        <section style={{ marginBottom: '64px' }}>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: 700, marginBottom: '16px' }}>Famous Premium Domain Sales</h2>
+          <div style={{ color: '#9ca3af', lineHeight: 1.8, fontSize: '1rem' }}>
+            <p>Premium domains have sold for staggering amounts, proving their value as digital real estate:</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '8px', marginTop: '16px' }}>
+              {[
+                { domain: 'voice.com', price: '$30M', year: '2019' },
+                { domain: 'insurance.com', price: '$35.6M', year: '2010' },
+                { domain: 'hotels.com', price: '$11M', year: '2001' },
+                { domain: 'fb.com', price: '$8.5M', year: '2010' },
+                { domain: 'sex.com', price: '$13M', year: '2010' },
+                { domain: 'fund.com', price: '$10M', year: '2008' },
+                { domain: 'crypto.com', price: '$12M', year: '2018' },
+                { domain: 'beer.com', price: '$7M', year: '2004' },
+              ].map(s => (
+                <div key={s.domain} style={{ background: '#111', borderRadius: '8px', padding: '14px', border: '1px solid #1e1e1e' }}>
+                  <div style={{ fontSize: '1rem', fontWeight: 700, color: '#3b82f6' }}>{s.domain}</div>
+                  <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#22c55e' }}>{s.price}</div>
+                  <div style={{ fontSize: '0.75rem', color: '#666' }}>{s.year}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section style={{ marginBottom: '64px' }}>
+          <h2 style={{ fontSize: '1.8rem', fontWeight: 700, marginBottom: '24px' }}>Frequently Asked Questions</h2>
+          {[
+            { q: 'What makes a domain "premium"?', a: 'Premium domains are short, memorable, keyword-rich names that are already registered. They\'re sold on the aftermarket at prices above standard registration fees due to their brand value, traffic history, or SEO authority.' },
+            { q: 'Are premium domains worth the investment?', a: 'For businesses where the domain IS the brand, absolutely. A premium .com can save millions in marketing costs by being instantly memorable. For side projects or startups, a creative new registration is often better.' },
+            { q: 'How do I negotiate a premium domain price?', a: 'Research comparable sales on NameBio.com, start with an offer 30-50% below asking, be patient, and use escrow services like Escrow.com for safe transactions. Many sellers expect negotiation.' },
+            { q: 'Can I find premium domains with DomyDomains?', a: 'Yes! Our search shows premium aftermarket listings alongside available domains. When you search for a name, we surface premium options with pricing from major marketplaces.' },
+            { q: 'What\'s the difference between expired and premium domains?', a: 'Expired domains weren\'t renewed by their owner and go to auction. Premium domains are actively listed for sale by their owners at set prices. Expired domains can be great deals if they have existing backlinks.' },
+          ].map((faq, i) => (
+            <div key={i} style={{ marginBottom: '24px', paddingBottom: '24px', borderBottom: i < 4 ? '1px solid #1e1e1e' : 'none' }}>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#fff', marginBottom: '8px' }}>{faq.q}</h3>
+              <p style={{ color: '#9ca3af', lineHeight: 1.7, fontSize: '0.95rem', margin: 0 }}>{faq.a}</p>
+            </div>
+          ))}
+        </section>
+
         <section style={{ background: '#111', borderRadius: '16px', padding: '32px', border: '1px solid #1e1e1e' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '12px' }}>Search premium & available domains</h2>
           <p style={{ color: '#9ca3af', marginBottom: '20px' }}>Find premium domains for sale alongside available domains — all in one search.</p>
