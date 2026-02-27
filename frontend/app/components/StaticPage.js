@@ -21,6 +21,7 @@ const NAV_LINKS = [
   { href: '/domain-generator', label: 'Generator' },
   { href: '/premium-domains', label: 'Premium' },
   { href: '/domain-pricing', label: 'Pricing' },
+  { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'About' },
 ];
 
@@ -87,14 +88,15 @@ export function StaticPage({ children }) {
               </a>
             ))
           ) : (
-            <button onClick={() => setMenuOpen(!menuOpen)} style={{
+            <button onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu" style={{
               background: 'none', border: 'none', cursor: 'pointer',
               width: '44px', height: '44px',
-              display: 'flex', flexDirection: 'column', gap: '4px', alignItems: 'center', justifyContent: 'center',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              position: 'relative',
             }}>
-              <span style={{ display: 'block', width: '18px', height: '2px', background: menuOpen ? '#8b5cf6' : '#999', borderRadius: '1px', transition: 'all 0.2s', transform: menuOpen ? 'rotate(45deg) translateY(6px)' : 'none' }} />
-              <span style={{ display: 'block', width: '18px', height: '2px', background: menuOpen ? 'transparent' : '#999', borderRadius: '1px', transition: 'all 0.2s' }} />
-              <span style={{ display: 'block', width: '18px', height: '2px', background: menuOpen ? '#8b5cf6' : '#999', borderRadius: '1px', transition: 'all 0.2s', transform: menuOpen ? 'rotate(-45deg) translateY(-6px)' : 'none' }} />
+              <span style={{ display: 'block', width: '18px', height: '2px', background: '#999', borderRadius: '1px', transition: 'all 0.3s', position: 'absolute', transform: menuOpen ? 'rotate(45deg)' : 'translateY(-5px)' }} />
+              <span style={{ display: 'block', width: '18px', height: '2px', background: '#999', borderRadius: '1px', transition: 'all 0.3s', opacity: menuOpen ? 0 : 1 }} />
+              <span style={{ display: 'block', width: '18px', height: '2px', background: '#999', borderRadius: '1px', transition: 'all 0.3s', position: 'absolute', transform: menuOpen ? 'rotate(-45deg)' : 'translateY(5px)' }} />
             </button>
           )}
           {!isDesktop && menuOpen && (
