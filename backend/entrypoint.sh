@@ -20,6 +20,24 @@ print('DB reset.')
 }
 echo "Migrations complete."
 
+echo "Creating superuser if needed..."
+python -c "
+import django, os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+django.setup()
+from django.contrib.auth import get_user_model
+User = get_user_model()
+if not User.objects.filter(is_superuser=True).exists():
+    User.objects.create_superuser(
+        username=os.environ.get('DJANGO_SUPERUSER_USERNAME', 'admin'),
+        email=os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@domydomains.com'),
+        password=os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'changeme')
+    )
+    print('Superuser created.')
+else:
+    print('Superuser already exists.')
+" 2>&1 || true
+
 echo "Seeding data..."
 python manage.py seed || true
 echo "Seed complete."
