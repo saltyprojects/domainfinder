@@ -921,6 +921,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                 <span key={tld} style={{ padding: '6px 12px', borderRadius: '8px', fontSize: '0.78rem', fontWeight: 600, background: 'rgba(34,197,94,0.1)', color: '#22c55e', border: '1px solid rgba(34,197,94,0.2)' }}>{tld}</span>
               ))}
             </div>
+            <a href="/domain-extensions" style={{ display: 'inline-block', marginTop: '16px', fontSize: '0.82rem', color: '#8b5cf6', textDecoration: 'none' }}>Read our complete TLD guide →</a>
           </div>
         )}
 
@@ -939,6 +940,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                 </div>
               ))}
             </div>
+            <a href="/domain-generator" style={{ display: 'inline-block', marginTop: '16px', fontSize: '0.82rem', color: '#8b5cf6', textDecoration: 'none' }}>Tips for choosing domain names →</a>
           </div>
         )}
 
@@ -960,6 +962,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                 </div>
               ))}
             </div>
+            <a href="/premium-domains" style={{ display: 'inline-block', marginTop: '16px', fontSize: '0.82rem', color: '#8b5cf6', textDecoration: 'none' }}>Learn about premium domains →</a>
           </div>
         )}
 
