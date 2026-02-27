@@ -11,6 +11,7 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.7,
     })),
+    { url: `${base}/domain-pricing`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${base}/privacy`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.3 },
     { url: `${base}/terms`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.3 },
   ];
