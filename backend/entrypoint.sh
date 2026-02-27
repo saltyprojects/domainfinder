@@ -27,15 +27,19 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 django.setup()
 from django.contrib.auth import get_user_model
 User = get_user_model()
-if not User.objects.filter(is_superuser=True).exists():
-    User.objects.create_superuser(
-        username=os.environ.get('DJANGO_SUPERUSER_USERNAME', 'admin'),
-        email=os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@domydomains.com'),
-        password=os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'changeme')
-    )
-    print('Superuser created.')
+email = os.environ.get('DJANGO_SUPERUSER_EMAIL', 'admin@domydomains.com')
+password = os.environ.get('DJANGO_SUPERUSER_PASSWORD', 'changeme')
+user, created = User.objects.get_or_create(email=email, defaults={'username': 'root', 'is_staff': True, 'is_superuser': True})
+if created:
+    user.set_password(password)
+    user.save()
+    print(f'Superuser created: {email}')
 else:
-    print('Superuser already exists.')
+    user.is_staff = True
+    user.is_superuser = True
+    user.set_password(password)
+    user.save()
+    print(f'Superuser updated: {email}')
 " 2>&1 || true
 
 echo "Seeding data..."
