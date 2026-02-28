@@ -1,41 +1,39 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { StaticPage } from '../components/StaticPage';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
-export default function BlogIndex() {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [hasNext, setHasNext] = useState(false);
-  const [hasPrev, setHasPrev] = useState(false);
+export const metadata = {
+  title: 'Blog — DomyDomains',
+  description: 'Domain name tips, guides, and insights from DomyDomains.',
+  alternates: { canonical: '/blog' },
+};
 
-  useEffect(() => {
-    setLoading(true);
-    fetch(`${API_BASE}/api/seo-articles/?page=${page}&page_size=10`)
-      .then(r => r.json())
-      .then(data => {
-        // Handle both paginated and unpaginated responses
-        if (data.results) {
-          setArticles(data.results);
-          setHasNext(!!data.next);
-          setHasPrev(!!data.previous);
-          setTotalPages(Math.ceil(data.count / 10));
-        } else {
-          const withBody = Array.isArray(data) ? data : [];
-          setArticles(withBody);
-        }
-      })
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, [page]);
+export default async function BlogIndex({ searchParams }) {
+  const params = await searchParams;
+  const page = parseInt(params?.page) || 1;
+  let articles = [];
+  let totalPages = 1;
+  let hasNext = false;
+  let hasPrev = false;
+
+  try {
+    const res = await fetch(`${API_BASE}/api/seo-articles/?page=${page}&page_size=10`, {
+      next: { revalidate: 300 },
+    });
+    const data = await res.json();
+    if (data.results) {
+      articles = data.results;
+      hasNext = !!data.next;
+      hasPrev = !!data.previous;
+      totalPages = Math.ceil(data.count / 10);
+    } else {
+      articles = Array.isArray(data) ? data : [];
+    }
+  } catch (e) {}
 
   return (
-    <StaticPage title="Blog — DomyDomains" description="Domain name tips, guides, and insights.">
+    <StaticPage>
       <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.5rem)', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '8px' }}>
         Blog
       </h1>
@@ -43,9 +41,7 @@ export default function BlogIndex() {
         Domain name tips, guides, and insights.
       </p>
 
-      {loading ? (
-        <p style={{ color: '#888' }}>Loading articles...</p>
-      ) : articles.length === 0 ? (
+      {articles.length === 0 ? (
         <p style={{ color: '#888' }}>No articles yet. Check back soon!</p>
       ) : (
         <>
@@ -71,43 +67,29 @@ export default function BlogIndex() {
             ))}
           </div>
 
-          {/* Pagination */}
           {totalPages > 1 && (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px', marginTop: '48px' }}>
-              <button
-                onClick={() => setPage(p => Math.max(1, p - 1))}
-                disabled={!hasPrev}
-                style={{
+              {hasPrev && (
+                <Link href={`/blog?page=${page - 1}`} style={{
                   padding: '10px 20px', borderRadius: '8px', border: '1px solid #333',
-                  background: hasPrev ? '#1a1a2e' : 'transparent', color: hasPrev ? '#fff' : '#555',
-                  cursor: hasPrev ? 'pointer' : 'default', fontSize: '0.9rem',
-                }}
-              >
-                ← Newer
-              </button>
+                  background: '#1a1a2e', color: '#fff', fontSize: '0.9rem', textDecoration: 'none',
+                }}>← Newer</Link>
+              )}
               {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
-                <button key={n} onClick={() => setPage(n)}
-                  style={{
-                    width: '36px', height: '36px', borderRadius: '8px', fontSize: '0.85rem', fontWeight: 600,
-                    border: n === page ? '1px solid #8b5cf6' : '1px solid #333',
-                    background: n === page ? 'rgba(139,92,246,0.15)' : 'transparent',
-                    color: n === page ? '#8b5cf6' : '#888',
-                    cursor: 'pointer',
-                  }}>
-                  {n}
-                </button>
+                <Link key={n} href={`/blog?page=${n}`} style={{
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  width: '36px', height: '36px', borderRadius: '8px', fontSize: '0.85rem', fontWeight: 600,
+                  border: n === page ? '1px solid #8b5cf6' : '1px solid #333',
+                  background: n === page ? 'rgba(139,92,246,0.15)' : 'transparent',
+                  color: n === page ? '#8b5cf6' : '#888', textDecoration: 'none',
+                }}>{n}</Link>
               ))}
-              <button
-                onClick={() => setPage(p => p + 1)}
-                disabled={!hasNext}
-                style={{
+              {hasNext && (
+                <Link href={`/blog?page=${page + 1}`} style={{
                   padding: '10px 20px', borderRadius: '8px', border: '1px solid #333',
-                  background: hasNext ? '#1a1a2e' : 'transparent', color: hasNext ? '#fff' : '#555',
-                  cursor: hasNext ? 'pointer' : 'default', fontSize: '0.9rem',
-                }}
-              >
-                Older →
-              </button>
+                  background: '#1a1a2e', color: '#fff', fontSize: '0.9rem', textDecoration: 'none',
+                }}>Older →</Link>
+              )}
             </div>
           )}
         </>
