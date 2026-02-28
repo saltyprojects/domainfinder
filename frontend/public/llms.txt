@@ -1,72 +1,46 @@
 # DomyDomains
+> Domain search, comparison, and tools
 
-> The fastest domain name search tool on the internet. Search 400+ TLDs instantly.
+## Pages
+- [/](https://domydomains.com/)
+- [/domain-extensions](https://domydomains.com/domain-extensions)
+- [/domain-generator](https://domydomains.com/domain-generator)
+- [/premium-domains](https://domydomains.com/premium-domains)
+- [/domain-pricing](https://domydomains.com/domain-pricing)
+- [/whois-lookup](https://domydomains.com/whois-lookup)
+- [/domain-value](https://domydomains.com/domain-value)
+- [/about](https://domydomains.com/about)
+- [/blog](https://domydomains.com/blog)
+- [/privacy](https://domydomains.com/privacy)
+- [/terms](https://domydomains.com/terms)
+- [/trademark](https://domydomains.com/trademark)
 
-DomyDomains is a domain availability search engine that checks hundreds of domain extensions in real-time. Find available domains, explore extensions, generate creative names, and discover premium aftermarket domains.
-
-## Features
-
-- Instant domain availability search across 400+ TLDs
-- Two-phase loading: popular TLDs first, then all extensions
-- Domain name generator with prefix/suffix variations
-- Premium/aftermarket domain discovery
-- 18+ blog articles on domains, SEO, and branding
-- Mobile-first responsive design
-
-## URLs
-
-- Website: https://domydomains.com
-- API: https://api.domydomains.com
-- Search: https://domydomains.com/?q={query}
-- Domain Extensions Guide: https://domydomains.com/domain-extensions
-- Domain Name Generator: https://domydomains.com/domain-generator
-- Premium Domains: https://domydomains.com/premium-domains
-- Domain Pricing: https://domydomains.com/domain-pricing
-- WHOIS Lookup Guide: https://domydomains.com/whois-lookup
-- Domain Value Guide: https://domydomains.com/domain-value
-- About: https://domydomains.com/about
-- Blog: https://domydomains.com/blog
-- Blog: https://domydomains.com/blog/domain-history-research-before-buying
-- Blog: https://domydomains.com/blog/how-much-is-domain-name-worth-valuation
-- Blog: https://domydomains.com/blog/domain-price-comparison-cheapest-registrar
-- Blog: https://domydomains.com/blog/what-is-whois-domain-ownership-lookup
-- Blog: https://domydomains.com/blog/why-your-domain-name-matters
-- Blog: https://domydomains.com/blog/domain-name-tips-what-pros-know
-- Blog: https://domydomains.com/blog/com-vs-io-vs-ai-which-tld
-- Blog: https://domydomains.com/blog/top-10-domain-extensions-for-startups
-- Blog: https://domydomains.com/blog/seo-and-domain-names
-- Blog: https://domydomains.com/blog/premium-domains-vs-new-domains
-- Blog: https://domydomains.com/blog/how-to-buy-domain-name-beginners-guide
-- Blog: https://domydomains.com/blog/best-new-domain-extensions-startups
-- Blog: https://domydomains.com/blog/understanding-domain-availability-dns-lookup
-- Blog: https://domydomains.com/blog/domain-name-generator-creative-names
-- Blog: https://domydomains.com/blog/why-ai-domains-hottest-tld-2026
-- Blog: https://domydomains.com/blog/free-domain-search-tools-compared
-- Blog: https://domydomains.com/blog/complete-guide-domain-extensions-tlds-2026
-- Blog: https://domydomains.com/blog/how-to-choose-perfect-domain-name-2026
-- Blog: https://domydomains.com/blog/dev-domain-guide-developers
-- Blog: https://domydomains.com/blog/custom-domain-email-setup-guide
-- Blog: https://domydomains.com/blog/expired-domains-backorder-guide
-- Blog: https://domydomains.com/blog/best-domain-names-gaming-industry
-- Blog: https://domydomains.com/blog/subdomains-vs-subdirectories-seo
-
-## API
-
-The search API is available at:
-- `GET https://api.domydomains.com/api/search/?q={name}&scope=all` — Search all TLDs
-- `GET https://api.domydomains.com/api/search/?q={name}&scope=popular` — Search popular TLDs only
-- `GET https://api.domydomains.com/api/suggestions/?q={name}` — Get name suggestions
-- `GET https://api.domydomains.com/api/seo-articles/` — List all blog articles
-- `GET https://api.domydomains.com/api/seo-articles/{slug}/` — Get full article by slug
-
-## Agent Integration
-
-DomyDomains is designed for AI agents and assistants. The search API is free, requires no authentication, and returns structured JSON. Agents can:
-- Search domain availability: `GET /api/search/?q={name}&scope=all`
-- Generate domain suggestions: `GET /api/suggestions/?q={name}`
-- Read blog articles: `GET /api/seo-articles/{slug}/`
-- Deep-link to results: `https://domydomains.com/?q={name}`
-
-## Documentation
-
-- [Full documentation](https://domydomains.com/llms-full.txt)
+## Blog Articles
+- [/blog/domain-history-research-before-buying](https://domydomains.com/blog/domain-history-research-before-buying)
+- [/blog/how-much-is-domain-name-worth-valuation](https://domydomains.com/blog/how-much-is-domain-name-worth-valuation)
+- [/blog/domain-price-comparison-cheapest-registrar](https://domydomains.com/blog/domain-price-comparison-cheapest-registrar)
+- [/blog/what-is-whois-domain-ownership-lookup](https://domydomains.com/blog/what-is-whois-domain-ownership-lookup)
+- [/blog/why-your-domain-name-matters](https://domydomains.com/blog/why-your-domain-name-matters)
+- [/blog/domain-name-tips-what-pros-know](https://domydomains.com/blog/domain-name-tips-what-pros-know)
+- [/blog/com-vs-io-vs-ai-which-tld](https://domydomains.com/blog/com-vs-io-vs-ai-which-tld)
+- [/blog/top-10-domain-extensions-for-startups](https://domydomains.com/blog/top-10-domain-extensions-for-startups)
+- [/blog/domain-name-escrow-safe-buying-selling-guide](https://domydomains.com/blog/domain-name-escrow-safe-buying-selling-guide)
+- [/blog/ai-domain-boom-startups-six-figure-sales](https://domydomains.com/blog/ai-domain-boom-startups-six-figure-sales)
+- [/blog/reverse-domain-name-hijacking-udrp-protection](https://domydomains.com/blog/reverse-domain-name-hijacking-udrp-protection)
+- [/blog/ai-disrupting-domain-registrar-industry-godaddy](https://domydomains.com/blog/ai-disrupting-domain-registrar-industry-godaddy)
+- [/blog/ai-com-70-million-sale-domain-investing-2026](https://domydomains.com/blog/ai-com-70-million-sale-domain-investing-2026)
+- [/blog/subdomains-vs-subdirectories-seo](https://domydomains.com/blog/subdomains-vs-subdirectories-seo)
+- [/blog/best-domain-names-gaming-industry](https://domydomains.com/blog/best-domain-names-gaming-industry)
+- [/blog/expired-domains-backorder-guide](https://domydomains.com/blog/expired-domains-backorder-guide)
+- [/blog/custom-domain-email-setup-guide](https://domydomains.com/blog/custom-domain-email-setup-guide)
+- [/blog/dev-domain-guide-developers](https://domydomains.com/blog/dev-domain-guide-developers)
+- [/blog/seo-and-domain-names](https://domydomains.com/blog/seo-and-domain-names)
+- [/blog/premium-domains-vs-new-domains](https://domydomains.com/blog/premium-domains-vs-new-domains)
+- [/blog/how-to-buy-domain-name-beginners-guide](https://domydomains.com/blog/how-to-buy-domain-name-beginners-guide)
+- [/blog/best-new-domain-extensions-startups](https://domydomains.com/blog/best-new-domain-extensions-startups)
+- [/blog/understanding-domain-availability-dns-lookup](https://domydomains.com/blog/understanding-domain-availability-dns-lookup)
+- [/blog/domain-name-generator-creative-names](https://domydomains.com/blog/domain-name-generator-creative-names)
+- [/blog/why-ai-domains-hottest-tld-2026](https://domydomains.com/blog/why-ai-domains-hottest-tld-2026)
+- [/blog/free-domain-search-tools-compared](https://domydomains.com/blog/free-domain-search-tools-compared)
+- [/blog/complete-guide-domain-extensions-tlds-2026](https://domydomains.com/blog/complete-guide-domain-extensions-tlds-2026)
+- [/blog/how-to-choose-perfect-domain-name-2026](https://domydomains.com/blog/how-to-choose-perfect-domain-name-2026)
