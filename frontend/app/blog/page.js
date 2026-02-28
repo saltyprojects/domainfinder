@@ -21,12 +21,12 @@ export default function BlogIndex() {
       .then(data => {
         // Handle both paginated and unpaginated responses
         if (data.results) {
-          setArticles(data.results.filter(a => a.body));
+          setArticles(data.results);
           setHasNext(!!data.next);
           setHasPrev(!!data.previous);
           setTotalPages(Math.ceil(data.count / 10));
         } else {
-          const withBody = (Array.isArray(data) ? data : []).filter(a => a.body);
+          const withBody = Array.isArray(data) ? data : [];
           setArticles(withBody);
         }
       })
