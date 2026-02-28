@@ -48,6 +48,7 @@ DomyDomains is a domain availability search engine that checks hundreds of domai
 - Blog: https://domydomains.com/blog/custom-domain-email-setup-guide
 - Blog: https://domydomains.com/blog/expired-domains-backorder-guide
 - Blog: https://domydomains.com/blog/best-domain-names-gaming-industry
+- Blog: https://domydomains.com/blog/subdomains-vs-subdirectories-seo
 
 ## API
 
