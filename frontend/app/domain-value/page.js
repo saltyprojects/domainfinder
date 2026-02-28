@@ -45,7 +45,7 @@ const RECENT_SALES = [
   { domain: 'voice.com', price: '$30M', year: '2019', why: 'Short, single-word .com with broad application' },
   { domain: 'cars.com', price: '$872M', year: '2014', why: 'Category-defining domain with massive traffic' },
   { domain: 'nft.com', price: '$15M', year: '2022', why: 'Perfect keyword for emerging market' },
-  { domain: 'sex.com', price: '$13M', year: '2010', why: 'Extremely high type-in traffic' },
+  { domain: 'hotels.com', price: '$11M', year: '2001', why: 'Category-defining travel domain' },
 ];
 
 export default function DomainValuePage() {

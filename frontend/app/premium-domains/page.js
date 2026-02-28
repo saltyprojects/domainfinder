@@ -91,7 +91,7 @@ export default function PremiumDomains() {
                 { domain: 'insurance.com', price: '$35.6M', year: '2010' },
                 { domain: 'hotels.com', price: '$11M', year: '2001' },
                 { domain: 'fb.com', price: '$8.5M', year: '2010' },
-                { domain: 'sex.com', price: '$13M', year: '2010' },
+                { domain: 'travel.com', price: '$11M', year: '2003' },
                 { domain: 'fund.com', price: '$10M', year: '2008' },
                 { domain: 'crypto.com', price: '$12M', year: '2018' },
                 { domain: 'beer.com', price: '$7M', year: '2004' },
