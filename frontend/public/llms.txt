@@ -10,6 +10,7 @@ DomyDomains is a domain availability search engine that checks hundreds of domai
 - Two-phase loading: popular TLDs first, then all extensions
 - Domain name generator with prefix/suffix variations
 - Premium/aftermarket domain discovery
+- 18+ blog articles on domains, SEO, and branding
 - Mobile-first responsive design
 
 ## URLs
@@ -24,6 +25,25 @@ DomyDomains is a domain availability search engine that checks hundreds of domai
 - WHOIS Lookup Guide: https://domydomains.com/whois-lookup
 - Domain Value Guide: https://domydomains.com/domain-value
 - About: https://domydomains.com/about
+- Blog: https://domydomains.com/blog
+- Blog: https://domydomains.com/blog/domain-history-research-before-buying
+- Blog: https://domydomains.com/blog/how-much-is-domain-name-worth-valuation
+- Blog: https://domydomains.com/blog/domain-price-comparison-cheapest-registrar
+- Blog: https://domydomains.com/blog/what-is-whois-domain-ownership-lookup
+- Blog: https://domydomains.com/blog/why-your-domain-name-matters
+- Blog: https://domydomains.com/blog/domain-name-tips-what-pros-know
+- Blog: https://domydomains.com/blog/com-vs-io-vs-ai-which-tld
+- Blog: https://domydomains.com/blog/top-10-domain-extensions-for-startups
+- Blog: https://domydomains.com/blog/seo-and-domain-names
+- Blog: https://domydomains.com/blog/premium-domains-vs-new-domains
+- Blog: https://domydomains.com/blog/how-to-buy-domain-name-beginners-guide
+- Blog: https://domydomains.com/blog/best-new-domain-extensions-startups
+- Blog: https://domydomains.com/blog/understanding-domain-availability-dns-lookup
+- Blog: https://domydomains.com/blog/domain-name-generator-creative-names
+- Blog: https://domydomains.com/blog/why-ai-domains-hottest-tld-2026
+- Blog: https://domydomains.com/blog/free-domain-search-tools-compared
+- Blog: https://domydomains.com/blog/complete-guide-domain-extensions-tlds-2026
+- Blog: https://domydomains.com/blog/how-to-choose-perfect-domain-name-2026
 
 ## API
 
@@ -31,12 +51,15 @@ The search API is available at:
 - `GET https://api.domydomains.com/api/search/?q={name}&scope=all` — Search all TLDs
 - `GET https://api.domydomains.com/api/search/?q={name}&scope=popular` — Search popular TLDs only
 - `GET https://api.domydomains.com/api/suggestions/?q={name}` — Get name suggestions
+- `GET https://api.domydomains.com/api/seo-articles/` — List all blog articles
+- `GET https://api.domydomains.com/api/seo-articles/{slug}/` — Get full article by slug
 
 ## Agent Integration
 
 DomyDomains is designed for AI agents and assistants. The search API is free, requires no authentication, and returns structured JSON. Agents can:
 - Search domain availability: `GET /api/search/?q={name}&scope=all`
 - Generate domain suggestions: `GET /api/suggestions/?q={name}`
+- Read blog articles: `GET /api/seo-articles/{slug}/`
 - Deep-link to results: `https://domydomains.com/?q={name}`
 
 ## Documentation

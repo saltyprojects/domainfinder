@@ -1,95 +1,92 @@
-# DomyDomains — Full Documentation
+# DomyDomains
 
 > The fastest domain name search tool on the internet. Search 400+ TLDs instantly.
 
-## Overview
-
-DomyDomains (https://domydomains.com) is a free domain availability search engine. It checks domain availability across 400+ top-level domains (TLDs) in real-time, helping users find the perfect domain name for their website, business, or project.
-
-## How It Works
-
-1. **Type a domain name** — Results appear instantly as you type
-2. **Phase 1** — The first 30 popular TLDs are checked immediately (.com, .net, .org, .io, .ai, .dev, etc.)
-3. **Phase 2** — All 324+ TLDs are checked in the background in batches of 30
-4. **Results** — Green = available, Red = taken. Click "Continue" to register at Namecheap
+DomyDomains is a domain availability search engine that checks hundreds of domain extensions in real-time. Find available domains, explore extensions, generate creative names, and discover premium aftermarket domains.
 
 ## Features
 
-### Domain Search
-Search any domain name across 400+ TLDs. Results show availability status (available/taken) with direct registration links.
+- Instant domain availability search across 400+ TLDs
+- Two-phase loading: popular TLDs first, then all extensions
+- Domain name generator with prefix/suffix variations
+- Premium/aftermarket domain discovery
+- 18+ blog articles on domains, SEO, and branding
+- Mobile-first responsive design
 
-### Domain Extensions
-Browse all 324+ TLD extensions with color-coded availability cards. Available domains shown in green, taken in red.
+## URLs
 
-### Domain Generator
-Enter a keyword and get creative domain name variations using common prefixes (try, get, my, the, go, pro) and suffixes (hq, tech, studio, labs, hub, cloud, app).
+- Website: https://domydomains.com
+- API: https://api.domydomains.com
+- Search: https://domydomains.com/?q={query}
+- Domain Extensions Guide: https://domydomains.com/domain-extensions
+- Domain Name Generator: https://domydomains.com/domain-generator
+- Premium Domains: https://domydomains.com/premium-domains
+- Domain Pricing: https://domydomains.com/domain-pricing
+- WHOIS Lookup Guide: https://domydomains.com/whois-lookup
+- Domain Value Guide: https://domydomains.com/domain-value
+- About: https://domydomains.com/about
+- Blog: https://domydomains.com/blog
+- Blog: https://domydomains.com/blog/domain-history-research-before-buying
+- Blog: https://domydomains.com/blog/how-much-is-domain-name-worth-valuation
+- Blog: https://domydomains.com/blog/domain-price-comparison-cheapest-registrar
+- Blog: https://domydomains.com/blog/what-is-whois-domain-ownership-lookup
+- Blog: https://domydomains.com/blog/why-your-domain-name-matters
+- Blog: https://domydomains.com/blog/domain-name-tips-what-pros-know
+- Blog: https://domydomains.com/blog/com-vs-io-vs-ai-which-tld
+- Blog: https://domydomains.com/blog/top-10-domain-extensions-for-startups
+- Blog: https://domydomains.com/blog/seo-and-domain-names
+- Blog: https://domydomains.com/blog/premium-domains-vs-new-domains
+- Blog: https://domydomains.com/blog/how-to-buy-domain-name-beginners-guide
+- Blog: https://domydomains.com/blog/best-new-domain-extensions-startups
+- Blog: https://domydomains.com/blog/understanding-domain-availability-dns-lookup
+- Blog: https://domydomains.com/blog/domain-name-generator-creative-names
+- Blog: https://domydomains.com/blog/why-ai-domains-hottest-tld-2026
+- Blog: https://domydomains.com/blog/free-domain-search-tools-compared
+- Blog: https://domydomains.com/blog/complete-guide-domain-extensions-tlds-2026
+- Blog: https://domydomains.com/blog/how-to-choose-perfect-domain-name-2026
 
-### Premium/Aftermarket Domains
-Discover premium domains for sale in the aftermarket with pricing information.
+## API
 
-## API Reference
+The search API is available at:
+- `GET https://api.domydomains.com/api/search/?q={name}&scope=all` — Search all TLDs
+- `GET https://api.domydomains.com/api/search/?q={name}&scope=popular` — Search popular TLDs only
+- `GET https://api.domydomains.com/api/suggestions/?q={name}` — Get name suggestions
+- `GET https://api.domydomains.com/api/seo-articles/` — List all blog articles
+- `GET https://api.domydomains.com/api/seo-articles/{slug}/` — Get full article by slug
 
-### Search Domains
-```
-GET https://api.domydomains.com/api/search/?q={name}
-```
-Parameters:
-- `q` (required): Domain name to search (without TLD)
-- `scope`: `popular` (23 TLDs, fast) or `all` (324+ TLDs, comprehensive)
-- `limit`: Maximum number of results
-- `offset`: Skip N results (for pagination)
+## Agent Integration
 
-Response:
+DomyDomains is designed for AI agents and assistants. The search API is free, requires no authentication, and returns structured JSON. Agents can:
+- Search domain availability: `GET /api/search/?q={name}&scope=all`
+- Generate domain suggestions: `GET /api/suggestions/?q={name}`
+- Read blog articles: `GET /api/seo-articles/{slug}/`
+- Deep-link to results: `https://domydomains.com/?q={name}`
+
+## Documentation
+
+- [Full documentation](https://domydomains.com/llms-full.txt)
+
+## Search API Response Format
+
 ```json
-{
-  "query": "example",
-  "results": [
-    {
-      "full_domain": "example.com",
-      "tld": "com",
-      "available": false
-    },
-    {
-      "full_domain": "example.io",
-      "tld": "io",
-      "available": true
-    }
-  ]
-}
+{{
+  "domain": "example",
+  "tld": "com",
+  "fqdn": "example.com",
+  "available": true
+}}
 ```
 
-### Get Suggestions
-```
-GET https://api.domydomains.com/api/suggestions/?q={name}
-```
-Returns creative domain name suggestions based on the input keyword.
+## Blog Articles API Response Format
+
+List endpoint returns: id, title, slug, url, platform, status, backlink_url, backlink_anchor, content_summary, target_keywords, published_date, created_at, updated_at (no body).
+
+Detail endpoint returns all fields including `body` (full markdown content).
 
 ## Supported TLDs
 
-### Popular TLDs (23)
-.com, .net, .org, .io, .dev, .ai, .app, .co, .me, .xyz, .tech, .info, .biz, .cloud, .design, .blog, .shop, .site, .store, .online, .gg, .cc, .tv
+Over 400 TLDs including: .com, .net, .org, .io, .ai, .dev, .app, .co, .xyz, .me, .info, .biz, .us, .uk, .ca, .de, .fr, .jp, .au, .in, .shop, .store, .site, .online, .tech, .cloud, .design, .art, .blog, .news, and many more.
 
-### All TLDs (324+)
-Includes all popular TLDs plus country codes (.uk, .de, .fr, .jp, .au, etc.), new gTLDs (.cloud, .design, .studio, .agency, etc.), and specialty TLDs (.pro, .mobi, .tel, .name, etc.).
+## Rate Limits
 
-## Technology Stack
-
-- **Frontend**: Next.js (React) — Server-side rendered, mobile-first responsive
-- **Backend**: Django + Django REST Framework — RESTful API
-- **Domain Checking**: DNS resolution (fast, no external API dependency)
-- **Hosting**: Railway
-
-## Content Pages
-
-- [Domain Extensions Guide](https://domydomains.com/domain-extensions) — Complete guide to 400+ TLDs with pricing, categories, and advice
-- [Domain Name Generator](https://domydomains.com/domain-generator) — Tips and examples for creative domain names
-- [Premium Domains](https://domydomains.com/premium-domains) — Aftermarket domain marketplace guide, pricing tiers
-- [Domain Pricing](https://domydomains.com/domain-pricing) — Registration and renewal costs across registrars
-- [WHOIS Lookup Guide](https://domydomains.com/whois-lookup) — How to check domain ownership, history, and privacy tips
-- [Domain Value Guide](https://domydomains.com/domain-value) — How to estimate domain worth, valuation factors, notable sales, appraisal tools
-- [About DomyDomains](https://domydomains.com/about) — Our mission, technology, and team
-
-## Contact
-
-- Website: https://domydomains.com
-- Twitter: https://x.com/domydomains
+No rate limits currently enforced. Please be reasonable with API usage.
