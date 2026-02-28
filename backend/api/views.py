@@ -632,7 +632,7 @@ def linkedin_callback(request):
 
 # SEO Article tracking
 from .models import SEOArticle
-from .serializers import SEOArticleSerializer
+from .serializers import SEOArticleSerializer, SEOArticleListSerializer
 
 from rest_framework.pagination import PageNumberPagination
 
@@ -644,6 +644,11 @@ class ArticlePagination(PageNumberPagination):
 class SEOArticleViewSet(viewsets.ModelViewSet):
     queryset = SEOArticle.objects.all()
     serializer_class = SEOArticleSerializer
+
+    def get_serializer_class(self):
+        if self.action == 'list':
+            return SEOArticleListSerializer
+        return SEOArticleSerializer
     authentication_classes = []
     permission_classes = []
     pagination_class = ArticlePagination

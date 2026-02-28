@@ -148,6 +148,12 @@ class ListShareSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'created_at']
 
 
+class SEOArticleListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SEOArticle
+        exclude = ['body']
+
+
 class SEOArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = SEOArticle
