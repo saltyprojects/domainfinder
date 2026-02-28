@@ -644,6 +644,7 @@ class ArticlePagination(PageNumberPagination):
 class SEOArticleViewSet(viewsets.ModelViewSet):
     queryset = SEOArticle.objects.all()
     serializer_class = SEOArticleSerializer
+    lookup_field = 'slug'
 
     def get_serializer_class(self):
         if self.action == 'list':

@@ -79,14 +79,13 @@ export default function BlogPost() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${API_BASE}/api/seo-articles/`)
-      .then(r => r.json())
-      .then(data => {
-        const articles = Array.isArray(data) ? data : data.results || [];
-        const found = articles.find(a => a.slug === params.slug);
-        setArticle(found || null);
+    fetch(`${API_BASE}/api/seo-articles/${params.slug}/`)
+      .then(r => {
+        if (!r.ok) throw new Error('Not found');
+        return r.json();
       })
-      .catch(() => {})
+      .then(data => setArticle(data))
+      .catch(() => setArticle(null))
       .finally(() => setLoading(false));
   }, [params.slug]);
 
