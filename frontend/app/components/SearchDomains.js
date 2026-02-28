@@ -311,11 +311,23 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
     debounceRef.current = setTimeout(() => doSearch(val), 300);
   };
 
+  // When switching to active mode, focus the bottom input
+  const justActivatedRef = useRef(false);
+  useEffect(() => {
+    if (active && justActivatedRef.current) {
+      justActivatedRef.current = false;
+      // Use rAF to ensure DOM has updated, then focus
+      requestAnimationFrame(() => {
+        bottomInputRef.current?.focus({ preventScroll: true });
+      });
+    }
+  }, [active]);
+
   const activateSearch = () => {
     if (!active) {
+      justActivatedRef.current = true;
       setActive(true);
       onActiveChange?.(true);
-      setTimeout(() => bottomInputRef.current?.focus(), 50);
     }
   };
 
@@ -1125,6 +1137,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
             type="text"
             value={query}
             onChange={handleChange}
+            autoFocus
             placeholder="Search domains..."
             style={{
               flex: 1,
