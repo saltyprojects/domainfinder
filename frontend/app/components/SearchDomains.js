@@ -307,22 +307,28 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
   const handleChange = (e) => {
     const val = e.target.value.toLowerCase();
     setQuery(val);
-    // Activate on first keystroke — this stays in the user gesture chain for iOS
-    if (!active && val.length > 0) {
-      setActive(true);
-      onActiveChange?.(true);
-      // Focus the bottom input after React re-renders (same gesture chain)
-      requestAnimationFrame(() => {
-        inputRef.current?.focus({ preventScroll: true });
-      });
-    }
     clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => doSearch(val), 300);
   };
 
+  // When switching to active mode, focus the bottom input
+  const justActivatedRef = useRef(false);
+  useEffect(() => {
+    if (active && justActivatedRef.current) {
+      justActivatedRef.current = false;
+      // Use rAF to ensure DOM has updated, then focus
+      requestAnimationFrame(() => {
+        bottomInputRef.current?.focus({ preventScroll: true });
+      });
+    }
+  }, [active]);
+
   const activateSearch = () => {
-    // Don't activate on focus alone — wait for typing (handleChange).
-    // This keeps iOS keyboard open since the landing input stays mounted.
+    if (!active) {
+      justActivatedRef.current = true;
+      setActive(true);
+      onActiveChange?.(true);
+    }
   };
 
   const clear = () => {
@@ -1127,10 +1133,11 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
           transition: 'all 0.2s ease',
         }}>
           <input
-            ref={inputRef}
+            ref={bottomInputRef}
             type="text"
             value={query}
             onChange={handleChange}
+            autoFocus
             placeholder="Search domains..."
             style={{
               flex: 1,
