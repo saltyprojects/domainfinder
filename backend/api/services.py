@@ -2,6 +2,7 @@ import concurrent.futures
 import os
 import dns.resolver
 import requests
+import whois
 from django.conf import settings
 
 GODADDY_API_KEY = os.environ.get('GODADDY_API_KEY', '')
@@ -53,6 +54,17 @@ def check_rdap_registration(full_domain: str, tld: str) -> bool | None:
                 break
         except Exception:
             continue  # Try next URL
+
+    # WHOIS fallback if RDAP was inconclusive
+    if result is None:
+        try:
+            w = whois.whois(full_domain)
+            if w and w.domain_name:
+                result = True  # WHOIS found registration = taken
+            else:
+                result = False
+        except Exception:
+            result = None  # Truly unknown
 
     _rdap_cache[full_domain] = result
     return result
