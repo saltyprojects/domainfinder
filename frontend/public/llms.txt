@@ -1,55 +1,57 @@
 # DomyDomains
+> Search 400+ domain TLDs instantly
 
-> The fastest domain name search tool on the internet. Search 400+ TLDs instantly.
+## Pages
+- [Home](https://domydomains.com/)
+- [domain-extensions](https://domydomains.com/domain-extensions)
+- [domain-generator](https://domydomains.com/domain-generator)
+- [premium-domains](https://domydomains.com/premium-domains)
+- [domain-pricing](https://domydomains.com/domain-pricing)
+- [whois-lookup](https://domydomains.com/whois-lookup)
+- [domain-value](https://domydomains.com/domain-value)
+- [about](https://domydomains.com/about)
+- [blog](https://domydomains.com/blog)
+- [privacy](https://domydomains.com/privacy)
+- [terms](https://domydomains.com/terms)
+- [trademark](https://domydomains.com/trademark)
 
-## URLs
-
-- Website: https://domydomains.com
-- API: https://api.domydomains.com
-- Search: https://domydomains.com/?q={query}
-- Blog: https://domydomains.com/blog
-- Blog: https://domydomains.com/blog/domain-history-research-before-buying
-- Blog: https://domydomains.com/blog/how-much-is-domain-name-worth-valuation
-- Blog: https://domydomains.com/blog/domain-price-comparison-cheapest-registrar
-- Blog: https://domydomains.com/blog/what-is-whois-domain-ownership-lookup
-- Blog: https://domydomains.com/blog/why-your-domain-name-matters
-- Blog: https://domydomains.com/blog/domain-name-tips-what-pros-know
-- Blog: https://domydomains.com/blog/com-vs-io-vs-ai-which-tld
-- Blog: https://domydomains.com/blog/top-10-domain-extensions-for-startups
-- Blog: https://domydomains.com/blog/co-domain-guide-startups
-- Blog: https://domydomains.com/blog/how-to-negotiate-buy-domain-name
-- Blog: https://domydomains.com/blog/dns-setup-guide-beginners
-- Blog: https://domydomains.com/blog/xyz-domain-guide-web3-creative
-- Blog: https://domydomains.com/blog/domain-name-escrow-safe-buying-selling-guide
-- Blog: https://domydomains.com/blog/ai-domain-boom-startups-six-figure-sales
-- Blog: https://domydomains.com/blog/reverse-domain-name-hijacking-udrp-protection
-- Blog: https://domydomains.com/blog/ai-disrupting-domain-registrar-industry-godaddy
-- Blog: https://domydomains.com/blog/ai-com-70-million-sale-domain-investing-2026
-- Blog: https://domydomains.com/blog/subdomains-vs-subdirectories-seo
-- Blog: https://domydomains.com/blog/best-domain-names-gaming-industry
-- Blog: https://domydomains.com/blog/expired-domains-backorder-guide
-- Blog: https://domydomains.com/blog/custom-domain-email-setup-guide
-- Blog: https://domydomains.com/blog/dev-domain-guide-developers
-- Blog: https://domydomains.com/blog/seo-and-domain-names
-- Blog: https://domydomains.com/blog/premium-domains-vs-new-domains
-- Blog: https://domydomains.com/blog/how-to-buy-domain-name-beginners-guide
-- Blog: https://domydomains.com/blog/best-new-domain-extensions-startups
-- Blog: https://domydomains.com/blog/understanding-domain-availability-dns-lookup
-- Blog: https://domydomains.com/blog/domain-name-generator-creative-names
-- Blog: https://domydomains.com/blog/why-ai-domains-hottest-tld-2026
-- Blog: https://domydomains.com/blog/free-domain-search-tools-compared
-- Blog: https://domydomains.com/blog/complete-guide-domain-extensions-tlds-2026
-- Blog: https://domydomains.com/blog/how-to-choose-perfect-domain-name-2026
-- Blog: https://domydomains.com/blog/premium-tld-sales-boom-tech-fun-space-2026
-- Blog: https://domydomains.com/blog/domain-pricing-trends-tld-price-increases-2026
+## Blog Articles
+- [domain-history-research-before-buying](https://domydomains.com/blog/domain-history-research-before-buying)
+- [how-much-is-domain-name-worth-valuation](https://domydomains.com/blog/how-much-is-domain-name-worth-valuation)
+- [domain-price-comparison-cheapest-registrar](https://domydomains.com/blog/domain-price-comparison-cheapest-registrar)
+- [what-is-whois-domain-ownership-lookup](https://domydomains.com/blog/what-is-whois-domain-ownership-lookup)
+- [why-your-domain-name-matters](https://domydomains.com/blog/why-your-domain-name-matters)
+- [domain-name-tips-what-pros-know](https://domydomains.com/blog/domain-name-tips-what-pros-know)
+- [com-vs-io-vs-ai-which-tld](https://domydomains.com/blog/com-vs-io-vs-ai-which-tld)
+- [top-10-domain-extensions-for-startups](https://domydomains.com/blog/top-10-domain-extensions-for-startups)
+- [bot-ai-1-2-million-sale-ai-domain-aftermarket](https://domydomains.com/blog/bot-ai-1-2-million-sale-ai-domain-aftermarket)
+- [domain-pricing-trends-tld-price-increases-2026](https://domydomains.com/blog/domain-pricing-trends-tld-price-increases-2026)
+- [premium-tld-sales-boom-tech-fun-space-2026](https://domydomains.com/blog/premium-tld-sales-boom-tech-fun-space-2026)
+- [xyz-domain-guide-web3-creative](https://domydomains.com/blog/xyz-domain-guide-web3-creative)
+- [dns-setup-guide-beginners](https://domydomains.com/blog/dns-setup-guide-beginners)
+- [how-to-negotiate-buy-domain-name](https://domydomains.com/blog/how-to-negotiate-buy-domain-name)
+- [co-domain-guide-startups](https://domydomains.com/blog/co-domain-guide-startups)
+- [domain-name-escrow-safe-buying-selling-guide](https://domydomains.com/blog/domain-name-escrow-safe-buying-selling-guide)
+- [ai-domain-boom-startups-six-figure-sales](https://domydomains.com/blog/ai-domain-boom-startups-six-figure-sales)
+- [reverse-domain-name-hijacking-udrp-protection](https://domydomains.com/blog/reverse-domain-name-hijacking-udrp-protection)
+- [ai-disrupting-domain-registrar-industry-godaddy](https://domydomains.com/blog/ai-disrupting-domain-registrar-industry-godaddy)
+- [ai-com-70-million-sale-domain-investing-2026](https://domydomains.com/blog/ai-com-70-million-sale-domain-investing-2026)
+- [subdomains-vs-subdirectories-seo](https://domydomains.com/blog/subdomains-vs-subdirectories-seo)
+- [best-domain-names-gaming-industry](https://domydomains.com/blog/best-domain-names-gaming-industry)
+- [expired-domains-backorder-guide](https://domydomains.com/blog/expired-domains-backorder-guide)
+- [custom-domain-email-setup-guide](https://domydomains.com/blog/custom-domain-email-setup-guide)
+- [dev-domain-guide-developers](https://domydomains.com/blog/dev-domain-guide-developers)
+- [seo-and-domain-names](https://domydomains.com/blog/seo-and-domain-names)
+- [premium-domains-vs-new-domains](https://domydomains.com/blog/premium-domains-vs-new-domains)
+- [how-to-buy-domain-name-beginners-guide](https://domydomains.com/blog/how-to-buy-domain-name-beginners-guide)
+- [best-new-domain-extensions-startups](https://domydomains.com/blog/best-new-domain-extensions-startups)
+- [understanding-domain-availability-dns-lookup](https://domydomains.com/blog/understanding-domain-availability-dns-lookup)
+- [domain-name-generator-creative-names](https://domydomains.com/blog/domain-name-generator-creative-names)
+- [why-ai-domains-hottest-tld-2026](https://domydomains.com/blog/why-ai-domains-hottest-tld-2026)
+- [free-domain-search-tools-compared](https://domydomains.com/blog/free-domain-search-tools-compared)
+- [complete-guide-domain-extensions-tlds-2026](https://domydomains.com/blog/complete-guide-domain-extensions-tlds-2026)
+- [how-to-choose-perfect-domain-name-2026](https://domydomains.com/blog/how-to-choose-perfect-domain-name-2026)
 
 ## API
-
-- `GET /api/search/?q={name}&scope=all` — Search all TLDs
-- `GET /api/search/?q={name}&scope=popular` — Popular TLDs only
-- `GET /api/seo-articles/` — List blog articles
-- `GET /api/seo-articles/{slug}/` — Full article by slug
-
-## Agent Integration
-
-Free, no auth, structured JSON. Deep-link: https://domydomains.com/?q={name}
+- [Domain Search API](https://domydomains.com/api/search/stream/)
+- [SEO Articles API](https://domydomains.com/api/seo-articles/)
