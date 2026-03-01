@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken.views import obtain_auth_token
 from api.views import (
     DomainSearchViewSet, SuggestionsViewSet, WhoisViewSet, TrademarkViewSet, 
     SocialContentViewSet, DomainListViewSet, DomainWatchlistViewSet, DomainAlertViewSet, SEOArticleViewSet,
@@ -36,5 +37,6 @@ urlpatterns = [
     path('api/domain-expiry/', domain_expiry_info, name='domain-expiry-info'),
     path('api/seo/analysis/', domain_seo_analysis, name='domain-seo-analysis'),
     path('api/seo/summary/', domain_seo_summary, name='domain-seo-summary'),
+    path('api/auth/token/', obtain_auth_token, name='api-token-auth'),
     path('api/', include(router.urls)),
 ]

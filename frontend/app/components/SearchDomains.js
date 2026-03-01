@@ -219,6 +219,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
   const [loadingMore, setLoadingMore] = useState(false);
   const [totalLoaded, setTotalLoaded] = useState(0);
   const [active, setActive] = useState(false);
+  const [userTld, setUserTld] = useState(null);
   const [isMultiColumn, setIsMultiColumn] = useState(false);
   const [columns, setColumns] = useState(1); // 1=mobile, 2=tablet, 3=desktop, 4=wide
   const inputRef = useRef(null);
@@ -253,7 +254,11 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const doSearch = (q) => {
-    const trimmed = q.trim().toLowerCase().split('.')[0];
+    const cleaned = q.trim().toLowerCase();
+    const dotIndex = cleaned.indexOf('.');
+    const trimmed = dotIndex > 0 ? cleaned.substring(0, dotIndex) : cleaned;
+    const requestedTld = dotIndex > 0 ? cleaned.substring(dotIndex + 1).replace(/\./g, '') : null;
+    setUserTld(requestedTld);
     if (!trimmed || trimmed.length < 2) {
       setResults([]);
       return;
@@ -342,12 +347,17 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
 
   const tldOrder = ['com','net','org','io','dev','ai','app','co','me','xyz','tech','info','biz','cloud','design','blog','shop','site','store','online'];
   const sorted = [...results].sort((a, b) => {
+    // Pin user-requested TLD to top
+    if (userTld) {
+      if (a.tld === userTld && b.tld !== userTld) return -1;
+      if (b.tld === userTld && a.tld !== userTld) return 1;
+    }
     const ai = tldOrder.indexOf(a.tld);
     const bi = tldOrder.indexOf(b.tld);
     return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
   });
 
-  const primary = sorted.find(r => r.tld === 'com') || sorted[0];
+  const primary = (userTld && sorted.find(r => r.tld === userTld)) || sorted.find(r => r.tld === 'com') || sorted[0];
   const rest = sorted.filter(r => r !== primary);
   const availableCount = results.filter(r => r.available).length;
   const takenCount = results.filter(r => !r.available).length;
