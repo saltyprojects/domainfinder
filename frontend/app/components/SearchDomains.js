@@ -135,9 +135,12 @@ function GeneratorView({ query, isMultiColumn, columns = 1 }) {
   });
 
   if (!query || query.length < 2) return null;
+  const baseName = query.includes('.') ? query.split('.')[0] : query;
+  const userExt = query.includes('.') ? query.split('.').slice(1).join('.') : 'com';
+  if (!baseName || baseName.length < 2) return null;
   const prefixes = ['try','go','use','join','hey','meet','get','my','the','pro','new','web','re'];
   const suffixes = ['hq','tech','studio','site','shop','team','labs','hub','group','cloud','design','media','app','dev','zone'];
-  const suggestions = [...prefixes.map(p => `${p}${query}.com`), ...suffixes.map(s => `${query}${s}.com`)];
+  const suggestions = [...prefixes.map(p => `${p}${baseName}.${userExt}`), ...suffixes.map(s => `${baseName}${s}.${userExt}`)];
 
   return (
     <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(columns, 3)}, 1fr)`, gap: '2px' }}>
@@ -175,14 +178,16 @@ function AftermarketView({ query, isMultiColumn, columns = 1 }) {
   });
 
   if (!query || query.length < 2) return null;
+  const baseName = query.includes('.') ? query.split('.')[0] : query;
+  if (!baseName || baseName.length < 2) return null;
   const aftermarket = [
-    { domain: `${query}pro.com`, price: '$2,500' }, { domain: `get${query}.com`, price: '$4,995' },
-    { domain: `${query}hub.com`, price: '$1,200' }, { domain: `the${query}.com`, price: '$12,095' },
-    { domain: `${query}cloud.com`, price: '$3,200' }, { domain: `smart${query}.com`, price: '$2,388' },
-    { domain: `${query}ai.com`, price: '$8,999' }, { domain: `${query}tech.com`, price: 'Make offer' },
-    { domain: `${query}data.com`, price: '$700' }, { domain: `${query}safe.com`, price: '$149' },
-    { domain: `cyber${query}.com`, price: '$500,000' }, { domain: `${query}labs.com`, price: '$995' },
-    { domain: `${query}digital.com`, price: '$4,095' }, { domain: `${query}group.com`, price: 'Make offer' },
+    { domain: `${baseName}pro.com`, price: '$2,500' }, { domain: `get${baseName}.com`, price: '$4,995' },
+    { domain: `${baseName}hub.com`, price: '$1,200' }, { domain: `the${baseName}.com`, price: '$12,095' },
+    { domain: `${baseName}cloud.com`, price: '$3,200' }, { domain: `smart${baseName}.com`, price: '$2,388' },
+    { domain: `${baseName}ai.com`, price: '$8,999' }, { domain: `${baseName}tech.com`, price: 'Make offer' },
+    { domain: `${baseName}data.com`, price: '$700' }, { domain: `${baseName}safe.com`, price: '$149' },
+    { domain: `cyber${baseName}.com`, price: '$500,000' }, { domain: `${baseName}labs.com`, price: '$995' },
+    { domain: `${baseName}digital.com`, price: '$4,095' }, { domain: `${baseName}group.com`, price: 'Make offer' },
     { domain: `${query}zone.com`, price: '$950' },
   ];
 
