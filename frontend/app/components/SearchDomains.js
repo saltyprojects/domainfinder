@@ -3,10 +3,10 @@
 import { useState, useRef, useEffect } from 'react';
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-// Dynadot affiliate via CJ (publisher 101695072, 25% commission)
-const AFFILIATE_URL = 'https://www.anrdoezrs.net/click-101695072-12589558';
+// Namecheap affiliate via CJ (publisher 101695072)
+const AFFILIATE_URL = 'https://www.anrdoezrs.net/click-101695072-15083053';
 function buildAffiliateUrl(domain) {
-  return `${AFFILIATE_URL}?url=${encodeURIComponent('https://www.dynadot.com/domain/search?domain=' + domain)}`;
+  return `${AFFILIATE_URL}?url=${encodeURIComponent('https://www.namecheap.com/domains/registration/results/?domain=' + domain)}`;
 }
 
 function DomainRow({ result }) {
@@ -678,7 +678,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
             {[
               { q: 'Is DomyDomains free to use?', a: 'Yes, 100% free. No account required. Search unlimited domains across 400+ extensions.' },
               { q: 'How do you check domain availability?', a: 'We use direct DNS resolution — the fastest method possible. No slow third-party APIs. Results appear in milliseconds.' },
-              { q: 'Can I register a domain through DomyDomains?', a: 'We partner with top registrars like Dynadot. Click "Continue" on any available domain to register it at the best price.' },
+              { q: 'Can I register a domain through DomyDomains?', a: 'We partner with top registrars like Namecheap. Click "Continue" on any available domain to register it at the best price.' },
               { q: 'What TLDs do you support?', a: 'We support 400+ TLDs including .com, .net, .org, .ai, .io, .dev, .app, .co, .xyz, and hundreds of country-code and specialty extensions.' },
               { q: 'Do you store my search history?', a: 'No. We don\'t store searches, don\'t require accounts, and don\'t track users. Your searches are completely private.' },
             ].map((faq, i) => (
@@ -824,7 +824,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
                   e.currentTarget.style.color = '#999';
                 }}
               >
-                Dynadot →
+                Namecheap →
               </a>
             </div>
           </div>

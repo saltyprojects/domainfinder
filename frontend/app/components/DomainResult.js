@@ -3,8 +3,8 @@
 import { useState } from 'react';
 import { SEOAnalytics } from './SEOAnalytics';
 
-const AFFILIATE_URL = 'https://www.anrdoezrs.net/click-101695072-12589558';
-function buildAffiliateUrl(domain) { return `${AFFILIATE_URL}?url=${encodeURIComponent('https://www.dynadot.com/domain/search?domain=' + domain)}`; }
+const AFFILIATE_URL = 'https://www.anrdoezrs.net/click-101695072-15083053';
+function buildAffiliateUrl(domain) { return `${AFFILIATE_URL}?url=${encodeURIComponent('https://www.namecheap.com/domains/registration/results/?domain=' + domain)}`; }
 
 function IntelChips({ intel, available }) {
   if (!intel) return null;

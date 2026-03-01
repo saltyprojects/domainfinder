@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const faqs = [
   { q: 'Is DomyDomains free?', a: 'Yes! Searching domains, checking social handles, and generating name ideas are completely free. No account needed.' },
-  { q: 'Do you sell domains?', a: 'We don\'t sell domains directly. We help you find and compare the best option, then link you to trusted registrars like Dynadot where you can register.' },
+  { q: 'Do you sell domains?', a: 'We don\'t sell domains directly. We help you find and compare the best option, then link you to trusted registrars like Namecheap where you can register.' },
   { q: 'How many TLDs do you check?', a: 'We check 20+ popular TLDs including .com, .io, .co, .dev, .app, .net, .org, and many more — all in real time.' },
   { q: 'Is the social handle check accurate?', a: 'We check username availability on X (Twitter), Instagram, TikTok, GitHub, and LinkedIn in real time. Results are accurate at the moment of search.' },
   { q: 'How does price comparison work?', a: 'We\'re rolling out registrar price comparison soon. You\'ll be able to see first-year and renewal prices side by side across major registrars.' },
