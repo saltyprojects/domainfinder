@@ -1,5 +1,5 @@
 # DomyDomains - Domain Search Platform
-> Search 400+ domain TLDs instantly. Free domain search, WHOIS lookup, domain value estimation.
+> Search 400+ domain TLDs instantly.
 
 ## Pages
 - https://domydomains.com/
@@ -25,6 +25,7 @@
 - https://domydomains.com/blog/domain-name-tips-what-pros-know
 - https://domydomains.com/blog/com-vs-io-vs-ai-which-tld
 - https://domydomains.com/blog/top-10-domain-extensions-for-startups
+- https://domydomains.com/blog/premium-domain-renewal-economics-radix-data-2026
 - https://domydomains.com/blog/domain-hacks-creative-tld-tricks-tech-companies-2026
 - https://domydomains.com/blog/crypto-com-ai-com-kris-marszalek-82-million-domain-names
 - https://domydomains.com/blog/how-businesses-buy-domains-2026-end-user-sales-data
