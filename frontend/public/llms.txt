@@ -1,5 +1,5 @@
 # DomyDomains Blog Articles
-# Updated: 2026-03-03
+# Updated: 2026-03-04
 
 https://domydomains.com/blog/complete-guide-domain-extensions-choose-right-tld-2026
 https://domydomains.com/blog/ai-domain-name-generators-2026
@@ -11,6 +11,7 @@ https://domydomains.com/blog/why-your-domain-name-matters
 https://domydomains.com/blog/domain-name-tips-what-pros-know
 https://domydomains.com/blog/com-vs-io-vs-ai-which-tld
 https://domydomains.com/blog/top-10-domain-extensions-for-startups
+https://domydomains.com/blog/icann85-mumbai-preview-domain-buyers-watch-march-2026
 https://domydomains.com/blog/tech-sites-lost-google-traffic-domain-strategy-2026
 https://domydomains.com/blog/godaddy-domain-investor-promotions-afternic-2026-stock-pressure
 https://domydomains.com/blog/icann-new-gtld-round-2026-hundreds-new-domain-extensions
