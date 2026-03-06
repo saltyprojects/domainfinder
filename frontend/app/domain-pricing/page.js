@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { StaticPage } from '../components/StaticPage';
+import ToolSchema from '../components/ToolSchema';
 
 export const metadata = {
   title: 'Domain Pricing Guide 2026 — How Much Does a Domain Cost? | DomyDomains',
@@ -75,6 +76,7 @@ const TIPS = [
 export default function DomainPricingPage() {
   return (
     <StaticPage>
+      <ToolSchema name="Domain Pricing Guide" description="Complete domain pricing guide for 2026. Compare costs for .com, .ai, .io, .dev and 400+ extensions." url="/domain-pricing" />
       <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '16px' }}>
         Domain Pricing Guide
       </h1>

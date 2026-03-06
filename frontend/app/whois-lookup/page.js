@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ToolSchema from '../components/ToolSchema';
 
 export const metadata = {
   title: 'WHOIS Lookup Guide 2026 — Check Domain Ownership & History | DomyDomains',
@@ -50,6 +51,7 @@ const PRIVACY_TIPS = [
 export default function WhoisLookupPage() {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 20px 80px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+      <ToolSchema name="WHOIS Lookup Guide" description="Learn how to use WHOIS lookup to check domain ownership, registration dates, expiration, and history." url="/whois-lookup" />
       <div style={{ textAlign: 'center', marginBottom: 48 }}>
         <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 800, marginBottom: 12, color: '#fff' }}>
           🔎 WHOIS Lookup Guide

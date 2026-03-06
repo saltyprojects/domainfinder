@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ToolSchema from '../components/ToolSchema';
 
 export const metadata = {
   title: 'Domain Value Estimator Guide 2026 — How Much Is a Domain Worth? | DomyDomains',
@@ -51,6 +52,7 @@ const RECENT_SALES = [
 export default function DomainValuePage() {
   return (
     <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 20px 80px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+      <ToolSchema name="Domain Value Estimator" description="Learn how to estimate domain name value based on length, keywords, TLD, backlinks, traffic, and brandability." url="/domain-value" />
       <div style={{ textAlign: 'center', marginBottom: 48 }}>
         <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 800, marginBottom: 12, color: '#fff' }}>
           💰 Domain Value Guide

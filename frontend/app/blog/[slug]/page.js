@@ -38,8 +38,29 @@ export default async function BlogPost({ params }) {
     );
   }
 
+  const blogPostingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: article.title,
+    description: article.content_summary || article.title,
+    datePublished: article.published_date || new Date().toISOString(),
+    dateModified: article.updated_date || article.published_date || new Date().toISOString(),
+    author: { '@type': 'Organization', name: 'DomyDomains', url: 'https://domydomains.com' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'DomyDomains',
+      logo: { '@type': 'ImageObject', url: 'https://domydomains.com/android-chrome-512x512.png' },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://domydomains.com/blog/${slug}` },
+    url: `https://domydomains.com/blog/${slug}`,
+  };
+
   return (
     <StaticPage>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
       <nav style={{ marginBottom: '32px', fontSize: '0.85rem', color: '#888' }}>
         <Link href="/" style={{ color: '#8b5cf6' }}>🌐 DomyDomains</Link>
         <span style={{ margin: '0 8px' }}>/</span>

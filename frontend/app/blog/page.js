@@ -4,8 +4,8 @@ import { StaticPage } from '../components/StaticPage';
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 export const metadata = {
-  title: 'Blog — DomyDomains',
-  description: 'Domain name tips, guides, and insights from DomyDomains.',
+  title: 'Domain Name Blog — Tips, Guides & Industry News | DomyDomains',
+  description: 'Expert domain name tips, buying guides, TLD comparisons, and industry news. Learn how to choose, value, and register the perfect domain name for your business.',
   alternates: { canonical: '/blog' },
 };
 

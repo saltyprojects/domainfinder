@@ -11,7 +11,7 @@ export const viewport = {
 export const metadata = {
   title: 'DomyDomains — Instant Domain Name Search | 400+ TLDs',
   description:
-    'The fastest domain search tool on the internet. Search 400+ domain extensions instantly. Find available domains, generate creative names, and discover premium domains for sale.',
+    'The fastest domain search tool on the internet. Search 400+ domain extensions instantly. Find available domains and compare prices.',
   keywords: 'domain search, domain name search, domain availability, domain checker, domain finder, TLD search, domain extensions, buy domain, register domain, domain generator',
   metadataBase: new URL('https://domydomains.com'),
   alternates: { canonical: '/' },
@@ -55,6 +55,16 @@ export default function RootLayout({ children }) {
   const gaTag = 'G-QV0XLGRGCK';
 
   const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'DomyDomains',
+      url: 'https://domydomains.com',
+      logo: 'https://domydomains.com/android-chrome-512x512.png',
+      description: 'The fastest domain search tool on the internet. Search 400+ domain extensions instantly.',
+      sameAs: ['https://twitter.com/domydomains'],
+      contactPoint: { '@type': 'ContactPoint', contactType: 'customer support', url: 'https://domydomains.com' },
+    },
     {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',

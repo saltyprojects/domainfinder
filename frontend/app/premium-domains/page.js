@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { StaticPage } from '../components/StaticPage';
+import ToolSchema from '../components/ToolSchema';
 
 export const metadata = {
   title: 'Premium Domains for Sale — Aftermarket Domain Marketplace | DomyDomains',
@@ -16,6 +17,7 @@ export const metadata = {
 export default function PremiumDomains() {
   return (
     <StaticPage>
+        <ToolSchema name="Premium Domain Marketplace" description="Discover premium domains for sale with existing traffic, backlinks, and domain authority." url="/premium-domains" />
         <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '16px' }}>
           Premium Domains
         </h1>

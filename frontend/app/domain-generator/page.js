@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { StaticPage } from '../components/StaticPage';
+import ToolSchema from '../components/ToolSchema';
 
 export const metadata = {
   title: 'Domain Name Generator — Creative Domain Ideas | DomyDomains',
@@ -31,6 +32,7 @@ const EXAMPLES = [
 export default function DomainGenerator() {
   return (
     <StaticPage>
+        <ToolSchema name="Domain Name Generator" description="Generate creative domain name ideas instantly. Hundreds of brandable names from a single keyword." url="/domain-generator" />
         <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '16px' }}>
           Domain Name Generator
         </h1>

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { StaticPage } from '../components/StaticPage';
+import ToolSchema from '../components/ToolSchema';
 
 export const metadata = {
   title: 'Domain Extensions Guide 2026 — All TLDs Explained | DomyDomains',
@@ -47,6 +48,7 @@ const CATEGORIES = {
 export default function DomainExtensions() {
   return (
     <StaticPage>
+        <ToolSchema name="Domain Extensions Guide" description="Complete guide to 400+ domain extensions (TLDs). Learn about .com, .ai, .io, .dev and hundreds more." url="/domain-extensions" />
         <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '16px' }}>
           Domain Extensions Guide
         </h1>
