@@ -1,5 +1,16 @@
-# DomyDomains - Domain Search Platform
-> Find, compare, and register domain names at https://domydomains.com
+# DomyDomains
+> Domain search platform — search 400+ TLDs instantly, compare pricing, find your perfect domain name.
+
+## Main Pages
+- https://domydomains.com/
+- https://domydomains.com/domain-extensions
+- https://domydomains.com/domain-generator
+- https://domydomains.com/premium-domains
+- https://domydomains.com/domain-pricing
+- https://domydomains.com/whois-lookup
+- https://domydomains.com/domain-value
+- https://domydomains.com/about
+- https://domydomains.com/blog
 
 ## Blog Articles
 - https://domydomains.com/blog/bulk-domain-search-check-multiple-domains-2026
@@ -13,6 +24,7 @@
 - https://domydomains.com/blog/domain-name-tips-what-pros-know
 - https://domydomains.com/blog/com-vs-io-vs-ai-which-tld
 - https://domydomains.com/blog/top-10-domain-extensions-for-startups
+- https://domydomains.com/blog/domain-registrar-failure-icann-cleanup-protect-domains-2026
 - https://domydomains.com/blog/tech-recession-2026-laid-off-founders-domain-strategy
 - https://domydomains.com/blog/domain-industry-consolidation-dead-registrars-price-caps-2026
 - https://domydomains.com/blog/ai-domains-preferred-over-com-buyers-paying-more-2026
@@ -52,3 +64,22 @@
 - https://domydomains.com/blog/how-to-negotiate-buy-domain-name
 - https://domydomains.com/blog/co-domain-guide-startups
 - https://domydomains.com/blog/domain-name-escrow-safe-buying-selling-guide
+- https://domydomains.com/blog/ai-domain-boom-startups-six-figure-sales
+- https://domydomains.com/blog/reverse-domain-name-hijacking-udrp-protection
+- https://domydomains.com/blog/ai-disrupting-domain-registrar-industry-godaddy
+- https://domydomains.com/blog/ai-com-70-million-sale-domain-investing-2026
+- https://domydomains.com/blog/subdomains-vs-subdirectories-seo
+- https://domydomains.com/blog/best-domain-names-gaming-industry
+- https://domydomains.com/blog/expired-domains-backorder-guide
+- https://domydomains.com/blog/custom-domain-email-setup-guide
+- https://domydomains.com/blog/dev-domain-guide-developers
+- https://domydomains.com/blog/seo-and-domain-names
+- https://domydomains.com/blog/premium-domains-vs-new-domains
+- https://domydomains.com/blog/how-to-buy-domain-name-beginners-guide
+- https://domydomains.com/blog/best-new-domain-extensions-startups
+- https://domydomains.com/blog/understanding-domain-availability-dns-lookup
+- https://domydomains.com/blog/domain-name-generator-creative-names
+- https://domydomains.com/blog/why-ai-domains-hottest-tld-2026
+- https://domydomains.com/blog/free-domain-search-tools-compared
+- https://domydomains.com/blog/complete-guide-domain-extensions-tlds-2026
+- https://domydomains.com/blog/how-to-choose-perfect-domain-name-2026
