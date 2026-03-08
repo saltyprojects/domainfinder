@@ -66,7 +66,29 @@ function inlineFormat(text) {
   return parts;
 }
 
+function isHtmlContent(text) {
+  return /<(h[1-6]|p|ul|ol|li|strong|em|a |div|table|blockquote)[>\s]/i.test(text);
+}
+
+const htmlStyles = `
+  .blog-html h1 { font-size: 1.6rem; font-weight: 800; margin-top: 32px; margin-bottom: 16px; color: #fff; }
+  .blog-html h2 { font-size: 1.4rem; font-weight: 700; margin-top: 32px; margin-bottom: 12px; color: #fff; }
+  .blog-html h3 { font-size: 1.15rem; font-weight: 600; margin-top: 24px; margin-bottom: 8px; color: #ddd; }
+  .blog-html p { color: #aaa; line-height: 1.8; margin-bottom: 16px; font-size: 1rem; }
+  .blog-html ul, .blog-html ol { padding-left: 20px; color: #aaa; line-height: 1.8; margin-bottom: 16px; }
+  .blog-html li { margin-bottom: 4px; }
+  .blog-html strong { color: #fff; font-weight: 600; }
+  .blog-html a { color: #8b5cf6; text-decoration: underline; }
+  .blog-html code { background: #1e1e2e; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  .blog-html table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  .blog-html th, .blog-html td { border: 1px solid #333; padding: 8px; color: #aaa; }
+  .blog-html th { background: #1e1e2e; color: #fff; }
+`;
+
 export default function BlogArticle({ article }) {
+  const body = article.body || '';
+  const useHtml = isHtmlContent(body);
+
   return (
     <article style={{ maxWidth: '720px' }}>
       <div style={{ display: 'flex', gap: '12px', fontSize: '0.85rem', color: '#888', marginBottom: '16px' }}>
@@ -76,7 +98,14 @@ export default function BlogArticle({ article }) {
       <h1 style={{ fontSize: 'clamp(1.6rem, 4vw, 2.2rem)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.2, marginBottom: '32px' }}>
         {article.title}
       </h1>
-      <div>{renderMarkdown(article.body || '')}</div>
+      {useHtml ? (
+        <>
+          <style>{htmlStyles}</style>
+          <div className="blog-html" dangerouslySetInnerHTML={{ __html: body }} />
+        </>
+      ) : (
+        <div>{renderMarkdown(body)}</div>
+      )}
     </article>
   );
 }
