@@ -11,7 +11,7 @@ export const viewport = {
 export const metadata = {
   title: 'DomyDomains — Instant Domain Name Search | 400+ TLDs',
   description:
-    'The fastest domain search tool on the internet. Search 400+ domain extensions instantly. Find available domains and compare prices.',
+    'The fastest domain search tool on the internet. Search 400+ domain extensions instantly. Find available domains, compare prices, and register in seconds.',
   keywords: 'domain search, domain name search, domain availability, domain checker, domain finder, TLD search, domain extensions, buy domain, register domain, domain generator',
   metadataBase: new URL('https://domydomains.com'),
   alternates: { canonical: '/' },

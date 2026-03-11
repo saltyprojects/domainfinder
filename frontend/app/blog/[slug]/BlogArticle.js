@@ -85,9 +85,73 @@ const htmlStyles = `
   .blog-html th { background: #1e1e2e; color: #fff; }
 `;
 
+function DomainSearchCTA({ context }) {
+  return (
+    <div style={{
+      margin: '32px 0',
+      padding: '24px',
+      background: 'linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(34, 197, 94, 0.1))',
+      border: '1px solid rgba(139, 92, 246, 0.2)',
+      borderRadius: '12px',
+      textAlign: 'center',
+    }}>
+      <p style={{ color: '#fff', fontSize: '1.1rem', fontWeight: 700, marginBottom: '8px' }}>
+        🔍 {context || 'Find your perfect domain name'}
+      </p>
+      <p style={{ color: '#aaa', fontSize: '0.9rem', marginBottom: '16px' }}>
+        Search 400+ extensions instantly. See prices. Register in seconds.
+      </p>
+      <a
+        href="/"
+        style={{
+          display: 'inline-block',
+          padding: '12px 32px',
+          background: 'linear-gradient(135deg, #8b5cf6, #7c3aed)',
+          color: '#fff',
+          borderRadius: '8px',
+          fontSize: '1rem',
+          fontWeight: 700,
+          textDecoration: 'none',
+          boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
+          transition: 'transform 0.2s',
+        }}
+      >
+        Search Domains Free →
+      </a>
+    </div>
+  );
+}
+
+function RelatedArticles() {
+  return (
+    <div style={{
+      margin: '40px 0 0',
+      padding: '24px',
+      background: '#1a1a2e',
+      border: '1px solid #333',
+      borderRadius: '12px',
+    }}>
+      <p style={{ color: '#fff', fontSize: '1rem', fontWeight: 700, marginBottom: '12px' }}>
+        📚 Keep Reading
+      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <a href="/blog" style={{ color: '#8b5cf6', textDecoration: 'none', fontSize: '0.9rem' }}>→ More articles about domains, TLDs, and the web</a>
+        <a href="/domain-extensions" style={{ color: '#8b5cf6', textDecoration: 'none', fontSize: '0.9rem' }}>→ Browse all 400+ domain extensions</a>
+        <a href="/domain-pricing" style={{ color: '#8b5cf6', textDecoration: 'none', fontSize: '0.9rem' }}>→ Domain pricing comparison guide</a>
+      </div>
+    </div>
+  );
+}
+
 export default function BlogArticle({ article }) {
   const body = article.body || '';
   const useHtml = isHtmlContent(body);
+
+  // Extract a keyword for CTA context
+  const keyword = article.target_keywords?.split(',')[0]?.trim();
+  const ctaContext = keyword
+    ? `Looking for a ${keyword.toLowerCase()} domain?`
+    : 'Find your perfect domain name';
 
   return (
     <article style={{ maxWidth: '720px' }}>
@@ -106,6 +170,8 @@ export default function BlogArticle({ article }) {
       ) : (
         <div>{renderMarkdown(body)}</div>
       )}
+      <DomainSearchCTA context={ctaContext} />
+      <RelatedArticles />
     </article>
   );
 }

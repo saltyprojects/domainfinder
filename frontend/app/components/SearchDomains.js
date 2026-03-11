@@ -675,7 +675,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
               {[
                 { step: '1', title: 'Type your domain name', desc: 'Start typing any word or phrase. Results appear instantly.' },
                 { step: '2', title: 'Browse availability', desc: 'Green means available, red means taken. We check 400+ extensions.' },
-                { step: '3', title: 'Register your domain', desc: 'Click "Continue" to register at the best price through our partners.' },
+                { step: '3', title: 'Register your domain', desc: 'Click "Get This Domain" to register at the lowest price. .com domains from $9.98/yr.' },
               ].map(s => (
                 <div key={s.step} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
                   <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: '#8b5cf6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.9rem', flexShrink: 0 }}>{s.step}</div>
@@ -693,7 +693,7 @@ export function SearchDomains({ onActiveChange, activeTab = 'search', onTabChang
             {[
               { q: 'Is DomyDomains free to use?', a: 'Yes, 100% free. No account required. Search unlimited domains across 400+ extensions.' },
               { q: 'How do you check domain availability?', a: 'We use direct DNS resolution — the fastest method possible. No slow third-party APIs. Results appear in milliseconds.' },
-              { q: 'Can I register a domain through DomyDomains?', a: 'We partner with top registrars like Namecheap. Click "Continue" on any available domain to register it at the best price.' },
+              { q: 'Can I register a domain through DomyDomains?', a: 'Yes! Click "Get This Domain" on any available result. We partner with Namecheap — .com from $9.98/yr, .xyz from $1/yr, .io from $32.88/yr. You get the best registrar prices.' },
               { q: 'What TLDs do you support?', a: 'We support 400+ TLDs including .com, .net, .org, .ai, .io, .dev, .app, .co, .xyz, and hundreds of country-code and specialty extensions.' },
               { q: 'Do you store my search history?', a: 'No. We don\'t store searches, don\'t require accounts, and don\'t track users. Your searches are completely private.' },
             ].map((faq, i) => (

@@ -3,8 +3,17 @@
 import { useState } from 'react';
 import { SEOAnalytics } from './SEOAnalytics';
 
-const AFFILIATE_URL = 'https://www.anrdoezrs.net/click-101695072-15083053';
-function buildAffiliateUrl(domain) { return `${AFFILIATE_URL}?url=${encodeURIComponent('https://www.namecheap.com/domains/registration/results/?domain=' + domain)}`; }
+const NAMECHEAP_AFF = 'https://www.anrdoezrs.net/click-101695072-15083053';
+function buildAffiliateUrl(domain) { return `${NAMECHEAP_AFF}?url=${encodeURIComponent('https://www.namecheap.com/domains/registration/results/?domain=' + domain)}`; }
+
+// Estimated first-year prices by TLD (for display only)
+const TLD_PRICES = {
+  'com': 9.98, 'net': 12.98, 'org': 9.98, 'io': 32.88, 'ai': 79.00,
+  'co': 11.98, 'dev': 12.98, 'app': 14.98, 'xyz': 1.00, 'me': 3.98,
+  'info': 4.98, 'biz': 6.98, 'us': 5.48, 'tech': 5.98, 'online': 3.98,
+  'store': 3.98, 'site': 2.98, 'shop': 2.98, 'club': 3.98, 'pro': 3.98,
+  'design': 6.98, 'space': 1.98, 'fun': 1.98, 'icu': 1.98, 'top': 1.98,
+};
 
 function IntelChips({ intel, available }) {
   if (!intel) return null;
@@ -189,22 +198,24 @@ export function DomainResult({ result, onCopy, copied, intel }) {
 
           {available ? (
             <>
-              {price && (
-                <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-                  ${price.toFixed(2)}
-                </span>
-              )}
+              <span style={{ fontSize: '0.85rem', color: 'var(--green)', fontWeight: 600 }}>
+                {price ? `$${price.toFixed(2)}/yr` : TLD_PRICES[tld] ? `From $${TLD_PRICES[tld]}/yr` : ''}
+              </span>
               <a
                 href={buildAffiliateUrl(full_domain)}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => { try { window.gtag?.('event', 'affiliate_click', { domain: full_domain, tld }); } catch(e){} }}
                 style={{
-                  padding: '6px 16px', background: 'var(--green)', color: '#000',
-                  borderRadius: '8px', fontSize: '0.8rem', fontWeight: 600,
-                  transition: 'opacity 0.15s', textDecoration: 'none',
+                  padding: '8px 20px', background: 'linear-gradient(135deg, #22c55e, #16a34a)', color: '#fff',
+                  borderRadius: '8px', fontSize: '0.85rem', fontWeight: 700,
+                  transition: 'all 0.2s', textDecoration: 'none',
+                  boxShadow: '0 2px 8px rgba(34, 197, 94, 0.3)',
                 }}
+                onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
+                onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
               >
-                Register →
+                Get This Domain →
               </a>
             </>
           ) : (
