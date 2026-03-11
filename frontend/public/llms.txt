@@ -3,6 +3,7 @@
 
 ## Blog Articles
 
+- [Bot.ai Just Sold for $1.2 Million — Inside the AI Domain Gold Rush of 2026](https://domydomains.com/blog/bot-ai-1-2-million-sale-ai-domain-gold-rush-q1-2026)
 - [WIPO's New $20 Loophole Lets Anyone Unmask Domain Owners Behind Privacy Services](https://domydomains.com/blog/wipo-udrp-privacy-loophole-20-dollars-unmask-domain-owners-2026)
 - [Google Killed AdSense for Domains — Now ICANN Is Investigating What Replaced It](https://domydomains.com/blog/google-adsense-domains-shutdown-icann-zero-click-monetization-2026)
 - [ICANN's New gTLD Round Opens April 30, 2026 — The Complete Timeline Every Domain Buyer Needs](https://domydomains.com/blog/icann-new-gtld-round-april-2026-complete-timeline-domain-buyers)
@@ -41,7 +42,6 @@
 - [Why Every .ai Startup Should Secure the Matching .com Before It Is Too Late](https://domydomains.com/blog/ai-startup-secure-matching-com-domain-before-funding)
 - [Buying and Selling Domains With Cryptocurrency: A Complete Guide](https://domydomains.com/blog/buying-selling-domains-cryptocurrency-crypto-payments)
 - [Domain Strategy for Bootstrapped Founders: Great Names on a Tight Budget](https://domydomains.com/blog/domain-strategy-bootstrapped-founders-budget)
-- [.ai and .com Dominate Domain Sales: What the February 2026 Charts Reveal](https://domydomains.com/blog/ai-com-dominate-domain-sales-february-2026-charts)
 - [Bulk Domain Search: How to Check Multiple Domain Names at Once in 2026](https://domydomains.com/blog/bulk-domain-search-check-multiple-domains-2026)
 - [Complete Guide to Domain Extensions: How to Choose the Right TLD in 2026](https://domydomains.com/blog/complete-guide-domain-extensions-choose-right-tld-2026)
 - [AI Domain Name Generators: How AI Helps You Find the Perfect Domain in 2026](https://domydomains.com/blog/ai-domain-name-generators-2026)
