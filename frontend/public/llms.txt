@@ -8,7 +8,6 @@
 - [Domain Price Comparison: How to Find the Cheapest Registrar](https://domydomains.com/blog/domain-price-comparison-cheapest-registrar)
 - [How Much Is a Domain Name Worth? A Guide to Domain Valuation](https://domydomains.com/blog/how-much-is-domain-name-worth-valuation)
 - [Domain History: How to Research a Domain Before You Buy It](https://domydomains.com/blog/domain-history-research-before-buying)
-- [Where to Buy Domains in 2026: A Complete Guide to Domain Marketplaces](https://domydomains.com/blog/where-to-buy-domains-marketplaces-guide-2026)
 - [The Battle Over .org and .info Price Caps: A Complete Timeline](https://domydomains.com/blog/org-info-price-caps-namecheap-icann-battle-timeline)
 - [.ai and .com Dominate Domain Sales: What the February 2026 Charts Reveal](https://domydomains.com/blog/ai-com-dominate-domain-sales-february-2026-charts)
 - [Domain Strategy for Bootstrapped Founders: Great Names on a Tight Budget](https://domydomains.com/blog/domain-strategy-bootstrapped-founders-budget)
@@ -50,3 +49,4 @@
 - [Bluesky's CEO Is Leaving — But Its Domain-as-Identity Model Is the Future of Domain Names](https://domydomains.com/blog/bluesky-domain-handles-identity-social-media-future-2026)
 - [WIPO's New UDRP Pricing Could Expose Your Domain's Private Whois Data — Here's What You Need to Know](https://domydomains.com/blog/wipo-udrp-pricing-whois-privacy-loophole-domain-owners-2026)
 - [ICANN's New gTLD Round Opens April 30, 2026 — The Complete Timeline Every Domain Buyer Needs](https://domydomains.com/blog/icann-new-gtld-round-april-2026-complete-timeline-domain-buyers)
+- [Google Killed AdSense for Domains — Now ICANN Is Investigating What Replaced It](https://domydomains.com/blog/google-adsense-domains-shutdown-icann-zero-click-monetization-2026)
