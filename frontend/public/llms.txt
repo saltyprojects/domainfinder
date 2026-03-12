@@ -1,55 +1,103 @@
 # DomyDomains
-> Domain search and comparison platform
+> Domain search platform — search 400+ TLDs instantly
+
+## Main Pages
+- https://domydomains.com/
+- https://domydomains.com/domain-extensions
+- https://domydomains.com/domain-generator
+- https://domydomains.com/premium-domains
+- https://domydomains.com/domain-pricing
+- https://domydomains.com/whois-lookup
+- https://domydomains.com/domain-value
+- https://domydomains.com/about
+- https://domydomains.com/blog
+- https://domydomains.com/privacy
+- https://domydomains.com/terms
+- https://domydomains.com/trademark
 
 ## Blog Articles
-
-- [Google Just Paid $32 Billion for a .io Company — Does Your TLD Actually Matter?](https://domydomains.com/blog/google-wiz-io-32-billion-acquisition-tld-choice-2026)
-- [Bot.ai Just Sold for $1.2 Million — Inside the AI Domain Gold Rush of 2026](https://domydomains.com/blog/bot-ai-1-2-million-sale-ai-domain-gold-rush-q1-2026)
-- [WIPO's New $20 Loophole Lets Anyone Unmask Domain Owners Behind Privacy Services](https://domydomains.com/blog/wipo-udrp-privacy-loophole-20-dollars-unmask-domain-owners-2026)
-- [Google Killed AdSense for Domains — Now ICANN Is Investigating What Replaced It](https://domydomains.com/blog/google-adsense-domains-shutdown-icann-zero-click-monetization-2026)
-- [ICANN's New gTLD Round Opens April 30, 2026 — The Complete Timeline Every Domain Buyer Needs](https://domydomains.com/blog/icann-new-gtld-round-april-2026-complete-timeline-domain-buyers)
-- [WIPO's New UDRP Pricing Could Expose Your Domain's Private Whois Data — Here's What You Need to Know](https://domydomains.com/blog/wipo-udrp-pricing-whois-privacy-loophole-domain-owners-2026)
-- [Bluesky's CEO Is Leaving — But Its Domain-as-Identity Model Is the Future of Domain Names](https://domydomains.com/blog/bluesky-domain-handles-identity-social-media-future-2026)
-- [ICANN 85 Mumbai: War, Price Cap Surrender, and TLD Consolidation Collide at Domain Industry's Biggest Week](https://domydomains.com/blog/icann-85-mumbai-war-price-caps-tld-consolidation-domain-industry-2026)
-- [Record $1.2 Million .ai Domain Sale Signals a New Era — While Icon.com's $12M Bet Goes Dark](https://domydomains.com/blog/record-ai-domain-sale-1-2-million-icon-com-shutdown-2026)
-- [Why the Domain Aftermarket Is Booming in the Middle of a Recession](https://domydomains.com/blog/domain-aftermarket-booming-recession-2026-counter-cyclical)
-- [The Domain Price Cap Era Is Officially Over: What Namecheap's Surrender Means for Your Renewal Costs](https://domydomains.com/blog/domain-price-cap-era-over-namecheap-surrender-renewal-costs-2026)
-- [Domain Investment Is Surging: What Escrow.com's Latest Data and Record Aftermarket Sales Tell Us About 2026](https://domydomains.com/blog/domain-investment-surging-escrow-data-aftermarket-sales-2026)
-- [The 2026 Super Bowl Was a Domain Name Super Bowl — And That Changes Everything](https://domydomains.com/blog/2026-super-bowl-domain-names-ai-com-squarespace-emma-stone)
-- [Icon.com Spent $12 Million on a Domain — Then Shut Down. Here's What Every Startup Can Learn.](https://domydomains.com/blog/icon-com-12-million-domain-startup-shutdown-lessons-2026)
-- [What Happens When Your Domain Registrar Dies? ICANN's 2026 Cleanup and the Rising Risk of Registrar Failure](https://domydomains.com/blog/domain-registrar-failure-icann-cleanup-protect-domains-2026)
-- [From Laid Off to Launched: How the 2026 Tech Recession Is Creating a New Wave of Domain Buyers](https://domydomains.com/blog/tech-recession-2026-laid-off-founders-domain-strategy)
-- [The Domain Industry Is Consolidating Fast: Dead Registrars, Lost Price Caps, and What It Means for You](https://domydomains.com/blog/domain-industry-consolidation-dead-registrars-price-caps-2026)
-- [Why Domain Buyers Are Choosing .AI Over .COM in 2026 — And Paying More](https://domydomains.com/blog/ai-domains-preferred-over-com-buyers-paying-more-2026)
-- [Paul Graham Says We're in the Brand Age — Here's Why Your Domain Name Is Your Most Important Brand Asset](https://domydomains.com/blog/paul-graham-brand-age-domain-name-brand-asset-2026)
-- [The Great Registrar Shakeup: Who's Winning and Losing .com Market Share in 2026](https://domydomains.com/blog/com-registrar-market-share-winners-losers-2026)
-- [364 Million Domains and Counting: What the 2026 Global Domain Report Reveals About the Market](https://domydomains.com/blog/global-domain-report-2026-364-million-domains-market-trends)
-- [Fractionalized Domain Names Are Here: How D3 and Doma Are Bringing Web3 to Domain Investing](https://domydomains.com/blog/fractionalized-domain-names-d3-doma-web3-investing-2026)
-- [Repurposed Country Code Domains: Why .ai, .io, .tv, and .co Are Worth More Than Their Countries](https://domydomains.com/blog/repurposed-cctld-domains-ai-io-tv-co-cv-2026)
-- [Nova Registry Wants 200 New Domain Extensions: What This Means for Domain Buyers in 2026](https://domydomains.com/blog/nova-registry-200-new-tlds-domain-buyers-2026)
-- [ICANN85 Mumbai Preview: 5 Things Domain Buyers Should Watch This Week](https://domydomains.com/blog/icann85-mumbai-preview-domain-buyers-watch-march-2026)
-- [Tech Sites Lost 58% of Google Traffic: Why Your Domain Strategy Matters More Than Ever in 2026](https://domydomains.com/blog/tech-sites-lost-google-traffic-domain-strategy-2026)
-- [GoDaddy Is Fighting for Domain Investors: New Promotions Signal a Company Under Pressure](https://domydomains.com/blog/godaddy-domain-investor-promotions-afternic-2026-stock-pressure)
-- [Hundreds of New Domain Extensions Are Coming: ICANN's 2026 gTLD Round Explained](https://domydomains.com/blog/icann-new-gtld-round-2026-hundreds-new-domain-extensions)
-- [The Hidden Economics of Premium Domains: Why Half of Buyers Don't Renew (Radix Data)](https://domydomains.com/blog/premium-domain-renewal-economics-radix-data-2026)
-- [Domain Hacks and Creative TLD Tricks: How Tech Companies Name Themselves in 2026](https://domydomains.com/blog/domain-hacks-creative-tld-tricks-tech-companies-2026)
-- [From Crypto.com to AI.com: The Man Who Spent $82 Million on Two Domain Names](https://domydomains.com/blog/crypto-com-ai-com-kris-marszalek-82-million-domain-names)
-- [How Real Businesses Buy Domains in 2026: Lessons from This Week's End-User Sales](https://domydomains.com/blog/how-businesses-buy-domains-2026-end-user-sales-data)
-- [Who Owns Your TLD? The Quiet Consolidation of Domain Extensions in 2026](https://domydomains.com/blog/gtld-consolidation-identity-digital-who-owns-your-tld-2026)
-- [Domain Summit Africa 2026 and the Globalization of Domain Investing](https://domydomains.com/blog/domain-summit-africa-2026-global-domain-investing)
-- [Reverse Domain Name Hijacking Is Surging in 2026: How to Protect Your Domains](https://domydomains.com/blog/reverse-domain-name-hijacking-surge-2026-protect-domains)
-- [What Happens to Valuable Domains When AI Companies Fail?](https://domydomains.com/blog/what-happens-domains-ai-companies-fail-liquidation)
-- [What Domains Do Developers Actually Use? Real Data From Hacker News](https://domydomains.com/blog/what-domains-developers-use-hacker-news-show-hn-data)
-- [Why Every .ai Startup Should Secure the Matching .com Before It Is Too Late](https://domydomains.com/blog/ai-startup-secure-matching-com-domain-before-funding)
-- [Buying and Selling Domains With Cryptocurrency: A Complete Guide](https://domydomains.com/blog/buying-selling-domains-cryptocurrency-crypto-payments)
-- [Bulk Domain Search: How to Check Multiple Domain Names at Once in 2026](https://domydomains.com/blog/bulk-domain-search-check-multiple-domains-2026)
-- [Complete Guide to Domain Extensions: How to Choose the Right TLD in 2026](https://domydomains.com/blog/complete-guide-domain-extensions-choose-right-tld-2026)
-- [AI Domain Name Generators: How AI Helps You Find the Perfect Domain in 2026](https://domydomains.com/blog/ai-domain-name-generators-2026)
-- [Domain History: How to Research a Domain Before You Buy It](https://domydomains.com/blog/domain-history-research-before-buying)
-- [How Much Is a Domain Name Worth? A Guide to Domain Valuation](https://domydomains.com/blog/how-much-is-domain-name-worth-valuation)
-- [Domain Price Comparison: How to Find the Cheapest Registrar](https://domydomains.com/blog/domain-price-comparison-cheapest-registrar)
-- [What Is WHOIS? A Complete Guide to Domain Ownership Lookup](https://domydomains.com/blog/what-is-whois-domain-ownership-lookup)
-- [Why Your Domain Name Matters More Than You Think](https://domydomains.com/blog/why-your-domain-name-matters)
-- [Domain Name Tips: What the Pros Know](https://domydomains.com/blog/domain-name-tips-what-pros-know)
-- [.com vs .io vs .ai — Which TLD Should You Pick?](https://domydomains.com/blog/com-vs-io-vs-ai-which-tld)
-- [Top 10 Domain Extensions for Startups](https://domydomains.com/blog/top-10-domain-extensions-for-startups)
+- https://domydomains.com/blog/bulk-domain-search-check-multiple-domains-2026
+- https://domydomains.com/blog/complete-guide-domain-extensions-choose-right-tld-2026
+- https://domydomains.com/blog/ai-domain-name-generators-2026
+- https://domydomains.com/blog/domain-history-research-before-buying
+- https://domydomains.com/blog/how-much-is-domain-name-worth-valuation
+- https://domydomains.com/blog/domain-price-comparison-cheapest-registrar
+- https://domydomains.com/blog/what-is-whois-domain-ownership-lookup
+- https://domydomains.com/blog/why-your-domain-name-matters
+- https://domydomains.com/blog/domain-name-tips-what-pros-know
+- https://domydomains.com/blog/com-vs-io-vs-ai-which-tld
+- https://domydomains.com/blog/top-10-domain-extensions-for-startups
+- https://domydomains.com/blog/workspace-com-1-45-million-sale-biggest-domain-deals-2026
+- https://domydomains.com/blog/google-wiz-io-32-billion-acquisition-tld-choice-2026
+- https://domydomains.com/blog/bot-ai-1-2-million-sale-ai-domain-gold-rush-q1-2026
+- https://domydomains.com/blog/wipo-udrp-privacy-loophole-20-dollars-unmask-domain-owners-2026
+- https://domydomains.com/blog/google-adsense-domains-shutdown-icann-zero-click-monetization-2026
+- https://domydomains.com/blog/icann-new-gtld-round-april-2026-complete-timeline-domain-buyers
+- https://domydomains.com/blog/wipo-udrp-pricing-whois-privacy-loophole-domain-owners-2026
+- https://domydomains.com/blog/bluesky-domain-handles-identity-social-media-future-2026
+- https://domydomains.com/blog/icann-85-mumbai-war-price-caps-tld-consolidation-domain-industry-2026
+- https://domydomains.com/blog/record-ai-domain-sale-1-2-million-icon-com-shutdown-2026
+- https://domydomains.com/blog/domain-aftermarket-booming-recession-2026-counter-cyclical
+- https://domydomains.com/blog/domain-price-cap-era-over-namecheap-surrender-renewal-costs-2026
+- https://domydomains.com/blog/domain-investment-surging-escrow-data-aftermarket-sales-2026
+- https://domydomains.com/blog/2026-super-bowl-domain-names-ai-com-squarespace-emma-stone
+- https://domydomains.com/blog/icon-com-12-million-domain-startup-shutdown-lessons-2026
+- https://domydomains.com/blog/domain-registrar-failure-icann-cleanup-protect-domains-2026
+- https://domydomains.com/blog/tech-recession-2026-laid-off-founders-domain-strategy
+- https://domydomains.com/blog/domain-industry-consolidation-dead-registrars-price-caps-2026
+- https://domydomains.com/blog/ai-domains-preferred-over-com-buyers-paying-more-2026
+- https://domydomains.com/blog/paul-graham-brand-age-domain-name-brand-asset-2026
+- https://domydomains.com/blog/com-registrar-market-share-winners-losers-2026
+- https://domydomains.com/blog/global-domain-report-2026-364-million-domains-market-trends
+- https://domydomains.com/blog/fractionalized-domain-names-d3-doma-web3-investing-2026
+- https://domydomains.com/blog/repurposed-cctld-domains-ai-io-tv-co-cv-2026
+- https://domydomains.com/blog/nova-registry-200-new-tlds-domain-buyers-2026
+- https://domydomains.com/blog/icann85-mumbai-preview-domain-buyers-watch-march-2026
+- https://domydomains.com/blog/tech-sites-lost-google-traffic-domain-strategy-2026
+- https://domydomains.com/blog/godaddy-domain-investor-promotions-afternic-2026-stock-pressure
+- https://domydomains.com/blog/icann-new-gtld-round-2026-hundreds-new-domain-extensions
+- https://domydomains.com/blog/premium-domain-renewal-economics-radix-data-2026
+- https://domydomains.com/blog/domain-hacks-creative-tld-tricks-tech-companies-2026
+- https://domydomains.com/blog/crypto-com-ai-com-kris-marszalek-82-million-domain-names
+- https://domydomains.com/blog/how-businesses-buy-domains-2026-end-user-sales-data
+- https://domydomains.com/blog/gtld-consolidation-identity-digital-who-owns-your-tld-2026
+- https://domydomains.com/blog/domain-summit-africa-2026-global-domain-investing
+- https://domydomains.com/blog/reverse-domain-name-hijacking-surge-2026-protect-domains
+- https://domydomains.com/blog/what-happens-domains-ai-companies-fail-liquidation
+- https://domydomains.com/blog/what-domains-developers-use-hacker-news-show-hn-data
+- https://domydomains.com/blog/ai-startup-secure-matching-com-domain-before-funding
+- https://domydomains.com/blog/buying-selling-domains-cryptocurrency-crypto-payments
+- https://domydomains.com/blog/domain-strategy-bootstrapped-founders-budget
+- https://domydomains.com/blog/ai-com-dominate-domain-sales-february-2026-charts
+- https://domydomains.com/blog/org-info-price-caps-namecheap-icann-battle-timeline
+- https://domydomains.com/blog/where-to-buy-domains-marketplaces-guide-2026
+- https://domydomains.com/blog/upgrade-io-co-to-com-domain-when-why
+- https://domydomains.com/blog/premium-domain-renewal-cost-worth-it-data
+- https://domydomains.com/blog/what-happens-domain-registrar-goes-out-of-business
+- https://domydomains.com/blog/bot-ai-1-2-million-sale-ai-domain-aftermarket
+- https://domydomains.com/blog/domain-pricing-trends-tld-price-increases-2026
+- https://domydomains.com/blog/premium-tld-sales-boom-tech-fun-space-2026
+- https://domydomains.com/blog/xyz-domain-guide-web3-creative
+- https://domydomains.com/blog/dns-setup-guide-beginners
+- https://domydomains.com/blog/how-to-negotiate-buy-domain-name
+- https://domydomains.com/blog/co-domain-guide-startups
+- https://domydomains.com/blog/domain-name-escrow-safe-buying-selling-guide
+- https://domydomains.com/blog/ai-domain-boom-startups-six-figure-sales
+- https://domydomains.com/blog/reverse-domain-name-hijacking-udrp-protection
+- https://domydomains.com/blog/ai-disrupting-domain-registrar-industry-godaddy
+- https://domydomains.com/blog/ai-com-70-million-sale-domain-investing-2026
+- https://domydomains.com/blog/subdomains-vs-subdirectories-seo
+- https://domydomains.com/blog/best-domain-names-gaming-industry
+- https://domydomains.com/blog/expired-domains-backorder-guide
+- https://domydomains.com/blog/custom-domain-email-setup-guide
+- https://domydomains.com/blog/dev-domain-guide-developers
+- https://domydomains.com/blog/seo-and-domain-names
+- https://domydomains.com/blog/premium-domains-vs-new-domains
+- https://domydomains.com/blog/how-to-buy-domain-name-beginners-guide
+- https://domydomains.com/blog/best-new-domain-extensions-startups
+- https://domydomains.com/blog/understanding-domain-availability-dns-lookup
+- https://domydomains.com/blog/domain-name-generator-creative-names
+- https://domydomains.com/blog/why-ai-domains-hottest-tld-2026
+- https://domydomains.com/blog/free-domain-search-tools-compared
+- https://domydomains.com/blog/complete-guide-domain-extensions-tlds-2026
+- https://domydomains.com/blog/how-to-choose-perfect-domain-name-2026
