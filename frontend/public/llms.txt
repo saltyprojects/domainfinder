@@ -1,7 +1,7 @@
 # DomyDomains
-> Domain search platform — search 400+ TLDs instantly
+> Domain search, pricing, and tools at domydomains.com
 
-## Main Pages
+## Pages
 - https://domydomains.com/
 - https://domydomains.com/domain-extensions
 - https://domydomains.com/domain-generator
@@ -15,7 +15,7 @@
 - https://domydomains.com/terms
 - https://domydomains.com/trademark
 
-## Blog Articles
+## Blog
 - https://domydomains.com/blog/bulk-domain-search-check-multiple-domains-2026
 - https://domydomains.com/blog/complete-guide-domain-extensions-choose-right-tld-2026
 - https://domydomains.com/blog/ai-domain-name-generators-2026
@@ -27,6 +27,7 @@
 - https://domydomains.com/blog/domain-name-tips-what-pros-know
 - https://domydomains.com/blog/com-vs-io-vs-ai-which-tld
 - https://domydomains.com/blog/top-10-domain-extensions-for-startups
+- https://domydomains.com/blog/wipo-udrp-whois-privacy-loophole-domain-owners-2026
 - https://domydomains.com/blog/org-domain-price-increase-june-2026-renew-now-save
 - https://domydomains.com/blog/china-cn-domain-market-declining-global-cctld-trends-2026
 - https://domydomains.com/blog/workspace-com-1-45-million-sale-biggest-domain-deals-2026
