@@ -29,6 +29,7 @@
 - https://domydomains.com/blog/domain-name-tips-what-pros-know
 - https://domydomains.com/blog/com-vs-io-vs-ai-which-tld
 - https://domydomains.com/blog/top-10-domain-extensions-for-startups
+- https://domydomains.com/blog/icann-new-gtld-string-swap-rule-domain-extensions-2026
 - https://domydomains.com/blog/zero-click-era-brand-domains-matter-more-than-seo-2026
 - https://domydomains.com/blog/buyers-pay-more-ai-than-com-domain-brokerage-shift-2026
 - https://domydomains.com/blog/ai-proof-domain-categories-investing-framework-2026
@@ -67,4 +68,3 @@
 - https://domydomains.com/blog/repurposed-cctld-domains-ai-io-tv-co-cv-2026
 - https://domydomains.com/blog/nova-registry-200-new-tlds-domain-buyers-2026
 - https://domydomains.com/blog/icann85-mumbai-preview-domain-buyers-watch-march-2026
-- https://domydomains.com/blog/tech-sites-lost-google-traffic-domain-strategy-2026
