@@ -2,15 +2,15 @@
 > Find, compare, and register domain names across all TLDs and registrars.
 
 ## Main Pages
-- https://domydomains.com/ - Domain search engine
-- https://domydomains.com/domain-extensions - Browse all domain extensions
-- https://domydomains.com/domain-generator - AI domain name generator
-- https://domydomains.com/premium-domains - Premium domains marketplace
-- https://domydomains.com/domain-pricing - Compare domain prices
-- https://domydomains.com/whois-lookup - WHOIS domain lookup
-- https://domydomains.com/domain-value - Domain value estimator
-- https://domydomains.com/blog - Domain industry blog
-- https://domydomains.com/about - About DomyDomains
+- https://domydomains.com/
+- https://domydomains.com/domain-extensions
+- https://domydomains.com/domain-generator
+- https://domydomains.com/premium-domains
+- https://domydomains.com/domain-pricing
+- https://domydomains.com/whois-lookup
+- https://domydomains.com/domain-value
+- https://domydomains.com/about
+- https://domydomains.com/blog
 
 ## Blog Articles
 - https://domydomains.com/blog/bulk-domain-search-check-multiple-domains-2026
@@ -24,6 +24,7 @@
 - https://domydomains.com/blog/domain-name-tips-what-pros-know
 - https://domydomains.com/blog/com-vs-io-vs-ai-which-tld
 - https://domydomains.com/blog/top-10-domain-extensions-for-startups
+- https://domydomains.com/blog/icann-85-mumbai-confirmed-new-gtld-dates-april-30-deadlines-2026
 - https://domydomains.com/blog/small-web-revival-personal-websites-domain-strategy-2026
 - https://domydomains.com/blog/team-internet-40-percent-revenue-decline-domain-parking-death-2026
 - https://domydomains.com/blog/icann-new-gtld-string-swap-rule-domain-extensions-2026
