@@ -15,6 +15,7 @@ export default function sitemap() {
     { url: `${base}/domain-availability`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/random-domain-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/domain-expiration`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/brand-name-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${base}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     ...posts.map((post) => ({
