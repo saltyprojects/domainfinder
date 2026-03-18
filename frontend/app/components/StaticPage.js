@@ -32,6 +32,8 @@ const TOOLS_LINKS = [
   { href: '/domain-availability', label: 'Availability Checker' },
   { href: '/random-domain-generator', label: 'Random Generator' },
   { href: '/domain-expiration', label: 'Expiration Checker' },
+  { href: '/brand-name-generator', label: 'Brand Name Generator' },
+  { href: '/startup-name-generator', label: 'Startup Name Generator' },
 ];
 
 export function StaticPage({ children }) {

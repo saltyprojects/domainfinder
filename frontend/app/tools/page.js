@@ -9,6 +9,7 @@ const TOOLS = [
   { href: '/domain-availability', name: 'Domain Availability Checker', desc: 'Check if a domain name is available to register', icon: '✅' },
   { href: '/random-domain-generator', name: 'Random Domain Generator', desc: 'Generate creative, brandable domain name ideas', icon: '🎲' },
   { href: '/brand-name-generator', name: 'Brand Name Generator', desc: 'Create unique business & brand names by industry', icon: '✨' },
+  { href: '/startup-name-generator', name: 'Startup Name Generator', desc: 'Generate fundable startup names for SaaS, AI, fintech & more', icon: '🚀' },
   { href: '/domain-value', name: 'Domain Value Estimator', desc: 'Estimate how much a domain name is worth', icon: '💰' },
 ];
 
