@@ -11,6 +11,7 @@ const TOOLS = [
   { href: '/brand-name-generator', name: 'Brand Name Generator', desc: 'Create unique business & brand names by industry', icon: '✨' },
   { href: '/startup-name-generator', name: 'Startup Name Generator', desc: 'Generate fundable startup names for SaaS, AI, fintech & more', icon: '🚀' },
   { href: '/domain-value', name: 'Domain Value Estimator', desc: 'Estimate how much a domain name is worth', icon: '💰' },
+  { href: '/domain-length-checker', name: 'Domain Length Checker', desc: 'Analyze character count, typeability, memorability & brandability', icon: '📏' },
 ];
 
 export default function Tools() {
