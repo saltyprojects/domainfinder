@@ -38,6 +38,8 @@ const TOOLS_LINKS = [
   { href: '/tld-comparison', label: 'TLD Comparison' },
   { href: '/bulk-domain-checker', label: 'Bulk Checker' },
   { href: '/ssl-checker', label: 'SSL Checker' },
+  { href: '/email-domain-checker', label: 'Email Domain Checker' },
+  { href: '/domain-history', label: 'Domain History' },
 ];
 
 export function StaticPage({ children }) {

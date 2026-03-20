@@ -16,6 +16,7 @@ const TOOLS = [
   { href: '/bulk-domain-checker', name: 'Bulk Domain Checker', desc: 'Check availability of multiple domains at once with export', icon: '📊' },
   { href: '/ssl-checker', name: 'SSL Certificate Checker', desc: 'Check HTTPS security, certificate expiry & validity', icon: '🔒' },
   { href: '/email-domain-checker', name: 'Email Domain Checker', desc: 'Check MX, SPF, DKIM & DMARC email authentication records', icon: '📧' },
+  { href: '/domain-history', name: 'Domain History Lookup', desc: 'View registration timeline, status codes & infrastructure history', icon: '📜' },
 ];
 
 export default function Tools() {
