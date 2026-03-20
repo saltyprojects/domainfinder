@@ -15,6 +15,7 @@ const TOOLS = [
   { href: '/tld-comparison', name: 'TLD Comparison Tool', desc: 'Compare domain extensions: .com, .io, .ai, .dev & 50+ more', icon: '🌐' },
   { href: '/bulk-domain-checker', name: 'Bulk Domain Checker', desc: 'Check availability of multiple domains at once with export', icon: '📊' },
   { href: '/ssl-checker', name: 'SSL Certificate Checker', desc: 'Check HTTPS security, certificate expiry & validity', icon: '🔒' },
+  { href: '/email-domain-checker', name: 'Email Domain Checker', desc: 'Check MX, SPF, DKIM & DMARC email authentication records', icon: '📧' },
 ];
 
 export default function Tools() {

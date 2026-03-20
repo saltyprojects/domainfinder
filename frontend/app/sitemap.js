@@ -3,32 +3,21 @@ import { posts } from '../content/posts';
 const API_BASE = 'https://backend-production-758b.up.railway.app';
 
 async function fetchAllBlogSlugs() {
-  // Generate sample blog articles to reach 115+ URLs
-  const sampleArticles = [];
-  const topics = [
-    'how-to-choose-domain-name', 'best-domain-extensions-2024', 'domain-name-generator-guide', 
-    'startup-domain-naming-strategy', 'domain-length-seo-impact', 'tld-comparison-guide',
-    'ssl-certificate-setup-guide', 'bulk-domain-registration-tips', 'domain-investment-guide',
-    'brand-protection-domains', 'country-code-domains', 'new-gtld-guide', 'domain-transfer-process',
-    'whois-privacy-protection', 'domain-appraisal-methods', 'expired-domain-hunting',
-    'domain-parking-strategies', 'internationalized-domain-names', 'domain-name-disputes',
-    'premium-domain-benefits', 'domain-flipping-business', 'dns-management-basics',
-    'subdomain-strategies', 'domain-forwarding-setup', 'email-forwarding-domains',
-    'domain-security-best-practices', 'multi-domain-management', 'domain-renewal-tips',
-    'brand-domain-portfolio', 'geographic-domain-targeting', 'ecommerce-domain-tips',
-    'startup-domain-budget', 'domain-name-trademark', 'tech-startup-domains',
-    'ai-company-domain-names', 'saas-domain-strategies', 'fintech-domain-guide',
-    'healthcare-domain-compliance', 'education-domain-guidelines', 'nonprofit-domain-advice'
-  ];
-  
-  topics.forEach((topic, i) => {
-    sampleArticles.push({
-      slug: topic,
-      date: new Date(Date.now() - (i * 24 * 60 * 60 * 1000)).toISOString() // Spread over past days
-    });
-  });
-  
-  return sampleArticles.slice(0, 75); // Return 75 articles to ensure 115+ total URLs
+  const allArticles = [];
+  let page = 1;
+  const pageSize = 100;
+  try {
+    while (true) {
+      const res = await fetch(`${API_BASE}/api/blog/posts/?page=${page}&page_size=${pageSize}`, { next: { revalidate: 3600 } });
+      if (!res.ok) break;
+      const data = await res.json();
+      const results = data.results || [];
+      results.forEach(a => allArticles.push({ slug: a.slug, date: a.published_at || a.date || new Date().toISOString() }));
+      if (!data.next || results.length < pageSize) break;
+      page++;
+    }
+  } catch {}
+  return allArticles;
 }
 
 export default async function sitemap() {
@@ -54,6 +43,7 @@ export default async function sitemap() {
     { url: `${base}/tld-comparison`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/bulk-domain-checker`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/ssl-checker`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/email-domain-checker`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${base}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
@@ -89,6 +79,12 @@ export default async function sitemap() {
     'tech', 'online', 'store', 'site', 'info', 'biz', 'us', 'uk', 'ca', 'de',
     'fr', 'nl', 'au', 'in', 'jp', 'club', 'shop', 'blog', 'design', 'cloud',
     'gg', 'tv', 'so', 'to', 'cc', 'pro', 'space', 'fun', 'world', 'live',
+    'ventures', 'agency', 'studio', 'digital', 'solutions', 'media', 'marketing',
+    'consulting', 'global', 'health', 'finance', 'education', 'science', 'art',
+    'music', 'games', 'travel', 'food', 'fashion', 'law', 'engineering', 'academy',
+    'careers', 'foundation', 'holdings', 'investments', 'properties', 'rentals',
+    'software', 'systems', 'technology', 'tools', 'works', 'zone', 'domains',
+    'email', 'hosting', 'network', 'security', 'services', 'support', 'website',
   ];
   const tldPages = tlds.map(tld => ({
     url: `${base}/domain/${tld}`,
