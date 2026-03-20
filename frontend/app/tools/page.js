@@ -12,6 +12,9 @@ const TOOLS = [
   { href: '/startup-name-generator', name: 'Startup Name Generator', desc: 'Generate fundable startup names for SaaS, AI, fintech & more', icon: '🚀' },
   { href: '/domain-value', name: 'Domain Value Estimator', desc: 'Estimate how much a domain name is worth', icon: '💰' },
   { href: '/domain-length-checker', name: 'Domain Length Checker', desc: 'Analyze character count, typeability, memorability & brandability', icon: '📏' },
+  { href: '/tld-comparison', name: 'TLD Comparison Tool', desc: 'Compare domain extensions: .com, .io, .ai, .dev & 50+ more', icon: '🌐' },
+  { href: '/bulk-domain-checker', name: 'Bulk Domain Checker', desc: 'Check availability of multiple domains at once with export', icon: '📊' },
+  { href: '/ssl-checker', name: 'SSL Certificate Checker', desc: 'Check HTTPS security, certificate expiry & validity', icon: '🔒' },
 ];
 
 export default function Tools() {

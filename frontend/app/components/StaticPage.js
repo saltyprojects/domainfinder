@@ -34,6 +34,10 @@ const TOOLS_LINKS = [
   { href: '/domain-expiration', label: 'Expiration Checker' },
   { href: '/brand-name-generator', label: 'Brand Name Generator' },
   { href: '/startup-name-generator', label: 'Startup Name Generator' },
+  { href: '/domain-length-checker', label: 'Domain Length Checker' },
+  { href: '/tld-comparison', label: 'TLD Comparison' },
+  { href: '/bulk-domain-checker', label: 'Bulk Checker' },
+  { href: '/ssl-checker', label: 'SSL Checker' },
 ];
 
 export function StaticPage({ children }) {

@@ -3,13 +3,13 @@ import ToolSchema from '../components/ToolSchema';
 import DomainLengthChecker from './DomainLengthChecker';
 
 export const metadata = {
-  title: 'Domain Name Length Checker — Analyze Character Count & Quality | DomyDomains',
-  description: 'Free domain name length checker tool. Analyze character count, typeability, memorability, and brandability scores. Bulk check up to 50 domains at once. Compare against top brands.',
-  keywords: 'domain name length checker, domain character count, domain length analysis, domain name length, short domain names, domain name quality, domain typeability, domain brandability, bulk domain length checker',
+  title: 'Domain Length Checker — Analyze Character Count, SEO & Branding Impact | DomyDomains',
+  description: 'Check domain name length for SEO, memorability and branding. Analyze character count, typeability, and compare with famous domains. Free domain length analysis.',
+  keywords: 'domain length checker, domain name length, SEO domain length, brandable domain length, character count, domain analysis, memorable domains',
   alternates: { canonical: '/domain-length-checker' },
   openGraph: {
-    title: 'Domain Name Length Checker — Analyze Character Count & Quality',
-    description: 'Analyze domain name length, typeability, memorability, and brandability. Compare against top brands. Bulk check up to 50 domains.',
+    title: 'Domain Length Checker — Analyze Character Count, SEO & Branding Impact',
+    description: 'Analyze domain name length for optimal branding, SEO, and memorability. Check character count and get expert recommendations.',
     url: 'https://domydomains.com/domain-length-checker',
   },
 };
@@ -17,58 +17,94 @@ export const metadata = {
 export default function DomainLengthCheckerPage() {
   return (
     <StaticPage>
-      <ToolSchema
-        name="Domain Name Length Checker"
-        description="Analyze domain name length, typeability, memorability, and brandability scores. Bulk check up to 50 domains at once."
-        url="/domain-length-checker"
+      <ToolSchema 
+        name="Domain Length Checker" 
+        description="Analyze domain name length for SEO, memorability and branding impact. Check character count, typeability, and compare with famous domains."
+        url="/domain-length-checker" 
       />
-
+      
       <h1 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 800, letterSpacing: '-0.03em', marginBottom: '16px' }}>
-        Domain Name Length Checker
+        Domain Length Checker
       </h1>
       <p style={{ fontSize: '1.1rem', color: '#9ca3af', lineHeight: 1.7, marginBottom: '32px', maxWidth: '700px' }}>
-        Analyze any domain name&apos;s character count, typeability, memorability, and brandability scores.
-        Compare your domain against industry leaders or bulk-check up to 50 domains at once.
+        Analyze your domain name length for optimal branding, SEO, and memorability. 
+        Get detailed character analysis and compare with successful domains.
       </p>
 
       <DomainLengthChecker />
 
       <section style={{ marginBottom: '48px' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Why Domain Name Length Matters</h2>
+        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Why Domain Length Matters</h2>
         <div style={{ color: '#9ca3af', lineHeight: 1.8, fontSize: '1rem' }}>
-          <p style={{ marginBottom: '16px' }}>
-            Domain name length is one of the most important factors in choosing a web address. Research consistently shows that
-            shorter domain names are easier to remember, faster to type, and generate higher click-through rates in search
-            results. The average domain sold for over $10,000 on aftermarket platforms is just 7 characters long, and every
-            two-letter .com domain has been registered since the 1990s.
-          </p>
-          <p style={{ marginBottom: '16px' }}>
-            Beyond pure character count, domain name quality depends on typeability (how easy it is to type without errors),
-            memorability (how well someone can recall it after hearing it once), and brandability (how well it works as a
-            company or product identity). A 6-letter domain with unusual letter combinations might score worse than a clean
-            8-letter domain name.
-          </p>
+          <p>Domain length significantly impacts your brand's success:</p>
+          <ul style={{ paddingLeft: '20px', marginTop: '12px' }}>
+            <li style={{ marginBottom: '8px' }}><strong style={{ color: '#fff' }}>Memorability:</strong> Shorter domains are easier to remember and recall.</li>
+            <li style={{ marginBottom: '8px' }}><strong style={{ color: '#fff' }}>Typeability:</strong> Less typing means fewer errors and faster access.</li>
+            <li style={{ marginBottom: '8px' }}><strong style={{ color: '#fff' }}>Mobile-Friendly:</strong> Critical for mobile users with small keyboards.</li>
+            <li style={{ marginBottom: '8px' }}><strong style={{ color: '#fff' }}>Word of Mouth:</strong> Shorter domains spread more easily in conversations.</li>
+            <li style={{ marginBottom: '8px' }}><strong style={{ color: '#fff' }}>Branding:</strong> Fits better on business cards, ads, and merchandise.</li>
+          </ul>
         </div>
       </section>
 
       <section style={{ marginBottom: '48px' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Domain Length Tiers</h2>
-        <div style={{ display: 'grid', gap: '12px' }}>
+        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Domain Length Guidelines</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px' }}>
           {[
-            { range: '1–5 characters', tier: 'Premium', color: '#22c55e', desc: 'Ultra-short, highly valuable. Most are taken or sell for thousands. Examples: x.com, bit.ly, go.com.', icon: '💎' },
-            { range: '6–8 characters', tier: 'Excellent', color: '#22c55e', desc: 'Sweet spot for branding. Easy to remember and type. Think: google, amazon, stripe, github.', icon: '🏆' },
-            { range: '9–12 characters', tier: 'Good', color: '#eab308', desc: 'Average domain length on the internet. Still very usable. Examples: instagram, salesforce.', icon: '👍' },
-            { range: '13–15 characters', tier: 'Fair', color: '#f97316', desc: 'Getting long. May be harder to type on mobile. Consider abbreviations or alternate names.', icon: '⚠️' },
-            { range: '16+ characters', tier: 'Long', color: '#ef4444', desc: 'Difficult to remember and type. High typo rate. Consider a shorter alternative for better results.', icon: '📏' },
-          ].map(item => (
-            <div key={item.range} style={{ background: '#111', borderRadius: '12px', padding: '20px', border: '1px solid #1e1e1e', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-              <div style={{ fontSize: '1.5rem' }}>{item.icon}</div>
-              <div style={{ flex: 1 }}>
-                <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '6px', flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: '1rem', fontWeight: 700, color: '#fff' }}>{item.range}</span>
-                  <span style={{ fontSize: '0.8rem', fontWeight: 600, color: item.color, background: `${item.color}15`, padding: '2px 8px', borderRadius: '4px' }}>{item.tier}</span>
-                </div>
-                <p style={{ color: '#9ca3af', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>{item.desc}</p>
+            { 
+              range: '1-6 Characters', 
+              rating: 'Excellent',
+              color: '#22c55e',
+              examples: 'Go.com, FB.com, X.com, Zoom.com',
+              notes: 'Premium length. Extremely memorable, easy to type, perfect for mobile. Most valuable.'
+            },
+            { 
+              range: '7-10 Characters', 
+              rating: 'Very Good',
+              color: '#22c55e', 
+              examples: 'Google.com, Apple.com, Nike.com',
+              notes: 'Excellent balance of brevity and brandability. Still very memorable and mobile-friendly.'
+            },
+            { 
+              range: '11-15 Characters', 
+              rating: 'Good',
+              color: '#f59e0b',
+              examples: 'Microsoft.com, Facebook.com',
+              notes: 'Acceptable for established brands. Can work if the name is highly brandable.'
+            },
+            { 
+              range: '16-20 Characters', 
+              rating: 'Acceptable',
+              color: '#f59e0b',
+              examples: 'Stackoverflow.com',
+              notes: 'Getting long. Only works with exceptional branding or specific industry needs.'
+            },
+            { 
+              range: '21+ Characters', 
+              rating: 'Too Long',
+              color: '#ef4444',
+              examples: 'Usually keyword-stuffed domains',
+              notes: 'Avoid. Difficult to remember, type, and brand. Poor user experience.'
+            }
+          ].map(guideline => (
+            <div key={guideline.range} style={{ background: '#111', borderRadius: '12px', padding: '20px', border: '1px solid #1e1e1e' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 600, color: '#fff', margin: 0 }}>{guideline.range}</h3>
+                <span style={{ 
+                  background: `${guideline.color}20`, 
+                  color: guideline.color, 
+                  padding: '4px 8px', 
+                  borderRadius: '12px', 
+                  fontSize: '0.75rem', 
+                  fontWeight: 600,
+                  border: `1px solid ${guideline.color}40`
+                }}>
+                  {guideline.rating}
+                </span>
+              </div>
+              <p style={{ color: '#9ca3af', fontSize: '0.9rem', lineHeight: 1.5, marginBottom: '12px' }}>{guideline.notes}</p>
+              <div style={{ fontSize: '0.8rem', color: '#666' }}>
+                <strong>Examples:</strong> {guideline.examples}
               </div>
             </div>
           ))}
@@ -76,50 +112,139 @@ export default function DomainLengthCheckerPage() {
       </section>
 
       <section style={{ marginBottom: '48px' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Tips for Choosing the Right Domain Length</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
-          {[
-            { title: 'Aim for 6–10 Characters', desc: 'This is the sweet spot. Long enough to be brandable but short enough to be memorable and easy to type on any device.', icon: '🎯' },
-            { title: 'Avoid Hyphens & Numbers', desc: 'They hurt typeability and memorability. "best-deals-4u.com" is much harder to share verbally than "topdeals.com".', icon: '🚫' },
-            { title: 'Test the Radio Test', desc: 'Say your domain out loud. If someone can hear it and type it correctly on the first try, it passes. Length plays a big role here.', icon: '📻' },
-            { title: 'Check All TLD Options', desc: 'A longer .com might lose to a shorter .io or .co. "myapp.io" (5 chars) could outperform "myapplication.com" (13 chars).', icon: '🔄' },
-            { title: 'Consider Mobile Users', desc: 'Over 60% of web traffic is mobile. Shorter domains are much easier to type on phone keyboards with fewer errors.', icon: '📱' },
-            { title: 'Think About Social Media', desc: 'Short domains perform better in tweets, bios, and profiles where character counts are limited or space is at a premium.', icon: '📣' },
-          ].map(item => (
-            <div key={item.title} style={{ background: '#111', borderRadius: '12px', padding: '20px', border: '1px solid #1e1e1e' }}>
-              <div style={{ fontSize: '1.5rem', marginBottom: '8px' }}>{item.icon}</div>
-              <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '6px' }}>{item.title}</h3>
-              <p style={{ color: '#9ca3af', fontSize: '0.85rem', lineHeight: 1.6, margin: 0 }}>{item.desc}</p>
+        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Famous Domain Lengths</h2>
+        <div style={{ color: '#9ca3af', lineHeight: 1.8, fontSize: '1rem' }}>
+          <p>Learn from the most successful brands and their domain lengths:</p>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px', marginTop: '20px' }}>
+            <div style={{ background: '#111', padding: '20px', borderRadius: '12px', border: '1px solid #1e1e1e' }}>
+              <h3 style={{ fontSize: '1rem', fontWeight: 600, color: '#22c55e', marginBottom: '12px' }}>Tech Giants (4-9 chars)</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {[
+                  { name: 'Meta.com', length: '4', note: 'Rebranded from Facebook' },
+                  { name: 'X.com', length: '1', note: 'Ultimate in brevity' },
+                  { name: 'Apple.com', length: '5', note: 'Perfect brandable length' },
+                  { name: 'Google.com', length: '6', note: 'Memorable made-up word' },
+                  { name: 'Amazon.com', length: '6', note: 'Strong metaphor' }
+                ].map(domain => (
+                  <div key={domain.name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ color: '#fff', fontWeight: 500 }}>{domain.name}</span>
+                    <span style={{ color: '#22c55e', fontSize: '0.8rem' }}>{domain.length} chars</span>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
+            
+            <div style={{ background: '#111', padding: '20px', borderRadius: '12px', border: '1px solid #1e1e1e' }}>
+              <h3 style={{ fontSize: '1rem', fontWeight: 600, color: '#f59e0b', marginBottom: '12px' }}>Successful Longer Names (10-15 chars)</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {[
+                  { name: 'Microsoft.com', length: '9', note: 'Compound word' },
+                  { name: 'Instagram.com', length: '9', note: 'Instant + telegram' },
+                  { name: 'Salesforce.com', length: '10', note: 'Descriptive compound' },
+                  { name: 'Shopify.com', length: '7', note: 'Shop + -ify suffix' },
+                  { name: 'LinkedIn.com', length: '8', note: 'Link + -ed suffix' }
+                ].map(domain => (
+                  <div key={domain.name} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ color: '#fff', fontWeight: 500 }}>{domain.name}</span>
+                    <span style={{ color: '#f59e0b', fontSize: '0.8rem' }}>{domain.length} chars</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <section style={{ marginBottom: '48px' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Domain Length Statistics</h2>
+        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Mobile & Typing Considerations</h2>
         <div style={{ color: '#9ca3af', lineHeight: 1.8, fontSize: '1rem' }}>
-          <p style={{ marginBottom: '16px' }}>
-            According to industry data, the average .com domain name is about 12 characters long. However, the most successful
-            brands on the internet consistently choose shorter names. Of the top 100 websites globally, the average domain name
-            length is just 6.5 characters. This isn&apos;t a coincidence — shorter domains correlate with higher direct traffic,
-            better brand recall, and fewer typo-related lost visitors.
-          </p>
-          <p>
-            Premium short domains (5 characters or fewer) are extremely valuable in the aftermarket. Three-letter .com domains
-            regularly sell for $50,000–$500,000, while four-letter .com domains typically range from $1,000–$50,000 depending
-            on the letter combination. Even in newer TLDs like .io and .ai, shorter names command significant premiums.
-          </p>
+          <p>Modern domain considerations for mobile-first world:</p>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', marginTop: '16px' }}>
+            {[
+              {
+                title: '📱 Mobile Keyboards',
+                tips: 'Shorter domains reduce mobile typing errors. Users make 2.3x more errors on domains over 12 characters on mobile.'
+              },
+              {
+                title: '🗣️ Voice Search',
+                tips: 'Short, phonetically clear domains work better with Siri, Alexa, and Google Assistant. Avoid complex spelling.'
+              },
+              {
+                title: '💬 Social Sharing',
+                tips: 'Shorter domains leave more room for content in social media posts with character limits (Twitter, SMS).'
+              },
+              {
+                title: '🎯 Brand Recall',
+                tips: 'Users remember 90% of domains under 8 characters vs. 60% of domains over 15 characters in usability studies.'
+              }
+            ].map(consideration => (
+              <div key={consideration.title} style={{ background: '#111', padding: '16px', borderRadius: '8px', border: '1px solid #1e1e1e' }}>
+                <h4 style={{ fontSize: '0.9rem', fontWeight: 600, color: '#8b5cf6', marginBottom: '8px' }}>{consideration.title}</h4>
+                <p style={{ fontSize: '0.85rem', color: '#ccc', lineHeight: 1.5, margin: 0 }}>{consideration.tips}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ marginBottom: '48px' }}>
+        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>SEO & Domain Length</h2>
+        <div style={{ color: '#9ca3af', lineHeight: 1.8, fontSize: '1rem' }}>
+          <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#fff', marginTop: '20px', marginBottom: '8px' }}>Search Engine Guidelines</h3>
+          <p>Google and other search engines prefer user-friendly domains:</p>
+          
+          <div style={{ background: '#111', borderRadius: '12px', padding: '24px', border: '1px solid #1e1e1e', marginTop: '16px' }}>
+            <div style={{ display: 'grid', gap: '12px' }}>
+              {[
+                { factor: 'User Experience', detail: 'Short domains improve click-through rates in search results' },
+                { factor: 'Brandability', detail: 'Search engines favor brandable over keyword-stuffed domains' },
+                { factor: 'Direct Navigation', detail: 'Users are more likely to type short domains directly' },
+                { factor: 'Link Building', detail: 'Other sites prefer linking to memorable, short domains' }
+              ].map(factor => (
+                <div key={factor.factor} style={{ display: 'flex', gap: '12px' }}>
+                  <span style={{ fontWeight: 600, color: '#22c55e', minWidth: '120px', fontSize: '0.9rem' }}>{factor.factor}:</span>
+                  <span style={{ color: '#ccc', fontSize: '0.9rem' }}>{factor.detail}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#fff', marginTop: '20px', marginBottom: '8px' }}>Length vs. Keywords</h3>
+          <p>While keywords in domains have minimal SEO value in 2024, shorter branded domains often perform better because they:</p>
+          <ul style={{ paddingLeft: '20px', marginTop: '8px' }}>
+            <li style={{ marginBottom: '6px' }}>Generate more direct traffic</li>
+            <li style={{ marginBottom: '6px' }}>Have higher brand search volume</li>
+            <li style={{ marginBottom: '6px' }}>Earn more natural backlinks</li>
+            <li style={{ marginBottom: '6px' }}>Create stronger brand signals</li>
+          </ul>
         </div>
       </section>
 
       <section style={{ marginBottom: '48px' }}>
         <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px' }}>Frequently Asked Questions</h2>
         {[
-          { q: 'What is the ideal domain name length?', a: 'The ideal domain name is 6–10 characters long. This range balances memorability, typeability, and brandability. Most of the world\'s top websites fall in this range.' },
-          { q: 'Does domain length affect SEO?', a: 'Domain length itself isn\'t a direct Google ranking factor, but shorter domains tend to get more direct traffic, higher click-through rates, and are easier to build brand authority around — all of which indirectly help SEO.' },
-          { q: 'What is the maximum domain name length?', a: 'The maximum length for a domain name label (the part before the TLD) is 63 characters, and the total domain name including TLD can be up to 253 characters. However, anything over 15 characters is impractical.' },
-          { q: 'How does this tool calculate scores?', a: 'Typeability measures keyboard complexity (letter patterns, hyphens, numbers). Memorability evaluates recall ease (length, pronounceability). Brandability assesses commercial viability (uniqueness, simplicity). All scores range from 0–100.' },
-          { q: 'Can I check multiple domains at once?', a: 'Yes! Switch to Bulk Check mode to analyze up to 50 domains at once. Results are sorted by length and include all quality scores for easy comparison.' },
+          { 
+            q: 'What\'s the ideal domain length for a new business?', 
+            a: '6-10 characters is the sweet spot for most businesses. It\'s short enough to be memorable and easy to type, but long enough to create a brandable name. Companies like Google (6), Stripe (6), and Notion (6) exemplify this range.' 
+          },
+          { 
+            q: 'Are 3-letter domains worth the premium price?', 
+            a: 'For the right business, yes. Three-letter domains (like AWS.com or BMW.com) are extremely valuable for large brands due to their memorability and typing ease. However, they often cost $100K+ and may not suit all business types.' 
+          },
+          { 
+            q: 'Should I use hyphens to make my domain shorter?', 
+            a: 'Generally no. Hyphens make domains harder to communicate verbally ("dash" or "hyphen") and users often forget them. A slightly longer domain without hyphens is usually better than a shorter hyphenated one.' 
+          },
+          { 
+            q: 'How does domain length affect email addresses?', 
+            a: 'Shorter domains create cleaner email addresses. Compare john@verylongcompanyname.com vs john@acme.com. Shorter email addresses look more professional and are easier to share on business cards.' 
+          },
+          { 
+            q: 'Do longer domains hurt mobile SEO?', 
+            a: 'Not directly, but they can hurt user experience on mobile devices. Users are more likely to mistype longer domains on mobile keyboards, leading to higher bounce rates and lost traffic.' 
+          },
         ].map((faq, i) => (
           <div key={i} style={{ marginBottom: '20px', paddingBottom: '20px', borderBottom: i < 4 ? '1px solid #1e1e1e' : 'none' }}>
             <h3 style={{ fontSize: '1rem', fontWeight: 600, color: '#fff', marginBottom: '6px' }}>{faq.q}</h3>
@@ -129,17 +254,14 @@ export default function DomainLengthCheckerPage() {
       </section>
 
       <section style={{ background: '#111', borderRadius: '16px', padding: '32px', border: '1px solid #1e1e1e' }}>
-        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '12px' }}>More Domain Tools</h2>
-        <p style={{ color: '#9ca3af', marginBottom: '20px' }}>Check availability, lookup DNS records, and generate domain name ideas with our free tools.</p>
+        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '12px' }}>Need help choosing the perfect domain length?</h2>
+        <p style={{ color: '#9ca3af', marginBottom: '20px' }}>Find available short domains or get professional domain advice for your brand.</p>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          <a href="/domain-availability" style={{ display: 'inline-block', background: '#8b5cf6', color: '#fff', padding: '10px 18px', borderRadius: '6px', fontWeight: 600, textDecoration: 'none', fontSize: '0.9rem' }}>
-            Domain Availability Checker
+          <a href="/" style={{ display: 'inline-block', background: '#8b5cf6', color: '#fff', padding: '12px 24px', borderRadius: '8px', fontWeight: 600, textDecoration: 'none' }}>
+            Search short domains →
           </a>
-          <a href="/dns-lookup" style={{ display: 'inline-block', background: '#333', color: '#fff', padding: '10px 18px', borderRadius: '6px', fontWeight: 600, textDecoration: 'none', fontSize: '0.9rem' }}>
-            DNS Lookup Tool
-          </a>
-          <a href="/tools" style={{ display: 'inline-block', background: '#333', color: '#fff', padding: '10px 18px', borderRadius: '6px', fontWeight: 600, textDecoration: 'none', fontSize: '0.9rem' }}>
-            All Free Tools
+          <a href="/premium-domains" style={{ display: 'inline-block', background: 'transparent', color: '#8b5cf6', padding: '12px 24px', borderRadius: '8px', fontWeight: 600, textDecoration: 'none', border: '1px solid #8b5cf6' }}>
+            Premium domains
           </a>
         </div>
       </section>
