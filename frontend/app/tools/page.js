@@ -17,6 +17,7 @@ const TOOLS = [
   { href: '/ssl-checker', name: 'SSL Certificate Checker', desc: 'Check HTTPS security, certificate expiry & validity', icon: '🔒' },
   { href: '/email-domain-checker', name: 'Email Domain Checker', desc: 'Check MX, SPF, DKIM & DMARC email authentication records', icon: '📧' },
   { href: '/domain-history', name: 'Domain History Lookup', desc: 'View registration timeline, status codes & infrastructure history', icon: '📜' },
+  { href: '/website-status', name: 'Website Status Checker', desc: 'Check if any website is up, down, or slow with response time', icon: '🟢' },
 ];
 
 export default function Tools() {
