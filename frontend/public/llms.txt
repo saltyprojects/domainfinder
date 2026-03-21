@@ -1,7 +1,9 @@
 # DomyDomains
-## Domain search, comparison, and education platform
 
-## Pages
+> Domain search platform — compare prices across registrars, check availability for 400+ extensions.
+
+## Main Pages
+
 - https://domydomains.com/
 - https://domydomains.com/domain-extensions
 - https://domydomains.com/domain-generator
@@ -16,6 +18,7 @@
 - https://domydomains.com/trademark
 
 ## Blog Articles
+
 - https://domydomains.com/blog/bulk-domain-search-check-multiple-domains-2026
 - https://domydomains.com/blog/complete-guide-domain-extensions-choose-right-tld-2026
 - https://domydomains.com/blog/ai-domain-name-generators-2026
@@ -27,6 +30,7 @@
 - https://domydomains.com/blog/domain-name-tips-what-pros-know
 - https://domydomains.com/blog/com-vs-io-vs-ai-which-tld
 - https://domydomains.com/blog/top-10-domain-extensions-for-startups
+- https://domydomains.com/blog/ai-making-domain-names-more-valuable-data-proof-2026
 - https://domydomains.com/blog/namecheap-king-org-registrar-power-shift-nonprofit-web-2026
 - https://domydomains.com/blog/who-will-buy-sedo-domain-aftermarket-shakeup-2026
 - https://domydomains.com/blog/web3-domains-dead-unstoppable-domains-pivots-traditional-dns-2026
