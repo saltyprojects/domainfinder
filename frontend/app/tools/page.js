@@ -19,6 +19,7 @@ const TOOLS = [
   { href: '/domain-history', name: 'Domain History Lookup', desc: 'View registration timeline, status codes & infrastructure history', icon: '📜' },
   { href: '/website-status', name: 'Website Status Checker', desc: 'Check if any website is up, down, or slow with response time', icon: '🟢' },
   { href: '/domain-typo-generator', name: 'Domain Typo Generator', desc: 'Generate typo domain variations to find typosquatting threats', icon: '🔠' },
+  { href: '/nameserver-lookup', name: 'Nameserver Lookup', desc: 'Find NS records, DNS provider, and SOA details for any domain', icon: '🗂️' },
 ];
 
 export default function Tools() {

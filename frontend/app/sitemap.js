@@ -47,6 +47,7 @@ export default async function sitemap() {
     { url: `${base}/domain-history`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/website-status`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/domain-typo-generator`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/nameserver-lookup`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${base}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },

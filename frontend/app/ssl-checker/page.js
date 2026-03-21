@@ -150,7 +150,7 @@ export default function SSLCheckerPage() {
               <h3 style={{ fontSize: '1rem', fontWeight: 600, color: '#f59e0b', marginBottom: '12px' }}>⚠️ Warning Signs</h3>
               <ul style={{ paddingLeft: '20px', margin: 0, color: '#ccc' }}>
                 <li style={{ marginBottom: '6px' }}>Certificate expires within 30 days</li>
-                <li style={{ marginBottom: '6px' }}>Weak encryption (< 2048-bit RSA)</li>
+                <li style={{ marginBottom: '6px' }}>Weak encryption (&lt; 2048-bit RSA)</li>
                 <li style={{ marginBottom: '6px' }}>Using deprecated SHA-1 algorithm</li>
                 <li style={{ marginBottom: '6px' }}>Self-signed certificate</li>
                 <li style={{ marginBottom: '6px' }}>Domain mismatch warnings</li>

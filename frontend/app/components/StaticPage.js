@@ -42,6 +42,7 @@ const TOOLS_LINKS = [
   { href: '/domain-history', label: 'Domain History' },
   { href: '/website-status', label: 'Website Status' },
   { href: '/domain-typo-generator', label: 'Domain Typo Generator' },
+  { href: '/nameserver-lookup', label: 'Nameserver Lookup' },
 ];
 
 export function StaticPage({ children }) {
