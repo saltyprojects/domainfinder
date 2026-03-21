@@ -41,6 +41,7 @@ const TOOLS_LINKS = [
   { href: '/email-domain-checker', label: 'Email Domain Checker' },
   { href: '/domain-history', label: 'Domain History' },
   { href: '/website-status', label: 'Website Status' },
+  { href: '/domain-typo-generator', label: 'Domain Typo Generator' },
 ];
 
 export function StaticPage({ children }) {
