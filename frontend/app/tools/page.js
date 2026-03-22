@@ -20,6 +20,7 @@ const TOOLS = [
   { href: '/website-status', name: 'Website Status Checker', desc: 'Check if any website is up, down, or slow with response time', icon: '🟢' },
   { href: '/domain-typo-generator', name: 'Domain Typo Generator', desc: 'Generate typo domain variations to find typosquatting threats', icon: '🔠' },
   { href: '/nameserver-lookup', name: 'Nameserver Lookup', desc: 'Find NS records, DNS provider, and SOA details for any domain', icon: '🗂️' },
+  { href: '/whois-privacy-checker', name: 'WHOIS Privacy Checker', desc: 'Check if your domain WHOIS info is protected or publicly exposed', icon: '🛡️' },
 ];
 
 export default function Tools() {
