@@ -45,6 +45,7 @@ const TOOLS_LINKS = [
   { href: '/nameserver-lookup', label: 'Nameserver Lookup' },
   { href: '/whois-privacy-checker', label: 'WHOIS Privacy Checker' },
   { href: '/http-header-checker', label: 'HTTP Header Checker' },
+  { href: '/subdomain-finder', label: 'Subdomain Finder' },
 ];
 
 export function StaticPage({ children }) {
