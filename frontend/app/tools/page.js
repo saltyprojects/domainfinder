@@ -21,6 +21,7 @@ const TOOLS = [
   { href: '/domain-typo-generator', name: 'Domain Typo Generator', desc: 'Generate typo domain variations to find typosquatting threats', icon: '🔠' },
   { href: '/nameserver-lookup', name: 'Nameserver Lookup', desc: 'Find NS records, DNS provider, and SOA details for any domain', icon: '🗂️' },
   { href: '/whois-privacy-checker', name: 'WHOIS Privacy Checker', desc: 'Check if your domain WHOIS info is protected or publicly exposed', icon: '🛡️' },
+  { href: '/http-header-checker', name: 'HTTP Header Checker', desc: 'Inspect HTTP response headers and security score for any website', icon: '📋' },
 ];
 
 export default function Tools() {

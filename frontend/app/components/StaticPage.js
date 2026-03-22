@@ -44,6 +44,7 @@ const TOOLS_LINKS = [
   { href: '/domain-typo-generator', label: 'Domain Typo Generator' },
   { href: '/nameserver-lookup', label: 'Nameserver Lookup' },
   { href: '/whois-privacy-checker', label: 'WHOIS Privacy Checker' },
+  { href: '/http-header-checker', label: 'HTTP Header Checker' },
 ];
 
 export function StaticPage({ children }) {
