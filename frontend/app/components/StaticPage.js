@@ -47,6 +47,7 @@ const TOOLS_LINKS = [
   { href: '/http-header-checker', label: 'HTTP Header Checker' },
   { href: '/subdomain-finder', label: 'Subdomain Finder' },
   { href: '/domain-transfer-checker', label: 'Domain Transfer Checker' },
+  { href: '/reverse-ip-lookup', label: 'Reverse IP Lookup' },
 ];
 
 export function StaticPage({ children }) {

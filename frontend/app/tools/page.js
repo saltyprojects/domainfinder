@@ -24,6 +24,7 @@ const TOOLS = [
   { href: '/http-header-checker', name: 'HTTP Header Checker', desc: 'Inspect HTTP response headers and security score for any website', icon: '📋' },
   { href: '/subdomain-finder', name: 'Subdomain Finder', desc: 'Discover active subdomains by scanning 150+ common prefixes via DNS', icon: '🔎' },
   { href: '/domain-transfer-checker', name: 'Domain Transfer Checker', desc: 'Check if a domain is eligible for transfer — analyzes EPP status codes, locks, and ICANN rules', icon: '📤' },
+  { href: '/reverse-ip-lookup', name: 'Reverse IP Lookup', desc: 'Find PTR records, reverse DNS hostnames, and identify hosting providers from any IP or domain', icon: '🔄' },
 ];
 
 export default function Tools() {
