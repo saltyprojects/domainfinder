@@ -46,6 +46,7 @@ const TOOLS_LINKS = [
   { href: '/whois-privacy-checker', label: 'WHOIS Privacy Checker' },
   { href: '/http-header-checker', label: 'HTTP Header Checker' },
   { href: '/subdomain-finder', label: 'Subdomain Finder' },
+  { href: '/domain-transfer-checker', label: 'Domain Transfer Checker' },
 ];
 
 export function StaticPage({ children }) {

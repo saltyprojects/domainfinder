@@ -23,6 +23,7 @@ const TOOLS = [
   { href: '/whois-privacy-checker', name: 'WHOIS Privacy Checker', desc: 'Check if your domain WHOIS info is protected or publicly exposed', icon: '🛡️' },
   { href: '/http-header-checker', name: 'HTTP Header Checker', desc: 'Inspect HTTP response headers and security score for any website', icon: '📋' },
   { href: '/subdomain-finder', name: 'Subdomain Finder', desc: 'Discover active subdomains by scanning 150+ common prefixes via DNS', icon: '🔎' },
+  { href: '/domain-transfer-checker', name: 'Domain Transfer Checker', desc: 'Check if a domain is eligible for transfer — analyzes EPP status codes, locks, and ICANN rules', icon: '📤' },
 ];
 
 export default function Tools() {
