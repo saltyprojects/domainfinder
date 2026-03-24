@@ -26,6 +26,7 @@ const TOOLS = [
   { href: '/domain-transfer-checker', name: 'Domain Transfer Checker', desc: 'Check if a domain is eligible for transfer — analyzes EPP status codes, locks, and ICANN rules', icon: '📤' },
   { href: '/reverse-ip-lookup', name: 'Reverse IP Lookup', desc: 'Find PTR records, reverse DNS hostnames, and identify hosting providers from any IP or domain', icon: '🔄' },
   { href: '/url-redirect-checker', name: 'URL Redirect Checker', desc: 'Trace full redirect chains, detect 301/302 redirects, find loops, and get SEO recommendations', icon: '↪️' },
+  { href: '/domain-blacklist-checker', name: 'Domain Blacklist Checker', desc: 'Check your domain and IP against 14+ major DNS blacklists including Spamhaus, SURBL, and SpamCop', icon: '🛡️' },
 ];
 
 export default function Tools() {
