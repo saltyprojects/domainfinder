@@ -27,6 +27,7 @@ const TOOLS = [
   { href: '/reverse-ip-lookup', name: 'Reverse IP Lookup', desc: 'Find PTR records, reverse DNS hostnames, and identify hosting providers from any IP or domain', icon: '🔄' },
   { href: '/url-redirect-checker', name: 'URL Redirect Checker', desc: 'Trace full redirect chains, detect 301/302 redirects, find loops, and get SEO recommendations', icon: '↪️' },
   { href: '/domain-blacklist-checker', name: 'Domain Blacklist Checker', desc: 'Check your domain and IP against 14+ major DNS blacklists including Spamhaus, SURBL, and SpamCop', icon: '🛡️' },
+  { href: '/website-tech-detector', name: 'Website Technology Detector', desc: 'Identify the tech stack behind any website — hosting, CDN, CMS, email, DNS & security headers', icon: '🔬' },
 ];
 
 export default function Tools() {
