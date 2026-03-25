@@ -1,5 +1,5 @@
-# DomyDomains
-## Blog Articles
+# DomyDomains Blog URLs
+# https://domydomains.com
 
 https://domydomains.com/blog/bulk-domain-search-check-multiple-domains-2026
 https://domydomains.com/blog/complete-guide-domain-extensions-choose-right-tld-2026
@@ -116,3 +116,4 @@ https://domydomains.com/blog/why-ai-domains-hottest-tld-2026
 https://domydomains.com/blog/free-domain-search-tools-compared
 https://domydomains.com/blog/complete-guide-domain-extensions-tlds-2026
 https://domydomains.com/blog/how-to-choose-perfect-domain-name-2026
+https://domydomains.com/blog/godaddy-auction-clawbacks-court-forces-disclosure
