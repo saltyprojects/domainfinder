@@ -56,6 +56,7 @@ export default async function sitemap() {
     { url: `${base}/url-redirect-checker`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/domain-blacklist-checker`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/website-tech-detector`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/dns-propagation-checker`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${base}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },

@@ -50,6 +50,8 @@ const TOOLS_LINKS = [
   { href: '/reverse-ip-lookup', label: 'Reverse IP Lookup' },
   { href: '/url-redirect-checker', label: 'URL Redirect Checker' },
   { href: '/domain-blacklist-checker', label: 'Domain Blacklist Checker' },
+  { href: '/website-tech-detector', label: 'Website Tech Detector' },
+  { href: '/dns-propagation-checker', label: 'DNS Propagation Checker' },
 ];
 
 export function StaticPage({ children }) {
