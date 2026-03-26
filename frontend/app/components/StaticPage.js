@@ -52,6 +52,7 @@ const TOOLS_LINKS = [
   { href: '/domain-blacklist-checker', label: 'Domain Blacklist Checker' },
   { href: '/website-tech-detector', label: 'Website Tech Detector' },
   { href: '/dns-propagation-checker', label: 'DNS Propagation Checker' },
+  { href: '/whois-compare', label: 'WHOIS Compare' },
 ];
 
 export function StaticPage({ children }) {

@@ -29,6 +29,7 @@ const TOOLS = [
   { href: '/domain-blacklist-checker', name: 'Domain Blacklist Checker', desc: 'Check your domain and IP against 14+ major DNS blacklists including Spamhaus, SURBL, and SpamCop', icon: '🛡️' },
   { href: '/website-tech-detector', name: 'Website Technology Detector', desc: 'Identify the tech stack behind any website — hosting, CDN, CMS, email, DNS & security headers', icon: '🔬' },
   { href: '/dns-propagation-checker', name: 'DNS Propagation Checker', desc: 'Check if DNS changes have propagated across global DNS servers. Test A, AAAA, MX, CNAME, TXT, NS records worldwide', icon: '🌍' },
+  { href: '/whois-compare', name: 'WHOIS Compare', desc: 'Compare WHOIS records for two domains side by side. See differences in registrar, age, expiration, nameservers, and DNSSEC', icon: '⚖️' },
 ];
 
 export default function Tools() {
