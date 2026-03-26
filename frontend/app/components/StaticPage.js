@@ -53,6 +53,7 @@ const TOOLS_LINKS = [
   { href: '/website-tech-detector', label: 'Website Tech Detector' },
   { href: '/dns-propagation-checker', label: 'DNS Propagation Checker' },
   { href: '/whois-compare', label: 'WHOIS Compare' },
+  { href: '/punycode-converter', label: 'Punycode/IDN Converter' },
 ];
 
 export function StaticPage({ children }) {
