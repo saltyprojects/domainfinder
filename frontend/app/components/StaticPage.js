@@ -54,6 +54,7 @@ const TOOLS_LINKS = [
   { href: '/dns-propagation-checker', label: 'DNS Propagation Checker' },
   { href: '/whois-compare', label: 'WHOIS Compare' },
   { href: '/punycode-converter', label: 'Punycode/IDN Converter' },
+  { href: '/mx-record-checker', label: 'MX Record Checker' },
 ];
 
 export function StaticPage({ children }) {
