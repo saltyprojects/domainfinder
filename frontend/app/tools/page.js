@@ -33,6 +33,7 @@ const TOOLS = [
   { href: '/punycode-converter', name: 'Punycode/IDN Converter', desc: 'Convert internationalized domain names between Unicode and ASCII Punycode encoding. Supports all scripts including Chinese, Arabic, Cyrillic, and more', icon: '🌐' },
   { href: '/mx-record-checker', name: 'MX Record Checker', desc: 'Look up MX records for any domain. Detect email providers like Google Workspace and Microsoft 365, and verify SPF/DMARC email security settings', icon: '📧' },
   { href: '/spf-generator', name: 'SPF Record Generator', desc: 'Create valid SPF TXT records for email authentication. Select providers like Google Workspace, Microsoft 365, SendGrid, and Mailchimp — with DNS lookup counter', icon: '🛡️' },
+  { href: '/dmarc-generator', name: 'DMARC Record Generator', desc: 'Generate DMARC policies for email security. Configure enforcement, alignment, reporting, and gradual rollout — with current record lookup', icon: '🔐' },
 ];
 
 export default function Tools() {
