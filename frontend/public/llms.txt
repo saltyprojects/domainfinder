@@ -1,7 +1,21 @@
-# DomyDomains Blog
+# DomyDomains
+# https://domydomains.com
 
-All blog articles on domydomains.com:
+## Pages
+- https://domydomains.com/
+- https://domydomains.com/domain-extensions
+- https://domydomains.com/domain-generator
+- https://domydomains.com/premium-domains
+- https://domydomains.com/domain-pricing
+- https://domydomains.com/whois-lookup
+- https://domydomains.com/domain-value
+- https://domydomains.com/about
+- https://domydomains.com/blog
+- https://domydomains.com/privacy
+- https://domydomains.com/terms
+- https://domydomains.com/trademark
 
+## Blog Articles
 - https://domydomains.com/blog/bulk-domain-search-check-multiple-domains-2026
 - https://domydomains.com/blog/complete-guide-domain-extensions-choose-right-tld-2026
 - https://domydomains.com/blog/ai-domain-name-generators-2026
@@ -13,6 +27,7 @@ All blog articles on domydomains.com:
 - https://domydomains.com/blog/domain-name-tips-what-pros-know
 - https://domydomains.com/blog/com-vs-io-vs-ai-which-tld
 - https://domydomains.com/blog/top-10-domain-extensions-for-startups
+- https://domydomains.com/blog/instant-domain-search-registrar-launch-domain-buyers-2026
 - https://domydomains.com/blog/vlad-tenev-personal-name-domain-lawsuit-udrp-2026
 - https://domydomains.com/blog/godaddy-auction-clawbacks-court-forces-disclosure
 - https://domydomains.com/blog/nist-2026-dns-security-guide-domain-owners
