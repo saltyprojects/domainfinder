@@ -35,6 +35,7 @@ const TOOLS = [
   { href: '/spf-generator', name: 'SPF Record Generator', desc: 'Create valid SPF TXT records for email authentication. Select providers like Google Workspace, Microsoft 365, SendGrid, and Mailchimp — with DNS lookup counter', icon: '🛡️' },
   { href: '/dmarc-generator', name: 'DMARC Record Generator', desc: 'Generate DMARC policies for email security. Configure enforcement, alignment, reporting, and gradual rollout — with current record lookup', icon: '🔐' },
   { href: '/cname-lookup', name: 'CNAME Lookup Tool', desc: 'Look up CNAME records for any domain. Follow the full DNS alias chain, detect hosting providers, and resolve final IP addresses', icon: '🔗' },
+  { href: '/redirect-mapper', name: 'Domain Redirect Mapper', desc: 'Map and visualize redirect chains for multiple URLs at once. Trace 301/302 hops, detect loops, and export to CSV', icon: '🗺️' },
 ];
 
 export default function Tools() {

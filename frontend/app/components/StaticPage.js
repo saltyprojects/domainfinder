@@ -55,6 +55,10 @@ const TOOLS_LINKS = [
   { href: '/whois-compare', label: 'WHOIS Compare' },
   { href: '/punycode-converter', label: 'Punycode/IDN Converter' },
   { href: '/mx-record-checker', label: 'MX Record Checker' },
+  { href: '/spf-generator', label: 'SPF Record Generator' },
+  { href: '/dmarc-generator', label: 'DMARC Record Generator' },
+  { href: '/cname-lookup', label: 'CNAME Lookup' },
+  { href: '/redirect-mapper', label: 'Redirect Mapper' },
 ];
 
 export function StaticPage({ children }) {
