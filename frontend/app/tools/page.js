@@ -37,6 +37,7 @@ const TOOLS = [
   { href: '/dkim-generator', name: 'DKIM Record Generator', desc: 'Generate and validate DKIM records for email signing. Look up existing records by selector, build new TXT records with your RSA key, and get setup guides for all major providers', icon: '🔑' },
   { href: '/cname-lookup', name: 'CNAME Lookup Tool', desc: 'Look up CNAME records for any domain. Follow the full DNS alias chain, detect hosting providers, and resolve final IP addresses', icon: '🔗' },
   { href: '/redirect-mapper', name: 'Domain Redirect Mapper', desc: 'Map and visualize redirect chains for multiple URLs at once. Trace 301/302 hops, detect loops, and export to CSV', icon: '🗺️' },
+  { href: '/dns-compare', name: 'DNS Record Comparison', desc: 'Compare DNS records between two domains side by side. Spot differences in A, MX, NS, TXT, and more', icon: '⚖️' },
 ];
 
 export default function Tools() {
