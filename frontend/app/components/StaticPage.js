@@ -60,6 +60,7 @@ const TOOLS_LINKS = [
   { href: '/dkim-generator', label: 'DKIM Record Generator' },
   { href: '/cname-lookup', label: 'CNAME Lookup' },
   { href: '/redirect-mapper', label: 'Redirect Mapper' },
+  { href: '/domain-name-scorer', label: 'Domain Name Scorer' },
 ];
 
 export function StaticPage({ children }) {
