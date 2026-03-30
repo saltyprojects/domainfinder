@@ -57,6 +57,7 @@ const TOOLS_LINKS = [
   { href: '/mx-record-checker', label: 'MX Record Checker' },
   { href: '/spf-generator', label: 'SPF Record Generator' },
   { href: '/dmarc-generator', label: 'DMARC Record Generator' },
+  { href: '/dkim-generator', label: 'DKIM Record Generator' },
   { href: '/cname-lookup', label: 'CNAME Lookup' },
   { href: '/redirect-mapper', label: 'Redirect Mapper' },
 ];
