@@ -68,6 +68,7 @@ export default async function sitemap() {
     { url: `${base}/dns-compare`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/portfolio-analyzer`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/domain-name-scorer`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/robots-analyzer`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${base}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },

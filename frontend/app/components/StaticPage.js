@@ -61,6 +61,8 @@ const TOOLS_LINKS = [
   { href: '/cname-lookup', label: 'CNAME Lookup' },
   { href: '/redirect-mapper', label: 'Redirect Mapper' },
   { href: '/domain-name-scorer', label: 'Domain Name Scorer' },
+  { href: '/portfolio-analyzer', label: 'Portfolio Analyzer' },
+  { href: '/robots-analyzer', label: 'Robots.txt Analyzer' },
 ];
 
 export function StaticPage({ children }) {
