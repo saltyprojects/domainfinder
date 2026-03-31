@@ -38,6 +38,7 @@ const TOOLS = [
   { href: '/cname-lookup', name: 'CNAME Lookup Tool', desc: 'Look up CNAME records for any domain. Follow the full DNS alias chain, detect hosting providers, and resolve final IP addresses', icon: '🔗' },
   { href: '/redirect-mapper', name: 'Domain Redirect Mapper', desc: 'Map and visualize redirect chains for multiple URLs at once. Trace 301/302 hops, detect loops, and export to CSV', icon: '🗺️' },
   { href: '/dns-compare', name: 'DNS Record Comparison', desc: 'Compare DNS records between two domains side by side. Spot differences in A, MX, NS, TXT, and more', icon: '⚖️' },
+  { href: '/portfolio-analyzer', name: 'Domain Portfolio Analyzer', desc: 'Analyze your entire domain collection — quality scores, TLD distribution, age, expiration alerts, and CSV export', icon: '📁' },
 ];
 
 export default function Tools() {
