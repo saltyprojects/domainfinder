@@ -64,6 +64,7 @@ const TOOLS_LINKS = [
   { href: '/portfolio-analyzer', label: 'Portfolio Analyzer' },
   { href: '/robots-analyzer', label: 'Robots.txt Analyzer' },
   { href: '/sitemap-validator', label: 'Sitemap Validator' },
+  { href: '/og-preview', label: 'Open Graph Preview' },
 ];
 
 export function StaticPage({ children }) {
