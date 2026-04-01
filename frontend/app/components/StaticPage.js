@@ -63,6 +63,7 @@ const TOOLS_LINKS = [
   { href: '/domain-name-scorer', label: 'Domain Name Scorer' },
   { href: '/portfolio-analyzer', label: 'Portfolio Analyzer' },
   { href: '/robots-analyzer', label: 'Robots.txt Analyzer' },
+  { href: '/sitemap-validator', label: 'Sitemap Validator' },
 ];
 
 export function StaticPage({ children }) {
