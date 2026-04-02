@@ -42,6 +42,7 @@ const TOOLS = [
   { href: '/robots-analyzer', name: 'Robots.txt Analyzer', desc: 'Parse, validate, and analyze any website\'s robots.txt — see blocked bots, disallowed paths, sitemaps, and syntax errors', icon: '🤖' },
   { href: '/sitemap-validator', name: 'Sitemap Validator', desc: 'Validate and analyze XML sitemaps — check for errors, duplicates, missing metadata, size limits, and get an SEO health score', icon: '🗺️' },
   { href: '/og-preview', name: 'Open Graph Preview', desc: 'Preview how your links appear on Facebook, Twitter/X, Discord, LinkedIn, and Slack — with readiness score and code snippets', icon: '🖼️' },
+  { href: '/domain-keywords', name: 'Domain Keyword Extractor', desc: 'Extract meaningful keywords from any domain name. Break down concatenated names, classify words, and export results as CSV', icon: '🔤' },
 ];
 
 export default function Tools() {
