@@ -44,6 +44,7 @@ const TOOLS = [
   { href: '/og-preview', name: 'Open Graph Preview', desc: 'Preview how your links appear on Facebook, Twitter/X, Discord, LinkedIn, and Slack — with readiness score and code snippets', icon: '🖼️' },
   { href: '/domain-keywords', name: 'Domain Keyword Extractor', desc: 'Extract meaningful keywords from any domain name. Break down concatenated names, classify words, and export results as CSV', icon: '🔤' },
   { href: '/doh-tester', name: 'DNS over HTTPS Tester', desc: 'Test and compare DoH resolvers — Google, Cloudflare, Quad9, AdGuard & Mullvad — with speed benchmarks and DNSSEC validation', icon: '🔐' },
+  { href: '/domain-watchlist', name: 'Domain Watchlist', desc: 'Track domain expiration dates, registrar info, and DNS status. Monitor your portfolio with a free browser-based watchlist', icon: '👁️' },
 ];
 
 export default function Tools() {
