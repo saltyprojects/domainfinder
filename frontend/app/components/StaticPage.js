@@ -66,6 +66,7 @@ const TOOLS_LINKS = [
   { href: '/sitemap-validator', label: 'Sitemap Validator' },
   { href: '/og-preview', label: 'Open Graph Preview' },
   { href: '/domain-keywords', label: 'Domain Keyword Extractor' },
+  { href: '/doh-tester', label: 'DNS over HTTPS Tester' },
 ];
 
 export function StaticPage({ children }) {

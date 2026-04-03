@@ -43,6 +43,7 @@ const TOOLS = [
   { href: '/sitemap-validator', name: 'Sitemap Validator', desc: 'Validate and analyze XML sitemaps — check for errors, duplicates, missing metadata, size limits, and get an SEO health score', icon: '🗺️' },
   { href: '/og-preview', name: 'Open Graph Preview', desc: 'Preview how your links appear on Facebook, Twitter/X, Discord, LinkedIn, and Slack — with readiness score and code snippets', icon: '🖼️' },
   { href: '/domain-keywords', name: 'Domain Keyword Extractor', desc: 'Extract meaningful keywords from any domain name. Break down concatenated names, classify words, and export results as CSV', icon: '🔤' },
+  { href: '/doh-tester', name: 'DNS over HTTPS Tester', desc: 'Test and compare DoH resolvers — Google, Cloudflare, Quad9, AdGuard & Mullvad — with speed benchmarks and DNSSEC validation', icon: '🔐' },
 ];
 
 export default function Tools() {
