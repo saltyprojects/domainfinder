@@ -106,6 +106,12 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${gaTag}');`}
         </Script>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4614927747606761"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </head>
       <body>{children}</body>
     </html>
