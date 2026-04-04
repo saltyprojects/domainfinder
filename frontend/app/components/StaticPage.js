@@ -67,6 +67,8 @@ const TOOLS_LINKS = [
   { href: '/og-preview', label: 'Open Graph Preview' },
   { href: '/domain-keywords', label: 'Domain Keyword Extractor' },
   { href: '/doh-tester', label: 'DNS over HTTPS Tester' },
+  { href: '/domain-watchlist', label: 'Domain Watchlist' },
+  { href: '/caa-checker', label: 'CAA Record Checker' },
 ];
 
 export function StaticPage({ children }) {
