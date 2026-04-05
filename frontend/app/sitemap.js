@@ -75,6 +75,7 @@ export default async function sitemap() {
     { url: `${base}/doh-tester`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/domain-watchlist`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/caa-checker`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/domain-appraisal`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${base}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },

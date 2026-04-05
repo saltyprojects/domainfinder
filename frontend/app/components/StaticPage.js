@@ -69,6 +69,7 @@ const TOOLS_LINKS = [
   { href: '/doh-tester', label: 'DNS over HTTPS Tester' },
   { href: '/domain-watchlist', label: 'Domain Watchlist' },
   { href: '/caa-checker', label: 'CAA Record Checker' },
+  { href: '/domain-appraisal', label: 'Domain Appraisal' },
 ];
 
 export function StaticPage({ children }) {

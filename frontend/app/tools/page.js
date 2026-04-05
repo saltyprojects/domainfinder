@@ -46,6 +46,7 @@ const TOOLS = [
   { href: '/doh-tester', name: 'DNS over HTTPS Tester', desc: 'Test and compare DoH resolvers — Google, Cloudflare, Quad9, AdGuard & Mullvad — with speed benchmarks and DNSSEC validation', icon: '🔐' },
   { href: '/domain-watchlist', name: 'Domain Watchlist', desc: 'Track domain expiration dates, registrar info, and DNS status. Monitor your portfolio with a free browser-based watchlist', icon: '👁️' },
   { href: '/caa-checker', name: 'CAA Record Checker', desc: 'Check Certificate Authority Authorization records for any domain. See which CAs can issue SSL/TLS certificates and get security recommendations', icon: '🛡️' },
+  { href: '/domain-appraisal', name: 'Domain Appraisal Tool', desc: 'Free multi-factor domain name appraisal. Get an instant value estimate based on TLD quality, length, brandability, keywords, and memorability', icon: '💎' },
 ];
 
 export default function Tools() {
