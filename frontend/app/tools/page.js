@@ -47,6 +47,8 @@ const TOOLS = [
   { href: '/domain-watchlist', name: 'Domain Watchlist', desc: 'Track domain expiration dates, registrar info, and DNS status. Monitor your portfolio with a free browser-based watchlist', icon: '👁️' },
   { href: '/caa-checker', name: 'CAA Record Checker', desc: 'Check Certificate Authority Authorization records for any domain. See which CAs can issue SSL/TLS certificates and get security recommendations', icon: '🛡️' },
   { href: '/domain-appraisal', name: 'Domain Appraisal Tool', desc: 'Free multi-factor domain name appraisal. Get an instant value estimate based on TLD quality, length, brandability, keywords, and memorability', icon: '💎' },
+  { href: '/txt-record-lookup', name: 'TXT Record Lookup', desc: 'Check all DNS TXT records for any domain — SPF, DKIM, DMARC, BIMI, MTA-STS, and verification tokens from Google, Microsoft, Facebook, and more', icon: '📝' },
+  { href: '/registrar-detector', name: 'Registrar Detector', desc: 'Identify which registrar manages any domain. See IANA ID, abuse contacts, nameservers, registration dates, and EPP status flags via live RDAP', icon: '🏢' },
 ];
 
 export default function Tools() {

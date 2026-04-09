@@ -70,6 +70,7 @@ const TOOLS_LINKS = [
   { href: '/domain-watchlist', label: 'Domain Watchlist' },
   { href: '/caa-checker', label: 'CAA Record Checker' },
   { href: '/domain-appraisal', label: 'Domain Appraisal' },
+  { href: '/txt-record-lookup', label: 'TXT Record Lookup' },
 ];
 
 export function StaticPage({ children }) {
