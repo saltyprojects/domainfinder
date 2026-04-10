@@ -49,6 +49,7 @@ const TOOLS = [
   { href: '/domain-appraisal', name: 'Domain Appraisal Tool', desc: 'Free multi-factor domain name appraisal. Get an instant value estimate based on TLD quality, length, brandability, keywords, and memorability', icon: '💎' },
   { href: '/txt-record-lookup', name: 'TXT Record Lookup', desc: 'Check all DNS TXT records for any domain — SPF, DKIM, DMARC, BIMI, MTA-STS, and verification tokens from Google, Microsoft, Facebook, and more', icon: '📝' },
   { href: '/registrar-detector', name: 'Registrar Detector', desc: 'Identify which registrar manages any domain. See IANA ID, abuse contacts, nameservers, registration dates, and EPP status flags via live RDAP', icon: '🏢' },
+  { href: '/ptr-lookup', name: 'PTR Record Lookup', desc: 'Reverse DNS lookup for any IP address. Find the hostname mapped to an IP, verify forward-confirmed reverse DNS (FCrDNS), and inspect ARPA records', icon: '🔄' },
 ];
 
 export default function Tools() {
