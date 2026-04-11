@@ -50,6 +50,7 @@ const TOOLS = [
   { href: '/txt-record-lookup', name: 'TXT Record Lookup', desc: 'Check all DNS TXT records for any domain — SPF, DKIM, DMARC, BIMI, MTA-STS, and verification tokens from Google, Microsoft, Facebook, and more', icon: '📝' },
   { href: '/registrar-detector', name: 'Registrar Detector', desc: 'Identify which registrar manages any domain. See IANA ID, abuse contacts, nameservers, registration dates, and EPP status flags via live RDAP', icon: '🏢' },
   { href: '/ptr-lookup', name: 'PTR Record Lookup', desc: 'Reverse DNS lookup for any IP address. Find the hostname mapped to an IP, verify forward-confirmed reverse DNS (FCrDNS), and inspect ARPA records', icon: '🔄' },
+  { href: '/soa-checker', name: 'SOA Record Checker', desc: 'Check Start of Authority DNS records for any domain. View primary nameserver, admin email, serial number, zone timers, and get a configuration grade', icon: '📜' },
 ];
 
 export default function Tools() {
