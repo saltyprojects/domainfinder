@@ -81,6 +81,7 @@ export default async function sitemap() {
     { url: `${base}/registrar-detector`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/ptr-lookup`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/soa-checker`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
+    { url: `${base}/domain-compare`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
     { url: `${base}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${base}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
