@@ -53,6 +53,7 @@ const TOOLS = [
   { href: '/soa-checker', name: 'SOA Record Checker', desc: 'Check Start of Authority DNS records for any domain. View primary nameserver, admin email, serial number, zone timers, and get a configuration grade', icon: '📜' },
   { href: '/domain-compare', name: 'Domain Comparison Tool', desc: 'Compare two domains side by side — registration age, registrar, DNS records, nameservers, email security (SPF, DMARC), and configuration grade', icon: '⚖️' },
   { href: '/response-time', name: 'Website Response Time Checker', desc: 'Measure website response time including DNS lookup speed, HTTP latency, jitter, and P95 — with a performance grade and optimization tips', icon: '⏱️' },
+  { href: '/dns-export', name: 'DNS Record Export Tool', desc: 'Export all DNS records for any domain as a BIND zone file, CSV, or JSON. Backup, migrate, or audit DNS configurations', icon: '📦' },
 ];
 
 export default function Tools() {

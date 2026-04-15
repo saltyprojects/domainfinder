@@ -9,9 +9,62 @@
   <url><loc>https://domydomains.com/domain-value</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://domydomains.com/about</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
   <url><loc>https://domydomains.com/blog</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://domydomains.com/tools</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://domydomains.com/privacy</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://domydomains.com/terms</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
   <url><loc>https://domydomains.com/trademark</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://domydomains.com/domain-age-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/dns-lookup</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/domain-expiration</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/domain-availability</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/random-domain-generator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/brand-name-generator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/startup-name-generator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/domain-value</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/domain-length-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/tld-comparison</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/bulk-domain-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/ssl-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/email-domain-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/domain-history</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/website-status</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/domain-typo-generator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/nameserver-lookup</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/whois-privacy-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/http-header-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/subdomain-finder</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/domain-transfer-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/reverse-ip-lookup</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/url-redirect-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/domain-blacklist-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/website-tech-detector</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/dns-propagation-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/whois-compare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/punycode-converter</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/mx-record-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/spf-generator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/dmarc-generator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/dkim-generator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/cname-lookup</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/redirect-mapper</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/domain-name-scorer</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/dns-compare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/portfolio-analyzer</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/robots-analyzer</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/sitemap-validator</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/og-preview</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/domain-keywords</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/doh-tester</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/domain-watchlist</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/caa-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/domain-appraisal</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/txt-record-lookup</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/registrar-detector</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/ptr-lookup</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/soa-checker</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/domain-compare</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/response-time</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://domydomains.com/dns-export</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://domydomains.com/blog/bulk-domain-search-check-multiple-domains-2026</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://domydomains.com/blog/complete-guide-domain-extensions-choose-right-tld-2026</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://domydomains.com/blog/ai-domain-name-generators-2026</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
